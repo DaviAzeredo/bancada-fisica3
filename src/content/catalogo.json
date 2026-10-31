@@ -1,0 +1,1925 @@
+{
+ "provas": [
+  {
+   "id": "p1-2026-2-diurno",
+   "titulo": "P1 · 2026/2 · Diurno",
+   "subtitulo": "Física III · Primeira Prova · Versão C · 21/09/2026",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Cargas nas superfícies de um condutor oco",
+     "resumo": "Partícula numa cavidade: quanto vai para S_int e para S_ext.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Onde o campo de duas cargas se anula",
+     "resumo": "Cargas de mesmo sinal e de sinais opostos, com |q₁| < |q₂|.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Energia de três esferas de mesma carga",
+     "resumo": "Esfera condutora, casca espessa e bola maciça: qual guarda mais energia?",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Anel com metades de cargas opostas",
+     "resumo": "Densidade, campo no eixo e o limite de dipolo.",
+     "secao": "Discursiva",
+     "pontos": 3.5
+    },
+    {
+     "id": "disc2",
+     "numero": "D2",
+     "titulo": "Casca espessa com ρ = Cr",
+     "resumo": "Carga total, campo nas três regiões e potencial dentro da casca.",
+     "secao": "Discursiva",
+     "pontos": 3.5
+    }
+   ]
+  },
+  {
+   "id": "p3-2026-1-diurno",
+   "titulo": "P3 · 2026/1 · Diurno",
+   "subtitulo": "Física III · Terceira Prova · Versão A · 06/07/2026",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Fio longo com uma volta circular",
+     "resumo": "Reta e espira coplanares: os dois campos somam no centro.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Próton e elétron andando lado a lado",
+     "resumo": "A força elétrica atrai; as correntes opostas se repelem.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Trabalho entre superfícies equipotenciais",
+     "resumo": "Só importam o começo e o fim de cada caminho.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Quais linhas não podem ser de campo?",
+     "resumo": "Indução num condutor: seis curvas, quatro impossíveis.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Três afirmativas sobre o magnetismo",
+     "resumo": "Monopolos, trabalho da força magnética e o vetor velocidade.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Casca cilíndrica com J = (C/s) ẑ",
+     "resumo": "Corrente total, simetria, amperiana e B nas três regiões.",
+     "secao": "Discursiva",
+     "pontos": 3
+    },
+    {
+     "id": "disc2",
+     "numero": "D2",
+     "titulo": "Raio que gira num setor circular",
+     "resumo": "A área cresce, a fem é constante, mas a resistência aumenta.",
+     "secao": "Discursiva",
+     "pontos": 2
+    }
+   ]
+  },
+  {
+   "id": "p2-2026-1-diurno",
+   "titulo": "P2 · 2026/1 · Diurno",
+   "subtitulo": "Física III · Segunda Prova · Versão A · 01/06/2026",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Qual campo viola ∮B·dA = 0?",
+     "resumo": "Fluxo magnético por superfície fechada em três campos candidatos.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Raio e período da hélice",
+     "resumo": "Partícula com velocidade oblíqua a um B uniforme.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Onde está o dielétrico?",
+     "resumo": "Ler V(z) num capacitor com metade preenchida por isolante.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Razão entre resistividades",
+     "resumo": "Dois fios ôhmicos com L₂ = 3L₁ e r₂ = r₁/2.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "ddp com casca esférica",
+     "resumo": "V(3R) − V(R/2) para uma casca de raio R e carga Q.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Capacitor com lâmina dielétrica",
+     "resumo": "Capacitância e energia com lâmina de espessura λL e constante K.",
+     "secao": "Discursiva",
+     "pontos": 2.5
+    },
+    {
+     "id": "disc2",
+     "numero": "D2",
+     "titulo": "Malha retangular perto de um fio",
+     "resumo": "Forças magnéticas em cada lado da malha e força resultante.",
+     "secao": "Discursiva",
+     "pontos": 2.5
+    }
+   ]
+  },
+  {
+   "id": "p1-2026-1-diurno",
+   "titulo": "P1 · 2026/1 · Diurno",
+   "subtitulo": "Física III · Primeira Prova · Versão A",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Do gráfico de V(x) ao campo",
+     "resumo": "Ler a inclinação de V e achar E_x em cada trecho.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Trabalho por dois caminhos",
+     "resumo": "Partícula negativa levada ao longo das linhas de campo.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Quais curvas não são linhas de campo?",
+     "resumo": "Oito curvas em volta de um condutor oco com partícula na cavidade.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Quando Gauss basta para achar E",
+     "resumo": "Linha com λ(z), casca com σ(t) e bola com ρ(θ).",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Casca cilíndrica condutora neutra",
+     "resumo": "Densidades nas faces interna e externa com uma linha no eixo.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Anel com λ(θ) = λ₀ sen θ em três quartos",
+     "resumo": "Gráfico da densidade, carga total e campo no centro.",
+     "secao": "Discursiva",
+     "pontos": 2.5
+    },
+    {
+     "id": "disc2",
+     "numero": "D2",
+     "titulo": "Potencial e campo de uma haste no eixo",
+     "resumo": "Integração do potencial, gradiente e comportamento longe da haste.",
+     "secao": "Discursiva",
+     "pontos": 2.5
+    }
+   ]
+  },
+  {
+   "id": "p1-2025-2-diurno",
+   "titulo": "P1 · 2025/2 · Diurno",
+   "subtitulo": "Física III · Primeira Prova · Versão B · 15/09/2025",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Terceiro vértice de um triângulo",
+     "resumo": "Trabalho para trazer Q₀ e energia da configuração com +Q e −Q.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Trajetória num campo uniforme",
+     "resumo": "Velocidade inicial para baixo e para a esquerda, E para a direita.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Três afirmações sobre eletrostática",
+     "resumo": "Isolante, potencial nulo e equipotenciais que se cruzam.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Anel com λ = λ₀ cos φ visto de longe",
+     "resumo": "Carga total nula: como o campo decai ao longo do eixo.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Potencial longe de três cargas alinhadas",
+     "resumo": "Cargas q, q e −2q: por que o termo em 1/y² some.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Fluxo nulo por um cubo",
+     "resumo": "Esfera maciça e casca concêntricas: relação entre ρ e σ.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Dois anéis coaxiais de cargas opostas",
+     "resumo": "Potencial por integração direta, campo e gráfico de V(z).",
+     "secao": "Discursiva",
+     "pontos": 2.6
+    },
+    {
+     "id": "disc2",
+     "numero": "D2",
+     "titulo": "Coroa esférica com ρ = ρ₀(r/R)³",
+     "resumo": "Simetria, escolha da gaussiana, campo nas três regiões e gráfico.",
+     "secao": "Discursiva",
+     "pontos": 2.6
+    }
+   ]
+  },
+  {
+   "id": "p2-2025-2-diurno",
+   "titulo": "P2 · 2025/2 · Diurno",
+   "subtitulo": "Física III · Segunda Prova · Versão C · 03/11/2025",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Aproximar as placas com a carga constante",
+     "resumo": "O que muda em C, U e na densidade de energia.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Fluxo por dois quadrados abertos",
+     "resumo": "Mesma área, distâncias diferentes de uma carga pontual.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Bateria e resistor: quem empurra as cargas",
+     "resumo": "Fem como trabalho não eletrostático por unidade de carga.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Razão entre energia cinética e momento",
+     "resumo": "Partícula em movimento circular num B uniforme.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Resistividades a partir de um gráfico I × V",
+     "resumo": "Dois fios ôhmicos com comprimentos e raios diferentes.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Potencial na reta de uma haste",
+     "resumo": "Haste uniforme de −a a a; ponto em x = b > a.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Capacitor com duas chapas dielétricas",
+     "resumo": "Campos, ddps, capacitância em série e o caso K₁ = K₂.",
+     "secao": "Discursiva",
+     "pontos": 4
+    }
+   ]
+  },
+  {
+   "id": "p3-2025-2-diurno",
+   "titulo": "P3 · 2025/2 · Diurno",
+   "subtitulo": "Física III · Terceira Prova · Versão C · 01/12/2025",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Plano infinito cortando um cubo",
+     "resumo": "O campo em P, de onde ele vem e o fluxo total.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Potencial no centro de um disco não uniforme",
+     "resumo": "Disco com σ crescendo com s².",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Circulação por duas amperianas",
+     "resumo": "Círculo horário e quadrado anti-horário num cilindro com J uniforme.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Espira flexível perto de um fio com I crescente",
+     "resumo": "Lenz decide para onde o centro de massa vai e o que acontece com a área.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "A razão e/m de Thomson",
+     "resumo": "Campos cruzados que deixam o feixe em linha reta.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Dois fios tangentes a um anel",
+     "resumo": "Campo no centro: três contribuições no mesmo sentido.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Circuito com trecho semicircular girando",
+     "resumo": "Fluxo, fem e corrente induzidos pela rotação de uma parte do circuito.",
+     "secao": "Discursiva",
+     "pontos": 4
+    }
+   ]
+  },
+  {
+   "id": "p1-2025-1-diurno",
+   "titulo": "P1 · 2025/1 · Diurno",
+   "subtitulo": "Física III · Primeira Prova · Versão D · 28/04/2025",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Campo no eixo de um anel: o formato",
+     "resumo": "Qual gráfico representa E_z(z)?",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Lendo linhas de campo de duas cargas",
+     "resumo": "Sinais, módulos e por que aquilo não é um dipolo.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Fluxo de um fio com λ(z) cossenoidal",
+     "resumo": "Só o trecho dentro da gaussiana conta.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Aceleração num potencial gaussiano",
+     "resumo": "Do V(x, y, z) dado até a força sobre a partícula.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Três afirmações sobre o potencial",
+     "resumo": "Gradiente, superposição e o sinal de uma diferença.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Fluxo de um anel por um hemisfério",
+     "resumo": "Simetria transforma o hemisfério aberto em meia esfera fechada.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Camada com ρ ∝ 1/r e carga no centro",
+     "resumo": "Gauss em três regiões, ddp e a condição de campo constante.",
+     "secao": "Discursiva",
+     "pontos": 5.2
+    }
+   ]
+  },
+  {
+   "id": "p2-2025-1-diurno",
+   "titulo": "P2 · 2025/1 · Diurno",
+   "subtitulo": "Física III · Segunda Prova · Versão W · 02/06/2025",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Potencial na ponta de um quarto de disco",
+     "resumo": "Densidade uniforme; o ponto é o centro do disco original.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Dobrar a carga de um capacitor",
+     "resumo": "A capacitância não muda; a energia, sim.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Espirais numa câmara de bolhas",
+     "resumo": "O que se pode concluir do formato das trajetórias.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Dois resistores, a mesma potência",
+     "resumo": "Bateria com resistência interna e 100 W no resistor externo.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Força numa barra apoiada",
+     "resumo": "Sentido e módulo da força magnética.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Três enganos sobre a lei de Gauss",
+     "resumo": "Fluxo nulo, simetria e cargas de fora.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Espira num campo que cresce com x",
+     "resumo": "Forças nas quatro arestas, aceleração do centro de massa e ponto de B nulo.",
+     "secao": "Discursiva",
+     "pontos": 5.2
+    }
+   ]
+  },
+  {
+   "id": "p3-2025-1-diurno",
+   "titulo": "P3 · 2025/1 · Diurno",
+   "subtitulo": "Física III · Terceira Prova · Versão M · 09/07/2025",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Capacitor isolado: área dobrada, distância menor",
+     "resumo": "O que depende de quê quando a carga é fixa.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Potencial entre placas de densidades diferentes",
+     "resumo": "Planos com −σ e σ/3; V nulo em z = L.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Fio com resistividade que cresce com s",
+     "resumo": "E axial constante: J cai com 1/s.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Três circuitos com um semicírculo",
+     "resumo": "Compare B no centro do arco em cada arranjo.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Campo com t³: a corrente nunca troca de sentido",
+     "resumo": "B inverte em t = 0, mas dB/dt não.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Duas cargas em movimento e a terceira lei",
+     "resumo": "A força magnética de uma existe; a da outra, não.",
+     "secao": "Objetiva",
+     "pontos": 0.8
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Condutor com J = Cs/2π e fio no eixo",
+     "resumo": "Corrente total, B fora e dentro, e como anular o campo externo.",
+     "secao": "Discursiva",
+     "pontos": 5.2
+    }
+   ]
+  },
+  {
+   "id": "p1-2024-2-diurno",
+   "titulo": "P1 · 2024/2 · Diurno",
+   "subtitulo": "Física III · Primeira Prova · Versão D · 23/09/2024",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Plano e esfera: campo no ponto entre eles",
+     "resumo": "Superposição com σ_E = 4σ_P.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Sinais para uma aceleração em +x",
+     "resumo": "Três cargas: só uma combinação empurra q₃ para a direita.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "V(r) de duas cascas concêntricas",
+     "resumo": "Mesma densidade σ > 0, raios a e b.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Velocidade de lançamento contra uma esfera",
+     "resumo": "Conservação de energia até a máxima aproximação.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Em quais superfícies o fluxo é nulo?",
+     "resumo": "Três cargas e três superfícies que envolvem pares.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Campo além da ponta de um fio",
+     "resumo": "Fio de comprimento a; ponto em x = 2a.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Tubo com ρ = ρ₀(a/s)",
+     "resumo": "Gauss cilíndrico, gráfico de E(s) e ddp entre as faces.",
+     "secao": "Discursiva",
+     "pontos": 4
+    }
+   ]
+  },
+  {
+   "id": "p2-2024-2-diurno",
+   "titulo": "P2 · 2024/2 · Diurno",
+   "subtitulo": "Física III · Segunda Prova · Versão A · 21/10/2024",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Haste girante com três cargas",
+     "resumo": "Momento de dipolo magnético e energia num campo externo.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Gaussiana com tampas dentro dos condutores",
+     "resumo": "Placa carregada entre duas placas condutoras neutras.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Potencial com referência em s = 2a",
+     "resumo": "Cilindro condutor carregado; V nulo fora do infinito.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Potência perdida dentro da bateria",
+     "resumo": "Lanterna de 8 Ω com bateria de 10 V e 2 Ω internos.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Carga em C₁ num arranjo misto",
+     "resumo": "Paralelo no meio, em série com dois capacitores.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Força num lado de um circuito",
+     "resumo": "B = C(x + y)ẑ varia ao longo do segmento.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Espectrômetro de massa",
+     "resumo": "Da ddp ao ponto de impacto, resolução em massa e potencial dos íons.",
+     "secao": "Discursiva",
+     "pontos": 4
+    }
+   ]
+  },
+  {
+   "id": "p3-2024-2-diurno",
+   "titulo": "P3 · 2024/2 · Diurno",
+   "subtitulo": "Física III · Terceira Prova · Versão C · 02/12/2024",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Resistividade de um gás ionizado",
+     "resumo": "Elétrons e íons de carga 2e levam corrente no mesmo sentido.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Esfera com ρ que cai até a borda",
+     "resumo": "Gauss com ρ = ρ₀(1 − r/R).",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Circuito em volta de um fio",
+     "resumo": "Arcos e segmentos radiais: a força resultante.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Espira livre num B uniforme que sobe e desce",
+     "resumo": "Seis afirmações sobre corrente, força e momento.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Anular B no centro com duas dobras",
+     "resumo": "Fio com arco e fio com quina: a razão entre as correntes.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Energia de um capacitor com corrente alternada",
+     "resumo": "Da corrente I₀ cos(2πft) à carga e à energia em t = 1/4f.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Cabo coaxial com j variável na casca",
+     "resumo": "Ampère em quatro regiões e a condição de B constante na casca.",
+     "secao": "Discursiva",
+     "pontos": 4
+    }
+   ]
+  },
+  {
+   "id": "p1-2024-1-diurno",
+   "titulo": "P1 · 2024/1 · Diurno",
+   "subtitulo": "Física III · Primeira Prova · Versão C · 29/04/2024",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Condutor com duas cavidades",
+     "resumo": "Carga na superfície externa, com partículas dentro e fora.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Lendo pontos notáveis em V(x)",
+     "resumo": "Cargas q e −4q: mínimo e zero do potencial em x < 0.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Mesmo campo dentro e fora de um cilindro",
+     "resumo": "E cresce com s dentro e cai com 1/s fora.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Anular o campo entre dois anéis",
+     "resumo": "Qual raio equilibra um anel com oito vezes a carga?",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Próton num potencial exponencial",
+     "resumo": "Energia em vez de força.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Bastão neutro com duas cargas nas pontas",
+     "resumo": "Quando a soma das forças puxa o bastão.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Chapa, lâmina com ρ(z) e vácuo",
+     "resumo": "Gauss plano com densidade exponencial e potencial nas duas regiões.",
+     "secao": "Discursiva",
+     "pontos": 4
+    }
+   ]
+  },
+  {
+   "id": "p2-2024-1-diurno",
+   "titulo": "P2 · 2024/1 · Diurno",
+   "subtitulo": "Física III · Segunda Prova · Versão A · 03/06/2024",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Semicírculo e seletor de velocidades",
+     "resumo": "Dos dois caminhos da mesma partícula saem B e E.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Barra inclinada que fecha o circuito",
+     "resumo": "Força magnética e a corrente máxima antes de levantar.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Placa carregada e condutor aterrado",
+     "resumo": "Campo nas quatro regiões.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Metade da separação, triplo da fem",
+     "resumo": "Variação fracional da energia entre dois capacitores.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Quando uma lâmpada queima",
+     "resumo": "Paralelo perde um ramo; o que muda em P, R e S?",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "De V(x) para E_x(x)",
+     "resumo": "Patamar, rampa descendo e parábola subindo.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Lâmpada fluorescente num campo magnético",
+     "resumo": "Neutralidade, densidade de corrente, resistividade e força.",
+     "secao": "Discursiva",
+     "pontos": 4
+    }
+   ]
+  },
+  {
+   "id": "p3-2024-1-diurno",
+   "titulo": "P3 · 2024/1 · Diurno",
+   "subtitulo": "Física III · Terceira Prova · Versão A · 03/07/2024",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Três afirmações sobre magnetismo",
+     "resumo": "Rapidez, centro de massa de um par e fluxo de um ímã.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Lâmina condutora num capacitor isolado",
+     "resumo": "A energia cai, e a posição da lâmina não importa.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Cilindro com J = (k/s) e^(−s/R)",
+     "resumo": "A corrente envolvida vem de uma integral simples.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Amperiana enlaçada por quatro fios",
+     "resumo": "Só conta quem atravessa a superfície, com o sinal certo.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Gauss serve para um disco?",
+     "resumo": "A lei vale, mas a simetria não basta para isolar E.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Corrente máxima com B ∝ cos²(ωt)",
+     "resumo": "A fem oscila com o dobro da frequência.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Fio com semicírculo e dois trechos semi-infinitos",
+     "resumo": "Biot-Savart em três trechos, com direções diferentes.",
+     "secao": "Discursiva",
+     "pontos": 4
+    }
+   ]
+  },
+  {
+   "id": "p3-2024-1-noturno",
+   "titulo": "P3 · 2024/1 · Noturno",
+   "subtitulo": "Física III · Terceira Prova · Versão A · 04/07/2024",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Quantos capacitores no grupo?",
+     "resumo": "Em paralelo, 25 vezes mais que em série.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Carga a partir de V(r)",
+     "resumo": "Esfera dentro de uma casca aterrada: derivar V e usar Gauss.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Anular B na origem com dois fios",
+     "resumo": "Arcos de raios R e 2R e um trecho reto que não aponta para a origem.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Força num fio torto em B uniforme",
+     "resumo": "Só importa o vetor que liga as pontas do fio.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Quatro espiras em volta de um fio",
+     "resumo": "Para cada uma: B de que lado, e o fluxo sobe ou desce?",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "B = at(b − t) numa espira circular",
+     "resumo": "O campo ainda aponta para fora, mas já está caindo.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Cabo coaxial com J(s) = A(a − s)/2π",
+     "resumo": "Da condição de B nulo fora até o máximo em s = 3a/4.",
+     "secao": "Discursiva",
+     "pontos": 4
+    }
+   ]
+  },
+  {
+   "id": "sc-2024-1-diurno",
+   "titulo": "Segunda chamada · 2024/1 · Diurno",
+   "subtitulo": "Física III · Segunda Chamada · Versão A · 15/07/2024",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Cinco capacitores e só três nós",
+     "resumo": "Os fios escondem uma associação simples.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Disco vazado girando",
+     "resumo": "Anéis de corrente somados no centro.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Disco, barra e cubo numa esfera",
+     "resumo": "A mesma carga, mas nem toda fica dentro.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Raio sobre passo de uma hélice",
+     "resumo": "Massa, carga e campo somem da razão.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Corrente num fio que alarga",
+     "resumo": "A corrente é a mesma; densidade, carga e velocidade mudam.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Dois arcos e dois segmentos radiais",
+     "resumo": "Segmentos radiais não contribuem; os arcos se somam.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Espira com pulso gaussiano de campo",
+     "resumo": "Fluxo, corrente, instante de máximo e potência dissipada.",
+     "secao": "Discursiva",
+     "pontos": 4
+    }
+   ]
+  },
+  {
+   "id": "p2-2023-2-diurno",
+   "titulo": "P2 · 2023/2 · Diurno",
+   "subtitulo": "Física III · Segunda Prova · Versão A · 30/10/2023",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Medir q/m com E e B",
+     "resumo": "Acelerar por um trecho D e fazer meia volta de diâmetro D.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Desintegração num campo magnético",
+     "resumo": "Cargas opostas, momentos opostos, massas diferentes.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Campo num tubo de descarga",
+     "resumo": "Ler a inclinação de V(z) em três pontos.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Capacitores quadrado e circular em paralelo",
+     "resumo": "Mesma ddp: as energias se somam.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Campo de um cilindro com ρ = Cs",
+     "resumo": "Qual gráfico de E(s)?",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Fio de duas metades",
+     "resumo": "Mesmo campo nas duas metades: é um paralelo.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Fio num campo que cresce com x²",
+     "resumo": "Força e torque resultantes somados ao longo do fio.",
+     "secao": "Discursiva",
+     "pontos": 4
+    }
+   ]
+  },
+  {
+   "id": "p3-2023-2-diurno",
+   "titulo": "P3 · 2023/2 · Diurno",
+   "subtitulo": "Física III · Terceira Prova · Versão A · 04/12/2023",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Dois fios dobrados em arcos",
+     "resumo": "Biot-Savart por trechos: retas, arcos e sinais opostos.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Cinco movimentos de uma espira perto de um fio",
+     "resumo": "Só importa se o fluxo muda, e o campo do fio não é uniforme.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Três placas infinitas: +σ, +2σ e −σ",
+     "resumo": "Superposição de três campos uniformes, com sinais que dependem do lado.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Potencial de um fio dentro de uma casca condutora",
+     "resumo": "V = 0 em s = b, com −Q na face interna e −2Q na externa.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Passo e raio de uma hélice",
+     "resumo": "O ângulo entre v e B sai só da geometria da trajetória.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Espira atravessando uma região de campo",
+     "resumo": "Associar Φ, ε e F a três gráficos.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Cabo coaxial com J não uniforme",
+     "resumo": "Simetria, circulação e campo nas três regiões.",
+     "secao": "Discursiva",
+     "pontos": 4
+    }
+   ]
+  },
+  {
+   "id": "p3-2023-2-noturno",
+   "titulo": "P3 · 2023/2 · Noturno",
+   "subtitulo": "Física III · Terceira Prova · Versão A · 07/12/2023",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Capacitor de quatro placas intercaladas",
+     "resumo": "Placas ligadas de duas em duas formam três capacitores em paralelo.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Parar no centro do anel",
+     "resumo": "Conservação de energia, com o potencial no eixo do anel.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Fio com arcos no plano ZY",
+     "resumo": "Dois arcos em sentidos opostos e uma semirreta.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Barra perto de um fio infinito",
+     "resumo": "B varia ao longo da barra: a força sai de uma integral.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "A fem a partir do gráfico de B(t)",
+     "resumo": "Inclinação, e não altura; subida lenta e descida rápida.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Motor de uma barra girando",
+     "resumo": "A fem induzida cresce até igualar a fonte, e a corrente some.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Cilindro oco com J ∝ 1/r",
+     "resumo": "Ampère nas três regiões, o fio que anula o campo e a curva C.",
+     "secao": "Discursiva",
+     "pontos": 4
+    }
+   ]
+  },
+  {
+   "id": "sc-2023-2-diurno",
+   "titulo": "Segunda chamada · 2023/2 · Diurno",
+   "subtitulo": "Física III · Segunda Chamada · Versão A · 18/12/2023",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Cilindro com J crescente em s",
+     "resumo": "Corrente envolvida por integral, e sentido pela mão direita.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Partícula lançada contra uma placa carregada",
+     "resumo": "Da máxima aproximação sai a massa; a força é constante.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Ângulo de um arco para 2B_T = −3B₁",
+     "resumo": "Só os arcos contam. O gabarito diverge da conta por um fator 2.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Espira em repouso numa rampa, acima de um fio",
+     "resumo": "A repulsão do fio equilibra a componente do peso.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Campo magnético induzido num capacitor carregando",
+     "resumo": "Ampère-Maxwell dentro das placas. O gabarito marca o campo de fora.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Campo numa cavidade esférica não concêntrica",
+     "resumo": "Superposição: esfera cheia mais uma esfera negativa. O campo é uniforme.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Barra freada num trilho em U",
+     "resumo": "Faraday, Lenz e Newton: a velocidade cai exponencialmente.",
+     "secao": "Discursiva",
+     "pontos": 4
+    }
+   ]
+  },
+  {
+   "id": "p1-2023-1-noturno",
+   "titulo": "P1 · 2023/1 · Noturno",
+   "subtitulo": "Física III · Primeira Prova Noturna · Versão A · 11/05/2023",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Superfície fechada em volta de um dipolo",
+     "resumo": "Fluxo total nulo não quer dizer campo nulo.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Quando Gauss dá o campo",
+     "resumo": "A lei vale sempre; isolar E exige simetria.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Três afirmações sobre campo e fluxo",
+     "resumo": "Condutor, isolante e cargas que se cancelam.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Esfera carregada e esfera neutra",
+     "resumo": "Atração por indução; depois do contato, repulsão.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Anéis com quadrantes carregados",
+     "resumo": "Cada quadrante aponta ao longo de sua bissetriz.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Dipolo no campo de outro dipolo",
+     "resumo": "Campo paralelo ao momento: torque nulo.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Esfera com ρ = A/r²",
+     "resumo": "Carga, campo e potencial, dentro e fora.",
+     "secao": "Discursiva",
+     "pontos": 4
+    }
+   ]
+  },
+  {
+   "id": "p2-2023-1-noturno",
+   "titulo": "P2 · 2023/1 · Noturno",
+   "subtitulo": "Física III · Segunda Prova Noturna · Versão A · 06/07/2023",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Dois capacitores em série",
+     "resumo": "Mesma carga, e tensões inversas às capacitâncias.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Duas cargas positivas andando em paralelo",
+     "resumo": "Elétrica repele; magnética atrai, como correntes paralelas.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Barra de cobre esticada",
+     "resumo": "O dobro do comprimento e metade da área: 4R.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Seletor de velocidades",
+     "resumo": "B perpendicular a E e a v, para cancelar a força elétrica.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Fio com um quarto de círculo",
+     "resumo": "Os trechos retos apontam para P; só o arco conta.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Trabalho, fluxo magnético e Faraday",
+     "resumo": "Três afirmações: só a primeira resiste.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj7",
+     "numero": "7",
+     "titulo": "fem de uma bobina de 10 espiras",
+     "resumo": "Derivar o fluxo e multiplicar pelo número de espiras.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj8",
+     "numero": "8",
+     "titulo": "Ordenar fems pela inclinação de B(t)",
+     "resumo": "A fem é a inclinação do gráfico, não a altura.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj9",
+     "numero": "9",
+     "titulo": "Cilindro com J = C√s",
+     "resumo": "Integrar J na seção e aplicar Ampère.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj10",
+     "numero": "10",
+     "titulo": "Circuito que cresce num campo que cai",
+     "resumo": "A área ganha do campo: o fluxo cresce com √t.",
+     "secao": "Objetiva",
+     "pontos": 1
+    }
+   ]
+  },
+  {
+   "id": "pf-2023-1-noturno",
+   "titulo": "Prova final · 2023/1 · Noturno",
+   "subtitulo": "Física III · Prova Final Noturna · Versão A · 13/07/2023",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Andar sem mudar o potencial",
+     "resumo": "Equipotenciais são perpendiculares ao campo.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Torque sobre um dipolo preso num pino",
+     "resumo": "τ = p × E, com atenção à regra do produto vetorial.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Carga a partir de um campo dado",
+     "resumo": "Lei de Gauss ao contrário: do campo para a carga.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Capacitor ligado a outro descarregado",
+     "resumo": "A carga se conserva; a energia, não.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Arco com densidade λ₀ cos θ",
+     "resumo": "Duas integrais de cos θ, uma para cada componente.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Ampère, Maxwell e monopolos",
+     "resumo": "Corrente de deslocamento serve para o que não é estacionário.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj7",
+     "numero": "7",
+     "titulo": "Corrente em cada direção de um paralelepípedo",
+     "resumo": "A maior corrente passa pelo caminho curto e largo.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj8",
+     "numero": "8",
+     "titulo": "Três espiras num campo uniforme",
+     "resumo": "Em campo uniforme, a força numa espira fechada é zero.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj9",
+     "numero": "9",
+     "titulo": "Campo ao se afastar de um sistema de cargas",
+     "resumo": "Pode subir ou descer perto; longe, vai a zero.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj10",
+     "numero": "10",
+     "titulo": "Disco dentro de um cilindro gaussiano",
+     "resumo": "O fluxo sai da carga, mas E não é constante.",
+     "secao": "Objetiva",
+     "pontos": 1
+    }
+   ]
+  },
+  {
+   "id": "sc-2023-1-noturno",
+   "titulo": "Segunda chamada · 2023/1 · Noturno",
+   "subtitulo": "Física III · Segunda Chamada Noturna · Versão A · 20/07/2023",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Campo e potencial entre duas cargas iguais",
+     "resumo": "O campo se soma como vetor; o potencial, como número.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Quando a ddp em C₁ é maior que em C₂",
+     "resumo": "Em paralelo, tensões iguais; em série, a menor capacitância leva mais.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Ponto de potencial nulo",
+     "resumo": "V = 0 significa trabalho nulo, não força nula.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "O que fluxo negativo não garante",
+     "resumo": "Só a carga líquida tem de ser negativa.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Três fios nos vértices de um quadrado",
+     "resumo": "Soma vetorial no vértice vazio: as componentes y se cancelam.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Três afirmações sobre fem induzida",
+     "resumo": "A fem segue a derivada do fluxo, não o fluxo.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "disc1",
+     "numero": "D1",
+     "titulo": "Cilindro com ρ = k/r dentro de um tubo condutor",
+     "resumo": "Densidade linear e campo nas quatro regiões.",
+     "secao": "Discursiva",
+     "pontos": 4
+    }
+   ]
+  },
+  {
+   "id": "p2-2022-2-noturno",
+   "titulo": "P2 · 2022/2 · Noturno",
+   "subtitulo": "Física III · Segunda Prova Noturna · Versão A · 15/12/2022",
+   "questoes": [
+    {
+     "id": "obj1",
+     "numero": "1",
+     "titulo": "Fluxo de um fio numa espira retangular",
+     "resumo": "B varia com a distância: o fluxo é um logaritmo.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj2",
+     "numero": "2",
+     "titulo": "Esfera dividida em duas calotas",
+     "resumo": "Fluxos opostos: mesmo módulo e sinais contrários.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj3",
+     "numero": "3",
+     "titulo": "Espira num campo com duas componentes",
+     "resumo": "Só a componente normal conta. O gabarito inverte o sentido.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj4",
+     "numero": "4",
+     "titulo": "Campo de duas cargas em movimento",
+     "resumo": "Cada carga contribui com q v × r̂ / r².",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj5",
+     "numero": "5",
+     "titulo": "Quatro fios entre os mesmos dois pontos",
+     "resumo": "Em campo uniforme, só importa o vetor de p a q.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj6",
+     "numero": "6",
+     "titulo": "Haste com cargas fora de um campo que cai",
+     "resumo": "As cargas estão fora de B, mas sentem o E induzido.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj7",
+     "numero": "7",
+     "titulo": "Barra descendo sob um fio",
+     "resumo": "A força magnética separa as cargas ao longo da barra.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj8",
+     "numero": "8",
+     "titulo": "Qual segmento contribui mais",
+     "resumo": "Retas alinhadas com C não contam; o arco menor vence.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj9",
+     "numero": "9",
+     "titulo": "Prótons e elétrons em placas termossensíveis",
+     "resumo": "O sinal decide a placa; a massa decide o calor.",
+     "secao": "Objetiva",
+     "pontos": 1
+    },
+    {
+     "id": "obj10",
+     "numero": "10",
+     "titulo": "Placa espessa com corrente uniforme",
+     "resumo": "Fora da placa, B não depende da distância.",
+     "secao": "Objetiva",
+     "pontos": 1
+    }
+   ]
+  }
+ ],
+ "labs": [
+  {
+   "id": "coulomb",
+   "numero": "01",
+   "grupo": "Eletrostática",
+   "titulo": "Lei de Coulomb e superposição",
+   "resumo": "Uma carga livre se move sob a soma vetorial das forças; arraste as fontes."
+  },
+  {
+   "id": "dipolo",
+   "numero": "02",
+   "grupo": "Eletrostática",
+   "titulo": "Campo elétrico de um dipolo",
+   "resumo": "Campo exato contra a aproximação, e um dipolo oscilando num campo uniforme."
+  },
+  {
+   "id": "distribuicoes",
+   "numero": "03",
+   "grupo": "Eletrostática",
+   "titulo": "Distribuições contínuas de carga",
+   "resumo": "Anel, haste, disco e arco: campo e potencial por integração."
+  },
+  {
+   "id": "gauss",
+   "numero": "04",
+   "grupo": "Eletrostática",
+   "titulo": "Lei de Gauss",
+   "resumo": "Fluxo por superfícies fechadas de qualquer forma contra Q_enc/ε₀."
+  },
+  {
+   "id": "densidade",
+   "numero": "05",
+   "grupo": "Eletrostática",
+   "titulo": "Gauss com densidade variável",
+   "resumo": "ρ(r) em esferas, coroas e cilindros: E(r) e V(r) região por região."
+  },
+  {
+   "id": "planos",
+   "numero": "06",
+   "grupo": "Eletrostática",
+   "titulo": "Planos infinitos e superposição",
+   "resumo": "Campo de dois e três planos, e plano com esfera, região por região."
+  },
+  {
+   "id": "condutores",
+   "numero": "07",
+   "grupo": "Eletrostática",
+   "titulo": "Condutores em equilíbrio",
+   "resumo": "Cavidades, cargas induzidas, blindagem e aterramento."
+  },
+  {
+   "id": "potencial",
+   "numero": "08",
+   "grupo": "Eletrostática",
+   "titulo": "Potencial e equipotenciais",
+   "resumo": "Uma carga solta desce o mapa de V, com K + U constante."
+  },
+  {
+   "id": "energia",
+   "numero": "09",
+   "grupo": "Eletrostática",
+   "titulo": "Energia eletrostática",
+   "resumo": "Energia de um sistema de cargas, energia no campo e conservação."
+  },
+  {
+   "id": "capacitor",
+   "numero": "10",
+   "grupo": "Capacitores",
+   "titulo": "Capacitores: geometrias e dielétricos",
+   "resumo": "Placas, cilindros e esferas, com dielétricos em série e em paralelo."
+  },
+  {
+   "id": "associacao",
+   "numero": "11",
+   "grupo": "Capacitores",
+   "titulo": "Associação de capacitores",
+   "resumo": "Série, paralelo, arranjo misto e a energia perdida ao ligar dois capacitores."
+  },
+  {
+   "id": "corrente",
+   "numero": "12",
+   "grupo": "Corrente elétrica",
+   "titulo": "Corrente, resistência e resistividade",
+   "resumo": "R = ρL/A, densidade de corrente, campo no fio e velocidade de deriva."
+  },
+  {
+   "id": "continua",
+   "numero": "13",
+   "grupo": "Corrente elétrica",
+   "titulo": "Circuitos de corrente contínua",
+   "resumo": "fem, resistência interna, potência e resistores em série e em paralelo."
+  },
+  {
+   "id": "lorentz",
+   "numero": "14",
+   "grupo": "Magnetismo",
+   "titulo": "Força de Lorentz",
+   "resumo": "Próton em E e B: círculo, hélice, deriva E×B e seletor de velocidades."
+  },
+  {
+   "id": "forcas",
+   "numero": "15",
+   "grupo": "Magnetismo",
+   "titulo": "Força e torque em correntes",
+   "resumo": "Fios em campo, fios paralelos, torque em espiras e momento magnético."
+  },
+  {
+   "id": "ampere",
+   "numero": "16",
+   "grupo": "Magnetismo",
+   "titulo": "Biot-Savart e lei de Ampère",
+   "resumo": "Campo de fio, espira, solenoide e toroide; circulação de B."
+  },
+  {
+   "id": "trechos",
+   "numero": "17",
+   "grupo": "Magnetismo",
+   "titulo": "Biot-Savart por trechos",
+   "resumo": "Arcos, semicírculos, quadrados e fios finitos: o que contribui e o que não."
+  },
+  {
+   "id": "ampereJ",
+   "numero": "18",
+   "grupo": "Magnetismo",
+   "titulo": "Ampère em distribuições de corrente",
+   "resumo": "Cilindros com J(s), cascas e cabo coaxial: B(s) região por região."
+  },
+  {
+   "id": "faraday",
+   "numero": "19",
+   "grupo": "Indução",
+   "titulo": "Lei de Faraday e Lenz",
+   "resumo": "Ímã atravessando uma bobina e espira girando: fluxo e fem no tempo."
+  },
+  {
+   "id": "movimento",
+   "numero": "20",
+   "grupo": "Indução",
+   "titulo": "Fluxo que muda: barra, região, fio e B(t)",
+   "resumo": "Barra em trilhos, espira cruzando um campo, espira saindo de perto de um fio."
+  },
+  {
+   "id": "circuitos",
+   "numero": "21",
+   "grupo": "Indução",
+   "titulo": "Circuitos RC, RL e LC",
+   "resumo": "Carga, corrente e energia no tempo, com o circuito em 3D."
+  },
+  {
+   "id": "maxwell",
+   "numero": "22",
+   "grupo": "Indução",
+   "titulo": "Corrente de deslocamento",
+   "resumo": "Campo magnético entre as placas de um capacitor que está carregando."
+  }
+ ]
+}
