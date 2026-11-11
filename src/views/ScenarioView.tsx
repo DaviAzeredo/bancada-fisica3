@@ -70,6 +70,96 @@ function Nav({ items, title }: { items: NavItem[]; title: string }) {
   )
 }
 
+const NOME: Record<Header['route'], { um: string; prox: string; ant: string; ult: string; varios: string; voltar: string; volta: string }> = {
+  lista: { um: 'exercício', prox: 'Próximo exercício', ant: 'Exercício anterior', ult: 'Último exercício', varios: 'exercícios', voltar: '#/listas', volta: 'Voltar às listas' },
+  prova: { um: 'questão', prox: 'Próxima questão', ant: 'Questão anterior', ult: 'Última questão', varios: 'questões', voltar: '#/provas', volta: 'Voltar às provas' },
+  lab: { um: 'laboratório', prox: 'Próximo laboratório', ant: 'Laboratório anterior', ult: 'Último laboratório', varios: 'laboratórios', voltar: '#/labs', volta: 'Voltar aos laboratórios' },
+}
+
+/** Vizinhos na mesma lista, prova ou grupo de labs, para seguir sem sair da bancada. */
+function vizinhos(nav: NavItem[]) {
+  const i = nav.findIndex((x) => x.active)
+  return { i, total: nav.length, antes: i > 0 ? nav[i - 1] : undefined, depois: i >= 0 && i < nav.length - 1 ? nav[i + 1] : undefined }
+}
+
+const linkCtl =
+  'inline-flex h-8 w-8 items-center justify-center rounded-[var(--radius-ctl)] border border-line text-text-2 transition-colors duration-150 hover:border-text-3 hover:text-text'
+
+/** Setas compactas no cabeçalho do painel. */
+function PagerTopo({ nav, route }: { nav: NavItem[]; route: Header['route'] }) {
+  const { i, total, antes, depois } = vizinhos(nav)
+  if (i < 0 || total < 2) return null
+  const um = NOME[route].um
+  return (
+    <div className="flex shrink-0 items-center gap-1.5">
+      <span className="num mr-0.5 text-[12px] text-text-3" aria-label={`${um} ${i + 1} de ${total}`}>
+        {i + 1}/{total}
+      </span>
+      {antes ? (
+        <a href={antes.href} className={linkCtl} aria-label={`Anterior: ${um} ${antes.numero}, ${antes.titulo}`} title={`${antes.numero} · ${antes.titulo}`}>
+          {Icon.prev}
+        </a>
+      ) : (
+        <span className={`${linkCtl} pointer-events-none opacity-30`} aria-hidden>
+          {Icon.prev}
+        </span>
+      )}
+      {depois ? (
+        <a href={depois.href} className={linkCtl} aria-label={`Próximo: ${um} ${depois.numero}, ${depois.titulo}`} title={`${depois.numero} · ${depois.titulo}`}>
+          {Icon.next}
+        </a>
+      ) : (
+        <span className={`${linkCtl} pointer-events-none opacity-30`} aria-hidden>
+          {Icon.next}
+        </span>
+      )}
+    </div>
+  )
+}
+
+/** No fim do painel, depois do gabarito: o passo natural é o próximo. */
+function PagerFim({ nav, route }: { nav: NavItem[]; route: Header['route'] }) {
+  const { i, total, antes, depois } = vizinhos(nav)
+  if (i < 0 || total < 2) return null
+  const { prox, ant, ult, varios, voltar, volta } = NOME[route]
+  return (
+    <nav aria-label={`Navegar entre ${varios}`} className="grid gap-2 border-t border-line-soft px-5 py-4 sm:grid-cols-2">
+      {antes ? (
+        <a href={antes.href} className="group flex items-center gap-2 rounded-[var(--radius-ctl)] border border-line px-3 py-2.5 text-[13px] transition-colors duration-150 hover:border-text-3">
+          <span className="text-text-3 group-hover:text-text-2">{Icon.prev}</span>
+          <span className="min-w-0">
+            <span className="block text-[11.5px] text-text-3">{ant}</span>
+            <span className="block truncate text-text-2 group-hover:text-text">
+              <span className="num text-text-3">{antes.numero}</span> {antes.titulo}
+            </span>
+          </span>
+        </a>
+      ) : (
+        <span className="hidden sm:block" />
+      )}
+      {depois ? (
+        <a href={depois.href} className="group flex items-center justify-end gap-2 rounded-[var(--radius-ctl)] bg-accent px-3 py-2.5 text-right text-[13px] text-accent-ink transition-opacity duration-150 hover:opacity-90 max-sm:order-first">
+          <span className="min-w-0">
+            <span className="block text-[11.5px] opacity-80">{prox}</span>
+            <span className="block truncate font-medium">
+              <span className="num opacity-80">{depois.numero}</span> {depois.titulo}
+            </span>
+          </span>
+          {Icon.next}
+        </a>
+      ) : (
+        <a href={voltar} className="flex items-center justify-end gap-2 rounded-[var(--radius-ctl)] border border-line px-3 py-2.5 text-right text-[13px] text-text-2 transition-colors duration-150 hover:border-text-3 hover:text-text max-sm:order-first">
+          <span>
+            <span className="block text-[11.5px] text-text-3">{ult} · {total} de {total}</span>
+            {volta}
+          </span>
+          {Icon.next}
+        </a>
+      )}
+    </nav>
+  )
+}
+
 function downloadJSON(s: Scenario) {
   const blob = new Blob([JSON.stringify(s, null, 2)], { type: 'application/json' })
   const a = document.createElement('a')
@@ -217,7 +307,10 @@ export function ScenarioView({
         {/* painel */}
         <aside className="scroll-y min-h-0 border-t border-line-soft bg-bg md:border-t-0 md:border-l" aria-label="Painel da questão">
           <div className="px-5 pt-5 pb-4">
-            <div className="mb-1 text-[12px] text-text-3">{header.kicker}</div>
+            <div className="mb-1 flex items-center justify-between gap-3">
+              <div className="min-w-0 text-[12px] text-text-3">{header.kicker}</div>
+              <PagerTopo nav={nav} route={header.route} />
+            </div>
             <h1 className="text-[20px] leading-tight font-semibold tracking-[-0.015em] text-text">{scenario.titulo}</h1>
             {scenario.resumo && <p className="mt-1.5 text-[13.5px] text-text-2">{scenario.resumo}</p>}
           </div>
@@ -339,6 +432,8 @@ export function ScenarioView({
           )}
 
           {extra}
+
+          <PagerFim nav={nav} route={header.route} />
 
           <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line-soft px-5 py-4 text-[12px] text-text-3">
             <span>Arraste para girar · role para aproximar · objetos com anel são arrastáveis</span>

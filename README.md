@@ -74,6 +74,9 @@ Site estático: sem login, sem servidor e sem dado de aluno fora do próprio nav
   da monitoria, citado sem nome nem contato do monitor. As divergências ficam
   anotadas na questão, e os itens sem gabarito saem com resolução própria. Na
   página inicial elas têm uma seção à parte (`#/listas`) e ficam fora do treino.
+- **Navegação sem sair da bancada:** no cabeçalho do painel, setas e a posição
+  (5/14) levam ao exercício, à questão ou ao lab vizinho; no fim do painel, um botão
+  segue para o próximo, e o último volta à lista.
 - **Treino P3** ([treino](src/treino/)): dias até a prova, domínio das 66 questões
   das terceiras provas (nos períodos sem P3, a terceira prova é a PF), peso de cada
   tema, plano diário, simulados com relógio e autocorreção da discursiva, fila por
