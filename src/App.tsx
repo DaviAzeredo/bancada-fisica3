@@ -86,19 +86,24 @@ function ProvaRota({ id, questao }: { id: string; questao?: string }) {
   if (!prova) return <NotFound titulo="Prova não encontrada." />
   const q = prova.questoes.find((x) => x.id === questao) ?? prova.questoes[0]
   if (!q) return <NotFound titulo="Questão não encontrada." />
+  // nas listas, a seção é a dificuldade: vai no cabeçalho, não agrupa a navegação
+  const lista = prova.id.startsWith('lista-')
   const nav = prova.questoes.map((x) => ({
     href: `#/prova/${prova.id}/${x.id}`,
     numero: x.numero,
     titulo: x.titulo,
-    grupo: x.secao,
+    grupo: lista ? undefined : x.secao,
     active: x.id === q.id,
   }))
   const pts = q.pontos !== undefined ? ` · ${q.pontos.toLocaleString('pt-BR', { minimumFractionDigits: 1 })} pt` : ''
+  const kicker = lista
+    ? `${prova.titulo.split('·')[0].trim()} · Exercício ${q.numero}${q.secao ? ` · ${q.secao.toLowerCase()}` : ''}`
+    : `${prova.titulo} · ${q.secao ? `${q.secao} ` : 'Questão '}${q.numero}${pts}`
   return (
     <ScenarioView
       key={`${prova.id}/${q.id}`}
       scenario={q}
-      header={{ kicker: `${prova.titulo} · ${q.secao ? `${q.secao} ` : 'Questão '}${q.numero}${pts}`, route: 'prova', figuras: figurasDe(prova.id, q) }}
+      header={{ kicker, route: lista ? 'lista' : 'prova', figuras: figurasDe(prova.id, q) }}
       nav={nav}
       navTitle={prova.titulo}
     />
@@ -126,7 +131,7 @@ export function App() {
 
   useEffect(() => {
     // as seções da página inicial rolam em Home, e este efeito roda depois do dela
-    if (kind !== 'labs' && kind !== 'provas') window.scrollTo(0, 0)
+    if (kind !== 'labs' && kind !== 'provas' && kind !== 'listas') window.scrollTo(0, 0)
   }, [hash])
 
   // a cena e o conteúdo baixam juntos, em vez de um esperar o outro
@@ -136,7 +141,7 @@ export function App() {
     if (kind === 'prova' && a) return <ProvaRota id={a} questao={b} />
     if (kind === 'lab' && a) return <LabRota id={a} />
     if (kind === 'treino') return <Treino secao={a} id={b} />
-    return <Home focus={kind === 'labs' ? 'labs' : kind === 'provas' ? 'provas' : undefined} />
+    return <Home focus={kind === 'labs' ? 'labs' : kind === 'provas' ? 'provas' : kind === 'listas' ? 'listas' : undefined} />
   }, [kind, a, b])
 
   return (

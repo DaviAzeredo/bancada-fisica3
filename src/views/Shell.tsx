@@ -56,6 +56,7 @@ export function TopBar({ route, children }: { route: string; children?: ReactNod
       <nav className="ml-auto flex items-center gap-4 sm:gap-5" aria-label="Principal">
         {link('#/treino', 'Treino P3', route === 'treino', 'P3')}
         {link('#/provas', 'Provas', route === 'prova' || route === 'provas')}
+        {link('#/listas', 'Listas', route === 'lista' || route === 'listas')}
         {link('#/labs', 'Laboratórios', route === 'lab' || route === 'labs', 'Labs')}
       </nav>
     </header>

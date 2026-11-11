@@ -121,6 +121,23 @@ tempo.
   isso no `porque` e em um passo próprio.
 - Prova que só dá o total da discursiva: deixe os itens sem `pontos`.
 
+## Listas de exercícios
+- Mesmo formato de prova, com id `lista-NN` e título `Lista N · Tema`. O site
+  separa as listas pelo prefixo do id: seção própria na página inicial, rota
+  `#/prova/lista-NN/eK` e nada no treino.
+- Cada exercício tem id `eK`, número `K` e `secao` com a dificuldade da lista
+  (`Fácil`, `Médio` ou `Difícil`). O enunciado vem só como recorte (`figura`
+  cobrindo o texto e a figura), sem `enunciado` escrito.
+- O gabarito da monitoria é citado como "gabarito da monitoria", sem o nome nem
+  o contato de quem o fez. Item sem resposta nele: resolução própria, com
+  `oficial.observacao` dizendo isso.
+- Medida pequena demais para o teste (|teoria| < 10⁻⁷ na unidade escolhida) passa
+  para uma unidade menor (μV, nN, pF...), para a comparação de 1% valer.
+- Medida que só faz sentido com a simulação rodando (ponto de retorno, ponto de
+  chegada, raio no rastro) leva um `ativo` que a esconde até lá. O teste de
+  conteúdo só avança 1,5 período de cíclotron do próton: confira essas medidas
+  rodando a cena até o fim antes de publicar.
+
 ## 5. Registro e testes
 1. Salve como `src/content/provas/<id>.ts`, com a prova como única exportação:
    é assim que o site acha o arquivo e o baixa ao abrir a rota.

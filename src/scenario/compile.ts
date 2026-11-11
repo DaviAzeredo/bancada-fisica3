@@ -978,7 +978,13 @@ export function compileScenario(scn: Scenario, ctx: Ctx): Resolved {
     Ienc: (id: Value) => enclosedCurrent(world.b, amp(id).circle),
     fluxoB: (id: Value) => {
       sensor(id)
-      return sensorFlux(resolvedSelf, String(id))
+      // várias medidas leem o mesmo fluxo; com bobinas, cada quadratura custa caro
+      const chave = `B:${String(id)}`
+      const salvo = fluxos.get(chave)
+      if (salvo !== undefined) return salvo
+      const v = sensorFlux(resolvedSelf, chave.slice(2))
+      fluxos.set(chave, v)
+      return v
     },
     fem: (id: Value) => {
       const s = sensor(id)

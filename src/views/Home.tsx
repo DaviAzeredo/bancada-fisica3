@@ -49,13 +49,18 @@ function DipoleArt() {
   )
 }
 
+/** Listas de exercícios usam o mesmo formato das provas, com id "lista-NN". */
+const ehLista = (id: string) => id.startsWith('lista-')
+const exames = provas.filter((p) => !ehLista(p.id))
+const listas = provas.filter((p) => ehLista(p.id))
+
 /** "p1-2026-2-diurno" → "2026/2"; ordem dentro do semestre: P1, P2, P3, final, 2ª chamada. */
 const semestreDe = (id: string) => id.match(/(\d{4})-(\d)/)?.slice(1, 3).join('/') ?? 'Outras'
 const ordemDe = (id: string) => ['p1', 'p2', 'p3', 'pf', 'sc'].indexOf(id.split('-')[0])
 
 function porSemestre() {
   const out: { semestre: string; provas: typeof provas }[] = []
-  for (const p of provas) {
+  for (const p of exames) {
     const s = semestreDe(p.id)
     const g = out.find((x) => x.semestre === s)
     if (g) g.provas.push(p)
@@ -66,7 +71,45 @@ function porSemestre() {
   return out
 }
 
-export function Home({ focus }: { focus?: 'labs' | 'provas' }) {
+/** Uma prova ou lista: título que abre a lista de questões. */
+function Colecao({ p, aberta, rotulo }: { p: (typeof provas)[number]; aberta?: boolean; rotulo: string }) {
+  return (
+    <details open={aberta} className="group/p">
+      <summary className="grid cursor-pointer list-none grid-cols-[1fr_auto_16px] items-baseline gap-3 py-3 hover:bg-surface [&::-webkit-details-marker]:hidden">
+        <span className="min-w-0">
+          <span className="text-[16px] font-semibold tracking-[-0.01em] text-text">{p.titulo.split('·')[0].trim()}</span>
+          <span className="ml-2 text-[12.5px] text-text-3">{ehLista(p.id) ? p.titulo.split('·').slice(1).join('·').trim() : (p.subtitulo?.replace(/^Física III · /, '') ?? '')}</span>
+        </span>
+        <span className="num text-[12.5px] text-text-3">
+          {p.questoes.length} {rotulo}
+        </span>
+        <span className="text-text-3 transition-transform duration-150 group-open/p:rotate-90">{Icon.next}</span>
+      </summary>
+      <ol className="mb-3 divide-y divide-line-soft border-t border-line-soft">
+        {p.questoes.map((q) => (
+          <li key={q.id}>
+            <a
+              href={`#/prova/${p.id}/${q.id}`}
+              className="group grid grid-cols-[44px_1fr_16px] items-center gap-3 py-2.5 transition-colors duration-150 hover:bg-surface"
+            >
+              <span className="num pl-1 text-[13px] text-text-3 group-hover:text-accent">{q.numero}</span>
+              <span className="min-w-0">
+                <span className="block text-[14px] text-text">
+                  {q.titulo}
+                  {ehLista(p.id) && q.secao && <span className="ml-2 text-[12px] text-text-3">{q.secao}</span>}
+                </span>
+                {q.resumo && <span className="block truncate text-[12.5px] text-text-3">{q.resumo}</span>}
+              </span>
+              <span className="text-text-3 opacity-0 transition-opacity duration-150 group-hover:opacity-100">{Icon.next}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </details>
+  )
+}
+
+export function Home({ focus }: { focus?: 'labs' | 'provas' | 'listas' }) {
   const grupos = useMemo(porSemestre, [])
   useEffect(() => {
     if (focus) irParaSecao(focus)
@@ -87,12 +130,12 @@ export function Home({ focus }: { focus?: 'labs' | 'provas' }) {
               compara a simulação com a fórmula do curso.
             </p>
             <div className="mt-7 flex flex-wrap gap-2">
-              {provas[0] && (
+              {exames[0] && (
                 <a
-                  href={`#/prova/${provas[0].id}/${provas[0].questoes[0]?.id ?? ''}`}
+                  href={`#/prova/${exames[0].id}/${exames[0].questoes[0]?.id ?? ''}`}
                   className="inline-flex h-9 items-center gap-2 rounded-[var(--radius-ctl)] bg-accent px-4 text-[13.5px] font-medium text-accent-ink"
                 >
-                  Abrir a {provas[0].titulo.split('·')[0].trim()} {Icon.next}
+                  Abrir a {exames[0].titulo.split('·')[0].trim()} {Icon.next}
                 </a>
               )}
               <a
@@ -126,38 +169,23 @@ export function Home({ focus }: { focus?: 'labs' | 'provas' }) {
                   <h3 className="num mb-2 text-[13px] font-medium text-text-3">{g.semestre}</h3>
                   <div className="divide-y divide-line-soft border-y border-line-soft">
                     {g.provas.map((p) => (
-                      <details key={p.id} open={p.id === provas[0]?.id} className="group/p">
-                        <summary className="grid cursor-pointer list-none grid-cols-[1fr_auto_16px] items-baseline gap-3 py-3 hover:bg-surface [&::-webkit-details-marker]:hidden">
-                          <span className="min-w-0">
-                            <span className="text-[16px] font-semibold tracking-[-0.01em] text-text">{p.titulo.split('·')[0].trim()}</span>
-                            <span className="ml-2 text-[12.5px] text-text-3">{p.subtitulo?.replace(/^Física III · /, '') ?? ''}</span>
-                          </span>
-                          <span className="num text-[12.5px] text-text-3">{p.questoes.length} questões</span>
-                          <span className="text-text-3 transition-transform duration-150 group-open/p:rotate-90">{Icon.next}</span>
-                        </summary>
-                        <ol className="mb-3 divide-y divide-line-soft border-t border-line-soft">
-                          {p.questoes.map((q) => (
-                            <li key={q.id}>
-                              <a
-                                href={`#/prova/${p.id}/${q.id}`}
-                                className="group grid grid-cols-[44px_1fr_16px] items-center gap-3 py-2.5 transition-colors duration-150 hover:bg-surface"
-                              >
-                                <span className="num pl-1 text-[13px] text-text-3 group-hover:text-accent">{q.numero}</span>
-                                <span className="min-w-0">
-                                  <span className="block text-[14px] text-text">{q.titulo}</span>
-                                  {q.resumo && <span className="block truncate text-[12.5px] text-text-3">{q.resumo}</span>}
-                                </span>
-                                <span className="text-text-3 opacity-0 transition-opacity duration-150 group-hover:opacity-100">{Icon.next}</span>
-                              </a>
-                            </li>
-                          ))}
-                        </ol>
-                      </details>
+                      <Colecao key={p.id} p={p} aberta={p.id === exames[0]?.id} rotulo="questões" />
                     ))}
                   </div>
                 </div>
               ))}
             </div>
+            {listas.length > 0 && (
+              <div id="home-listas" className="mt-12 scroll-mt-16">
+                <h2 className="mb-1 text-[12px] font-semibold tracking-[0.06em] text-text-3 uppercase">Listas de exercícios</h2>
+                <p className="mb-4 text-[12.5px] text-text-3">Física III-A · 2020/1, com o gabarito da monitoria conferido pela simulação.</p>
+                <div className="divide-y divide-line-soft border-y border-line-soft">
+                  {listas.map((p) => (
+                    <Colecao key={p.id} p={p} rotulo="exercícios" />
+                  ))}
+                </div>
+              </div>
+            )}
           </section>
 
           <section id="home-labs" aria-labelledby="h-labs" className="scroll-mt-16">

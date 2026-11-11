@@ -1764,6 +1764,832 @@
      "pontos": 1
     }
    ]
+  },
+  {
+   "id": "lista-01",
+   "titulo": "Lista 1 · Carga elétrica e campo elétrico",
+   "subtitulo": "Física III-A · 2020/1 · gabarito da monitoria",
+   "questoes": [
+    {
+     "id": "e1",
+     "numero": "1",
+     "titulo": "Equilíbrio entre q e 3q",
+     "resumo": "A d/(1 + √3) ≈ 0,37d da carga q; estável para cargas positivas, instável para negativas.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e2",
+     "numero": "2",
+     "titulo": "Pêndulos carregados num campo horizontal",
+     "resumo": "T = mg/cos θ; E = kq/(4l² sen²θ) + mg tg θ/q.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e3",
+     "numero": "3",
+     "titulo": "Carga oscilando entre duas cargas fixas",
+     "resumo": "F = −2kQqx/(x² + d²/4)^{3/2} x̂: sempre para a origem, e a carga oscila entre a e −a.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e4",
+     "numero": "4",
+     "titulo": "Três cargas num triângulo equilátero",
+     "resumo": "E_P = −q/(3πε₀a²) ŷ; E_centro = −3q/(2πε₀a²) ŷ; F na −q da direita = (kq²/a²)(½, √3/2).",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e5",
+     "numero": "5",
+     "titulo": "Elétron em órbita no átomo de Bohr",
+     "resumo": "a = ke²/ma₀² para o centro; v = √(ke²/ma₀) ≈ 2,2×10⁶ m/s; T ≈ 1,5×10⁻¹⁶ s; a gravidade é 10³⁹ vezes menor.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e6",
+     "numero": "6",
+     "titulo": "Partícula desviada entre as placas",
+     "resumo": "a = −qE/m ŷ; trajetória y = −qEx²/2mv₀², uma parábola; na saída, tg θ = −qEL/mv₀².",
+     "secao": "Médio"
+    },
+    {
+     "id": "e7",
+     "numero": "7",
+     "titulo": "Campo de uma barra e força entre duas barras",
+     "resumo": "E = kQ/(x² − a²) no eixo; F = k(Q/2a)² ln[b²/(b² − 4a²)], de repulsão.",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e8",
+     "numero": "8",
+     "titulo": "Semicírculo com densidade λ₀ sen θ ou λ₀ cos θ",
+     "resumo": "Com sen θ: Q = 2λ₀R, E = −λ₀/8ε₀R ŷ. Com cos θ: Q = 0, E = −λ₀/8ε₀R x̂.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e9",
+     "numero": "9",
+     "titulo": "Semicírculo uniforme: campo no eixo z",
+     "resumo": "E_x = 0; E_y = −λR²/[2πε₀(z² + R²)^{3/2}]; E_z = λRz/[4ε₀(z² + R²)^{3/2}]; de longe, carga pontual λπR.",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e10",
+     "numero": "10",
+     "titulo": "Disco com σ₀R/r: carga e campo no eixo",
+     "resumo": "Q = 2πσ₀R²; E = σ₀R²/(2ε₀z√(R² + z²)); de longe, Q/4πε₀z².",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e11",
+     "numero": "11",
+     "titulo": "Casca cilíndrica carregada: campo no eixo",
+     "resumo": "σ = Q/2πRh; E = (σR/2ε₀)[1/√(d² + R²) − 1/√((h + d)² + R²)]; de longe, Q/4πε₀d².",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e12",
+     "numero": "12",
+     "titulo": "Campo do dipolo nos dois eixos",
+     "resumo": "No eixo y: −kp/(y² + a²)^{3/2}; no eixo x: 2kpx/(x² − a²)²; de longe, caem com 1/r³.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e13",
+     "numero": "13",
+     "titulo": "Quadrupolo: +q, −2q, +q",
+     "resumo": "E = 2kq[y/(y² + a²)^{3/2} − 1/y²] ŷ ≈ −3kqa²/y⁴ ŷ: sem carga nem dipolo, o campo cai com 1/y⁴.",
+     "secao": "Médio"
+    }
+   ]
+  },
+  {
+   "id": "lista-02",
+   "titulo": "Lista 2 · Lei de Gauss",
+   "subtitulo": "Física III-A · 2020/1 · gabarito da monitoria",
+   "questoes": [
+    {
+     "id": "e1",
+     "numero": "1",
+     "titulo": "Fluxo por quatro superfícies fechadas",
+     "resumo": "Só a carga de dentro conta: Φ₁ = −Q/ε₀, Φ₂ = 0, Φ₃ = −2Q/ε₀, Φ₄ = 0.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e2",
+     "numero": "2",
+     "titulo": "Ler cargas nas linhas de campo",
+     "resumo": "q₁ < 0 (linhas chegam), q₂ > 0 (linhas saem), |q₁| > |q₂|; q₁/q₂ ≈ −4; os dois fluxos são negativos.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e3",
+     "numero": "3",
+     "titulo": "Hemisfério num campo uniforme",
+     "resumo": "Fechado: 0. Base: −EπR². Curva: +EπR².",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e4",
+     "numero": "4",
+     "titulo": "Gaussiana cúbica em volta de um cubo carregado",
+     "resumo": "Gauss vale, mas o campo muda ao longo da superfície: não dá para tirar E da integral.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e5",
+     "numero": "5",
+     "titulo": "Carga no centro e no vértice de um cubo",
+     "resumo": "Centro: q/ε₀ no cubo, q/6ε₀ por face. Vértice: q/24ε₀ em cada face oposta e zero nas três que tocam o vértice.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e6",
+     "numero": "6",
+     "titulo": "Onde Gauss dá o campo",
+     "resumo": "Fio infinito, esfera e casca cilíndrica infinita: sim. Anel e disco: Gauss vale, mas não resolve.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e7",
+     "numero": "7",
+     "titulo": "Fio finito dentro de um cilindro",
+     "resumo": "O campo não é perpendicular nem constante na lateral: o fluxo é Q/ε₀, mas Gauss não dá E.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e8",
+     "numero": "8",
+     "titulo": "Cabo coaxial: campo nas três regiões",
+     "resumo": "Zero no condutor, λ/2πε₀s entre eles, zero fora.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e9",
+     "numero": "9",
+     "titulo": "Cilindro com ρ = ρ₀s/R",
+     "resumo": "λ = 2πρ₀R²/3; fora, campo de fio; dentro, E = ρ₀s²/3ε₀R.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e10",
+     "numero": "10",
+     "titulo": "Placa espessa com carga uniforme",
+     "resumo": "Dentro, E_z = ρz/ε₀; fora, ±ρd/ε₀.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e11",
+     "numero": "11",
+     "titulo": "Carga no centro de uma casca condutora",
+     "resumo": "kq/r² na cavidade e fora; zero no metal; σ = −q/4πa² e (q + Q)/4πb².",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e12",
+     "numero": "12",
+     "titulo": "Átomo de hidrogênio como próton e nuvem",
+     "resumo": "ρ = −3e/4πa₀³; E = (e/4πε₀)(1/r² − r/a₀³) dentro e zero fora; E(a₀/2) ≈ 1,8×10¹² N/C.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e13",
+     "numero": "13",
+     "titulo": "Campo uniforme numa cavidade esférica",
+     "resumo": "Esfera cheia mais uma esfera de −ρ no lugar da cavidade: E = ρd/3ε₀, uniforme.",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e14",
+     "numero": "14",
+     "titulo": "Dois planos condutores com +2σ e −σ",
+     "resumo": "Fora: σ/2ε₀ para longe; entre: 3σ/2ε₀; faces: σ/2 fora e ±3σ/2 dentro.",
+     "secao": "Difícil"
+    }
+   ]
+  },
+  {
+   "id": "lista-03",
+   "titulo": "Lista 3 · Potencial elétrico",
+   "subtitulo": "Física III-A · 2020/1 · gabarito da monitoria",
+   "questoes": [
+    {
+     "id": "e1",
+     "numero": "1",
+     "titulo": "Acelerar um elétron até 40% da luz",
+     "resumo": "eΔV = mv²/2 dá ΔV ≈ 41 kV (na conta clássica).",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e2",
+     "numero": "2",
+     "titulo": "Energia de um dipolo em campo uniforme",
+     "resumo": "U = −pE cos φ: mínimo (estável) em φ = 0, máximo (instável) em φ = π.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e3",
+     "numero": "3",
+     "titulo": "Potencial nulo, campo não",
+     "resumo": "V(P) = 0 exige sinais opostos; o campo em P não precisa ser zero; trazer q até P custa zero.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e4",
+     "numero": "4",
+     "titulo": "Energia de um cubo de cargas alternadas",
+     "resumo": "U = (kq²/d)(−12 + 12/√2 − 4/√3) ≈ −1,46 q²/(πε₀d); V = 0 no centro.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e5",
+     "numero": "5",
+     "titulo": "Anel carregado: potencial, campo e ponto de retorno",
+     "resumo": "V = kQ/√(z² + R²); E_z = kQz/(z² + R²)^{3/2}; a partícula para em z = √[(2kQq/mv₀²)² − R²].",
+     "secao": "Médio"
+    },
+    {
+     "id": "e6",
+     "numero": "6",
+     "titulo": "Disco com densidade σ₀R/r",
+     "resumo": "V = (σ₀R/2ε₀) ln[(R + √(R² + z²))/z]; E = σ₀R²/(2ε₀z√(R² + z²)).",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e7",
+     "numero": "7",
+     "titulo": "Barra com densidade λ₀x/a: um dipolo de longe",
+     "resumo": "Q = 0; V(x_P) = (λ₀/4πε₀a)[x_P ln((x_P + a)/(x_P − a)) − 2a] ≈ λ₀a²/(6πε₀x_P²).",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e8",
+     "numero": "8",
+     "titulo": "Fio dentro de uma casca condutora neutra",
+     "resumo": "E nulo no metal; σ = −λ/2πa e +λ/2πb; V = (λ/2πε₀) ln(a/s) dentro, 0 no metal, (λ/2πε₀) ln(b/s) fora.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e9",
+     "numero": "9",
+     "titulo": "Esfera com densidade uniforme: ordenar potenciais",
+     "resumo": "Com ρ > 0 o potencial cai para fora: V_A > V_B > V_C; com ρ < 0, ao contrário.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e10",
+     "numero": "10",
+     "titulo": "Esfera com ρ = ρ₀r/R: campo e potencial",
+     "resumo": "E = ρ₀r²/4ε₀R dentro e ρ₀R³/4ε₀r² fora; V = ρ₀R²/3ε₀ − ρ₀r³/12ε₀R dentro e ρ₀R³/4ε₀r fora.",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e11",
+     "numero": "11",
+     "titulo": "Potencial de uma placa espessa",
+     "resumo": "V = −ρ₀z²/2ε₀ dentro e ρ₀d²/2ε₀ − ρ₀d|z|/ε₀ fora, com zero no plano médio.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e12",
+     "numero": "12",
+     "titulo": "Condutores perto de uma carga pontual",
+     "resumo": "Condutor em equilíbrio: E = 0 dentro e um só potencial, que não precisa ser zero.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e13",
+     "numero": "13",
+     "titulo": "Do potencial ao campo e à carga",
+     "resumo": "E = −2B r⃗; W = −3qBz₀²; carga na esfera de raio R: Q = −8πε₀BR³.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e14",
+     "numero": "14",
+     "titulo": "Duas esferas ligadas por um fio",
+     "resumo": "Mesmo potencial: q_a = Qa/(a + b), q_b = Qb/(a + b), e E_a/E_b = b/a.",
+     "secao": "Médio"
+    }
+   ]
+  },
+  {
+   "id": "lista-04",
+   "titulo": "Lista 4 · Capacitores",
+   "subtitulo": "Física III-A · 2020/1 · gabarito da monitoria",
+   "questoes": [
+    {
+     "id": "e1",
+     "numero": "1",
+     "titulo": "Capacitor cilíndrico",
+     "resumo": "E = λ/2πε₀r entre os condutores e zero fora; C/L = 2πε₀/ln(b/a).",
+     "secao": "Médio"
+    },
+    {
+     "id": "e2",
+     "numero": "2",
+     "titulo": "Nuvem e solo como capacitor",
+     "resumo": "C ≈ 9,3 nF, ΔV ≈ 2,2×10⁹ V, E ≈ 7,2×10⁵ V/m (24% da rigidez do ar), U ≈ 2,2×10¹⁰ J.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e3",
+     "numero": "3",
+     "titulo": "Quatro associações de capacitores iguais",
+     "resumo": "C₄ = C/3 < C₂ = 2C/3 < C₃ = 3C/2 < C₁ = 3C.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e4",
+     "numero": "4",
+     "titulo": "Dielétrico inserido com a bateria ligada",
+     "resumo": "V fixo: Q/Q₀ = K, E/E₀ = 1 e U/U₀ = K.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e5",
+     "numero": "5",
+     "titulo": "Aproximar as placas e depois afastar desligado",
+     "resumo": "Q passa de ε₀AV/L a 2ε₀AV/L; desligado e de volta a L, U final − U inicial = (3/2)ε₀AV²/L.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e6",
+     "numero": "6",
+     "titulo": "Chapa condutora entre as placas",
+     "resumo": "Só sobra o vácuo de espessura d − a: C = C₀/(1 − a/d), em qualquer posição.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e7",
+     "numero": "7",
+     "titulo": "Metade do vão com dielétrico",
+     "resumo": "Dois capacitores em série: C = 2Kε₀A/[d(1 + K)]; E_vácuo = KE_diel.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e8",
+     "numero": "8",
+     "titulo": "Ler o dielétrico no gráfico do potencial",
+     "resumo": "E_I = V₀/L, E_II = 2V₀/L: o dielétrico está em I, com K = 2; C = Q/3V₀.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e9",
+     "numero": "9",
+     "titulo": "Capacitor esférico com dois dielétricos",
+     "resumo": "Duas cascas em série: 1/C = (1/4πε₀)[(1/a − 1/b)/κ₁ + (1/b − 1/c)/κ₂].",
+     "secao": "Médio"
+    },
+    {
+     "id": "e10",
+     "numero": "10",
+     "titulo": "Energia e autocapacitância de uma esfera",
+     "resumo": "U = ∫ε₀E²/2 dV = Q²/8πε₀R, e de U = Q²/2C sai C = 4πε₀R.",
+     "secao": "Difícil"
+    }
+   ]
+  },
+  {
+   "id": "lista-05",
+   "titulo": "Lista 5 · Corrente elétrica",
+   "subtitulo": "Física III-A · 2020/1 · gabarito da monitoria",
+   "questoes": [
+    {
+     "id": "e1",
+     "numero": "1",
+     "titulo": "Um elétron numa linha de transmissão",
+     "resumo": "v_d = I/neA ≈ 0,25 mm/s: atravessar 200 km leva uns 25 anos.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e2",
+     "numero": "2",
+     "titulo": "Carga total de uma corrente que decai",
+     "resumo": "Q = ∫I₀e^(−t/τ) dt de 0 a ∞ = I₀τ.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e3",
+     "numero": "3",
+     "titulo": "Corrente num plasma neutro",
+     "resumo": "Neutro: n₋ = 2n. Os dois tipos somam corrente: J = 4nqv.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e4",
+     "numero": "4",
+     "titulo": "Corrente do elétron no átomo de Bohr",
+     "resumo": "I = ev/2πa₀ ≈ 1 mA, no sentido oposto ao do movimento do elétron.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e5",
+     "numero": "5",
+     "titulo": "Esticar um fio",
+     "resumo": "Dobrar L e dividir A por 2 multiplica R por 4; com V fixo, I cai 4 vezes, E e J caem 2.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e6",
+     "numero": "6",
+     "titulo": "Fio de dois materiais concêntricos",
+     "resumo": "Os dois em paralelo, com a mesma resistência ρL/πa² cada: R = ρL/2πa².",
+     "secao": "Médio"
+    },
+    {
+     "id": "e7",
+     "numero": "7",
+     "titulo": "Fio com resistividade que cresce para fora",
+     "resumo": "E = V/L uniforme, J = V/(Lks), I = 2πVa/(kL) e R = kL/(2πa).",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e8",
+     "numero": "8",
+     "titulo": "Resistor cilíndrico com corrente radial",
+     "resumo": "J = I/2πsL, E = ρI/2πsL e R = (ρ/2πL) ln(b/a).",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e9",
+     "numero": "9",
+     "titulo": "Resistência de um cone truncado",
+     "resumo": "Somando discos em série: R = ∫ρ dx/πr(x)² = ρL/(πab).",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e10",
+     "numero": "10",
+     "titulo": "Circuito com amperímetro e voltímetro",
+     "resumo": "Três ramos em paralelo (25, 15 e 25 Ω): V = 206,25 V, R_eq ≈ 86,8 Ω, ε ≈ 398 V, P ≈ 1,82 kW.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e11",
+     "numero": "11",
+     "titulo": "fem e resistência interna pelo gráfico V × I",
+     "resumo": "V = ε − rI: inclinação −r = −2 Ω e ε = 16 V.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e12",
+     "numero": "12",
+     "titulo": "Potência máxima no resistor variável",
+     "resumo": "P = ε²R/(R + r)² é máxima em R = r = 2 Ω, com P = ε²/4r = 32 W.",
+     "secao": "Fácil"
+    }
+   ]
+  },
+  {
+   "id": "lista-06",
+   "titulo": "Lista 6 · Campo magnético e força magnética",
+   "subtitulo": "Física III-A · 2020/1 · gabarito da monitoria",
+   "questoes": [
+    {
+     "id": "e1",
+     "numero": "1",
+     "titulo": "Quando a força magnética some, e o que ela faz",
+     "resumo": "F = qv×B: zero com v ∥ B; sempre perpendicular a v, só muda a direção.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e2",
+     "numero": "2",
+     "titulo": "Seletor de velocidades geral",
+     "resumo": "MRU exige q(E + v×B) = 0, isto é, E = −v×B, para qualquer ângulo entre v e B.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e3",
+     "numero": "3",
+     "titulo": "Próton, nêutron, elétron e alfa no mesmo campo",
+     "resumo": "Reta: nêutron. Para baixo: elétron. Para cima, a mais curva é o próton (m/q menor que a da alfa).",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e4",
+     "numero": "4",
+     "titulo": "Hélice de uma carga negativa",
+     "resumo": "Eixo ao longo de B; R = mvₓ/qB, T = 2πm/qB, passo v_yT; gira no sentido anti-horário para quem a vê chegar.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e5",
+     "numero": "5",
+     "titulo": "Momento magnético do elétron no átomo de Bohr",
+     "resumo": "μ = eva₀/2, oposto ao momento angular; μ/L = e/2mₑ.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e6",
+     "numero": "6",
+     "titulo": "Espectrômetro de massa",
+     "resumo": "v = √(2qV/m), m = qR²B²/2V, e R₁₂/R₁₄ = √(12/14) = √(6/7).",
+     "secao": "Médio"
+    },
+    {
+     "id": "e7",
+     "numero": "7",
+     "titulo": "Quatro fios no mesmo campo uniforme",
+     "resumo": "Em campo uniforme só importa o vetor de A até B: F = I·Δx·B, com Δx a distância horizontal.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e8",
+     "numero": "8",
+     "titulo": "Trecho com semicírculo em campo uniforme",
+     "resumo": "Com B = Bŷ só o semicírculo sente: −2IaB ẑ. Com B = Bx̂, só os retos: −2ILB ẑ.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e9",
+     "numero": "9",
+     "titulo": "Barra em equilíbrio num plano inclinado",
+     "resumo": "Força magnética horizontal: I = Mg tg θ/(BL) e N = Mg/cos θ.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e10",
+     "numero": "10",
+     "titulo": "Espira retangular girando em campo uniforme",
+     "resumo": "μ = Iab(sen θ x̂ − cos θ ŷ), τ = IabB₀ sen θ ẑ; estável em θ = π.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e11",
+     "numero": "11",
+     "titulo": "Anel sobre um ímã em barra",
+     "resumo": "Só a parte radial de B empurra: F = 2πrIB sen θ, para cima; o anel é um ímã de polo N voltado para o N do ímã.",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e12",
+     "numero": "12",
+     "titulo": "Efeito Hall numa fita",
+     "resumo": "Portadores desviam até o campo das bordas equilibrar: E = v_dB e V = IBd/(nqA).",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e13",
+     "numero": "13",
+     "titulo": "Potenciais numa fita de cobre",
+     "resumo": "Elétrons desviam para baixo (V_A > V_B) e o potencial cai ao longo da corrente (V_B > V_C).",
+     "secao": "Difícil"
+    }
+   ]
+  },
+  {
+   "id": "lista-07",
+   "titulo": "Lista 7 · Leis de Ampère e Biot-Savart",
+   "subtitulo": "Física III-A · 2020/1 · gabarito da monitoria",
+   "questoes": [
+    {
+     "id": "e1",
+     "numero": "1",
+     "titulo": "Forças entre as espiras de um solenoide",
+     "resumo": "Espiras vizinhas se atraem; lados opostos da mesma espira se repelem.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e2",
+     "numero": "2",
+     "titulo": "Campo do elétron no átomo de Bohr",
+     "resumo": "A órbita é uma espira com corrente ev/2πa₀: cerca de 12 T no próton.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e3",
+     "numero": "3",
+     "titulo": "Circulação entre três cilindros que se tocam",
+     "resumo": "O triângulo abraça um sexto de cada cilindro: Γ = μ₀I/2.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e4",
+     "numero": "4",
+     "titulo": "Circulação com três espiras",
+     "resumo": "Só conta a corrente que atravessa uma superfície limitada por C.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e5",
+     "numero": "5",
+     "titulo": "Campo de um cabo coaxial",
+     "resumo": "Cresce com s dentro, cai com 1/s entre os condutores e some fora.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e6",
+     "numero": "6",
+     "titulo": "Cilindro com densidade de corrente variável",
+     "resumo": "J = (2I₀/πa²)[1 − (s/a)²]: corrente total I₀ e campo máximo dentro do fio.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e7",
+     "numero": "7",
+     "titulo": "Amperiana fora do centro",
+     "resumo": "A lei vale, mas não serve para tirar B: o campo varia ao longo da curva.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e8",
+     "numero": "8",
+     "titulo": "Circuito de arcos e raios",
+     "resumo": "Só os arcos contam: B = (μ₀I/8)(1/a + 3/b).",
+     "secao": "Médio"
+    },
+    {
+     "id": "e9",
+     "numero": "9",
+     "titulo": "Espira quadrada: campo no eixo e dipolo",
+     "resumo": "Quatro lados iguais somam no eixo; longe, cai como 1/x³.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e10",
+     "numero": "10",
+     "titulo": "Fio dobrado em quarto de círculo",
+     "resumo": "Duas semirretas e um arco: B = (μ₀I/2R)(1/π + 1/4).",
+     "secao": "Médio"
+    },
+    {
+     "id": "e11",
+     "numero": "11",
+     "titulo": "Placa infinita com corrente",
+     "resumo": "Fora, B = μ₀J₀d/2 uniforme; dentro, cresce linearmente com y.",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e12",
+     "numero": "12",
+     "titulo": "Fio finito em ângulos θ₁ e θ₂",
+     "resumo": "B = (μ₀I/4πd)(cos θ₁ − cos θ₂), com os casos simétrico, infinito e semi-infinito.",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e13",
+     "numero": "13",
+     "titulo": "Fio com um buraco cilíndrico",
+     "resumo": "Superposição de dois fios: B = μ₀I/3πR em P₁ e P₂, e uniforme no buraco.",
+     "secao": "Difícil"
+    }
+   ]
+  },
+  {
+   "id": "lista-08",
+   "titulo": "Lista 8 · Indução eletromagnética",
+   "subtitulo": "Física III-A · 2020/1 · gabarito da monitoria",
+   "questoes": [
+    {
+     "id": "e1",
+     "numero": "1",
+     "titulo": "Espira ao lado de um fio, em três direções",
+     "resumo": "Só induz corrente quem muda a distância ao fio.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e2",
+     "numero": "2",
+     "titulo": "Ímã e espira: quatro situações",
+     "resumo": "Aproximar repele, afastar atrai, quem quer que se mova.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e3",
+     "numero": "3",
+     "titulo": "Solenoide com corrente crescente e uma espira",
+     "resumo": "Nos dois sentidos de corrente, a espira é repelida.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e4",
+     "numero": "4",
+     "titulo": "Bobina atravessando uma região de campo",
+     "resumo": "Corrente só nas bordas da região, e a força freia: F = N²B²w²v/R.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e5",
+     "numero": "5",
+     "titulo": "Espira se afastando de um fio",
+     "resumo": "Φ = (μ₀Ia/2π) ln[(r + a)/r], corrente horária e força para o fio.",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e6",
+     "numero": "6",
+     "titulo": "Barra caindo em trilhos verticais",
+     "resumo": "A força magnética cresce com v até igualar o peso: v_t = mgR/B²L².",
+     "secao": "Médio"
+    },
+    {
+     "id": "e7",
+     "numero": "7",
+     "titulo": "Espira girando num campo uniforme",
+     "resumo": "Φ = Bπr² cos ωt; o torque induzido sempre freia o giro.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e8",
+     "numero": "8",
+     "titulo": "A fem nas asas de um avião",
+     "resumo": "ε = BvL = 10⁻⁴ · 250 · 60 = 1,5 V.",
+     "secao": "Fácil"
+    },
+    {
+     "id": "e9",
+     "numero": "9",
+     "titulo": "Barra correndo ao lado de um fio",
+     "resumo": "ΔV = (μ₀Iv/2π) ln[(d + L)/d], com a ponta perto do fio no potencial maior.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e10",
+     "numero": "10",
+     "titulo": "Haste com cargas num campo B crescente",
+     "resumo": "O campo elétrico induzido circula: força total nula, torque −qR²(dB/dt).",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e11",
+     "numero": "11",
+     "titulo": "Maxwell com monopolos magnéticos",
+     "resumo": "Gauss do magnetismo ganha carga, e Faraday ganha corrente magnética.",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e12",
+     "numero": "12",
+     "titulo": "Capacitor com dielétrico que vaza",
+     "resumo": "Q = Q₀e^(−t/Kε₀ρ); a corrente de deslocamento cancela a de condução e B = 0.",
+     "secao": "Difícil"
+    }
+   ]
+  },
+  {
+   "id": "lista-09",
+   "titulo": "Lista 9 · Indutância",
+   "subtitulo": "Física III-A · 2020/1 · sem gabarito da monitoria",
+   "questoes": [
+    {
+     "id": "e1",
+     "numero": "1",
+     "titulo": "Dois solenoides coaxiais",
+     "resumo": "L/l = μ₀n₂²πb² e M/l = μ₀n₁n₂πa², mesmo com o interno deslocado.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e2",
+     "numero": "2",
+     "titulo": "Indutância do cabo coaxial pelo fluxo",
+     "resumo": "Φ = (μ₀Il/2π) ln(b/a) e L/l = (μ₀/2π) ln(b/a).",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e3",
+     "numero": "3",
+     "titulo": "Indutância do cabo coaxial pela energia",
+     "resumo": "U = (μ₀I²l/4π) ln(b/a) e L = 2U/I²: o mesmo resultado.",
+     "secao": "Difícil"
+    },
+    {
+     "id": "e4",
+     "numero": "4",
+     "titulo": "Toroide: campo e auto-indutância",
+     "resumo": "B = μ₀NI/2πr dentro; fino, L ≈ μ₀N²A/2πR.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e5",
+     "numero": "5",
+     "titulo": "Espira entre dois fios com correntes opostas",
+     "resumo": "Os dois fios somam fluxo: M = (2μ₀b/π) ln[(d + a)/(d − a)].",
+     "secao": "Médio"
+    },
+    {
+     "id": "e6",
+     "numero": "6",
+     "titulo": "Três espiras em volta de um toroide",
+     "resumo": "Todas abraçam o tubo inteiro: M₁ = M₂ = M₃.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e7",
+     "numero": "7",
+     "titulo": "Indutores em série",
+     "resumo": "A mesma corrente nos dois: L = L₁ + L₂.",
+     "secao": "Médio"
+    },
+    {
+     "id": "e8",
+     "numero": "8",
+     "titulo": "Indutores em paralelo",
+     "resumo": "A mesma ddp nos dois: 1/L = 1/L₁ + 1/L₂.",
+     "secao": "Médio"
+    }
+   ]
   }
  ],
  "labs": [

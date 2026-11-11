@@ -50,3 +50,17 @@ export function condutorOco(A: number, B: number, q = 'qp', Q = 'Qc', x = 'xq') 
     potencial: `${r} < ${A} ? k0*${qi}/mag(${P}-${img}) + ${Vc} : (${r} < ${B} ? ${Vc} - ${Vp} : k0*(${Q}+${q})/${r} - ${Vp})`,
   }
 }
+
+/**
+ * Arco de fio com corrente no plano xy, em `n` trechos retos: centro `c`, raio `R` (número ou
+ * expressão), de `ini` a `ini + ab` graus; `ab` negativo percorre no sentido horário. Com 24
+ * trechos, o campo no centro erra menos de 0,4% mesmo num arco de 270°. Devolve objetos `fio`.
+ */
+export function arcoFio(pre: string, I: string, R: number | string, ini: number, ab: number, c: P3 = [0, 0, 0], n = 24) {
+  const ponto = (k: number): [number | string, number | string, number] => {
+    const g = ((ini + (k * ab) / n) * Math.PI) / 180
+    if (typeof R === 'number') return [c[0] + R * Math.cos(g), c[1] + R * Math.sin(g), c[2]]
+    return [`${c[0]} + (${R})*${Math.cos(g)}`, `${c[1]} + (${R})*${Math.sin(g)}`, c[2]]
+  }
+  return Array.from({ length: n }, (_, k) => ({ id: `${pre}${k}`, tipo: 'fio' as const, I, a: ponto(k), b: ponto(k + 1) }))
+}

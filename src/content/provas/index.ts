@@ -26,10 +26,19 @@ import { pf_2023_1_noturno } from './pf-2023-1-noturno'
 import { sc_2023_1_noturno } from './sc-2023-1-noturno'
 import { sc_2023_2_diurno } from './sc-2023-2-diurno'
 import { sc_2024_1_diurno } from './sc-2024-1-diurno'
+import { lista_01 } from './lista-01'
+import { lista_02 } from './lista-02'
+import { lista_03 } from './lista-03'
+import { lista_04 } from './lista-04'
+import { lista_05 } from './lista-05'
+import { lista_06 } from './lista-06'
+import { lista_07 } from './lista-07'
+import { lista_08 } from './lista-08'
+import { lista_09 } from './lista-09'
 
 /**
  * Da mais recente para a mais antiga; a primeira aparece aberta na página inicial.
  * Esta lista alimenta os testes e o catálogo: o site não a importa, porque traria
  * todas as provas de uma vez. Ele usa o catálogo e baixa uma prova por rota.
  */
-export const PROVAS: ProvaInput[] = [p1_2026_2_diurno, p3_2026_1_diurno, p2_2026_1_diurno, p1_2026_1_diurno, p1_2025_2_diurno, p2_2025_2_diurno, p3_2025_2_diurno, p1_2025_1_diurno, p2_2025_1_diurno, p3_2025_1_diurno, p1_2024_2_diurno, p2_2024_2_diurno, p3_2024_2_diurno, p1_2024_1_diurno, p2_2024_1_diurno, p3_2024_1_diurno, p3_2024_1_noturno, sc_2024_1_diurno, p2_2023_2_diurno, p3_2023_2_diurno, p3_2023_2_noturno, sc_2023_2_diurno, p1_2023_1_noturno, p2_2023_1_noturno, pf_2023_1_noturno, sc_2023_1_noturno, p2_2022_2_noturno]
+export const PROVAS: ProvaInput[] = [p1_2026_2_diurno, p3_2026_1_diurno, p2_2026_1_diurno, p1_2026_1_diurno, p1_2025_2_diurno, p2_2025_2_diurno, p3_2025_2_diurno, p1_2025_1_diurno, p2_2025_1_diurno, p3_2025_1_diurno, p1_2024_2_diurno, p2_2024_2_diurno, p3_2024_2_diurno, p1_2024_1_diurno, p2_2024_1_diurno, p3_2024_1_diurno, p3_2024_1_noturno, sc_2024_1_diurno, p2_2023_2_diurno, p3_2023_2_diurno, p3_2023_2_noturno, sc_2023_2_diurno, p1_2023_1_noturno, p2_2023_1_noturno, pf_2023_1_noturno, sc_2023_1_noturno, p2_2022_2_noturno, lista_01, lista_02, lista_03, lista_04, lista_05, lista_06, lista_07, lista_08, lista_09]

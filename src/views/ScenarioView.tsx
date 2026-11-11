@@ -26,7 +26,7 @@ export interface NavItem {
 
 export interface Header {
   kicker: string
-  route: 'lab' | 'prova'
+  route: 'lab' | 'prova' | 'lista'
   /** Recortes do enunciado original (WebP), na ordem de leitura. */
   figuras?: string[]
 }
@@ -222,6 +222,16 @@ export function ScenarioView({
             {scenario.resumo && <p className="mt-1.5 text-[13.5px] text-text-2">{scenario.resumo}</p>}
           </div>
 
+          {/* listas: o recorte do PDF de texto é o próprio enunciado, sem versão reescrita */}
+          {!scenario.enunciado && header.figuras && header.figuras.length > 0 && (
+            <Section title="Enunciado" id="sec-enunciado">
+              <div className="grid gap-1 overflow-hidden rounded-[var(--radius-ctl)] bg-[oklch(0.97_0.003_90)] p-2">
+                {header.figuras.map((src, i) => (
+                  <img key={src} src={src} alt={`Enunciado de ${scenario.titulo}${header.figuras!.length > 1 ? `, parte ${i + 1}` : ''}`} loading="lazy" decoding="async" className="block h-auto w-full" />
+                ))}
+              </div>
+            </Section>
+          )}
           {scenario.enunciado && (
             <Section
               title="Enunciado"

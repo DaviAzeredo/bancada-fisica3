@@ -595,8 +595,15 @@ function Coil({ e }: { e: Extract<Ent, { tipo: 'bobina' }> }) {
   const { u } = useScene()
   const o = useEmph(e.id)
   const r = e.sub === 'espira' ? u * 0.07 : Math.min(u * 0.05, e.R * 0.06)
-  const geo = useTube(e.draw, r, false, e.sub === 'espira' ? 3 : 1)
-  const flow = useMemo(() => (e.I >= 0 ? e.draw : [...e.draw].reverse()), [e.draw, e.I])
+  // Com a corrente variando no tempo a cena recompila a cada quadro, mas o fio não
+  // muda de forma: o tubo só é refeito quando o desenho muda de verdade.
+  const n = e.draw.length
+  const forma = `${n}|${e.draw[0]}|${e.draw[n >> 2]}|${e.draw[n >> 1]}|${e.draw[n - 1]}`
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const draw = useMemo(() => e.draw, [forma])
+  const geo = useTube(draw, r, false, e.sub === 'espira' ? 3 : 1)
+  const sentido = e.I >= 0
+  const flow = useMemo(() => (sentido ? draw : [...draw].reverse()), [draw, sentido])
   return (
     <Draggable id={e.id} at={e.c} enabled={e.arrastavel}>
       {geo && (
@@ -954,13 +961,20 @@ function SensorLoop({ e, r }: { e: Extract<Ent, { tipo: 'espiraSensora' }>; r: R
     const c = (sx: number, sy: number) => madd(madd(p.c, p.u, sx * p.hw), p.v, sy * p.hh)
     return [c(-1, -1), c(1, -1), c(1, 1), c(-1, 1), c(-1, -1)]
   }, [p])
-  const emf = (() => {
+  // a fem recompila a cena duas vezes e integra o fluxo duas vezes: com a cena mudando a
+  // cada quadro, basta refazer a conta 10 vezes por segundo, como no painel de medidas
+  const ultima = useRef({ em: -Infinity, valor: 0 })
+  const agora = performance.now()
+  if (!r.timeDependent || agora - ultima.current.em >= 100) {
+    let valor = 0
     try {
-      return r.env.fns.fem(e.id) as number
+      valor = r.env.fns.fem(e.id) as number
     } catch {
-      return 0
+      valor = 0
     }
-  })()
+    ultima.current = { em: agora, valor }
+  }
+  const emf = ultima.current.valor
   const flow = useMemo(() => (emf >= 0 ? pts : [...pts].reverse()), [pts, emf])
   const geo = useTube(pts, u * 0.06, false, p.forma === 'disco' ? 2 : 8)
   const n = p.forma === 'disco' ? norm(p.n) : cross(p.u, p.v)

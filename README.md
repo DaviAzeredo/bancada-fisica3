@@ -68,6 +68,12 @@ Site estático: sem login, sem servidor e sem dado de aluno fora do próprio nav
   - Gabarito comentado: conceitos, etapas, erros comuns e o porquê de cada
     alternativa. Conferido com o gabarito oficial; as divergências ficam
     anotadas na própria questão.
+- **Listas de exercícios** ([provas](src/content/provas/), arquivos `lista-NN.ts`):
+  as 9 listas de Física III-A 2020/1, com 109 exercícios. Cada um tem cena,
+  passos e resolução, no mesmo formato das provas. A conferência é com o gabarito
+  da monitoria, citado sem nome nem contato do monitor. As divergências ficam
+  anotadas na questão, e os itens sem gabarito saem com resolução própria. Na
+  página inicial elas têm uma seção à parte (`#/listas`) e ficam fora do treino.
 - **Treino P3** ([treino](src/treino/)): dias até a prova, domínio das 66 questões
   das terceiras provas (nos períodos sem P3, a terceira prova é a PF), peso de cada
   tema, plano diário, simulados com relógio e autocorreção da discursiva, fila por
