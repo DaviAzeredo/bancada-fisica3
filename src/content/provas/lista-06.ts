@@ -730,6 +730,7 @@ $\vec F$ tem de apontar para o lado de cima do plano: na figura, a corrente vai 
         { rotulo: 'Momento de dipolo, componente x', simbolo: r`\mu_x = Iab\sin\theta`, expr: '1e3*I0*a*b*sin(rad(th))', unidade: 'mA·m²' },
         { rotulo: 'Momento de dipolo, componente y', simbolo: r`\mu_y = -Iab\cos\theta`, expr: '1e3*(0-I0*a*b*cos(rad(th)))', unidade: 'mA·m²' },
         { rotulo: 'Energia potencial', simbolo: r`U = -\vec\mu\cdot\vec B = IabB_0\cos\theta`, expr: '1e3*I0*a*b*B0*cos(rad(th))', unidade: 'mJ' },
+        { rotulo: 'Trabalho do torque daqui até θ = π', simbolo: r`W = IabB_0(1 + \cos\theta)`, expr: '1e3*I0*a*b*B0*(1 + cos(rad(th)))', unidade: 'mJ' },
       ],
       passos: [
         {
@@ -759,9 +760,11 @@ $$\vec\mu = Iab\,(\sin\theta\,\hat x - \cos\theta\,\hat y).$$`,
         },
         {
           titulo: '(e) Trabalho',
-          texto: r`As forças nos lados giram a espira e lhe dão energia cinética, mas essa energia não vem de $\vec B$: a força magnética sobre cada carga é perpendicular à velocidade dela e não realiza trabalho. Quem paga é a fonte que mantém a corrente $I$.`,
-          parametros: { th: 0 },
-          medidas: [0, 4],
+          texto: r`**Sim.** As forças $I\,d\vec l\times\vec B$ nos lados são transmitidas ao fio e giram a espira, que ganha energia cinética. O torque realiza
+$$W = \int_{\theta_i}^{\theta_f}\tau_z\,d\theta = IabB_0(\cos\theta_i - \cos\theta_f) = -\Delta U.$$
+Daqui ($\theta = 60°$, $U = IabB_0/2$) até o equilíbrio estável ($\theta = \pi$, $U = -IabB_0$), $W = \tfrac32 IabB_0$. O que continua valendo é que a força magnética **total** sobre cada portador não realiza trabalho: com a espira girando, os portadores também andam com o fio, e essa parte de $q\vec v\times\vec B$ empurra contra $I$ (é a fem induzida). As duas parcelas se cancelam, e a energia da rotação vem da fonte, que mantém $I$ contra essa fem.`,
+          parametros: { th: 60 },
+          medidas: [0, 4, 5],
         },
       ],
       respostas: [
@@ -769,7 +772,7 @@ $$\vec\mu = Iab\,(\sin\theta\,\hat x - \cos\theta\,\hat y).$$`,
         { item: '(b)', texto: r`$\vec\tau = IabB_0\sin\theta\,\hat z$` },
         { item: '(c)', texto: r`Anti-horário visto de $+z$ ($\theta$ aumenta).` },
         { item: '(d)', texto: r`Estável em $\theta = \pi$; instável em $\theta = 0$.` },
-        { item: '(e)', texto: 'A força magnética não realiza trabalho; a energia da rotação vem da fonte que mantém a corrente.' },
+        { item: '(e)', texto: r`Sim: $W = IabB_0(\cos\theta_i - \cos\theta_f) = -\Delta U$. A força magnética total sobre os portadores não realiza trabalho; a energia vem da fonte, que mantém $I$ contra a fem induzida pela rotação.` },
       ],
       resolucao: {
         conceitos: [{ texto: 'Torque numa espira', lab: 'forcas' }],
@@ -777,12 +780,16 @@ $$\vec\mu = Iab\,(\sin\theta\,\hat x - \cos\theta\,\hat y).$$`,
           { titulo: 'Normal', texto: r`Regra da mão direita com o sentido de $I$.`, passo: 0 },
           { titulo: 'Torque', texto: r`$\vec\mu\times\vec B$.`, passo: 1 },
           { titulo: 'Energia', texto: r`$U = -\vec\mu\cdot\vec B$ decide a estabilidade.`, passo: 3 },
+          { titulo: 'Trabalho', texto: r`O torque realiza $W = -\Delta U$; quem fornece essa energia é a fonte da corrente.`, passo: 4 },
         ],
-        resultado: r`$\vec\mu = Iab(\sin\theta\hat x - \cos\theta\hat y)$; $\vec\tau = IabB_0\sin\theta\hat z$; estável em $\pi$.`,
-        errosComuns: ['Tomar $\\theta$ como o ângulo entre $\\vec\\mu$ e $\\vec B$ e trocar os equilíbrios.'],
+        resultado: r`$\vec\mu = Iab(\sin\theta\hat x - \cos\theta\hat y)$; $\vec\tau = IabB_0\sin\theta\hat z$; estável em $\pi$; o torque realiza $W = -\Delta U$, pago pela fonte.`,
+        errosComuns: [
+          'Tomar $\\theta$ como o ângulo entre $\\vec\\mu$ e $\\vec B$ e trocar os equilíbrios.',
+          'Concluir que o torque não realiza trabalho porque a força magnética sobre uma carga é perpendicular à velocidade dela: a espira ganha energia cinética, e quem a fornece é a fonte da corrente.',
+        ],
         oficial: {
           resposta: 'μ = Iab(sen θ x̂ − cos θ ŷ); τ = IabB₀ sen θ ẑ; rotação anti-horária; estável em θ = π e instável em θ = 0; a força magnética não realiza trabalho.',
-          observacao: 'O enunciado escreve o campo como B₀y ŷ e o chama de constante; aqui ele é B₀ ŷ, como no gabarito.',
+          observacao: 'O enunciado escreve o campo como B₀y ŷ e o chama de constante; aqui ele é B₀ ŷ, como no gabarito. Divergência no item (e): o gabarito diz que não há trabalho, mas a espira ganha energia cinética, e o torque realiza W = −ΔU = IabB₀(cos θᵢ − cos θ_f). O que não realiza trabalho é a força magnética total sobre os portadores; a energia vem da fonte da corrente, como o próprio gabarito diz.',
         },
       },
     },
