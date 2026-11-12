@@ -11,6 +11,7 @@ export function Alternatives({
   alts,
   inicial = null,
   revelado = false,
+  semCorreta = false,
   onEscolha,
 }: {
   alts: NonNullable<Scenario['alternativas']>
@@ -18,6 +19,8 @@ export function Alternatives({
   inicial?: string | null
   /** Mostra o gabarito mesmo sem escolha: a questão deixada em branco no simulado. */
   revelado?: boolean
+  /** Nenhuma alternativa está certa: a questão conta como anulada. */
+  semCorreta?: boolean
   /** Só a primeira escolha conta: é ela que o treino registra. */
   onEscolha?: (correta: boolean) => void
 }) {
@@ -46,7 +49,7 @@ export function Alternatives({
                 role="radio"
                 aria-checked={isChosen}
                 onClick={() => {
-                  if (chosen === null) onEscolha?.(!!a.correta)
+                  if (chosen === null) onEscolha?.(semCorreta || !!a.correta)
                   setChosen(a.letra)
                 }}
                 className={`grid w-full grid-cols-[22px_1fr_16px] items-center gap-2.5 px-2.5 py-2 text-left text-[13.5px] ${state === 'idle' ? 'text-text-2' : 'text-text'}`}
@@ -67,7 +70,15 @@ export function Alternatives({
         })}
       </div>
       <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-[12.5px] text-text-3" aria-live="polite">
-        <span>{chosen === null ? 'Escolha a sua antes de ver o gabarito.' : right ? 'Correta.' : 'Não é essa. A explicação está na alternativa marcada.'}</span>
+        <span>
+          {semCorreta && show
+            ? 'Nenhuma alternativa está certa: a conta dá um valor que não está entre elas. A resolução mostra qual, e a questão conta como anulada.'
+            : chosen === null
+              ? 'Escolha a sua antes de ver o gabarito.'
+              : right
+                ? 'Correta.'
+                : 'Não é essa. A explicação está na alternativa marcada.'}
+        </span>
         {!show && (
           <button type="button" className="shrink-0 text-text-2 underline decoration-line underline-offset-4 hover:text-text" onClick={() => setReveal(true)}>
             Ver gabarito

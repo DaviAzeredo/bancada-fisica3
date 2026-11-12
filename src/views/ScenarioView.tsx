@@ -415,7 +415,7 @@ export function ScenarioView({
 
           {scenario.alternativas && (
             <Section title="Alternativas" id="sec-alternativas">
-              <Alternatives key={scenario.id} alts={scenario.alternativas} />
+              <Alternatives key={scenario.id} alts={scenario.alternativas} semCorreta={scenario.semCorreta} />
             </Section>
           )}
 

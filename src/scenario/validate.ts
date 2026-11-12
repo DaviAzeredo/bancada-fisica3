@@ -27,8 +27,10 @@ export function checkProva(raw: unknown): { prova?: Prova; errors: string[] } {
         }
       }
     }
-    if (q.alternativas && q.alternativas.filter((a) => a.correta).length !== 1)
-      errors.push(`questão ${q.numero}: as alternativas precisam ter exatamente uma correta`)
+    if (q.alternativas && q.alternativas.filter((a) => a.correta).length !== (q.semCorreta ? 0 : 1))
+      errors.push(
+        q.semCorreta ? `questão ${q.numero}: marcada sem alternativa correta, mas tem uma` : `questão ${q.numero}: as alternativas precisam ter exatamente uma correta`,
+      )
   }
   return { prova, errors: [...new Set(errors)].slice(0, 40) }
 }

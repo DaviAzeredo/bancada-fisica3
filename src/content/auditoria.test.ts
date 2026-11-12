@@ -4,6 +4,7 @@ import katex from 'katex'
 import { describe, expect, it } from 'vitest'
 import { renderRich } from '../lib/rich'
 import { Prova, Scenario } from '../scenario/schema'
+import { checkProva } from '../scenario/validate'
 import { LABS } from './labs'
 import { PROVAS } from './provas'
 import { figurasDe } from './registry'
@@ -119,6 +120,23 @@ describe('integridade das questões', () => {
       if (certa && letra && letra !== certa && !of?.observacao) ruins.push(`${nome}: oficial (${letra}), marcada (${certa})`)
     }
     expect(ruins).toEqual([])
+  })
+
+  it('questão sem alternativa certa só com a divergência explicada', () => {
+    const ruins: string[] = []
+    const sem = questoes.filter(({ q }) => q.semCorreta)
+    for (const { q, nome } of sem) {
+      if (!q.alternativas?.length) ruins.push(`${nome}: semCorreta sem alternativas`)
+      if (q.alternativas?.some((a) => a.correta)) ruins.push(`${nome}: semCorreta com alternativa marcada`)
+      if (!q.resolucao?.oficial?.observacao) ruins.push(`${nome}: semCorreta sem a divergência anotada`)
+    }
+    expect(ruins).toEqual([])
+    expect(sem.map(({ nome }) => nome)).toEqual(['sc-2023-2-diurno/obj3'])
+    // o validador recusa marcar uma e dizer que nenhuma está certa
+    const { p, q } = sem[0]
+    const marcada = { ...q, alternativas: q.alternativas!.map((a, i) => ({ ...a, correta: i === 0 })) }
+    expect(checkProva({ ...p, questoes: [marcada] }).errors.join()).toMatch(/sem alternativa correta, mas tem uma/)
+    expect(checkProva({ ...p, questoes: [q] }).errors.join()).not.toMatch(/alternativa/)
   })
 
   it('passos só citam o que existe', () => {

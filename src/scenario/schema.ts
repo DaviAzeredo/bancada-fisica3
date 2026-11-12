@@ -503,6 +503,11 @@ export const Scenario = z.object({
       }),
     )
     .optional(),
+  /**
+   * Nenhuma alternativa está certa: o oficial marca uma que a conta desmente. O treino e o
+   * simulado contam a questão como anulada, e a resolução mostra o valor certo.
+   */
+  semCorreta: z.boolean().optional(),
   respostas: z
     .array(z.object({ item: z.string(), texto: z.string(), pontos: z.number().optional(), criterio: z.string().optional() }))
     .default([]),

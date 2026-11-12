@@ -70,9 +70,9 @@ for (const raw of PROVAS) {
         }
       }
     })
-    it('objetivas têm exatamente uma alternativa correta', () => {
+    it('objetivas têm exatamente uma alternativa correta (nenhuma, se a questão não tem resposta certa)', () => {
       for (const q of prova.questoes)
-        if (q.alternativas) expect(q.alternativas.filter((a) => a.correta).length).toBe(1)
+        if (q.alternativas) expect(q.alternativas.filter((a) => a.correta).length, q.id).toBe(q.semCorreta ? 0 : 1)
     })
   })
 }

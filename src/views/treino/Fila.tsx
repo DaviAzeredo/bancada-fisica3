@@ -33,6 +33,7 @@ function Cartao({ item, onProxima, ultima }: { item: QuestaoBanco; onProxima: ()
       {q.alternativas ? (
         <Alternatives
           alts={q.alternativas}
+          semCorreta={q.semCorreta}
           onEscolha={(certa) => {
             responder(item.chave, certa ? 1 : 0)
             setRespondida(true)

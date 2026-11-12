@@ -1340,7 +1340,7 @@
      "id": "obj3",
      "numero": "3",
      "titulo": "Ângulo de um arco para 2B_T = −3B₁",
-     "resumo": "Só os arcos contam. O gabarito diverge da conta por um fator 2.",
+     "resumo": "Só os arcos contam. A conta dá fator 2, que não está nas alternativas: nenhuma está certa.",
      "secao": "Objetiva",
      "pontos": 1
     },

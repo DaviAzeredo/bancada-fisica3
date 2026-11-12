@@ -190,7 +190,8 @@ function Resultado({ prova, curso }: { prova: Prova; curso: EmCurso }) {
   for (const q of prova.questoes) {
     const pts = q.pontos ?? 0
     if (q.alternativas) {
-      const certa = q.alternativas.find((a) => a.letra === curso.respostas[q.id])?.correta ? 1 : 0
+      // sem alternativa certa, a questão é anulada: o ponto vai para todos
+      const certa = q.semCorreta || q.alternativas.find((a) => a.letra === curso.respostas[q.id])?.correta ? 1 : 0
       acertos[q.id] = certa
       nota += certa * pts
     } else {
@@ -223,7 +224,7 @@ function Resultado({ prova, curso }: { prova: Prova; curso: EmCurso }) {
             </p>
             <h2 className="text-[16px] font-semibold tracking-[-0.01em] text-text">{q.titulo}</h2>
             {q.alternativas ? (
-              <Alternatives alts={q.alternativas} inicial={curso.respostas[q.id] ?? null} revelado />
+              <Alternatives alts={q.alternativas} inicial={curso.respostas[q.id] ?? null} revelado semCorreta={q.semCorreta} />
             ) : (
               <>
                 <div className="text-[13px] text-text-3">Dê a você mesmo os pontos de cada item, como um corretor faria.</div>

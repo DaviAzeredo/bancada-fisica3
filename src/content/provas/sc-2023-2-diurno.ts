@@ -59,7 +59,7 @@ const X = `(x0 + v0/${gam}*(1 - exp(0-${gam}*${Td})))`
  * com o gabarito oficial, que traz 1h, 2f, 3d, 4b, 5g, 6e. Duas divergências,
  * registradas em cada questão: na objetiva 5 a física dá (a), porque (g) vale para
  * s > a; na objetiva 3 a conta dá fator 2, que não está nas alternativas, e (d)
- * tem fator 4.
+ * tem fator 4: nenhuma é marcada (`semCorreta`).
  */
 export const sc_2023_2_diurno: ProvaInput = {
   id: 'sc-2023-2-diurno',
@@ -256,7 +256,7 @@ A cena recupera a massa do próton a partir do rastro. Com a força, alternativa
       secao: 'Objetiva',
       pontos: 1,
       titulo: 'Ângulo de um arco para 2B_T = −3B₁',
-      resumo: 'Só os arcos contam. O gabarito diverge da conta por um fator 2.',
+      resumo: 'Só os arcos contam. A conta dá fator 2, que não está nas alternativas: nenhuma está certa.',
       enunciado: r`Dois fios muito longos que possuem dobras em forma de arcos de círculos de raios $a$ e $b$ e ângulos $\beta$ e $\pi$, possuem um centro comum $\mathcal O$ (vide figura). Ao serem percorridos por correntes elétricas estacionárias de intensidades $I_1$ e $I_2$, são produzido no ponto $\mathcal O$ os campos magnéticos $\vec B_1(I_1)$ e $\vec B_2(I_2)$, respectivamente. O valor que deve ter o ângulo $\beta$ para que esses campos magnéticos satisfaçam à relação $2\vec B_T = -3\vec B_1$, onde $\vec B_T = \vec B_1 + \vec B_2$, deve ser dado por:`,
       figura: { pagina: 2, recorte: [0.505, 0.085, 0.91, 0.93] },
       cena: { escala: 0.01, extensao: 9, unidade: 'cm', plano: 'xy', camera: { pos: [0, 0, 20], alvo: [0, 0, 0] } },
@@ -331,21 +331,22 @@ Teste aqui: com $\beta = 72°$, a razão não dá 1, e sim $\frac16$. O fator 4 
           { titulo: 'Relação', texto: r`$5B_1 = -2B_2$, e $\beta = (2aI_2/5bI_1)\pi$.`, passo: 2 },
           { titulo: 'Gabarito', texto: r`O oficial marca (d), com fator 4; a cena mostra que esse valor não satisfaz a relação.`, passo: 3 },
         ],
-        resultado: r`A conta dá $\beta = \left(\dfrac{2aI_2}{5bI_1}\right)\pi$, que não está nas alternativas. O gabarito oficial marca **(d)**.`,
+        resultado: r`A conta dá $\beta = \left(\dfrac{2aI_2}{5bI_1}\right)\pi$, que não está nas alternativas: nenhuma está certa. O gabarito oficial marca a (d), com fator 4.`,
         errosComuns: [
           r`Tomar o semicírculo como $\mu_0I/2R$: esse é o círculo inteiro.`,
           r`Dar o mesmo sinal aos dois arcos: um é horário e o outro, anti-horário.`,
         ],
         oficial: {
           resposta: '(d)',
-          observacao: r`**Divergência com o gabarito oficial.** A conta dá fator 2, e a (d) tem fator 4. Mantida como a marcada pela prova, mas a simulação mostra que ela não satisfaz $2\vec B_T = -3\vec B_1$.`,
+          observacao: r`**Divergência com o gabarito oficial.** A conta dá fator 2, e a (d) tem fator 4. A simulação mostra que a (d) não satisfaz $2\vec B_T = -3\vec B_1$. Por isso aqui nenhuma alternativa é marcada, e no treino a questão conta como anulada.`,
         },
       },
+      semCorreta: true,
       alternativas: [
         { letra: 'a', texto: r`$\left(\dfrac{5aI_1}{4bI_2}\right)\pi$`, porque: r`Inverte a razão das correntes: $\beta$ cresce com $I_2$.` },
         { letra: 'b', texto: r`$\left(\dfrac{4bI_2}{5aI_1}\right)\pi$`, porque: r`Inverte a razão dos raios: $\beta$ cresce com $a$.` },
         { letra: 'c', texto: r`$\left(\dfrac{3aI_1}{5bI_2}\right)\pi$`, porque: r`Inverte a razão das correntes.` },
-        { letra: 'd', texto: r`$\left(\dfrac{4aI_2}{5bI_1}\right)\pi$`, correta: true, porque: r`É a marcada pelo gabarito oficial e tem a forma certa, mas a conta dá fator 2, não 4: veja o último passo.` },
+        { letra: 'd', texto: r`$\left(\dfrac{4aI_2}{5bI_1}\right)\pi$`, porque: r`É a marcada pelo gabarito oficial e tem a forma certa, mas a conta dá fator 2, não 4: veja o último passo.` },
         { letra: 'e', texto: r`$\left(\dfrac{3aI_1}{4bI_2}\right)\pi$`, porque: r`Inverte a razão das correntes.` },
         { letra: 'f', texto: r`$\left(\dfrac{3I_2}{4bI_1}\right)\pi$`, porque: r`Não é adimensional, e um ângulo tem de ser.` },
         { letra: 'g', texto: r`$\left(\dfrac{4bI_1}{5aI_2}\right)\pi$`, porque: r`Inverte as duas razões.` },
