@@ -1,4 +1,5 @@
 import type { ProvaInput } from '../../scenario/schema'
+import { FORMULARIO_P2 } from '../formularios'
 
 const r = String.raw
 
@@ -26,6 +27,7 @@ export const lista_05: ProvaInput = {
   id: 'lista-05',
   titulo: 'Lista 5 · Corrente elétrica',
   subtitulo: 'Física III-A · 2020/1 · gabarito da monitoria',
+  formulario: FORMULARIO_P2,
   questoes: [
     /* ───────────────────────── 1 ───────────────────────── */
     {
@@ -67,8 +69,23 @@ um quarto de milímetro por segundo, mesmo com 1000 A.`,
       resolucao: {
         conceitos: [{ texto: 'Corrente e velocidade de arraste', lab: 'corrente' }],
         etapas: [
-          { titulo: 'Arraste', texto: r`$v_d = I/neA$.`, passo: 0 },
-          { titulo: 'Tempo', texto: r`$t = L/v_d$.`, passo: 1 },
+          {
+            titulo: 't para um elétron atravessar o cabo',
+            texto: r`**O que se pede.** Quanto tempo um elétron leva para percorrer os 200 km de uma linha de cobre de 2 cm de diâmetro, com corrente de 1000 A. A densidade de elétrons livres é $n \approx 8\times10^{28}$ m⁻³.
+
+**A ideia: corrente e velocidade de arraste.** Num fio, os elétrons livres se agitam em todas as direções, mas, com corrente, têm em média um pequeno movimento de conjunto ao longo do fio: a **velocidade de arraste** $v_d$. A densidade de corrente (corrente por área) é (formulário)
+$$\vec J = nq\vec v,$$
+e a corrente é $J$ vezes a área da seção (formulário: $I = \int_S\vec J\cdot d\vec A$, que, com $J$ uniforme, dá $I = JA$). Em módulo, com $q = e$:
+$$I = neAv_d\quad\Rightarrow\quad v_d = \frac{I}{neA}.$$
+
+**A conta.** O raio é 1 cm (metade do diâmetro): $A = \pi(0{,}01)^2 \approx 3{,}14\times10^{-4}$ m².
+$$v_d = \frac{1000}{(8\times10^{28})(1{,}6\times10^{-19})(3{,}14\times10^{-4})} \approx 2{,}5\times10^{-4}\ \text{m/s}.$$
+Um quarto de milímetro por segundo, mesmo com mil ampères. O tempo é distância ÷ velocidade:
+$$t = \frac{L}{v_d} = \frac{2\times10^5}{2{,}5\times10^{-4}} \approx 8\times10^8\ \text{s} \approx 25\ \text{anos}.$$
+
+**Mas então como a luz acende na hora?** Quem viaja depressa é o **campo elétrico** ao longo do fio, quase na velocidade da luz. Ele põe todos os elétrons do fio em movimento praticamente ao mesmo tempo. Cada elétron, individualmente, mal sai do lugar.`,
+            passo: 1,
+          },
         ],
         resultado: r`$t \approx 25$ anos.`,
         errosComuns: ['Usar o diâmetro como raio na área.'],
@@ -124,8 +141,19 @@ A cena realiza essa corrente com um capacitor descarregando por um resistor ($\t
       resolucao: {
         conceitos: [{ texto: 'Corrente que decai: descarga RC', lab: 'circuitos' }],
         etapas: [
-          { titulo: 'Definição', texto: r`$Q = \int I\,dt$.`, passo: 0 },
-          { titulo: 'Exponencial', texto: r`$\int_0^\infty e^{-t/\tau}dt = \tau$.`, passo: 0 },
+          {
+            titulo: 'Q que atravessa a seção de 0 a ∞',
+            texto: r`**O que se pede.** A carga total que passa por uma seção do fio entre $t = 0$ e $t \to \infty$, com a corrente $I(t) = I_0e^{-t/\tau}$ caindo exponencialmente.
+
+**A ideia.** Corrente é carga por tempo: $I = \dfrac{dQ}{dt}$. Num intervalo curto $dt$, passa a carga $dQ = I\,dt$. Se a corrente fosse constante, bastaria multiplicar $I$ pelo tempo; como ela muda, soma-se (integra-se) $I\,dt$ ao longo do tempo. Graficamente, a carga é a **área sob a curva** $I(t)$.
+
+**A conta.**
+$$Q = \int_0^\infty I_0e^{-t/\tau}\,dt = I_0\Big[-\tau e^{-t/\tau}\Big]_0^\infty = I_0\big(0 - (-\tau)\big) = I_0\tau.$$
+(A primitiva de $e^{-t/\tau}$ é $-\tau e^{-t/\tau}$; no infinito, a exponencial vai a zero.)
+
+**Interpretação.** É como se a corrente inicial $I_0$ durasse exatamente um tempo $\tau$ e depois parasse. A integral até o infinito dá um valor finito porque a corrente cai depressa. Depois de $\tau$ já passou $1 - 1/e \approx 63\%$ da carga; depois de $5\tau$, mais de 99%. É o que acontece, por exemplo, quando um capacitor descarrega através de um resistor ($\tau = RC$).`,
+            passo: 0,
+          },
         ],
         resultado: r`$Q = I_0\tau$.`,
         errosComuns: ['Multiplicar $I_0$ por um tempo qualquer, como se a corrente fosse constante.'],
@@ -179,8 +207,34 @@ $$\vec J = 4nq\vec v.$$`,
       resolucao: {
         conceitos: [{ texto: 'Densidade de corrente microscópica', lab: 'corrente' }],
         etapas: [
-          { titulo: 'Neutralidade', texto: r`$\rho = 0$.`, passo: 0 },
-          { titulo: 'Somar', texto: r`$\vec J = \sum_i n_iq_i\vec v_i$.`, passo: 1 },
+          {
+            titulo: '(a) Quantos portadores −q por volume',
+            texto: r`**O que se pede.** O número por volume, $n_-$, dos portadores de carga $-q$, sabendo que o plasma é **globalmente neutro** e que há $n$ portadores de carga $2q$ por volume.
+
+**A ideia.** Neutro quer dizer densidade de carga total zero. A densidade de carga de um tipo de portador é (número por volume) × (carga de cada um). Somam-se os dois tipos.
+
+**A conta.**
+$$\rho = n(2q) + n_-(-q) = 0\quad\Rightarrow\quad n_- = 2n.$$
+
+**Em palavras.** Cada portador positivo tem o dobro da carga de cada negativo; para equilibrar, os negativos precisam ser o dobro em número.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A densidade de corrente no plasma',
+            texto: r`**O que se pede.** O vetor densidade de corrente $\vec J$ do plasma, com os positivos ($2q$) andando com velocidade $\vec v$ e os negativos ($-q$) com $-\vec v$.
+
+**A ideia.** A densidade de corrente de um tipo de portador é (formulário)
+$$\vec J = nq\vec v.$$
+Com vários tipos, somam-se as contribuições. Atenção aos sinais: a carga e a velocidade entram **com sinal**.
+
+**A conta.**
+- Positivos: $n\cdot(2q)\cdot\vec v = 2nq\,\vec v$.
+- Negativos: $(2n)\cdot(-q)\cdot(-\vec v) = 2nq\,\vec v$. Os dois sinais de menos se cancelam.
+$$\vec J = 2nq\,\vec v + 2nq\,\vec v = 4nq\,\vec v.$$
+
+**Por que somam, e não se cancelam?** Carga negativa andando para trás equivale a carga positiva andando para a frente: as duas levam carga positiva líquida no sentido de $\vec v$. É por isso que, num fio, a corrente convencional tem o sentido **oposto** ao dos elétrons.`,
+            passo: 1,
+          },
         ],
         resultado: r`$n_- = 2n$; $\vec J = 4nq\vec v$.`,
         errosComuns: ['Subtrair as correntes dos negativos: com carga e velocidade trocadas de sinal, elas somam.'],
@@ -248,9 +302,30 @@ $$I = \frac{e}{T} = \frac{ev}{2\pi a_0} \approx 1\ \text{mA}.$$`,
       resolucao: {
         conceitos: [{ texto: 'Corrente como carga por tempo', lab: 'corrente' }],
         etapas: [
-          { titulo: 'Período', texto: r`$T = 2\pi a_0/v$.`, passo: 0 },
-          { titulo: 'Corrente', texto: r`$I = e/T$.`, passo: 0 },
-          { titulo: 'Sinal', texto: r`Carga negativa inverte o sentido.`, passo: 2 },
+          {
+            titulo: '(a) A corrente do elétron em órbita',
+            texto: r`**O que se pede.** A corrente associada ao elétron (carga $-e$) que gira em círculo de raio $a_0$ com velocidade $v$, tratada como uma corrente estacionária.
+
+**A ideia.** Corrente é carga que passa por um ponto (ou por uma seção) por unidade de tempo. Fique parado num ponto da órbita: a cada volta passa por ali uma carga $e$ (em módulo). Em média, a corrente é essa carga dividida pelo tempo de uma volta, o **período** $T$. "Estacionária" quer dizer tratar essa média como uma corrente constante circulando pela órbita.
+
+**A conta.** O período é o comprimento da órbita dividido pela velocidade:
+$$T = \frac{2\pi a_0}{v}\quad\Rightarrow\quad I = \frac{e}{T} = \frac{ev}{2\pi a_0}.$$
+
+**Em constantes fundamentais.** A força elétrica do próton faz o papel de força centrípeta: $\dfrac{e^2}{4\pi\varepsilon_0a_0^2} = \dfrac{mv^2}{a_0}$, então $v = \dfrac{e}{2\sqrt{\pi\varepsilon_0ma_0}}$. Substituindo:
+$$I = \frac{e^2}{4}\sqrt{\frac{1}{\pi^3\varepsilon_0ma_0^3}}.$$
+
+**Em números.** Com $v \approx 2{,}2\times10^6$ m/s e $a_0 \approx 0{,}53\times10^{-10}$ m: $I \approx \dfrac{(1{,}6\times10^{-19})(2{,}2\times10^6)}{2\pi(0{,}53\times10^{-10})} \approx 1$ mA. É uma corrente razoável, numa órbita minúscula.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O sentido da corrente',
+            texto: r`**O que se pede.** Dizer se a corrente tem o mesmo sentido da rotação do elétron.
+
+**A ideia.** Por convenção, o sentido da corrente é o sentido em que se movem as cargas **positivas**. Uma carga negativa movendo-se num sentido transporta carga como uma positiva movendo-se no sentido contrário. Pela densidade de corrente do formulário, $\vec J = nq\vec v$: com $q < 0$, $\vec J$ aponta **contra** $\vec v$.
+
+**Resposta.** **Não.** O elétron é negativo, então a corrente circula no sentido **oposto** ao do movimento dele. Se o elétron gira no sentido anti-horário, a corrente é horária.`,
+            passo: 2,
+          },
         ],
         resultado: r`$I = ev/2\pi a_0$, oposta ao movimento do elétron.`,
         errosComuns: ['Pôr a corrente no sentido do movimento do elétron.'],
@@ -311,8 +386,55 @@ $$I = \frac{e}{T} = \frac{ev}{2\pi a_0} \approx 1\ \text{mA}.$$`,
       resolucao: {
         conceitos: [{ texto: 'Resistência e resistividade', lab: 'corrente' }],
         etapas: [
-          { titulo: 'R', texto: r`$\rho L/A$ com volume fixo.`, passo: 0 },
-          { titulo: 'I, E, J', texto: r`$I = V/R$, $E = V/L$, $J = E/\rho$.`, passo: 1 },
+          {
+            titulo: '(a) A razão entre as resistências',
+            texto: r`**O que se pede.** A razão $R_i/R_f$ entre a resistência do fio antes e depois de esticado: o comprimento dobra e a área da seção cai à metade.
+
+**A ideia.** A resistência de um fio uniforme é (formulário)
+$$R = \rho\frac LA,$$
+em que $\rho$ é a resistividade, uma propriedade do material, que não muda ao esticar. Fio mais longo resiste mais (a corrente tem mais caminho); fio mais grosso resiste menos (há mais "pistas" lado a lado).
+
+**A conta.**
+$$R_f = \rho\frac{2L}{A/2} = 4\rho\frac LA = 4R_i\quad\Rightarrow\quad\frac{R_i}{R_f} = \frac14.$$
+Os dois efeitos se somam: o comprimento dobra a resistência, e a área menor dobra de novo.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A razão entre as correntes',
+            texto: r`**O que se pede.** A razão $I_i/I_f$ entre as correntes antes e depois, com a mesma diferença de potencial $V$ nas pontas.
+
+**A ideia.** Lei de Ohm (formulário): $V = RI$, então $I = V/R$. Com $V$ fixo, a corrente é inversamente proporcional à resistência.
+
+**A conta.**
+$$\frac{I_i}{I_f} = \frac{V/R_i}{V/R_f} = \frac{R_f}{R_i} = 4.$$
+A corrente cai para um quarto.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) A razão entre os campos no fio',
+            texto: r`**O que se pede.** A razão $E_i/E_f$ entre as intensidades do campo elétrico dentro do fio.
+
+**A ideia.** Num fio uniforme, o campo é uniforme ao longo dele, e a diferença de potencial entre as pontas é campo × comprimento: $V = EL$. Logo $E = V/L$.
+
+**A conta.** $V$ é o mesmo e o comprimento dobra:
+$$\frac{E_i}{E_f} = \frac{V/L}{V/(2L)} = 2.$$
+A mesma tensão, espalhada por um fio duas vezes mais longo, dá um campo duas vezes mais fraco.`,
+            passo: 2,
+          },
+          {
+            titulo: '(d) A razão entre as densidades de corrente',
+            texto: r`**O que se pede.** A razão $J_i/J_f$ entre as densidades de corrente (corrente por área) dentro do fio.
+
+**A ideia.** A lei de Ohm em cada ponto do material (formulário):
+$$\vec J = \frac1\rho\vec E.$$
+O material é o mesmo, então $J$ é proporcional a $E$.
+
+**A conta.** Pelo item (c):
+$$\frac{J_i}{J_f} = \frac{E_i}{E_f} = 2.$$
+
+**Conferindo por outro caminho.** $J = I/A$: a corrente caiu 4 vezes e a área caiu 2 vezes, então $J$ caiu $4/2 = 2$ vezes. Mesmo resultado.`,
+            passo: 3,
+          },
         ],
         resultado: r`$1/4$, $4$, $2$, $2$.`,
         errosComuns: ['Dobrar só o comprimento e esquecer que a área cai junto.'],
@@ -368,8 +490,26 @@ A simulação acha a corrente total pela circulação do campo magnético e divi
           { texto: 'Corrente distribuída num cilindro', lab: 'ampereJ' },
         ],
         etapas: [
-          { titulo: 'Ohm local', texto: r`$J = E/\rho$ em cada região.`, passo: 0 },
-          { titulo: 'Somar correntes', texto: r`Mesma ddp: paralelo.`, passo: 1 },
+          {
+            titulo: 'R do fio de dois materiais',
+            texto: r`**O que se pede.** A resistência de um fio de comprimento $L$ formado por um núcleo cilíndrico de raio $a$ e resistividade $\rho$, envolvido por uma casca de raio interno $a$, raio externo $2a$ e resistividade $3\rho$. A corrente corre ao longo do fio e o campo é o mesmo em todo o interior.
+
+**A ideia.** As duas partes vão de uma ponta à outra do fio, **lado a lado**, ligadas às mesmas extremidades. As duas têm a mesma diferença de potencial $V$ entre as pontas, e a corrente total é a soma das correntes de cada parte: estão **em paralelo**. Em paralelo, $\dfrac1R = \dfrac1{R_1} + \dfrac1{R_2}$, porque $I = I_1 + I_2$ e cada $I = V/R$ (formulário: $V = RI$).
+
+**A resistência de cada parte** (formulário: $R = \rho\dfrac LA$):
+- **Núcleo:** área $\pi a^2$, resistividade $\rho$:
+$$R_1 = \frac{\rho L}{\pi a^2}.$$
+- **Casca:** área entre os raios $a$ e $2a$, $\pi(2a)^2 - \pi a^2 = 3\pi a^2$, resistividade $3\rho$:
+$$R_2 = \frac{3\rho L}{3\pi a^2} = \frac{\rho L}{\pi a^2}.$$
+
+As duas são **iguais**: a casca tem três vezes mais área, mas o material resiste três vezes mais.
+
+**A conta.** Dois resistores iguais em paralelo dão metade de um:
+$$R = \frac{R_1}{2} = \frac{\rho L}{2\pi a^2}.$$
+
+**Pelo campo, o mesmo resultado.** O campo é $E = V/L$ nos dois materiais. Pela lei de Ohm local (formulário: $\vec J = \vec E/\rho$), $J_1 = E/\rho$ no núcleo e $J_2 = E/3\rho$ na casca. A corrente total é $I = J_1\pi a^2 + J_2\cdot3\pi a^2 = \dfrac{2\pi a^2E}{\rho} = \dfrac{2\pi a^2V}{\rho L}$, e $R = V/I$ dá a mesma expressão.`,
+            passo: 1,
+          },
         ],
         resultado: r`$R = \rho L/2\pi a^2$.`,
         errosComuns: ['Pôr os dois materiais em série: a corrente corre ao longo do fio, lado a lado nos dois.'],
@@ -436,9 +576,57 @@ O $s$ se cancela: cada anel leva a mesma corrente. A simulação integra $J$ na 
           { texto: 'Corrente não uniforme num cilindro', lab: 'ampereJ' },
         ],
         etapas: [
-          { titulo: 'E', texto: r`$V/L$.`, passo: 0 },
-          { titulo: 'J', texto: r`$E/\rho(s)$.`, passo: 1 },
-          { titulo: 'I', texto: r`Integrar em anéis.`, passo: 2 },
+          {
+            titulo: '(a) O campo dentro do fio',
+            texto: r`**O que se pede.** A intensidade do campo dentro do fio (comprimento $L$, raio $a$), com a diferença de potencial $V$ nas pontas, supondo o campo uniforme.
+
+**A ideia.** Com campo uniforme ao longo do fio, a diferença de potencial entre as pontas é campo × comprimento, $V = EL$. Isso vem de $\vec E = -\vec\nabla V$ (formulário): num campo constante, o potencial cai linearmente.
+
+**A conta.**
+$$\vec E = \frac VL\,\hat z,$$
+ao longo do eixo do fio, o mesmo em toda a seção. A resistividade varia de ponto a ponto, mas isso não muda o campo: todo filete de fio, perto do eixo ou da borda, liga as mesmas duas pontas, com a mesma tensão $V$ e o mesmo comprimento $L$.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A densidade de corrente em função de s',
+            texto: r`**O que se pede.** A densidade de corrente num ponto da seção, a uma distância $s$ do eixo, sendo a resistividade $\rho(s) = ks$.
+
+**A ideia.** A lei de Ohm em cada ponto (formulário):
+$$\vec J = \frac{1}{\rho}\vec E.$$
+Onde a resistividade é pequena, a mesma $\vec E$ produz mais corrente.
+
+**A conta.**
+$$\vec J = \frac{1}{ks}\cdot\frac VL\,\hat z = \frac{V}{Lks}\,\hat z.$$
+
+**Interpretação.** A densidade de corrente é maior perto do eixo ($s$ pequeno), onde o material resiste menos, e cai como $1/s$ para a borda.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) A corrente total',
+            texto: r`**O que se pede.** A corrente total que atravessa a seção do fio.
+
+**A ideia.** A corrente é o fluxo da densidade de corrente pela seção (formulário: $I = \int_S\vec J\cdot d\vec A$). Como $J$ não é uniforme (depende de $s$), não basta multiplicar por $\pi a^2$. Divide-se a seção em **anéis** finos, de raio $s$ e largura $ds$: em cada um, $J$ é praticamente constante.
+
+**Montagem.** Um anel de raio $s$ e largura $ds$, desenrolado, é quase um retângulo de lados $2\pi s$ e $ds$: área $dA = 2\pi s\,ds$. $\vec J$ é perpendicular à seção (ao longo do fio), então $\vec J\cdot d\vec A = J\,dA$. A corrente pelo anel:
+$$dI = J(s)\,2\pi s\,ds = \frac{V}{Lks}\,2\pi s\,ds = \frac{2\pi V}{kL}\,ds.$$
+O $s$ cancelou: **todos os anéis de mesma largura levam a mesma corrente**.
+
+**A conta.**
+$$I = \int_0^a\frac{2\pi V}{kL}\,ds = \frac{2\pi Va}{kL}.$$`,
+            passo: 2,
+          },
+          {
+            titulo: '(d) A resistência do fio',
+            texto: r`**O que se pede.** A resistência elétrica do fio.
+
+**A ideia.** Lei de Ohm (formulário): $V = RI$, então $R = V/I$, com $I$ do item (c).
+
+**A conta.**
+$$R = \frac{V}{2\pi Va/kL} = \frac{kL}{2\pi a}.$$
+
+**Conferindo as unidades.** $\rho = ks$ é uma resistividade ($\Omega\cdot$m), então $k$ tem unidade $\Omega$. Assim $\dfrac{kL}{a}$ tem unidade de ohm, como deve ser. A tensão $V$ cancelou: a resistência só depende do fio, não da tensão aplicada.`,
+            passo: 3,
+          },
         ],
         resultado: r`$R = kL/2\pi a$.`,
         errosComuns: ['Multiplicar $J$ pela área $\\pi a^2$ como se fosse uniforme.'],
@@ -509,9 +697,57 @@ A simulação integra o campo ao longo do raio.`,
           { texto: 'Potencial como integral do campo', lab: 'potencial' },
         ],
         etapas: [
-          { titulo: 'Conservação', texto: r`A mesma $I$ por todo cilindro.`, passo: 0 },
-          { titulo: 'Ohm', texto: r`$E = \rho J$.`, passo: 1 },
-          { titulo: 'Integrar', texto: r`$\int ds/s$ dá o logaritmo.`, passo: 2 },
+          {
+            titulo: '(a) A densidade de corrente a uma distância s',
+            texto: r`**O que se pede.** A densidade de corrente num ponto da casca cilíndrica (raios $a$ e $b$, comprimento $L$, resistividade $\rho$), a uma distância $s$ do eixo, com a corrente $I$ saindo **radialmente** da superfície de dentro para a de fora.
+
+**A ideia.** A corrente é estacionária: a carga não se acumula em lugar nenhum. Então toda a corrente $I$ que sai pela superfície interna atravessa **qualquer** cilindro de raio $s$ entre $a$ e $b$: o que entra tem de sair. Por simetria, $J$ é radial e só depende de $s$.
+
+**A conta.** O cilindro de raio $s$ e comprimento $L$ tem área lateral $2\pi sL$. Com $\vec J$ perpendicular a ele e de módulo constante nele, o fluxo (formulário: $I = \int_S\vec J\cdot d\vec A$) é
+$$I = J(s)\,2\pi sL\quad\Rightarrow\quad J(s) = \frac{I}{2\pi sL}.$$
+
+**Interpretação.** A mesma corrente se espalha por áreas cada vez maiores à medida que se afasta do eixo, então $J$ diminui como $1/s$.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo, pela lei de Ohm local',
+            texto: r`**O que se pede.** O campo elétrico no mesmo ponto, pela lei de Ohm microscópica.
+
+**A ideia.** A lei de Ohm em cada ponto (formulário): $\vec J = \dfrac1\rho\vec E$, ou seja, $\vec E = \rho\vec J$.
+
+**A conta.** Com $\vec J$ do item (a), radial:
+$$\vec E = \frac{\rho I}{2\pi sL}\,\hat s.$$
+
+O campo também é radial, apontando para fora (de onde a corrente sai para onde ela vai), e cai como $1/s$.
+
+**Sobre o gabarito.** O gabarito da monitoria escreve $K$ onde deveria estar $L$ no denominador; o certo é $\dfrac{\rho I}{2\pi Ls}$.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) A diferença de potencial entre as superfícies',
+            texto: r`**O que se pede.** A diferença de potencial entre a superfície interna ($s = a$) e a externa ($s = b$).
+
+**A ideia.** O potencial sai do campo por integração (o inverso de $\vec E = -\vec\nabla V$, do formulário). Indo no sentido do campo, o potencial cai:
+$$V_a - V_b = \int_a^b E\,ds.$$
+
+**A conta.**
+$$V_a - V_b = \int_a^b\frac{\rho I}{2\pi sL}\,ds = \frac{\rho I}{2\pi L}\Big[\ln s\Big]_a^b = \frac{\rho I}{2\pi L}\ln\frac ba.$$
+
+Positivo: a superfície de dentro, de onde a corrente sai, está no potencial mais alto.`,
+            passo: 2,
+          },
+          {
+            titulo: '(d) A resistência',
+            texto: r`**O que se pede.** A resistência desse resistor, com a corrente radial.
+
+**A ideia.** Lei de Ohm (formulário): $R = V/I$, com $V$ do item (c).
+
+**A conta.**
+$$R = \frac{V_a - V_b}{I} = \frac{\rho}{2\pi L}\ln\frac ba.$$
+
+**Cuidado com $R = \rho L/A$.** Essa fórmula vale quando a corrente atravessa uma área **constante** ao longo de um comprimento. Aqui a corrente anda na direção radial, e a área que ela atravessa ($2\pi sL$) cresce com $s$. O logaritmo vem justamente de somar fatias finas de espessura $ds$ e área $2\pi sL$, em série: $dR = \dfrac{\rho\,ds}{2\pi sL}$.`,
+            passo: 3,
+          },
         ],
         resultado: r`$R = \frac{\rho}{2\pi L}\ln(b/a)$.`,
         errosComuns: ['Usar $R = \\rho L/A$: aqui a corrente é radial, e a área que ela atravessa cresce com $s$.'],
@@ -573,8 +809,28 @@ Com $a = b$ volta $\rho L/\pi a^2$. A simulação integra o campo $E = \rho I/\p
       resolucao: {
         conceitos: [{ texto: 'Resistência e geometria', lab: 'corrente' }],
         etapas: [
-          { titulo: 'Fatiar', texto: r`$dR = \rho\,dx/\pi r^2$.`, passo: 0 },
-          { titulo: 'Integrar', texto: r`Trocar $dx$ por $dr$.`, passo: 1 },
+          {
+            titulo: 'R do cone truncado',
+            texto: r`**O que se pede.** A resistência de um fio em forma de cone truncado, de comprimento $L$ e raios $a$ e $b$ nas pontas, com resistividade $\rho$, supondo a corrente uniforme em cada seção.
+
+**A ideia.** A fórmula $R = \rho\dfrac LA$ (formulário) vale para área constante. Aqui a área muda ao longo do fio. Fatia-se o cone em **discos** finos, de espessura $dx$: em cada um, a área é praticamente constante, e o disco é um pequeno resistor
+$$dR = \frac{\rho\,dx}{A(x)} = \frac{\rho\,dx}{\pi r(x)^2}.$$
+A corrente passa por um disco depois do outro: estão todos **em série**, e as resistências se **somam** (integral).
+
+**Montagem.** O raio muda linearmente de uma ponta à outra. Com $x$ medido a partir da ponta de raio $a$:
+$$r(x) = a + (b - a)\frac{x}{L}.$$
+Troca-se a variável de $x$ para $r$: $dr = \dfrac{b - a}{L}\,dx$, então $dx = \dfrac{L}{b - a}\,dr$, e $r$ vai de $a$ a $b$.
+
+**A conta.**
+$$R = \int_a^b\frac{\rho}{\pi r^2}\cdot\frac{L}{b - a}\,dr = \frac{\rho L}{\pi(b - a)}\Big[-\frac1r\Big]_a^b = \frac{\rho L}{\pi(b - a)}\left(\frac1a - \frac1b\right).$$
+Como $\dfrac1a - \dfrac1b = \dfrac{b - a}{ab}$:
+$$R = \frac{\rho L}{\pi ab}.$$
+
+**Conferindo.** Com $a = b$ (cilindro), volta $\dfrac{\rho L}{\pi a^2}$. Repare que o resultado usa $\pi ab$, e não a área de um raio médio.
+
+**A ressalva do enunciado.** Supor a corrente uniforme em cada seção é uma aproximação: no cone, as linhas de corrente se abrem e as superfícies de mesmo potencial não são planas. O resultado é bom quando o cone afina devagar ($|a - b| \ll L$).`,
+            passo: 1,
+          },
         ],
         resultado: r`$R = \rho L/\pi ab$ (na aproximação de corrente uniforme em cada seção).`,
         errosComuns: ['Usar a área média $\\pi\\left(\\frac{a + b}{2}\\right)^2$: o resultado é $\\pi ab$, não a média dos raios ao quadrado.'],
@@ -628,9 +884,74 @@ Com $a = b$ volta $\rho L/\pi a^2$. A simulação integra o campo $E = \rho I/\p
       resolucao: {
         conceitos: [{ texto: 'Resistores em série e em paralelo', lab: 'continua' }],
         etapas: [
-          { titulo: 'Topologia', texto: r`Três ramos em paralelo.`, passo: 0 },
-          { titulo: 'Corrente total', texto: r`Da ddp do paralelo.`, passo: 1 },
-          { titulo: 'O resto', texto: r`Série com 45 e 35 Ω.`, passo: 2 },
+          {
+            titulo: '(a) A leitura do voltímetro',
+            texto: r`**O que se pede.** O que marca o voltímetro, ligado em paralelo com o resistor de $45\ \Omega$, sabendo que o amperímetro marca $1{,}25$ A.
+
+**As regras usadas.**
+- Lei de Ohm (formulário): $V = RI$.
+- Amperímetro ideal: resistência zero, mede a corrente do ramo em que está.
+- Voltímetro ideal: resistência infinita, não desvia corrente e mede a tensão entre os pontos onde está ligado.
+- **Paralelo:** ramos ligados aos mesmos dois nós têm a **mesma tensão**, e as correntes se somam.
+- **Série:** elementos num caminho único têm a **mesma corrente**, e as tensões se somam.
+
+**Lendo o circuito.** Entre os dois nós do meio há três ramos em paralelo:
+- em cima, $25\ \Omega$ com o amperímetro;
+- no meio, $15\ \Omega$;
+- embaixo, $15\ \Omega$ em série com $10\ \Omega$, que dão $25\ \Omega$.
+
+Esse bloco está em série com o $45\ \Omega$, o $35\ \Omega$ e a bateria.
+
+**Passo 1: a tensão do bloco.** No ramo do amperímetro, $V_p = 25\times1{,}25 = 31{,}25$ V. Pelo paralelo, é a tensão dos três ramos.
+
+**Passo 2: a corrente total.** As correntes dos ramos são $1{,}25$ A (25 Ω), $\dfrac{31{,}25}{15} \approx 2{,}083$ A (15 Ω) e $\dfrac{31{,}25}{25} = 1{,}25$ A (os 25 Ω de baixo). Somando: $I \approx 4{,}583$ A. É a corrente que passa pelo $45\ \Omega$ (série).
+
+**Passo 3: o voltímetro.**
+$$V = 45\times4{,}583 \approx 206{,}25\ \text{V}.$$`,
+            passo: 1,
+          },
+          {
+            titulo: '(b) A resistência equivalente',
+            texto: r`**O que se pede.** A resistência equivalente do circuito todo, vista pela bateria.
+
+**A ideia.** Combinar os resistores pelas regras de associação, que saem de $V = RI$ (formulário):
+- em **série**, a corrente é a mesma e as tensões somam: $R = R_1 + R_2 + \cdots$;
+- em **paralelo**, a tensão é a mesma e as correntes somam: $\dfrac1R = \dfrac1{R_1} + \dfrac1{R_2} + \cdots$.
+
+**A conta.**
+- O ramo de baixo do bloco: $15 + 10 = 25\ \Omega$ (série).
+- O bloco: $\dfrac{1}{R_p} = \dfrac1{25} + \dfrac1{15} + \dfrac1{25} = 0{,}04 + 0{,}0667 + 0{,}04 = 0{,}1467$, logo $R_p \approx 6{,}82\ \Omega$.
+- Em série com $45\ \Omega$ e $35\ \Omega$:
+$$R_\text{eq} = 45 + 35 + 6{,}82 \approx 86{,}8\ \Omega.$$
+
+**Conferindo.** $R_p$ é menor que o menor dos ramos ($15\ \Omega$), como sempre acontece em paralelo. E $\dfrac{V_p}{I} = \dfrac{31{,}25}{4{,}583} \approx 6{,}82\ \Omega$ bate.`,
+            passo: 2,
+          },
+          {
+            titulo: '(c) A fem da bateria',
+            texto: r`**O que se pede.** A força eletromotriz $\varepsilon$ da bateria (ideal, sem resistência interna).
+
+**A ideia.** Bateria ideal: a tensão nos terminais é a própria fem. Ela alimenta a resistência equivalente com a corrente total. Pela lei de Ohm (formulário), $\varepsilon = R_\text{eq}I$.
+
+**A conta.** Com $I \approx 4{,}583$ A (item a) e $R_\text{eq} \approx 86{,}82\ \Omega$ (item b):
+$$\varepsilon \approx 86{,}82\times4{,}583 \approx 398\ \text{V}.$$
+
+**Conferindo pela soma das tensões.** Ao longo da malha: $45I + 35I + V_p = 206{,}25 + 160{,}4 + 31{,}25 \approx 398$ V. Mesmo valor.`,
+            passo: 2,
+          },
+          {
+            titulo: '(d) A potência dissipada',
+            texto: r`**O que se pede.** A potência total dissipada nos resistores.
+
+**A ideia.** A potência que uma fonte entrega é $P = \varepsilon I$ (energia por carga × carga por tempo). Com bateria ideal, toda ela é dissipada nos resistores. Também vale $P = R_\text{eq}I^2$, que dá o mesmo.
+
+**A conta.**
+$$P = \varepsilon I \approx 398\times4{,}583 \approx 1{,}82\times10^3\ \text{W}.$$
+Cerca de 1,8 kW.
+
+**Conferindo resistor por resistor.** $45I^2 \approx 945$ W, $35I^2 \approx 735$ W, e no bloco $V_pI \approx 143$ W. Soma: $\approx 1823$ W.`,
+            passo: 2,
+          },
         ],
         resultado: r`$V = 206{,}25$ V; $R_\text{eq} \approx 86{,}8\ \Omega$; $\varepsilon \approx 398$ V; $P \approx 1{,}82$ kW.`,
         errosComuns: ['Esquecer que o 15 Ω de baixo está em série com o 10 Ω.'],
@@ -688,8 +1009,27 @@ Com $a = b$ volta $\rho L/\pi a^2$. A simulação integra o campo $E = \rho I/\p
       resolucao: {
         conceitos: [{ texto: 'fem e resistência interna', lab: 'continua' }],
         etapas: [
-          { titulo: 'Modelo', texto: r`$V = \varepsilon - rI$.`, passo: 0 },
-          { titulo: 'Inclinação e intercepto', texto: r`Dois pontos bastam.`, passo: 1 },
+          {
+            titulo: 'ε e r pelo gráfico V × I',
+            texto: r`**O que se pede.** A fem $\varepsilon$ e a resistência interna $r$ da bateria, a partir do gráfico da tensão $V$ medida nos terminais contra a corrente $I$, variando o resistor externo $R$.
+
+**A ideia: o modelo de bateria real.** Uma bateria real é uma fonte ideal de fem $\varepsilon$ em série com uma pequena resistência interna $r$. Com corrente $I$, parte da fem "se perde" dentro dela, na queda $rI$ (formulário: $V = RI$). A tensão que sobra nos terminais é
+$$V = \varepsilon - rI.$$
+No gráfico $V\times I$, isso é uma **reta**:
+- a inclinação é $-r$;
+- o ponto em que ela corta o eixo $V$ (com $I = 0$, circuito aberto) é $\varepsilon$.
+
+**A conta.** Do gráfico, dois pontos: $(2\ \text{A},\ 12\ \text{V})$ e $(5\ \text{A},\ 6\ \text{V})$.
+- **Inclinação:**
+$$-r = \frac{6 - 12}{5 - 2} = -2\ \Omega\quad\Rightarrow\quad r = 2\ \Omega.$$
+- **fem**, pelo primeiro ponto:
+$$\varepsilon = V + rI = 12 + 2\times2 = 16\ \text{V}.$$
+
+**Conferindo com o outro ponto.** $16 - 2\times5 = 6$ V. Confere.
+
+**Cuidado.** A fem **não** é a maior tensão desenhada no gráfico: é a tensão com corrente zero, onde a reta encontra o eixo vertical.`,
+            passo: 1,
+          },
         ],
         resultado: r`$\varepsilon = 16$ V, $r = 2\ \Omega$.`,
         errosComuns: ['Ler $\\varepsilon$ como a maior tensão do gráfico (12 V): a fem é a tensão com corrente nula.'],
@@ -748,8 +1088,27 @@ Com $a = b$ volta $\rho L/\pi a^2$. A simulação integra o campo $E = \rho I/\p
       resolucao: {
         conceitos: [{ texto: 'Máxima transferência de potência', lab: 'continua' }],
         etapas: [
-          { titulo: 'P(R)', texto: r`$\varepsilon^2R/(R + r)^2$.`, passo: 0 },
-          { titulo: 'Derivar', texto: r`$dP/dR = 0 \Rightarrow R = r$.`, passo: 1 },
+          {
+            titulo: 'R que maximiza a potência no resistor',
+            texto: r`**O que se pede.** No circuito do exercício 11 (bateria com $\varepsilon = 16$ V e $r = 2\ \Omega$, ligada a um resistor variável $R$), o valor de $R$ para o qual a potência dissipada **no resistor** é máxima.
+
+**A ideia.** Escrever a potência em $R$ como função de $R$ e achar o máximo, com a derivada igual a zero.
+- A corrente: $R$ e $r$ estão em série, então pela lei de Ohm (formulário), $I = \dfrac{\varepsilon}{R + r}$.
+- A potência num resistor é $P = I^2R$ (tensão × corrente, com $V = RI$).
+$$P(R) = \frac{\varepsilon^2R}{(R + r)^2}.$$
+
+**Por que há um máximo.** Com $R = 0$ a corrente é grande, mas não há resistor para dissipar: $P = 0$. Com $R \to \infty$ não passa corrente: $P \to 0$. Entre os dois extremos, a potência tem de passar por um máximo.
+
+**A conta.** Pela regra do quociente:
+$$\frac{dP}{dR} = \varepsilon^2\,\frac{(R + r)^2 - R\cdot2(R + r)}{(R + r)^4} = \varepsilon^2\,\frac{r - R}{(R + r)^3}.$$
+Ela é zero quando
+$$R = r = 2\ \Omega.$$
+(Antes disso a derivada é positiva e depois, negativa: é um máximo.) A potência máxima:
+$$P_\text{máx} = \frac{\varepsilon^2r}{(2r)^2} = \frac{\varepsilon^2}{4r} = \frac{16^2}{8} = 32\ \text{W}.$$
+
+**Sobre o gabarito.** O gabarito da monitoria dá $R = r/4 = 0{,}5\ \Omega$. Nesse valor, $P = \dfrac{256\times0{,}5}{2{,}5^2} \approx 20$ W, menos que os 32 W de $R = r$. O máximo é em $R = r$: é o **casamento de impedâncias**, a condição de máxima transferência de potência.`,
+            passo: 1,
+          },
         ],
         resultado: r`$R = r = 2\ \Omega$.`,
         errosComuns: ['Achar que a potência cresce sempre com $R$, ou sempre com a corrente.'],

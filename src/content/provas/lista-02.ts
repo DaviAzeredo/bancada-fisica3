@@ -1,4 +1,5 @@
 import type { ProvaInput } from '../../scenario/schema'
+import { FORMULARIO_P1 } from '../formularios'
 
 const r = String.raw
 
@@ -45,6 +46,7 @@ export const lista_02: ProvaInput = {
   id: 'lista-02',
   titulo: 'Lista 2 · Lei de Gauss',
   subtitulo: 'Física III-A · 2020/1 · gabarito da monitoria',
+  formulario: FORMULARIO_P1,
   questoes: [
     /* ───────────────────────── 1 ───────────────────────── */
     {
@@ -86,7 +88,27 @@ export const lista_02: ProvaInput = {
       respostas: [{ item: 'Fluxos', texto: r`$\Phi_1 = -\dfrac{Q}{\varepsilon_0}$, $\Phi_2 = 0$, $\Phi_3 = -\dfrac{2Q}{\varepsilon_0}$, $\Phi_4 = 0$` }],
       resolucao: {
         conceitos: [{ texto: 'Lei de Gauss', lab: 'gauss' }],
-        etapas: [{ titulo: 'Contar', texto: r`Somar as cargas dentro de cada uma.`, passo: 1 }],
+        etapas: [
+          {
+            titulo: 'Fluxos pelas quatro superfícies',
+            texto: r`**O que se pede.** O fluxo do campo elétrico (produzido pelas três partículas juntas) através de cada uma das superfícies fechadas $S_1$, $S_2$, $S_3$ e $S_4$.
+
+**A ideia: o que é fluxo.** O fluxo $\Phi = \oint\vec E\cdot d\vec A$ mede quanto campo **atravessa** uma superfície. Em cada pedacinho de área, $d\vec A$ é um vetor perpendicular à superfície, apontando para fora; o produto escalar $\vec E\cdot d\vec A$ é positivo onde o campo sai e negativo onde entra. Somando sobre a superfície fechada inteira, tem-se o fluxo total.
+
+**A lei de Gauss** (formulário):
+$$\oint_S\vec E\cdot d\vec A = \frac{Q_\text{int}}{\varepsilon_0}.$$
+O fluxo por uma superfície **fechada** só depende da carga que está **dentro** dela. Cargas de fora criam campo na superfície, mas o campo delas entra de um lado e sai do outro: a contribuição líquida delas é zero. A forma da superfície também não importa.
+
+**A conta.** Basta somar, com sinal, as cargas de dentro de cada superfície, olhando a figura:
+- $S_1$ envolve $-2Q$ e $+Q$: $Q_\text{int} = -Q$, logo $\Phi_1 = -\dfrac{Q}{\varepsilon_0}$.
+- $S_2$ envolve $+Q$ e $-Q$: $Q_\text{int} = 0$, logo $\Phi_2 = 0$.
+- $S_3$ envolve as três: $Q_\text{int} = -2Q + Q - Q = -2Q$, logo $\Phi_3 = -\dfrac{2Q}{\varepsilon_0}$.
+- $S_4$ não envolve nenhuma: $\Phi_4 = 0$.
+
+**Cuidado.** Fluxo zero **não** quer dizer campo zero na superfície. Em $S_4$ há campo em todo lugar; ele só entra e sai na mesma quantidade.`,
+            passo: 1,
+          },
+        ],
         resultado: r`$-Q/\varepsilon_0$, $0$, $-2Q/\varepsilon_0$, $0$.`,
         errosComuns: ['Achar que fluxo zero significa campo zero na superfície.'],
         oficial: { resposta: 'Φ₁ = −Q/ε₀; Φ₂ = 0; Φ₃ = −2Q/ε₀; Φ₄ = 0.' },
@@ -141,8 +163,47 @@ export const lista_02: ProvaInput = {
       resolucao: {
         conceitos: [{ texto: 'Linhas de campo e fluxo', lab: 'gauss' }],
         etapas: [
-          { titulo: 'Sinais', texto: r`Sentido das linhas.`, passo: 0 },
-          { titulo: 'Gauss', texto: r`Carga interna.`, passo: 1 },
+          {
+            titulo: '(a) Os sinais e a carga mais intensa',
+            texto: r`**O que se pede.** Dizer, só olhando as linhas de campo da figura, o sinal de $q_1$ e de $q_2$ e qual das duas tem módulo maior.
+
+**A ideia.** Linhas de campo são desenhadas seguindo a direção do campo, com setas no sentido dele. Duas regras de leitura:
+- o campo de uma carga positiva aponta para longe dela, então as linhas **saem** das cargas positivas e **chegam** nas negativas;
+- o número de linhas que sai de (ou chega em) uma carga é desenhado **proporcional** ao módulo dela.
+
+**Lendo a figura.**
+- Em $q_2$ as linhas **saem**: $q_2 > 0$.
+- Em $q_1$ as linhas **chegam**: $q_1 < 0$.
+- Chegam muito mais linhas em $q_1$ do que saem de $q_2$: $|q_1| > |q_2|$. Por isso há linhas que vêm de longe (do "infinito") para fechar em $q_1$: as que saem de $q_2$ não bastam.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) Os fluxos por S₁ e S₂',
+            texto: r`**O que se pede.** O fluxo do campo elétrico através das superfícies fechadas $S_1$ e $S_2$, e se cada um é positivo, negativo ou nulo.
+
+**A ideia.** Lei de Gauss (formulário): o fluxo por uma superfície fechada é a carga **dentro** dela dividida por $\varepsilon_0$,
+$$\oint_S\vec E\cdot d\vec A = \frac{Q_\text{int}}{\varepsilon_0}.$$
+Fluxo positivo quer dizer que sai mais campo do que entra; negativo, que entra mais do que sai.
+
+**A conta.** Pela figura:
+- $S_1$ envolve só $q_1$: $\Phi_{S_1} = \dfrac{q_1}{\varepsilon_0}$, **negativo**, porque $q_1 < 0$. As linhas entram em $S_1$ para chegar em $q_1$.
+- $S_2$ envolve as duas cargas: $\Phi_{S_2} = \dfrac{q_1 + q_2}{\varepsilon_0}$. Como $|q_1| > |q_2|$ e os sinais são opostos, a soma é **negativa**. Entra mais linha do que sai.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) A razão q₁/q₂ pelas linhas',
+            texto: r`**O que se pede.** Estimar $q_1/q_2$ contando as linhas de campo em volta de cada carga.
+
+**A ideia.** O número de linhas é proporcional ao módulo da carga. Isso vem da própria lei de Gauss: o fluxo por uma superfície pequena em volta de cada carga é $q/\varepsilon_0$, e as linhas representam o fluxo. Então a razão entre as cargas é a razão entre os números de linhas, com o sinal de cada uma.
+
+**A conta.** Na figura, cerca de 16 linhas chegam em $q_1$ e 4 saem de $q_2$:
+$$\frac{|q_1|}{|q_2|} \approx \frac{16}{4} = 4.$$
+Com os sinais do item (a), $q_1$ negativa e $q_2$ positiva:
+$$\frac{q_1}{q_2} \approx -4.$$
+
+**Cuidado.** A intensidade se lê pelo **número de linhas**, não pelo tamanho com que a carga foi desenhada.`,
+            passo: 2,
+          },
         ],
         resultado: r`$q_1/q_2 \approx -4$; fluxos negativos.`,
         errosComuns: ['Ler a intensidade pelo tamanho do desenho da carga, e não pelo número de linhas.'],
@@ -187,8 +248,48 @@ export const lista_02: ProvaInput = {
       resolucao: {
         conceitos: [{ texto: 'Fluxo e lei de Gauss', lab: 'gauss' }],
         etapas: [
-          { titulo: 'Total', texto: r`Sem carga, zero.`, passo: 0 },
-          { titulo: 'Partes', texto: r`Base e curva se compensam.`, passo: 2 },
+          {
+            titulo: '(a) O fluxo pela superfície fechada',
+            texto: r`**O que se pede.** O fluxo do campo uniforme $E$ pela superfície hemisférica **fechada**: a cúpula mais a base plana, de raio $R$. O campo aponta perpendicular à base, para dentro do hemisfério.
+
+**A ideia.** Lei de Gauss (formulário): o fluxo por uma superfície fechada só depende da carga dentro dela,
+$$\oint_S\vec E\cdot d\vec A = \frac{Q_\text{int}}{\varepsilon_0}.$$
+
+**A conta.** Não há carga nenhuma dentro do hemisfério. O campo uniforme vem de cargas distantes, todas fora. Então
+$$\Phi_\text{total} = 0.$$
+
+**Em palavras.** Todo campo que entra pela base sai pela cúpula. Nada nasce nem morre lá dentro.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O fluxo pela base',
+            texto: r`**O que se pede.** O fluxo só pela base plana, um disco de raio $R$.
+
+**A ideia.** Para uma superfície **plana** num campo **uniforme**, a integral do fluxo vira um produto: $\Phi = \vec E\cdot\vec A = EA\cos\alpha$, em que $\vec A$ é o vetor área (módulo igual à área, perpendicular à superfície) e $\alpha$ é o ângulo entre $\vec E$ e $\vec A$. Numa superfície fechada, $\vec A$ aponta sempre **para fora**.
+
+**Montagem.**
+- A área da base é $A = \pi R^2$.
+- A normal de fora da base aponta para longe do hemisfério.
+- O campo entra no hemisfério, perpendicular à base: aponta exatamente **contra** a normal de fora. Então $\alpha = 180°$ e $\cos\alpha = -1$.
+
+**A conta.**
+$$\Phi_\text{base} = E\cdot\pi R^2\cdot(-1) = -E\pi R^2.$$
+
+O sinal negativo diz que o campo **entra** pela base.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) O fluxo pela parte curva',
+            texto: r`**O que se pede.** O fluxo só pela cúpula (a parte curva).
+
+**A ideia.** Calcular direto seria trabalhoso: na cúpula, o ângulo entre o campo e a normal muda de ponto a ponto. Mas não é preciso. O fluxo total é a soma do fluxo da base com o da cúpula, e o total já é conhecido do item (a).
+
+**A conta.**
+$$\Phi_\text{total} = \Phi_\text{base} + \Phi_\text{curva}\quad\Rightarrow\quad0 = -E\pi R^2 + \Phi_\text{curva}\quad\Rightarrow\quad\Phi_\text{curva} = +E\pi R^2.$$
+
+**Interpretação.** Positivo: o campo **sai** pela cúpula. O valor é $E$ vezes a **sombra** que a cúpula projeta num plano perpendicular ao campo, que é um disco de área $\pi R^2$, e não vezes a área da cúpula ($2\pi R^2$). Só a parte da área que fica de frente para o campo conta no fluxo.`,
+            passo: 2,
+          },
         ],
         resultado: r`$0$, $-E\pi R^2$, $E\pi R^2$.`,
         errosComuns: ['Usar a área $2\\pi R^2$ da cúpula no fluxo da parte curva.'],
@@ -241,8 +342,47 @@ export const lista_02: ProvaInput = {
       resolucao: {
         conceitos: [{ texto: 'Quando Gauss calcula o campo', lab: 'gauss' }],
         etapas: [
-          { titulo: 'Validade', texto: r`Sempre.`, passo: 0 },
-          { titulo: 'Utilidade', texto: r`Só com simetria suficiente.`, passo: 2 },
+          {
+            titulo: '(a) A lei de Gauss vale aqui?',
+            texto: r`**O que se pede.** Dizer se a lei de Gauss é válida para o cubo carregado com a gaussiana cúbica.
+
+**A ideia.** A lei de Gauss (formulário),
+$$\oint_S\vec E\cdot d\vec A = \frac{Q_\text{int}}{\varepsilon_0},$$
+é uma lei geral do campo eletrostático. Ela vale para **qualquer** distribuição de carga e **qualquer** superfície fechada, com qualquer forma. Não há condição de simetria para ela ser verdadeira.
+
+**Resposta.** **Sim.** O fluxo do campo pela gaussiana cúbica é exatamente $Q/\varepsilon_0$, em que $Q$ é a carga do cubo, que fica toda dentro da gaussiana.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo tem o mesmo módulo em toda a gaussiana?',
+            texto: r`**O que se pede.** Dizer se a intensidade do campo é a mesma em todos os pontos da gaussiana cúbica.
+
+**A ideia.** O campo de uma carga fica mais fraco com a distância ($k_0q/r^2$). Para o campo ser o mesmo em todos os pontos de uma superfície, os pontos precisariam "ver" a carga do mesmo jeito.
+
+**Por que não é.** Na gaussiana cúbica, alguns pontos estão bem mais perto do cubo carregado que outros:
+- o **centro de uma face** fica na menor distância possível do cubo carregado;
+- um **vértice** fica bem mais longe: a diagonal de um cubo é $\sqrt3$ vezes a metade da aresta, contra $1$ vez no centro da face.
+
+Então o campo é mais forte no centro das faces (cerca de três vezes, no caso da cena) do que nos vértices. Além disso, ele não é perpendicular à face em todo lugar: perto das arestas ele se inclina.
+
+**Resposta.** **Não.** O módulo do campo muda de ponto a ponto da gaussiana.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) A mesma forma do objeto basta para achar o campo?',
+            texto: r`**O que se pede.** Dizer se escolher uma gaussiana com a mesma forma do objeto (um cubo) permite calcular o campo.
+
+**A ideia: quando Gauss calcula o campo.** A lei dá a **integral** $\oint\vec E\cdot d\vec A$, não o campo em cada ponto. Para tirar $E$ dela, é preciso uma superfície em que, em cada parte:
+- $\vec E$ seja **perpendicular** à superfície (ou paralelo a ela, para essa parte dar zero), e
+- $|\vec E|$ seja **constante**.
+
+Aí a integral vira $E\times(\text{área})$ e dá para isolar $E$. Isso só acontece com simetria **esférica**, **cilíndrica** (infinita) ou **plana** (infinita): é a simetria do **campo** que importa.
+
+**Por que o cubo não serve.** Pelo item (b), na gaussiana cúbica o campo nem é constante nem perpendicular. A integral não se simplifica e não dá para isolar $E$. Ter a mesma forma do objeto não ajuda. O campo tem a simetria do cubo como um todo (as seis faces são equivalentes), mas isso não o torna constante **dentro** de uma face: o centro dela continua mais perto da carga que as bordas.
+
+**Resposta.** **Não.** A lei vale (item a), mas não resolve: "Gauss vale" é diferente de "Gauss dá o campo".`,
+            passo: 2,
+          },
         ],
         resultado: r`(a) sim; (b) não; (c) não.`,
         errosComuns: ['Confundir "Gauss vale" com "Gauss resolve".'],
@@ -295,8 +435,48 @@ $$\Phi = \frac{q}{24\varepsilon_0}\ \text{em cada face oposta}.$$`,
       resolucao: {
         conceitos: [{ texto: 'Lei de Gauss e simetria', lab: 'gauss' }],
         etapas: [
-          { titulo: 'Simetria', texto: r`Seis faces iguais.`, passo: 1 },
-          { titulo: 'Oito cubos', texto: r`$q/8$ por cubo.`, passo: 2 },
+          {
+            titulo: '(a) O fluxo pelo cubo inteiro',
+            texto: r`**O que se pede.** O fluxo do campo da carga $q$, posta no centro de uma casca cúbica de aresta $a$, pela superfície inteira do cubo.
+
+**A ideia.** Lei de Gauss (formulário): o fluxo por uma superfície fechada é a carga dentro dela dividida por $\varepsilon_0$, qualquer que seja a forma da superfície:
+$$\oint_S\vec E\cdot d\vec A = \frac{Q_\text{int}}{\varepsilon_0}.$$
+
+**A conta.** A carga dentro do cubo é $q$:
+$$\Phi = \frac{q}{\varepsilon_0}.$$
+Não depende da aresta $a$: um cubo maior tem mais área, mas o campo é mais fraco lá, e as duas coisas se compensam exatamente.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O fluxo por uma face',
+            texto: r`**O que se pede.** O fluxo por **uma** das seis faces, com a carga no centro.
+
+**A ideia.** **Simetria.** Com a carga no centro, as seis faces estão exatamente na mesma situação em relação a ela: mesma distância, mesma forma, mesma orientação relativa. Girando o cubo, uma face vira a outra sem mudar nada. Logo o fluxo é igual nas seis.
+
+**A conta.** O total do item (a) se divide em seis partes iguais:
+$$\Phi_\text{face} = \frac{1}{6}\cdot\frac{q}{\varepsilon_0} = \frac{q}{6\varepsilon_0}.$$
+
+Calcular direto exigiria integrar o campo sobre uma face, onde ele muda de módulo e de direção. A simetria evita a integral.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) A carga num vértice',
+            texto: r`**O que se pede.** O fluxo por cada face quando a carga $q$ está num **vértice** do cubo.
+
+**A ideia.** Agora as faces não são todas equivalentes, e a carga está na própria superfície, o que dificulta usar Gauss direto. O truque é **completar a simetria**: junte oito cubos iguais em volta do vértice. Eles formam um cubo maior, de aresta $2a$, com a carga **no centro**.
+
+**Montagem.**
+- Pelo item (a), o cubo grande tem fluxo $q/\varepsilon_0$.
+- Os oito cubos pequenos estão na mesma situação em relação à carga, então cada um leva um oitavo: $\dfrac{q}{8\varepsilon_0}$ pelas faces que fazem parte da superfície do cubo grande.
+
+**Face por face, no cubo original.**
+- As **três faces que tocam o vértice** contêm a carga no seu plano. O campo de $q$ aponta radialmente a partir do vértice, ou seja, **ao longo** dessas faces, nunca atravessando: $\vec E\cdot d\vec A = 0$ e o fluxo é **zero**.
+- As **três faces opostas** são as que formam a superfície do cubo grande. Elas são equivalentes entre si (girando em torno da diagonal do cubo, uma vira a outra) e dividem os $q/8\varepsilon_0$:
+$$\Phi = \frac13\cdot\frac{q}{8\varepsilon_0} = \frac{q}{24\varepsilon_0}\ \text{em cada face oposta}.$$
+
+**Conferindo.** A soma no cubo é $3\cdot\dfrac{q}{24\varepsilon_0} + 3\cdot0 = \dfrac{q}{8\varepsilon_0}$. O gabarito da monitoria escreve $q/24\varepsilon_0$ "em cada face"; isso vale só para as três faces opostas ao vértice.`,
+            passo: 2,
+          },
         ],
         resultado: r`$q/\varepsilon_0$; $q/6\varepsilon_0$; $q/24\varepsilon_0$ nas faces opostas.`,
         errosComuns: ['Dividir $q/8\\varepsilon_0$ pelas seis faces: três delas têm fluxo nulo.'],
@@ -373,8 +553,33 @@ $$\Phi = \frac{q}{24\varepsilon_0}\ \text{em cada face oposta}.$$`,
       resolucao: {
         conceitos: [{ texto: 'Lei de Gauss e simetria', lab: 'gauss' }],
         etapas: [
-          { titulo: 'Simetria', texto: r`E constante na gaussiana.`, passo: 0 },
-          { titulo: 'Validade', texto: r`Sempre vale.`, passo: 1 },
+          {
+            titulo: '(a) Onde Gauss dá o campo em todo o espaço',
+            texto: r`**O que se pede.** Entre as cinco distribuições, dizer para quais a lei de Gauss permite obter uma expressão do campo em todo o espaço, e justificar.
+
+**A ideia.** A lei de Gauss (formulário), $\oint_S\vec E\cdot d\vec A = \dfrac{Q_\text{int}}{\varepsilon_0}$, dá uma **integral** do campo. Para extrair $E$ dela é preciso achar uma superfície fechada (gaussiana) em que, por **simetria**, o campo tenha módulo constante e seja perpendicular a ela (ou paralelo, nas partes onde então não há fluxo). Aí $\oint\vec E\cdot d\vec A = E\times\text{área}$, e isola-se $E$.
+
+**Caso a caso.**
+- **(i) Fio infinito uniforme.** Girar em volta do fio ou deslizar ao longo dele não muda nada: o campo só pode ser radial e depender só da distância ao fio. Gaussiana: cilindro coaxial. **Serve.**
+- **(ii) Anel.** O campo num ponto do eixo é diferente do campo num ponto do plano do anel à mesma distância. Não existe superfície fechada onde $E$ seja constante e perpendicular. **Não serve.**
+- **(iii) Disco finito.** Mesma situação do anel: só há simetria de rotação em volta do eixo, o que não basta. **Não serve.** (O plano **infinito** serviria.)
+- **(iv) Esfera sólida uniforme.** Simetria esférica: o campo é radial e só depende da distância ao centro. Gaussiana: esfera concêntrica. **Serve.**
+- **(v) Casca cilíndrica infinita.** Mesma simetria do fio. Gaussiana: cilindro coaxial, dentro ou fora da casca. **Serve.**
+
+**Resposta.** (i), (iv) e (v).`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A lei de Gauss deixa de valer para alguma?',
+            texto: r`**O que se pede.** Dizer se a lei de Gauss é falsa para alguma dessas distribuições.
+
+**A ideia.** É preciso separar duas coisas:
+- a lei de Gauss **valer**: o fluxo por qualquer superfície fechada é $Q_\text{int}/\varepsilon_0$. Isso é sempre verdade, para qualquer distribuição de cargas paradas;
+- a lei de Gauss **servir** para calcular o campo: isso exige a simetria discutida no item (a).
+
+**Resposta.** **Não**: ela vale para todas as cinco. No anel e no disco, se você envolver a distribuição com uma esfera, o fluxo é exatamente $Q/\varepsilon_0$. O que acontece é que, nesses casos, o campo muda de ponto a ponto da gaussiana (no eixo é diferente do que no plano) e não dá para tirá-lo da integral. Para eles, o campo se calcula somando as contribuições de pedacinhos, como na Lista 1.`,
+            passo: 1,
+          },
         ],
         resultado: r`(i), (iv), (v); vale para todas.`,
         errosComuns: ['Achar que Gauss "não vale" quando não há simetria.'],
@@ -423,7 +628,50 @@ $$\Phi = \frac{q}{24\varepsilon_0}\ \text{em cada face oposta}.$$`,
       ],
       resolucao: {
         conceitos: [{ texto: 'Quando Gauss calcula o campo', lab: 'gauss' }],
-        etapas: [{ titulo: 'Sem simetria', texto: r`Fio finito não é invariante ao longo do eixo.`, passo: 2 }],
+        etapas: [
+          {
+            titulo: '(a) O campo é perpendicular à lateral?',
+            texto: r`**O que se pede.** Dizer se o campo do fio **finito** (comprimento $L$, carga $Q$) é perpendicular à superfície lateral do cilindro em todos os pontos.
+
+**A ideia.** Cada pedacinho do fio cria um campo que aponta para longe dele (para $Q > 0$). Num ponto da lateral, o campo total é a soma dos campos de todos os pedacinhos. Ele só é perpendicular à lateral (radial) se as componentes **ao longo** do eixo se cancelarem, e isso exige que haja tanto fio "acima" quanto "abaixo" do ponto.
+
+**Ponto a ponto.**
+- No **meio** do cilindro, há a mesma quantidade de fio dos dois lados: as componentes ao longo do eixo se cancelam aos pares, e o campo é radial, perpendicular à lateral.
+- Perto de uma **ponta**, quase todo o fio fica de um lado só. Os pedacinhos empurram o ponto para longe deles, e o campo ganha uma componente ao longo do eixo, apontando para fora do fio.
+
+**Resposta.** **Não**: só no plano do meio.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo tem o mesmo módulo na lateral?',
+            texto: r`**O que se pede.** Dizer se a intensidade do campo é a mesma em todos os pontos da superfície lateral.
+
+**A ideia.** Num ponto da lateral, o campo depende de quão perto está cada pedacinho de fio. Os pontos da lateral estão todos a uma distância $R$ do eixo, mas não estão na mesma posição ao longo do fio.
+
+**Ponto a ponto.**
+- No **meio**, o fio se estende por $L/2$ para cada lado: há bastante carga perto do ponto.
+- Perto de uma **ponta**, metade do fio que estaria por perto simplesmente não existe (o fio acaba ali), e a outra parte está, em média, mais longe. O campo é mais **fraco**.
+
+**Resposta.** **Não**: o módulo é máximo no meio e cai perto das tampas. Só um fio **infinito** é igual visto de qualquer ponto ao longo dele.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) Dá para usar Gauss com esse cilindro?',
+            texto: r`**O que se pede.** Dizer se a lei de Gauss com a superfície $S$ (o cilindro) dá uma expressão para o campo do fio em todo o espaço.
+
+**A ideia.** A lei de Gauss (formulário) diz que $\oint_S\vec E\cdot d\vec A = \dfrac{Q_\text{int}}{\varepsilon_0}$. Com o fio inteiro dentro do cilindro, o fluxo total é $Q/\varepsilon_0$: isso continua verdade. Mas, para extrair $E$, o campo precisaria ser constante e perpendicular na lateral, e o fluxo pelas tampas precisaria ser zero. É o que se faz com o fio infinito, onde se chega a $E = \dfrac{\lambda}{2\pi\varepsilon_0s}$.
+
+**Por que não funciona aqui.**
+- Pelo item (a), o campo não é perpendicular à lateral em todo ponto.
+- Pelo item (b), ele não tem o mesmo módulo.
+- Pelo item (a), perto das pontas ele tem componente ao longo do eixo, então **há fluxo pelas tampas**.
+
+A integral não se reduz a $E\times\text{área}$, e não há como isolar $E$.
+
+**Resposta.** **Não.** A lei vale, mas não dá o campo. Usar $E = \lambda/2\pi\varepsilon_0s$ para um fio finito é um erro: essa fórmula só vale para o fio infinito (ou, aproximadamente, bem perto do meio de um fio longo).`,
+            passo: 2,
+          },
+        ],
         resultado: r`Não, não, não.`,
         errosComuns: ['Usar $E = \\lambda/2\\pi\\varepsilon_0 r$ para um fio finito.'],
         oficial: { resposta: '(a) Não; (b) não; (c) não.' },
@@ -460,10 +708,52 @@ $$\Phi = \frac{q}{24\varepsilon_0}\ \text{em cada face oposta}.$$`,
         { titulo: '(ii) a < s < b', texto: r`A gaussiana envolve $\lambda l$: $E\cdot2\pi sl = \lambda l/\varepsilon_0$, $\vec E = \dfrac{\lambda}{2\pi\varepsilon_0s}\hat s$.`, parametros: { s: 0.02 }, medidas: [0, 1] },
         { titulo: '(iii) s > b', texto: r`Carga total dentro: $\lambda - \lambda = 0$, e o campo é zero.`, parametros: { s: 0.045 }, medidas: [0, 1] },
       ],
-      respostas: [{ item: 'E', texto: r`(i) $0$; (ii) $\dfrac{\lambda}{2\pi\varepsilon_0s}\hat s$; (iii) $0$` }],
+      respostas: [
+        { item: '(i)', texto: r`$s < a$: $\vec E = 0$` },
+        { item: '(ii)', texto: r`$a < s < b$: $\vec E = \dfrac{\lambda}{2\pi\varepsilon_0s}\hat s$` },
+        { item: '(iii)', texto: r`$s > b$: $\vec E = 0$` },
+      ],
       resolucao: {
         conceitos: [{ texto: 'Gauss com simetria cilíndrica', lab: 'gauss' }],
-        etapas: [{ titulo: 'Três gaussianas', texto: r`Carga interna em cada região.`, passo: 1 }],
+        etapas: [
+          {
+            titulo: '(i) Dentro do condutor maciço, s < a',
+            texto: r`**O que se pede.** O campo a uma distância $s < a$ do eixo, dentro do cilindro condutor.
+
+**A ideia.** Num **condutor em equilíbrio eletrostático**, o campo no interior do material é zero. Motivo: um condutor tem cargas livres para andar. Se houvesse campo lá dentro, elas se moveriam, e não haveria equilíbrio. As cargas se rearranjam até que o campo interno seja zero. Uma consequência (pela lei de Gauss com uma gaussiana dentro do metal) é que toda a carga em excesso fica na **superfície**.
+
+**Resposta.** $\vec E = 0$ para $s < a$. A carga $\lambda$ do cilindro fica toda na superfície, em $s = a$.`,
+            passo: 0,
+          },
+          {
+            titulo: '(ii) Entre os condutores, a < s < b',
+            texto: r`**O que se pede.** O campo entre o cilindro e a casca.
+
+**A ideia.** Lei de Gauss (formulário), $\oint_S\vec E\cdot d\vec A = \dfrac{Q_\text{int}}{\varepsilon_0}$, com uma gaussiana escolhida pela simetria. O cabo é infinito e igual em volta do eixo. Girar ou deslizar ao longo dele não muda nada, então o campo só pode ser **radial** (apontar para longe do eixo, ou para ele) e seu módulo só pode depender de $s$.
+
+**Montagem.** Gaussiana: um cilindro de raio $s$ e comprimento $l$, com o mesmo eixo do cabo.
+- Na **lateral**, o campo é perpendicular à superfície e tem o mesmo módulo em todos os pontos: o fluxo é $E\cdot2\pi sl$ (área lateral = perímetro × comprimento).
+- Nas **tampas**, o campo radial é paralelo à superfície: fluxo zero.
+- Carga dentro: só o trecho de comprimento $l$ do cilindro de dentro, $Q_\text{int} = \lambda l$. A casca, em $s = b$, fica de fora.
+
+**A conta.**
+$$E\cdot2\pi sl = \frac{\lambda l}{\varepsilon_0}\quad\Rightarrow\quad\vec E = \frac{\lambda}{2\pi\varepsilon_0s}\,\hat s.$$
+O $l$ cancela, como deveria: o comprimento escolhido para a gaussiana não pode mudar o campo. O resultado é o mesmo de um fio infinito com densidade $\lambda$ no eixo.`,
+            passo: 1,
+          },
+          {
+            titulo: '(iii) Fora do cabo, s > b',
+            texto: r`**O que se pede.** O campo fora do cabo.
+
+**A ideia.** A mesma gaussiana do item (ii), agora com raio $s > b$, envolvendo o cilindro **e** a casca. Pela mesma simetria, o fluxo é $E\cdot2\pi sl$.
+
+**A conta.** A carga dentro é a do cilindro mais a da casca, num trecho de comprimento $l$:
+$$Q_\text{int} = \lambda l + (-\lambda)l = 0\quad\Rightarrow\quad E\cdot2\pi sl = 0\quad\Rightarrow\quad\vec E = 0.$$
+
+**Por que isso importa.** O cabo coaxial "prende" o campo entre os dois condutores. Fora dele não há campo, e o cabo nem perturba nem é perturbado pelo que está em volta. É por isso que esse tipo de cabo é usado para levar sinais (antena, internet).`,
+            passo: 2,
+          },
+        ],
         resultado: r`$0$, $\lambda/2\pi\varepsilon_0s$, $0$.`,
         errosComuns: ['Pôr carga no volume do cilindro condutor.'],
         oficial: { resposta: '(i) 0; (ii) λ/(2πε₀r) r̂; (iii) 0.' },
@@ -520,10 +810,67 @@ $$\Phi = \frac{q}{24\varepsilon_0}\ \text{em cada face oposta}.$$`,
       resolucao: {
         conceitos: [{ texto: 'Densidade não uniforme', lab: 'densidade' }],
         etapas: [
-          { titulo: 'Carga', texto: r`Integrar em cascas.`, passo: 0 },
-          { titulo: 'Gauss', texto: r`Dentro e fora.`, passo: 2 },
+          {
+            titulo: '(a) A densidade linear de carga',
+            texto: r`**O que se pede.** A carga por unidade de comprimento $\lambda$ do cilindro infinito de raio $R$, cuja densidade volumétrica é $\rho = \rho_0\dfrac sR$ ($s$ é a distância ao eixo).
+
+**A ideia.** $\rho$ é carga por volume. Como ela depende de $s$, corta-se o cilindro em **cascas cilíndricas** finas, de raio $s$ e espessura $ds$: em cada uma, $\rho$ é praticamente constante. Carga da casca = $\rho$ × volume da casca.
+
+**Montagem.** Considere um trecho de comprimento $l$. A casca de raio $s$, desenrolada, é quase uma placa de lados $2\pi s$ e $l$, com espessura $ds$: volume $dV = 2\pi s\,l\,ds$. Sua carga é
+$$dq = \rho_0\frac sR\,2\pi s\,l\,ds.$$
+
+**A conta.** Somando as cascas de $s = 0$ a $s = R$ e dividindo por $l$:
+$$\lambda = \frac{1}{l}\int_0^R\rho_0\frac sR\,2\pi sl\,ds = \frac{2\pi\rho_0}{R}\int_0^Rs^2\,ds = \frac{2\pi\rho_0}{R}\cdot\frac{R^3}{3} = \frac{2\pi\rho_0R^2}{3}.$$
+
+**Conferindo.** Se a densidade fosse uniforme, $\rho_0$, daria $\rho_0\pi R^2$. Com $\rho$ crescendo de $0$ a $\rho_0$, a carga é menor: $\tfrac23$ disso.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo fora do cilindro, s ≥ R',
+            texto: r`**O que se pede.** O campo para $s \ge R$, e mostrar que é igual ao de um fio fino infinito com a densidade $\lambda$ do item (a).
+
+**A ideia.** Lei de Gauss (formulário), $\oint_S\vec E\cdot d\vec A = \dfrac{Q_\text{int}}{\varepsilon_0}$. O cilindro é infinito e a carga só depende de $s$: girar ou deslizar ao longo do eixo não muda nada. Logo o campo é **radial** e seu módulo depende só de $s$.
+
+**Montagem.** Gaussiana: cilindro coaxial de raio $s$ e comprimento $l$.
+- Lateral: campo perpendicular e de módulo constante, fluxo $E\cdot2\pi sl$.
+- Tampas: campo paralelo a elas, fluxo zero.
+- Carga dentro: o cilindro inteiro num trecho $l$, $Q_\text{int} = \lambda l$.
+
+**A conta.**
+$$E\cdot2\pi sl = \frac{\lambda l}{\varepsilon_0}\quad\Rightarrow\quad\vec E = \frac{\lambda}{2\pi\varepsilon_0s}\,\hat s = \frac{\rho_0R^2}{3\varepsilon_0s}\,\hat s.$$
+
+**A comparação pedida.** A expressão do meio é exatamente o campo de um fio fino infinito com densidade $\lambda$. De fora, a lei de Gauss só "enxerga" a carga total por comprimento, e não como ela se distribui lá dentro.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) O campo dentro do cilindro, s < R',
+            texto: r`**O que se pede.** O campo para $s < R$, dentro do cilindro.
+
+**A ideia.** A mesma gaussiana e a mesma simetria do item (b), com uma diferença: agora a gaussiana de raio $s$ envolve **só parte** da carga, a que está entre o eixo e $s$.
+
+**Montagem.** A carga dentro, por comprimento, é a integral do item (a) parando em $s$ (troque o limite $R$ por $s$; use $s'$ como variável de integração):
+$$\frac{Q_\text{int}}{l} = \frac{2\pi\rho_0}{R}\int_0^{s}s'^2\,ds' = \frac{2\pi\rho_0s^3}{3R}.$$
+
+**A conta.**
+$$E\cdot2\pi sl = \frac{1}{\varepsilon_0}\cdot\frac{2\pi\rho_0s^3}{3R}\,l\quad\Rightarrow\quad\vec E = \frac{\rho_0s^2}{3\varepsilon_0R}\,\hat s.$$
+
+**Conferindo.** No eixo ($s = 0$) o campo é zero, como exige a simetria. Na superfície ($s = R$) dá $\dfrac{\rho_0R}{3\varepsilon_0}$, o mesmo valor do item (b) em $s = R$.`,
+            passo: 2,
+          },
+          {
+            titulo: '(d) O gráfico de E em função de s',
+            texto: r`**O que se pede.** Esboçar $E(s)$ e destacar os pontos importantes.
+
+**Juntando (b) e (c).**
+- De $s = 0$ a $s = R$: $E = \dfrac{\rho_0s^2}{3\varepsilon_0R}$, uma **parábola** que começa em zero no eixo e cresce.
+- Em $s = R$: o máximo, $E_\text{máx} = \dfrac{\rho_0R}{3\varepsilon_0}$.
+- Para $s > R$: $E = \dfrac{\rho_0R^2}{3\varepsilon_0s}$, cai como $1/s$ e tende a zero longe.
+
+**Pontos para destacar.** $E = 0$ no eixo; o máximo em $s = R$; e a **continuidade** em $s = R$: as duas expressões dão o mesmo valor ali. O campo só dá salto onde há carga numa **superfície** (densidade superficial); uma carga espalhada num volume não produz salto.`,
+            passo: 3,
+          },
         ],
-        resultado: r`Veja as expressões.`,
+        resultado: r`(a) $\lambda = \dfrac{2\pi\rho_0R^2}{3}$. (b) $\vec E = \dfrac{\lambda}{2\pi\varepsilon_0s}\hat s$ fora. (c) $\vec E = \dfrac{\rho_0s^2}{3\varepsilon_0R}\hat s$ dentro. (d) Parábola até $R$, depois $1/s$, sem salto.`,
         errosComuns: ['Usar a carga total para pontos dentro do cilindro.'],
         oficial: { resposta: 'λ = 2πρ₀R²/3; fora, E = ρ₀R²/(3ε₀s) ŝ = λ/(2πε₀s) ŝ; dentro, E = ρ₀s²/(3ε₀R) ŝ.' },
       },
@@ -571,7 +918,57 @@ $$\Phi = \frac{q}{24\varepsilon_0}\ \text{em cada face oposta}.$$`,
       ],
       resolucao: {
         conceitos: [{ texto: 'Gauss com simetria plana', lab: 'planos' }],
-        etapas: [{ titulo: 'Cilindro', texto: r`Tampas simétricas.`, passo: 0 }],
+        etapas: [
+          {
+            titulo: '(a) O campo fora da placa, |z| > d',
+            texto: r`**O que se pede.** O vetor campo nos pontos fora da placa, que é infinita, tem espessura $2d$ (de $z = -d$ a $z = d$) e densidade de carga $\rho > 0$ uniforme.
+
+**A ideia: a simetria.** A placa é infinita nas direções $x$ e $y$: deslizar para os lados não muda nada. Então o campo não pode ter componente em $x$ nem em $y$; ele aponta ao longo de $z$ e seu módulo só depende de $z$. A placa também é simétrica em relação ao plano $z = 0$: o campo em $-z$ é o espelho do campo em $z$. Com $\rho > 0$, ele aponta **para longe** do plano do meio, dos dois lados.
+
+**A lei de Gauss** (formulário): $\oint_S\vec E\cdot d\vec A = \dfrac{Q_\text{int}}{\varepsilon_0}$.
+
+**Montagem.** Gaussiana: um cilindro (uma "lata") com o eixo ao longo de $z$, tampas de área $A$ em $z$ e em $-z$, simétricas.
+- Nas duas tampas, o campo é perpendicular e aponta para fora da lata, com o mesmo módulo $E$: fluxo $EA$ em cada uma.
+- Na lateral, o campo (ao longo de $z$) é paralelo à superfície: fluxo zero.
+- Com $|z| > d$, a lata atravessa a placa inteira: a carga dentro é $\rho\times(\text{volume da placa na lata}) = \rho\cdot2d\cdot A$.
+
+**A conta.**
+$$2EA = \frac{\rho\,2dA}{\varepsilon_0}\quad\Rightarrow\quad E = \frac{\rho d}{\varepsilon_0}.$$
+Com o sentido, $\vec E = +\dfrac{\rho d}{\varepsilon_0}\hat z$ para $z > d$ e $\vec E = -\dfrac{\rho d}{\varepsilon_0}\hat z$ para $z < -d$. Numa linha só: $\vec E = \dfrac{\rho d}{\varepsilon_0}\dfrac{z}{|z|}\hat z$.
+
+**Conferindo.** Fora, o campo **não depende da distância**: é o mesmo de um plano infinito com densidade superficial $\sigma = 2\rho d$, que dá $\sigma/2\varepsilon_0$.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo dentro da placa, |z| ≤ d',
+            texto: r`**O que se pede.** O vetor campo nos pontos dentro da placa.
+
+**A ideia.** A mesma simetria e a mesma lata do item (a), agora com as tampas em $\pm z$ **dentro** da placa ($|z| \le d$). A diferença é que a lata só envolve parte da carga.
+
+**Montagem.** O fluxo continua $2EA$ (duas tampas, lateral sem fluxo). A carga dentro é a da fatia de espessura $2|z|$:
+$$Q_\text{int} = \rho\cdot2|z|\cdot A.$$
+
+**A conta.**
+$$2EA = \frac{\rho\,2|z|A}{\varepsilon_0}\quad\Rightarrow\quad E = \frac{\rho|z|}{\varepsilon_0}.$$
+O campo aponta para longe do plano do meio: para $+\hat z$ quando $z > 0$ e para $-\hat z$ quando $z < 0$. Com isso, o sinal de $z$ já dá o sentido:
+$$\vec E = \frac{\rho z}{\varepsilon_0}\,\hat z.$$
+
+**Conferindo.** No plano do meio ($z = 0$) o campo é zero: as cargas de cima e de baixo empurram para lados opostos na mesma medida. Na superfície ($z = d$) ele vale $\rho d/\varepsilon_0$, igual ao do item (a).`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) O gráfico da componente z do campo',
+            texto: r`**O que se pede.** Esboçar a componente $E_z$ como função de $z$.
+
+**Juntando (a) e (b).**
+- Para $z < -d$: $E_z = -\dfrac{\rho d}{\varepsilon_0}$, constante (reta horizontal abaixo do eixo).
+- Para $-d \le z \le d$: $E_z = \dfrac{\rho z}{\varepsilon_0}$, uma **reta inclinada** que passa pela origem.
+- Para $z > d$: $E_z = +\dfrac{\rho d}{\varepsilon_0}$, constante.
+
+**Pontos para destacar.** $E_z = 0$ em $z = 0$; os valores $\pm\rho d/\varepsilon_0$ em $z = \pm d$; e a **continuidade** nas faces da placa. Não há salto porque a carga está espalhada num volume, e não concentrada numa superfície. O gráfico tem forma de "S" achatado, ímpar em $z$: $E_z(-z) = -E_z(z)$.`,
+            passo: 2,
+          },
+        ],
         resultado: r`$\rho z/\varepsilon_0$ dentro, $\pm\rho d/\varepsilon_0$ fora.`,
         errosComuns: ['Esquecer o sinal: o campo aponta para longe do plano médio dos dois lados.'],
         oficial: { resposta: 'Fora, E = (ρd/ε₀)(z/|z|) ẑ; dentro, E = (ρz/ε₀) ẑ.' },
@@ -633,10 +1030,76 @@ $$\Phi = \frac{q}{24\varepsilon_0}\ \text{em cada face oposta}.$$`,
       resolucao: {
         conceitos: [{ texto: 'Condutores em equilíbrio', lab: 'condutores' }],
         etapas: [
-          { titulo: 'Regiões', texto: r`Gauss em cada uma.`, passo: 0 },
-          { titulo: 'Indução', texto: r`E = 0 no metal.`, passo: 3 },
+          {
+            titulo: '(a) O campo na cavidade, r < a',
+            texto: r`**O que se pede.** O campo num ponto da cavidade, entre a carga $q$ (no centro) e a face interna da casca condutora, de raio $a$.
+
+**A ideia.** Lei de Gauss (formulário), $\oint_S\vec E\cdot d\vec A = \dfrac{Q_\text{int}}{\varepsilon_0}$, com simetria esférica: carga no centro e casca esférica concêntrica. Girar o sistema em volta do centro não muda nada, então o campo é **radial** e só depende da distância $r$ ao centro.
+
+**Montagem.** Gaussiana: esfera de raio $r < a$, centrada na carga. Nela o campo é perpendicular e tem o mesmo módulo em todo ponto, então o fluxo é $E\cdot4\pi r^2$. A carga dentro é só $q$: a casca está fora.
+
+**A conta.**
+$$E\cdot4\pi r^2 = \frac{q}{\varepsilon_0}\quad\Rightarrow\quad\vec E = \frac{1}{4\pi\varepsilon_0}\frac{q}{r^2}\,\hat r.$$
+
+É o campo da carga $q$ sozinha. As cargas induzidas na casca estão distribuídas por igual numa esfera em volta do ponto, e não contribuem para o campo lá dentro.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo dentro do metal, a < r < b',
+            texto: r`**O que se pede.** O campo num ponto do material da casca.
+
+**A ideia.** O enunciado diz que o sistema está em **equilíbrio eletrostático**. Num condutor, as cargas são livres para andar. Se houvesse campo dentro do metal, ele empurraria essas cargas e elas estariam se movendo, o que contradiz o equilíbrio. Então, no equilíbrio, as cargas do condutor se arrumam exatamente de modo a anular o campo no interior do material.
+
+**Resposta.** $\vec E = 0$ para $a < r < b$.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) O campo fora da casca, r > b',
+            texto: r`**O que se pede.** O campo num ponto fora da casca.
+
+**A ideia.** A mesma lei de Gauss e a mesma simetria esférica do item (a), com uma gaussiana de raio $r > b$, que envolve a carga **e** a casca inteira.
+
+**Montagem.** Fluxo: $E\cdot4\pi r^2$. Carga dentro: $q$ mais a carga total da casca. A casca é **neutra**: as cargas induzidas nela (item d) somam zero. Logo $Q_\text{int} = q$.
+
+**A conta.**
+$$E\cdot4\pi r^2 = \frac{q}{\varepsilon_0}\quad\Rightarrow\quad\vec E = \frac{1}{4\pi\varepsilon_0}\frac{q}{r^2}\,\hat r.$$
+
+De fora, é como se a casca não existisse: o campo é o da carga $q$ no centro.`,
+            passo: 2,
+          },
+          {
+            titulo: '(d) As cargas induzidas nas duas faces',
+            texto: r`**O que se pede.** A densidade superficial de carga $\sigma$ (carga por área) na face interna ($r = a$) e na externa ($r = b$) da casca.
+
+**A ideia.** Usar o resultado do item (b): o campo no metal é zero. Pela lei de Gauss, isso diz quanta carga há dentro de qualquer superfície que passe pelo metal.
+
+**Face interna.** Tome uma gaussiana esférica de raio entre $a$ e $b$, toda dentro do metal. Nela $E = 0$, então o fluxo é zero, e a carga dentro tem de ser **zero**. Dentro dela estão $q$ e a carga da face interna. Logo a face interna tem $-q$. Espalhada por igual (simetria) numa esfera de área $4\pi a^2$:
+$$\sigma_a = -\frac{q}{4\pi a^2}.$$
+
+**Face externa.** A casca é neutra: a carga total dela é zero. Se a face interna tem $-q$, a externa tem $+q$:
+$$\sigma_b = +\frac{q}{4\pi b^2}.$$
+
+**Em palavras.** A carga $q$ atrai cargas negativas da casca para perto dela (face interna) e empurra as positivas para longe (face externa). É a **indução**.`,
+            passo: 3,
+          },
+          {
+            titulo: '(e) E se a casca tivesse carga Q?',
+            texto: r`**O que se pede.** Quais respostas mudariam se a casca tivesse uma carga total $Q$, em vez de ser neutra.
+
+**Item por item.**
+- **(a) Cavidade:** não muda. A gaussiana dentro da cavidade continua envolvendo só $q$, e a carga na casca está distribuída por igual em volta.
+- **(b) Metal:** não muda. Condutor em equilíbrio tem campo zero dentro, com qualquer carga.
+- **Face interna (parte de d):** não muda. A gaussiana dentro do metal ainda exige carga total zero lá dentro, então a face interna continua com $-q$, e $\sigma_a = -\dfrac{q}{4\pi a^2}$.
+- **Face externa (parte de d):** **muda**. A casca tem carga total $Q$ e já há $-q$ na face interna, então a externa fica com $Q + q$:
+$$\sigma_b = \frac{q + Q}{4\pi b^2}.$$
+- **(c) Fora:** **muda**. A gaussiana de fora envolve $q + Q$:
+$$\vec E = \frac{1}{4\pi\varepsilon_0}\frac{q + Q}{r^2}\,\hat r.$$
+
+**Resposta.** Mudam (c) e a densidade da face externa em (d).`,
+            passo: 4,
+          },
         ],
-        resultado: r`Veja os itens.`,
+        resultado: r`(a) $\dfrac{q}{4\pi\varepsilon_0r^2}\hat r$. (b) $0$. (c) $\dfrac{q}{4\pi\varepsilon_0r^2}\hat r$. (d) $\sigma_a = -\dfrac{q}{4\pi a^2}$, $\sigma_b = \dfrac{q}{4\pi b^2}$. (e) Mudam (c) e $\sigma_b$: entra $q + Q$.`,
         errosComuns: ['Pôr a carga Q da casca na face interna.'],
         oficial: { resposta: 'kq/r² na cavidade e fora; 0 no metal; σ_a = −q/4πa², σ_b = q/4πb²; com carga Q mudam (c) e (d): E = k(Q + q)/r², σ_b = (Q + q)/4πb².' },
       },
@@ -700,8 +1163,64 @@ $$\Phi = \frac{q}{24\varepsilon_0}\ \text{em cada face oposta}.$$`,
       resolucao: {
         conceitos: [{ texto: 'Gauss com simetria esférica', lab: 'gauss' }],
         etapas: [
-          { titulo: 'Carga interna', texto: r`Próton menos a fração da nuvem.`, passo: 1 },
-          { titulo: 'Número', texto: r`Substituir.`, passo: 2 },
+          {
+            titulo: '(a) A densidade da nuvem eletrônica',
+            texto: r`**O que se pede.** A densidade volumétrica de carga $\rho$ (carga por volume) da nuvem: uma esfera maciça de raio $a_0$ com carga $-e$ uniforme.
+
+**A ideia.** Uniforme quer dizer a mesma em todo o volume: $\rho = \dfrac{\text{carga}}{\text{volume}}$.
+
+**A conta.** O volume de uma esfera de raio $a_0$ é $\tfrac43\pi a_0^3$:
+$$\rho = \frac{-e}{\tfrac43\pi a_0^3} = -\frac{3e}{4\pi a_0^3}.$$
+Negativa, porque a carga do elétron é negativa.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo do átomo, dentro e fora',
+            texto: r`**O que se pede.** O campo a uma distância $r$ do centro, para $r \le a_0$ (dentro da nuvem) e para $r > a_0$ (fora), usando a lei de Gauss.
+
+**A ideia.** Lei de Gauss (formulário): $\oint_S\vec E\cdot d\vec A = \dfrac{Q_\text{int}}{\varepsilon_0}$. O próton está no centro e a nuvem é uma esfera uniforme centrada nele: **simetria esférica**. O campo é radial e só depende de $r$. Numa gaussiana esférica de raio $r$, centrada no próton, o fluxo é $E\cdot4\pi r^2$.
+
+**Dentro ($r \le a_0$).** A gaussiana envolve o próton inteiro ($+e$) e só **parte** da nuvem, a que está numa esfera de raio $r$:
+$$Q_\text{int} = e + \rho\cdot\tfrac43\pi r^3 = e - e\frac{r^3}{a_0^3}.$$
+(A fração da nuvem dentro é a razão entre os volumes, $r^3/a_0^3$.) Então:
+$$E\cdot4\pi r^2 = \frac{e}{\varepsilon_0}\left(1 - \frac{r^3}{a_0^3}\right)\quad\Rightarrow\quad E = \frac{e}{4\pi\varepsilon_0}\left(\frac{1}{r^2} - \frac{r}{a_0^3}\right).$$
+Positivo: aponta para fora do centro.
+
+**Fora ($r > a_0$).** A gaussiana envolve o próton e a nuvem inteira: $Q_\text{int} = e - e = 0$. Então $E = 0$: de fora, o átomo é neutro.
+
+**Conferindo.** Perto do centro, o termo $1/r^2$ domina: é o campo do próton sozinho. Em $r = a_0$ os dois termos se cancelam e o campo vai a zero, emendando com o resultado de fora.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) O valor em r = a₀/2',
+            texto: r`**O que se pede.** A intensidade do campo em $r = a_0/2$, com $a_0 = 0{,}53\times10^{-10}$ m, $k_0 = 9{,}0\times10^9$ N·m²/C² e $e = 1{,}6\times10^{-19}$ C.
+
+**A ideia.** Pôr $r = a_0/2$ na expressão de dentro do item (b), escrita com $k_0 = \dfrac{1}{4\pi\varepsilon_0}$:
+$$E = k_0e\left(\frac{1}{r^2} - \frac{r}{a_0^3}\right).$$
+
+**A conta.**
+- $\dfrac{1}{r^2} = \dfrac{1}{(a_0/2)^2} = \dfrac{4}{a_0^2}$;
+- $\dfrac{r}{a_0^3} = \dfrac{a_0/2}{a_0^3} = \dfrac{1}{2a_0^2}$.
+
+Então
+$$E = \frac{k_0e}{a_0^2}\left(4 - \frac12\right) = 3{,}5\,\frac{(9{,}0\times10^9)(1{,}6\times10^{-19})}{(0{,}53\times10^{-10})^2} = 3{,}5\times\frac{1{,}44\times10^{-9}}{2{,}81\times10^{-21}} \approx 1{,}8\times10^{12}\ \text{N/C}.$$
+
+**Para ter noção.** É um campo enorme: o ar deixa de ser isolante com uns $3\times10^6$ N/C.`,
+            passo: 2,
+          },
+          {
+            titulo: '(d) O gráfico de E em função de r',
+            texto: r`**O que se pede.** Esboçar a intensidade do campo em função de $r$.
+
+**Juntando o item (b).**
+- Perto do centro ($r \to 0$): $E \approx \dfrac{k_0e}{r^2}$, cresce sem limite (o próton é pontual).
+- De $0$ a $a_0$: $E = k_0e\left(\dfrac{1}{r^2} - \dfrac{r}{a_0^3}\right)$ **diminui** sempre, porque o primeiro termo cai e o segundo cresce.
+- Em $r = a_0$: $E = 0$.
+- Para $r > a_0$: $E = 0$.
+
+**O desenho.** Uma curva que desce do infinito, perto da origem, até tocar o zero em $r = a_0$, e depois fica em cima do eixo. A nuvem negativa "blinda" o próton: quanto mais da nuvem fica dentro da gaussiana, menor a carga líquida que ela envolve.`,
+            passo: 3,
+          },
         ],
         resultado: r`$E(a_0/2) \approx 1{,}8\times10^{12}$ N/C.`,
         errosComuns: ['Esquecer a parte da nuvem dentro da gaussiana.'],
@@ -746,7 +1265,32 @@ $$\vec E = \frac{\rho}{3\varepsilon_0}(\vec r - \vec r\,') = \frac{\rho\vec d}{3
       respostas: [{ item: 'E', texto: r`$\vec E = \dfrac{\rho\vec d}{3\varepsilon_0}$, uniforme na cavidade` }],
       resolucao: {
         conceitos: [{ texto: 'Superposição e densidade uniforme', lab: 'densidade' }],
-        etapas: [{ titulo: 'Somar', texto: r`$\rho\vec r/3\varepsilon_0$ menos $\rho\vec r\,'/3\varepsilon_0$.`, passo: 0 }],
+        etapas: [
+          {
+            titulo: 'E na cavidade: a demonstração',
+            texto: r`**O que se pede.** Mostrar que, dentro da cavidade esférica de uma esfera uniformemente carregada (densidade $\rho$), o campo é **uniforme** e vale $E = \dfrac{\rho d}{3\varepsilon_0}$, em que $d$ é a distância entre o centro da esfera e o centro da cavidade.
+
+**Por que não dá para usar Gauss direto.** Com a cavidade fora do centro, a distribuição não tem simetria esférica em volta de nenhum ponto. Não há gaussiana em que o campo seja constante. O caminho é a **superposição**.
+
+**Passo 1: o campo dentro de uma esfera maciça uniforme.** Lei de Gauss (formulário), numa esfera sem cavidade, de densidade $\rho$, com gaussiana esférica concêntrica de raio $r$ (dentro da esfera). Por simetria, o campo é radial, com fluxo $E\cdot4\pi r^2$, e a carga dentro é $\rho\cdot\tfrac43\pi r^3$:
+$$E\cdot4\pi r^2 = \frac{\rho\,\tfrac43\pi r^3}{\varepsilon_0}\quad\Rightarrow\quad E = \frac{\rho r}{3\varepsilon_0}.$$
+Como aponta para longe do centro, em forma vetorial: $\vec E = \dfrac{\rho}{3\varepsilon_0}\vec r$, com $\vec r$ o vetor **do centro até o ponto**.
+
+**Passo 2: a cavidade como soma de duas esferas.** Uma esfera com um buraco é igual a:
+- uma esfera **cheia**, de densidade $+\rho$, com centro $O$; mais
+- uma esfera menor, do tamanho da cavidade, com densidade $-\rho$ e centro $O'$, no lugar do buraco.
+
+Na região da cavidade, $+\rho$ e $-\rho$ se somam e dão zero, que é exatamente o buraco.
+
+**Passo 3: somar os dois campos.** Num ponto $P$ da cavidade, chame de $\vec r$ o vetor de $O$ até $P$ e de $\vec r\,'$ o vetor de $O'$ até $P$. O ponto está dentro das **duas** esferas, então vale o passo 1 para cada uma:
+$$\vec E = \frac{\rho}{3\varepsilon_0}\vec r + \frac{-\rho}{3\varepsilon_0}\vec r\,' = \frac{\rho}{3\varepsilon_0}\left(\vec r - \vec r\,'\right).$$
+Mas $\vec r - \vec r\,'$ é o vetor de $O$ até $O'$, o mesmo para qualquer ponto $P$: chame-o de $\vec d$. Então
+$$\vec E = \frac{\rho}{3\varepsilon_0}\vec d.$$
+
+**Conclusão.** O resultado não depende de onde $P$ está na cavidade: o campo é **uniforme**, aponta do centro da esfera para o centro da cavidade (para $\rho > 0$) e tem módulo $\rho d/3\varepsilon_0$.`,
+            passo: 0,
+          },
+        ],
         resultado: r`$E = \rho d/3\varepsilon_0$.`,
         errosComuns: ['Tentar uma gaussiana direto: sem simetria, Gauss não dá o campo.'],
         oficial: { resposta: 'E = ρd/(3ε₀), uniforme (demonstração por superposição).' },
@@ -808,9 +1352,58 @@ $$\vec E = \frac{\rho}{3\varepsilon_0}(\vec r - \vec r\,') = \frac{\rho\vec d}{3
           { texto: 'Condutores em equilíbrio', lab: 'condutores' },
         ],
         etapas: [
-          { titulo: 'Plano', texto: r`$\sigma/2\varepsilon_0$.`, passo: 0 },
-          { titulo: 'Somar', texto: r`Região por região.`, passo: 1 },
-          { titulo: 'Faces', texto: r`E = 0 no metal.`, passo: 2 },
+          {
+            titulo: '(a) O campo de cada plano sozinho',
+            texto: r`**O que se pede.** Pela lei de Gauss, o campo que cada plano produz em todo o espaço, como se o outro não existisse. Um tem densidade superficial total $+2\sigma$; o outro, $-\sigma$.
+
+**A ideia: o campo de um plano infinito.** Plano infinito com densidade uniforme $\sigma_\text{tot}$:
+- **simetria:** deslizar para os lados não muda nada, então o campo é perpendicular ao plano e só depende da distância a ele; dos dois lados, um é o espelho do outro;
+- **gaussiana:** uma "lata" cilíndrica atravessando o plano, com tampas de área $A$ paralelas a ele, uma de cada lado.
+
+O fluxo sai pelas duas tampas ($EA$ cada) e é zero na lateral (campo paralelo a ela). A carga dentro é $\sigma_\text{tot}A$. Pela lei de Gauss (formulário):
+$$2EA = \frac{|\sigma_\text{tot}|A}{\varepsilon_0}\quad\Rightarrow\quad E = \frac{|\sigma_\text{tot}|}{2\varepsilon_0}.$$
+É uniforme: não depende da distância ao plano. Aponta para longe do plano se ele é positivo, e para o plano se é negativo.
+
+**Aplicando.**
+- Plano $+2\sigma$: $E = \dfrac{2\sigma}{2\varepsilon_0} = \dfrac{\sigma}{\varepsilon_0}$, **para longe** dele, dos dois lados.
+- Plano $-\sigma$: $E = \dfrac{\sigma}{2\varepsilon_0}$, **para** ele, dos dois lados.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo total, região por região',
+            texto: r`**O que se pede.** O campo dos dois planos juntos em todo o espaço.
+
+**A ideia.** Superposição: o campo total é a soma vetorial dos campos do item (a). Os planos dividem o espaço em três regiões; em cada uma é preciso ver para que lado aponta cada campo.
+
+**Montagem.** Ponha o plano $+2\sigma$ à esquerda e o $-\sigma$ à direita, com o eixo apontando para a direita.
+
+**A conta, região por região.**
+- **À esquerda dos dois:** o $+2\sigma$ empurra para longe dele, para a esquerda ($-\sigma/\varepsilon_0$); o $-\sigma$ puxa para ele, para a direita ($+\sigma/2\varepsilon_0$). Soma: $-\dfrac{\sigma}{2\varepsilon_0}$, ou seja, $\dfrac{\sigma}{2\varepsilon_0}$ apontando **para a esquerda**, para longe dos planos.
+- **Entre os planos:** o $+2\sigma$ empurra para a direita ($+\sigma/\varepsilon_0$); o $-\sigma$ puxa para a direita também ($+\sigma/2\varepsilon_0$). Soma: $\dfrac{3\sigma}{2\varepsilon_0}$, **do positivo para o negativo**.
+- **À direita dos dois:** o $+2\sigma$ empurra para a direita ($+\sigma/\varepsilon_0$); o $-\sigma$ puxa para a esquerda ($-\sigma/2\varepsilon_0$). Soma: $\dfrac{\sigma}{2\varepsilon_0}$, **para a direita**, para longe dos planos.
+
+**Conferindo.** Fora, é como se houvesse um único plano com a carga total $2\sigma - \sigma = \sigma$, que daria $\sigma/2\varepsilon_0$ para longe. Ao contrário de um capacitor comum (cargas $+Q$ e $-Q$), aqui há campo fora, porque a carga total não é zero.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) A carga em cada uma das quatro faces',
+            texto: r`**O que se pede.** Tratando os planos como placas condutoras finas, a densidade de carga em cada uma das quatro faces (duas por placa).
+
+**A ideia.** Duas coisas:
+- dentro do **metal** de um condutor em equilíbrio, o campo é **zero**;
+- uma "lata" gaussiana com uma tampa dentro do metal e a outra logo fora da face envolve só a carga daquela face. O fluxo vem só da tampa de fora (dentro do metal $E = 0$, e na lateral o campo é paralelo). Pela lei de Gauss, $E_\text{fora}A = \dfrac{\sigma_\text{face}A}{\varepsilon_0}$, então
+$$\sigma_\text{face} = \varepsilon_0E_\text{fora},$$
+em que $E_\text{fora}$ é o campo logo fora da face, contado como positivo se aponta **para fora** do metal.
+
+**A conta, com os campos do item (b).**
+- **Placa $+2\sigma$, face de fora** (esquerda): o campo é $\sigma/2\varepsilon_0$ para a esquerda, para fora do metal. $\sigma = +\dfrac{\sigma}{2}$.
+- **Placa $+2\sigma$, face de dentro**: o campo é $3\sigma/2\varepsilon_0$ para a direita, para fora do metal. $\sigma = +\dfrac{3\sigma}{2}$.
+- **Placa $-\sigma$, face de dentro**: o campo é $3\sigma/2\varepsilon_0$ para a direita, **entrando** no metal. $\sigma = -\dfrac{3\sigma}{2}$.
+- **Placa $-\sigma$, face de fora** (direita): o campo é $\sigma/2\varepsilon_0$ para a direita, para fora do metal. $\sigma = +\dfrac{\sigma}{2}$.
+
+**Conferindo.** Placa da esquerda: $\tfrac12\sigma + \tfrac32\sigma = 2\sigma$. Placa da direita: $-\tfrac32\sigma + \tfrac12\sigma = -\sigma$. As faces que se olham têm cargas iguais e opostas, como num capacitor, e o excesso, $\sigma$ no total, se divide igualmente entre as duas faces de fora.`,
+            passo: 2,
+          },
         ],
         resultado: r`$\sigma/2$, $3\sigma/2$, $-3\sigma/2$, $\sigma/2$.`,
         errosComuns: ['Supor que as faces externas ficam sem carga, como num capacitor de cargas opostas iguais.'],

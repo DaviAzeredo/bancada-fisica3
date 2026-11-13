@@ -103,7 +103,7 @@ function ProvaRota({ id, questao }: { id: string; questao?: string }) {
     <ScenarioView
       key={`${prova.id}/${q.id}`}
       scenario={q}
-      header={{ kicker, route: lista ? 'lista' : 'prova', figuras: figurasDe(prova.id, q) }}
+      header={{ kicker, route: lista ? 'lista' : 'prova', figuras: figurasDe(prova.id, q), formulario: prova.formulario }}
       nav={nav}
       navTitle={prova.titulo}
     />

@@ -1,4 +1,5 @@
 import type { ProvaInput } from '../../scenario/schema'
+import { FORMULARIO_P3 } from '../formularios'
 
 const r = String.raw
 
@@ -34,6 +35,7 @@ export const lista_08: ProvaInput = {
   id: 'lista-08',
   titulo: 'Lista 8 · Indução eletromagnética',
   subtitulo: 'Física III-A · 2020/1 · gabarito da monitoria',
+  formulario: FORMULARIO_P3,
   questoes: [
     /* ───────────────────────── 1 ───────────────────────── */
     {
@@ -85,8 +87,38 @@ export const lista_08: ProvaInput = {
       resolucao: {
         conceitos: [{ texto: 'Lei de Faraday e de Lenz', lab: 'faraday' }, { texto: 'Espira perto de um fio', lab: 'movimento' }],
         etapas: [
-          { titulo: 'Fluxo', texto: r`$\Phi_B = \dfrac{\mu_0 I a}{2\pi}\ln\dfrac{s + a}{s}$ (para dentro): depende só de $s$.`, passo: 0 },
-          { titulo: 'Sentidos', texto: r`$s$ cresce em $v_1$, fica constante em $v_2$ e diminui em $v_3$.`, passo: 2 },
+          {
+            titulo: '(a) Em que movimentos aparece corrente, e em que sentido',
+            texto: r`**O que se pede.** Uma espira quadrada no mesmo plano de um fio infinito com corrente $I$ pode andar com $\vec v_1$ (afastando-se, perpendicular ao fio), $\vec v_2$ (paralela ao fio) ou $\vec v_3$ (na diagonal). Em quais casos surge corrente, e em que sentido?
+
+**A ideia: lei de Faraday.** Uma fem aparece numa espira quando o **fluxo magnético** através dela **muda** (formulário):
+$$\mathcal E_\text{ind} = -\frac{d\Phi_{\vec B}}{dt}.$$
+O sinal de menos é a **lei de Lenz**: a corrente induzida circula no sentido que cria um campo **contra a variação** do fluxo. Se o fluxo aumenta, ela cria campo oposto; se diminui, cria campo a favor, tentando repor.
+
+**O campo do fio.** Ele vale $B = \dfrac{\mu_0I}{2\pi s}$ a uma distância $s$ (mais fraco longe) e, do lado em que a espira está, aponta **para dentro** do papel (regra da mão direita com a corrente da figura). O fluxo através da espira depende só da distância dela ao fio.
+
+**Caso a caso.**
+- **$\vec v_1$ (afastando):** a espira vai para onde o campo é mais fraco: o fluxo para dentro **diminui**. Para repor, a corrente induzida cria campo **para dentro** dentro da espira: sentido **horário** (regra da mão direita).
+- **$\vec v_2$ (paralela ao fio):** cada ponto da espira continua à mesma distância do fio. O fluxo **não muda**: $\mathcal E = 0$, sem corrente.
+- **$\vec v_3$ (diagonal):** só a parte da velocidade perpendicular ao fio muda a distância; na figura, ela **aproxima** a espira do fio. O fluxo para dentro **aumenta**; a corrente cria campo para fora: sentido **anti-horário**.
+
+**Cuidado.** Andar num campo magnético não basta para induzir corrente: é preciso que o **fluxo** mude.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A força sobre a espira e a lei de Lenz',
+            texto: r`**O que se pede.** O sentido da força magnética total sobre a espira nos três casos, interpretando com a lei de Lenz.
+
+**A ideia.** A corrente induzida, dentro do campo do fio, sofre a força $d\vec F_{(m)} = I\,d\vec\ell\times\vec B$ (formulário) em cada lado. Os lados paralelos ao fio dão forças opostas (um atraído, outro repelido); como o campo é mais forte perto do fio, ganha o lado **mais próximo**. Correntes paralelas se atraem e antiparalelas se repelem.
+
+**Caso a caso.**
+- **$\vec v_1$:** corrente horária. No lado mais próximo do fio, ela tem o **mesmo sentido** da corrente do fio: atração. Força total **para o fio**, contra o afastamento.
+- **$\vec v_2$:** sem corrente, **sem força**.
+- **$\vec v_3$:** corrente anti-horária. No lado mais próximo, ela é **oposta** à do fio: repulsão. Força **para longe** do fio, contra a aproximação.
+
+**A lei de Lenz em ação.** Em todo caso, a força **se opõe ao movimento** que causa a variação do fluxo: tenta impedir o afastamento em $\vec v_1$ e a aproximação em $\vec v_3$. É a natureza "tentando" manter o fluxo como estava. Por isso, para mover a espira, alguém tem de realizar trabalho, e essa energia é dissipada na resistência da espira.`,
+            passo: 2,
+          },
         ],
         resultado: r`Corrente em $v_1$ (horária) e $v_3$ (anti-horária); forças de atração em $v_1$ e repulsão em $v_3$.`,
         errosComuns: ['Achar que qualquer movimento num campo induz corrente: precisa variar o fluxo.'],
@@ -163,9 +195,47 @@ export const lista_08: ProvaInput = {
       resolucao: {
         conceitos: [{ texto: 'Lenz com ímã e espira', lab: 'faraday' }],
         etapas: [
-          { titulo: 'Sentido do campo', texto: r`Polo S voltado para a espira: $\vec B$ para cima.`, passo: 0 },
-          { titulo: 'Lenz', texto: r`Aproximar aumenta o fluxo e repele; afastar diminui e atrai.`, passo: 1 },
-          { titulo: 'Origem', texto: r`Quem se move decide o mecanismo, não o resultado.`, passo: 3 },
+          {
+            titulo: '(a) O sentido da corrente nas quatro situações',
+            texto: r`**O que se pede.** O sentido da corrente induzida na espira em cada uma das quatro situações: (i) o ímã se aproxima, (ii) o ímã se afasta, (iii) a espira se aproxima, (iv) a espira se afasta.
+
+**A ideia: Faraday e Lenz.** A fem é $\mathcal E_\text{ind} = -\dfrac{d\Phi_{\vec B}}{dt}$ (formulário). Pela lei de Lenz, a corrente induzida cria um campo que se **opõe à variação** do fluxo.
+
+**O campo do ímã na espira.** As linhas de campo de um ímã saem do polo N e **entram** no polo S. Na figura, o polo **S** fica na ponta de baixo do ímã, voltado para a espira, que está abaixo dele. Então, na espira, $\vec B$ aponta **para cima**, para o polo S. Quanto mais perto o ímã, mais forte o campo e maior o fluxo.
+
+**Caso a caso.** O que importa é se a distância entre ímã e espira diminui ou aumenta; não importa quem se move.
+- **(i) e (iii), aproximando:** o fluxo para cima **aumenta**. A corrente induzida cria campo para **baixo** dentro da espira: sentido **horário** visto de cima.
+- **(ii) e (iv), afastando:** o fluxo para cima **diminui**. A corrente cria campo para **cima**, repondo: sentido **anti-horário** visto de cima.`,
+            passo: 1,
+          },
+          {
+            titulo: '(b) A força do ímã sobre a espira',
+            texto: r`**O que se pede.** O sentido da força do ímã sobre a espira em cada situação, se é atrativa ou repulsiva, e a interpretação pela lei de Lenz.
+
+**A ideia.** Uma espira com corrente se comporta como um pequeno ímã, com o polo **N** do lado para onde aponta o seu campo (o momento de dipolo, $\vec\mu = NI\vec A$ do formulário). Polos iguais se repelem e opostos se atraem.
+
+**Caso a caso.**
+- **(i) e (iii), aproximando:** a corrente horária cria campo para baixo; a espira tem o polo N embaixo e o polo **S em cima**, de frente para o polo **S** do ímã. Polos iguais: **repulsão**.
+- **(ii) e (iv), afastando:** a corrente anti-horária cria campo para cima; a espira tem o polo **N em cima**, de frente para o **S** do ímã. Polos opostos: **atração**.
+
+**A lei de Lenz.** A força sempre se opõe ao **movimento relativo**: ao aproximar, ela repele, dificultando a aproximação; ao afastar, ela atrai, dificultando o afastamento. Se fosse o contrário, um pequeno empurrão faria o ímã acelerar sozinho, criando energia do nada.`,
+            passo: 2,
+          },
+          {
+            titulo: '(c) A origem da fem: movimento ou campo induzido',
+            texto: r`**O que se pede.** Dizer, em cada situação, se a fem vem de **fem de movimento** ou de **campo elétrico induzido**, justificando.
+
+**A ideia.** A lei de Faraday junta dois mecanismos diferentes:
+- **fem de movimento:** a espira se move num campo magnético que não muda no tempo. Cada carga do fio, andando junto com ele, sente a força magnética $q\vec v\times\vec B$, que a empurra ao longo do fio. A fem é $\mathcal E = \oint(\vec v\times\vec B)\cdot d\vec\ell$.
+- **campo elétrico induzido:** a espira está parada e o campo magnético muda no tempo. As cargas do fio estão paradas, então não há força magnética nelas. Quem as empurra é um **campo elétrico** criado pela variação de $\vec B$, com $\oint\vec E\cdot d\vec\ell = -\dfrac{d\Phi_{\vec B}}{dt}$ (formulário).
+
+**Caso a caso.**
+- **(i) e (ii):** a espira está parada e o ímã se move; o campo na espira muda no tempo: **campo elétrico induzido**.
+- **(iii) e (iv):** o ímã está parado (campo estacionário) e a espira se move: **fem de movimento**.
+
+**Repare.** O resultado é o mesmo para o mesmo movimento relativo; só a explicação muda conforme quem se move. Essa coincidência foi uma das pistas que levaram Einstein à relatividade.`,
+            passo: 3,
+          },
         ],
         resultado: r`Horária e repulsão ao aproximar; anti-horária e atração ao afastar.`,
         errosComuns: ['Ler o polo errado: na figura, o polo S está embaixo, voltado para a espira.'],
@@ -220,8 +290,34 @@ export const lista_08: ProvaInput = {
       resolucao: {
         conceitos: [{ texto: 'Lenz: oposição ao aumento de fluxo', lab: 'faraday' }, { texto: 'Força entre correntes antiparalelas', lab: 'forcas' }],
         etapas: [
-          { titulo: 'Corrente induzida', texto: r`Oposta à do solenoide enquanto o fluxo cresce.`, passo: 0 },
-          { titulo: 'Força', texto: r`$I_\text{ind}$ e $B_\rho$ trocam de sinal juntos: $F_z$ não muda.`, passo: 1 },
+          {
+            titulo: '(I) Corrente crescente de A para B',
+            texto: r`**O que se pede.** Um solenoide finito, com corrente que **cresce** com o tempo (de A para B), está perto de uma espira coaxial de raio $2a$. Qual o sentido da força do solenoide sobre a espira?
+
+**A ideia: Faraday e Lenz.** O campo do solenoide atravessa a espira. Com a corrente crescendo, o campo cresce e o **fluxo** pela espira aumenta. Pela lei de Faraday (formulário: $\mathcal E_\text{ind} = -\dfrac{d\Phi_{\vec B}}{dt}$) e de Lenz, surge na espira uma corrente que cria campo **contra** esse aumento: ela circula no sentido **oposto** ao da corrente do solenoide.
+
+**A força.** Duas correntes circulares coaxiais em sentidos opostos são como fios com correntes **antiparalelas**: elas se **repelem**. (Visto de outro jeito: o solenoide e a espira viram dois ímãs com polos iguais frente a frente.)
+
+Mais precisamente: perto da ponta do solenoide, as linhas de campo se abrem, e o campo na espira tem uma parte **radial**. A força $I\,d\vec\ell\times\vec B$ (formulário) dessa parte radial sobre a corrente induzida aponta ao longo do eixo, **para longe** do solenoide.
+
+**Resposta.** **Repulsão**: a espira é empurrada para longe do solenoide, ao longo do eixo ($+\hat z$, na figura).
+
+**Lenz.** A espira "foge" do aumento de fluxo: afastando-se, ela diminui o fluxo que a atravessa.`,
+            passo: 0,
+          },
+          {
+            titulo: '(II) Corrente crescente de B para A',
+            texto: r`**O que se pede.** A mesma pergunta, agora com a corrente do solenoide no sentido oposto (de B para A), mas ainda **crescendo**.
+
+**A ideia.** Inverter a corrente do solenoide inverte o campo dele em todo lugar. Mas o fluxo continua **aumentando em módulo**, porque a corrente cresce. Pela lei de Lenz, a corrente induzida continua **oposta** à do solenoide, e por isso também troca de sentido.
+
+**A força.** A força depende do **produto** da corrente induzida pelo campo do solenoide ($I\,d\vec\ell\times\vec B$, formulário). Os dois trocaram de sinal juntos, e o produto não muda: continuam sendo correntes antiparalelas, que se repelem.
+
+**Resposta.** **Repulsão** também, no mesmo sentido ($+\hat z$).
+
+**O que decide.** Não é o sentido da corrente do solenoide, e sim se ela **cresce** ou **diminui**. Se ela diminuísse (em qualquer sentido), a corrente induzida ficaria a favor da do solenoide e a espira seria **atraída**, tentando manter o fluxo.`,
+            passo: 1,
+          },
         ],
         resultado: r`Repulsão ($+\hat z$) nas duas situações.`,
         errosComuns: ['Inverter a força ao inverter a corrente: o que decide é a corrente crescer.'],
@@ -288,8 +384,68 @@ contra o movimento, na entrada e na saída ($-\hat x$). O gabarito da monitoria 
       resolucao: {
         conceitos: [{ texto: 'Espira cruzando uma região de campo', lab: 'movimento' }],
         etapas: [
-          { titulo: 'fem', texto: r`$\varepsilon = -N\,d\Phi/dt = \pm NBwv$ nas transições.`, passo: 0 },
-          { titulo: 'Força', texto: r`$N$ voltas, cada uma com $IwB$: $N^2B^2w^2v/R$.`, passo: 3 },
+          {
+            titulo: '(a) A corrente ao entrar, dentro e ao sair',
+            texto: r`**O que se pede.** Intensidade e sentido da corrente induzida numa bobina retangular (lados $w$, na direção perpendicular ao movimento, e $l$; $N$ voltas; resistência $R$) que atravessa com velocidade constante $v$ uma região de campo uniforme $\vec B$ (entrando no papel), em três fases: (i) entrando, (ii) toda dentro, (iii) saindo.
+
+**A ideia: lei de Faraday.** Para uma bobina de $N$ voltas, a fem é $N$ vezes a de uma volta (as voltas estão em série):
+$$\mathcal E = -N\frac{d\Phi_{\vec B}}{dt},$$
+com $\Phi_{\vec B}$ o fluxo por uma volta (formulário: $\mathcal E_\text{ind} = -\dfrac{d\Phi_{\vec B}}{dt}$). O fluxo, com campo uniforme, é $B$ vezes a **área da bobina que está dentro do campo**. A corrente é $I = |\mathcal E|/R$ (lei de Ohm).
+
+**(i) Entrando.** A cada segundo, entra no campo uma faixa de largura $v$ e altura $w$: a área imersa cresce a uma taxa $wv$.
+$$\left|\frac{d\Phi}{dt}\right| = Bwv\quad\Rightarrow\quad|\mathcal E| = NBwv,\qquad I = \frac{NBwv}{R}.$$
+Sentido, por Lenz: o fluxo para **dentro** do papel aumenta, e a corrente cria campo para **fora**: **anti-horária**.
+
+**(ii) Toda dentro.** O fluxo é máximo, mas **constante**: $d\Phi/dt = 0$, **sem corrente**.
+
+**(iii) Saindo.** A área imersa diminui a uma taxa $wv$: $I = \dfrac{NBwv}{R}$ de novo. Agora o fluxo para dentro **diminui**, e a corrente o repõe, criando campo para dentro: **horária**.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A força sobre a bobina nas três fases',
+            texto: r`**O que se pede.** Módulo, direção e sentido da força magnética total sobre a bobina nas três fases.
+
+**A ideia.** A força num trecho reto de fio num campo uniforme é $\vec F = I\vec L\times\vec B$ (formulário: $d\vec F_{(m)} = I\,d\vec\ell\times\vec B$). Só os lados **dentro** do campo sentem força.
+
+**(i) Entrando.** Estão no campo o lado vertical da frente e pedaços dos dois lados horizontais.
+- Nos lados horizontais, os pedaços imersos têm correntes opostas: as forças se cancelam.
+- No lado da frente, de comprimento $w$, cada uma das $N$ voltas leva a corrente $I$: força $N\,IwB$.
+
+Com $I = \dfrac{NBwv}{R}$:
+$$F = NIwB = \frac{N^2B^2w^2v}{R},$$
+apontando **contra o movimento** ($-\hat x$).
+
+**(ii) Toda dentro.** Sem corrente, **sem força**. (Mesmo que houvesse corrente, os lados opostos dariam forças que se cancelam num campo uniforme.)
+
+**(iii) Saindo.** Agora só o lado de **trás** está no campo, com a corrente no sentido oposto ao da fase (i), mas o lado também é o outro: a força volta a ser $\dfrac{N^2B^2w^2v}{R}$, de novo **contra o movimento** ($-\hat x$).
+
+**Lenz.** Nas duas transições a força freia a bobina: para manter a velocidade constante, alguém precisa empurrá-la, e esse trabalho vira calor na resistência.
+
+**Sobre o gabarito.** O gabarito da monitoria escreve $\dfrac{NB^2w^2v}{R}$. Falta um $N$: ele aparece uma vez na fem (as $N$ voltas somam fem) e outra na força (as $N$ voltas, cada uma com a corrente $I$, somam força).`,
+            passo: 3,
+          },
+          {
+            titulo: '(c) Os gráficos do fluxo e da corrente',
+            texto: r`**O que se pede.** Esboçar o fluxo pela bobina e a corrente induzida em função do tempo.
+
+**O fluxo $\Phi(t)$.**
+- Antes de entrar: zero.
+- Entrando: cresce em linha reta (a área imersa cresce a uma taxa constante, $wv$), até o máximo $Bwl$ por volta, quando a bobina está toda dentro.
+- Toda dentro: **patamar** constante.
+- Saindo: desce em linha reta até zero.
+
+O gráfico tem forma de **trapézio**.
+
+**A corrente $I(t)$.** Ela é proporcional a **menos a inclinação** do gráfico do fluxo ($\mathcal E = -N\,d\Phi/dt$):
+- zero antes de entrar;
+- um **pulso** constante, $\dfrac{NBwv}{R}$, enquanto entra (sentido anti-horário);
+- zero com a bobina toda dentro;
+- um pulso de mesmo valor e sentido **oposto** (horário) enquanto sai;
+- zero depois.
+
+O gráfico são dois retângulos, um de cada lado do eixo do tempo. Cada pulso dura $l/v$, o tempo para a bobina inteira entrar (ou sair).`,
+            passo: 2,
+          },
         ],
         resultado: r`$I = NBwv/R$ nas transições; $F = N^2B^2w^2v/R$ contra o movimento.`,
         errosComuns: ['Contar o $N$ só uma vez na força.', 'Achar que há corrente com a bobina toda dentro do campo.'],
@@ -352,9 +508,54 @@ apontando **para o fio**: Lenz freia o afastamento.`,
       resolucao: {
         conceitos: [{ texto: 'Fluxo de um fio por integração', lab: 'movimento' }, { texto: 'Força em correntes paralelas', lab: 'forcas' }],
         etapas: [
-          { titulo: 'Fluxo', texto: r`Integra $\mu_0 I/2\pi s$ em faixas verticais.`, passo: 0 },
-          { titulo: 'fem', texto: r`Derivada em $r$ vezes $v$.`, passo: 1 },
-          { titulo: 'Força', texto: r`Diferença entre os lados verticais; os horizontais se cancelam.`, passo: 2 },
+          {
+            titulo: '(a) O fluxo pela espira',
+            texto: r`**O que se pede.** O fluxo magnético pela espira quadrada de lado $a$, no plano do fio infinito (corrente $I$), com o lado mais próximo a uma distância $r$ do fio.
+
+**A ideia.** O fluxo é $\Phi = \displaystyle\int\vec B\cdot d\vec A$: soma de (campo × área) sobre a superfície. O campo do fio, $B = \dfrac{\mu_0I}{2\pi s}$ (lei de Ampère ou de Biot-Savart, formulário), atravessa a espira perpendicularmente, mas **muda** com a distância $s$ ao fio. Então não dá para fazer campo × área de uma vez.
+
+**Montagem.** Corte a espira em **faixas** finas paralelas ao fio, de largura $ds$ e altura $a$. Numa faixa, todos os pontos estão à mesma distância $s$ do fio: o campo é constante nela. A faixa tem área $a\,ds$ e fluxo
+$$d\Phi = \frac{\mu_0I}{2\pi s}\,a\,ds.$$
+
+**A conta.** Somando as faixas, de $s = r$ (lado próximo) a $s = r + a$ (lado distante):
+$$\Phi = \frac{\mu_0Ia}{2\pi}\int_r^{r+a}\frac{ds}{s} = \frac{\mu_0Ia}{2\pi}\ln\frac{r + a}{r}.$$
+
+**Cuidado.** Usar o campo no centro da espira vezes a área daria um valor errado: o campo cai como $1/s$, e a média não é o valor no centro.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A corrente induzida',
+            texto: r`**O que se pede.** Intensidade e sentido da corrente na espira (resistência $R$), que se afasta do fio com velocidade $v$.
+
+**A ideia.** Lei de Faraday (formulário): $\mathcal E_\text{ind} = -\dfrac{d\Phi_{\vec B}}{dt}$. O fluxo do item (a) depende de $r$, e $r$ muda com o tempo: $\dfrac{dr}{dt} = v$. Pela regra da cadeia, $\dfrac{d\Phi}{dt} = \dfrac{d\Phi}{dr}\cdot v$.
+
+**A conta.** Derivando $\ln\dfrac{r + a}{r} = \ln(r + a) - \ln r$ em relação a $r$: $\dfrac{1}{r + a} - \dfrac1r = -\dfrac{a}{r(r + a)}$. Então
+$$\frac{d\Phi}{dt} = -\frac{\mu_0Ia}{2\pi}\cdot\frac{a}{r(r + a)}\cdot v,\qquad|\mathcal E| = \frac{\mu_0Ia^2v}{2\pi r(r + a)}.$$
+Pela lei de Ohm (formulário: $V = RI$):
+$$I_\text{ind} = \frac{\mu_0Ia^2}{2\pi R}\cdot\frac{v}{r(r + a)}.$$
+
+**O sentido (Lenz).** Do lado da espira, o campo do fio aponta para **dentro** do papel. Afastando-se, o fluxo para dentro **diminui**; a corrente induzida cria campo para dentro, repondo: sentido **horário**.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) A força sobre a espira',
+            texto: r`**O que se pede.** A força magnética total sobre a espira (módulo, direção e sentido) e a discussão pela lei de Lenz.
+
+**A ideia.** Força em cada lado (formulário): $\vec F = I\vec L\times\vec B$ para um trecho reto, se o campo é constante ao longo dele.
+- Os dois lados **perpendiculares** ao fio têm correntes opostas e passam pelos mesmos campos: as forças neles se cancelam.
+- Os dois lados **paralelos** ao fio estão em campos diferentes: $B(r)$ no próximo e $B(r + a)$ no distante.
+
+**Lado a lado.** Com a corrente horária, o lado mais próximo tem corrente no **mesmo sentido** da do fio: é **atraído**. O lado distante tem corrente oposta: é **repelido**. Como o campo é mais forte perto, a atração ganha.
+
+**A conta.**
+$$F = I_\text{ind}\,a\,\big[B(r) - B(r + a)\big] = I_\text{ind}\,a\,\frac{\mu_0I}{2\pi}\left(\frac1r - \frac{1}{r + a}\right) = I_\text{ind}\,\frac{\mu_0Ia^2}{2\pi r(r + a)}.$$
+Pondo $I_\text{ind}$ do item (b):
+$$F = \left[\frac{\mu_0Ia^2}{2\pi r(r + a)}\right]^2\frac vR,$$
+apontando **para o fio**.
+
+**Lenz.** A força puxa a espira de volta, **contra** o afastamento que está diminuindo o fluxo. Para manter a velocidade, é preciso puxá-la, e esse trabalho vira calor na resistência.`,
+            passo: 2,
+          },
         ],
         resultado: r`$\Phi = \frac{\mu_0Ia}{2\pi}\ln\frac{r+a}{r}$; corrente horária; força para o fio.`,
         errosComuns: ['Usar o campo no centro da espira vezes a área: o campo varia de um lado a outro.'],
@@ -420,9 +621,61 @@ apontando **para o fio**: Lenz freia o afastamento.`,
       resolucao: {
         conceitos: [{ texto: 'Barra em trilhos e força de frenagem', lab: 'movimento' }],
         etapas: [
-          { titulo: 'fem', texto: r`$\varepsilon = Blv_y$; Lenz dá o sentido anti-horário.`, passo: 0 },
-          { titulo: 'Newton', texto: r`$mg - B^2l^2v_y/R = ma$.`, passo: 2 },
-          { titulo: 'Terminal', texto: r`$a = 0$ dá $v_t$; a aproximação é exponencial, com $\tau = mR/B^2l^2$.`, passo: 3 },
+          {
+            titulo: '(a) A corrente induzida',
+            texto: r`**O que se pede.** Intensidade e sentido da corrente no circuito quando a barra (comprimento $l$), caindo pelos trilhos verticais, tem velocidade vertical $v_y$. O campo é $\vec B = -B\hat z$ (entrando no papel) e o circuito tem resistência $R$.
+
+**A ideia: lei de Faraday.** O circuito é formado pela haste fixa de cima, os dois trilhos e a barra. Quando a barra desce, a **área** do circuito aumenta, e com ela o fluxo magnético. Pela lei de Faraday (formulário), $\mathcal E_\text{ind} = -\dfrac{d\Phi_{\vec B}}{dt}$.
+
+**A conta.** Se a barra está a uma distância $y$ abaixo da haste, a área é $ly$ e o fluxo (campo uniforme, perpendicular) é $\Phi = Bly$. A barra desce com $\dfrac{dy}{dt} = v_y$:
+$$|\mathcal E| = Bl\,v_y,\qquad I = \frac{Blv_y}{R}$$
+(lei de Ohm, formulário: $V = RI$).
+
+**O sentido (Lenz).** O fluxo para **dentro** do papel aumenta; a corrente induzida cria campo para **fora**: sentido **anti-horário**.
+
+**Outro jeito: fem de movimento.** Cada carga da barra desce junto com ela e sente $q\vec v\times\vec B$, ao longo da barra. A fem é $vBl$: o mesmo resultado.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A força magnética sobre a barra',
+            texto: r`**O que se pede.** Módulo, direção e sentido da força magnética sobre a barra, no mesmo instante.
+
+**A ideia.** Força num trecho reto com corrente num campo uniforme (formulário: $d\vec F_{(m)} = I\,d\vec\ell\times\vec B$, que dá $\vec F = I\vec l\times\vec B$).
+
+**A conta.** O módulo é $IlB$, porque a barra é perpendicular ao campo:
+$$F = IlB = \frac{Blv_y}{R}\,lB = \frac{B^2l^2v_y}{R}.$$
+A direção: perpendicular à barra (horizontal) e ao campo (perpendicular ao papel), ou seja, **vertical**. O sentido: com a corrente anti-horária, na barra (embaixo do circuito) ela anda num sentido que, com $\vec B$ entrando, dá força **para cima**. O enunciado põe $\hat y$ para baixo (o sentido da gravidade), então
+$$\vec F = -\frac{B^2l^2v_y}{R}\,\hat y.$$
+
+**Lenz.** A força aponta **contra** o movimento: ela freia a queda, porque é a queda que está aumentando o fluxo.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) A aceleração da barra',
+            texto: r`**O que se pede.** Pela segunda lei de Newton, a aceleração da barra no mesmo instante.
+
+**A ideia.** Sem atrito e com as outras forças desprezadas, agem na barra o **peso** ($mg$, para baixo, $+\hat y$) e a **força magnética** do item (b) (para cima). A soma delas é $m\vec a$.
+
+**A conta.** Ao longo de $\hat y$:
+$$ma = mg - \frac{B^2l^2v_y}{R}\quad\Rightarrow\quad\vec a = \left(g - \frac{B^2l^2v_y}{mR}\right)\hat y.$$
+
+**Interpretação.** No começo, com $v_y = 0$, a aceleração é $g$: queda livre. À medida que a barra ganha velocidade, a força magnética cresce e a aceleração **diminui**.`,
+            passo: 2,
+          },
+          {
+            titulo: '(d) A velocidade terminal',
+            texto: r`**O que se pede.** A velocidade com que a barra passa a cair em movimento uniforme, depois de algum tempo.
+
+**A ideia.** Velocidade constante quer dizer aceleração zero: a força magnética iguala o peso.
+
+**A conta.** Com $a = 0$ no item (c):
+$$g = \frac{B^2l^2v_t}{mR}\quad\Rightarrow\quad v_t = \frac{mgR}{B^2l^2}.$$
+
+**O paraquedista.** É o mesmo problema da queda com resistência do ar proporcional à velocidade: a força contrária cresce com $v$ até equilibrar o peso. Resolvendo a equação do item (c), a velocidade se aproxima de $v_t$ exponencialmente, $v_y(t) = v_t\left(1 - e^{-t/\tau}\right)$, com $\tau = \dfrac{mR}{B^2l^2}$.
+
+**Para onde vai a energia?** Com velocidade constante, a energia potencial gravitacional que a barra perde a cada segundo, $mgv_t$, vira calor na resistência, $RI^2$. Confira: $RI^2 = R\left(\dfrac{Blv_t}{R}\right)^2 = \dfrac{B^2l^2v_t^2}{R} = mgv_t$.`,
+            passo: 3,
+          },
         ],
         resultado: r`$I = Blv_y/R$; $v_t = mgR/B^2l^2$.`,
         errosComuns: ['Pôr a força magnética a favor do movimento.'],
@@ -476,8 +729,51 @@ O sinal é sempre o mesmo, oposto ao giro: Lenz em versão rotacional, e quem ma
       resolucao: {
         conceitos: [{ texto: 'Gerador: espira girando', lab: 'faraday' }, { texto: 'Torque numa espira', lab: 'forcas' }],
         etapas: [
-          { titulo: 'Fluxo e fem', texto: r`$\cos\omega t$ e sua derivada.`, passo: 1 },
-          { titulo: 'Torque', texto: r`$\mu\times B$ com $\mu \propto \sin\omega t$ dá $\sin^2$: nunca troca de sinal.`, passo: 2 },
+          {
+            titulo: '(a) O fluxo num instante qualquer',
+            texto: r`**O que se pede.** O fluxo magnético pela espira circular (raio $r$) que gira com velocidade angular $\omega$ em torno do eixo $X$, num campo uniforme $\vec B = B\hat z$. Em $t = 0$ ela está no plano $XY$, com a normal $\hat n$ apontando no sentido do campo.
+
+**A ideia.** Para uma superfície plana num campo uniforme, o fluxo é
+$$\Phi = \vec B\cdot\vec A = BA\cos\alpha,$$
+em que $\vec A$ é o vetor área (módulo igual à área, na direção da normal) e $\alpha$ é o ângulo entre $\vec B$ e a normal.
+
+**Montagem.** A área é $\pi r^2$. Em $t = 0$ a normal coincide com $\vec B$ ($\alpha = 0$). A espira gira com velocidade angular constante, e a normal gira junto: depois de um tempo $t$, o ângulo é $\alpha = \omega t$.
+
+**A conta.**
+$$\Phi(t) = B\pi r^2\cos\omega t.$$
+O fluxo oscila entre $+B\pi r^2$ (normal a favor do campo) e $-B\pi r^2$ (normal contra o campo), passando por zero quando a espira está de lado para o campo.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A corrente induzida',
+            texto: r`**O que se pede.** A corrente induzida na espira (resistência $R$) no mesmo instante.
+
+**A ideia.** Lei de Faraday (formulário): $\mathcal E_\text{ind} = -\dfrac{d\Phi_{\vec B}}{dt}$. A corrente vem da lei de Ohm, $I = \mathcal E/R$.
+
+**A conta.** Derivando o fluxo do item (a), com $\dfrac{d}{dt}\cos\omega t = -\omega\sin\omega t$:
+$$\mathcal E = B\pi r^2\omega\sin\omega t,\qquad I = \frac{B\pi r^2\omega\sin\omega t}{R}.$$
+O sinal positivo quer dizer corrente no sentido dado pela regra da mão direita em volta de $\hat n$.
+
+**Interpretação.** É uma corrente **alternada**: oscila com a frequência da rotação. É o princípio do **gerador** das usinas: girar uma bobina num campo magnético produz tensão alternada. A corrente é máxima quando o fluxo passa por zero (quando ele muda mais depressa), e zero quando o fluxo é máximo.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) O torque e a lei de Lenz',
+            texto: r`**O que se pede.** O vetor torque que o campo exerce sobre a espira no mesmo instante, interpretado com a lei de Lenz.
+
+**A ideia.** A espira com corrente é um dipolo magnético, $\vec\mu = NI\vec A = I\pi r^2\,\hat n$, e o campo exerce sobre ele o torque $\vec\tau = \vec\mu\times\vec B$ (os dois no formulário).
+
+**Montagem.** Girando em torno de $X$, a normal no instante $t$ é $\hat n = -\sin\omega t\,\hat y + \cos\omega t\,\hat z$ (em $t = 0$ ela é $\hat z$, e gira no sentido positivo em torno de $\hat x$). Usando $\hat y\times\hat z = \hat x$ e $\hat z\times\hat z = 0$:
+$$\hat n\times\hat z = -\sin\omega t\,\hat x.$$
+
+**A conta.**
+$$\vec\tau = I\pi r^2B\,(\hat n\times\hat z) = -I\pi r^2B\sin\omega t\,\hat x.$$
+Pondo a corrente do item (b):
+$$\vec\tau = -\frac{B^2\pi^2r^4\omega\sin^2\omega t}{R}\,\hat x.$$
+
+**Lenz.** O $\sin^2$ nunca é negativo: o torque aponta **sempre** para $-\hat x$, **contra** a rotação (que é em torno de $+\hat x$). A corrente oscila de sinal, mas o torque não: ele sempre freia o giro. Para manter $\omega$ constante, um motor (ou a turbina da usina) precisa realizar trabalho, e é esse trabalho que vira a energia elétrica dissipada na resistência.`,
+            passo: 2,
+          },
         ],
         resultado: r`$\tau_x = -B^2\pi^2r^4\omega\sin^2(\omega t)/R$.`,
         errosComuns: ['Esquecer que o torque é sempre resistente: ele não oscila de sinal como a corrente.'],
@@ -517,7 +813,22 @@ O sinal é sempre o mesmo, oposto ao giro: Lenz em versão rotacional, e quem ma
       respostas: [{ item: 'ddp', texto: r`$\varepsilon = B_TvL = 1{,}5$ V` }],
       resolucao: {
         conceitos: [{ texto: 'fem de movimento numa barra', lab: 'movimento' }],
-        etapas: [{ titulo: 'Conta', texto: r`$B_TvL = 10^{-4}\times250\times60 = 1{,}5$ V.`, passo: 0 }],
+        etapas: [
+          {
+            titulo: 'ddp entre as pontas das asas',
+            texto: r`**O que se pede.** A diferença de potencial entre as pontas das asas de um avião (envergadura $L = 60$ m) que voa a $v = 250$ m/s perpendicularmente ao campo da Terra, $B_T \approx 10^{-4}$ T.
+
+**A ideia: fem de movimento.** As asas são metálicas: têm elétrons livres. Elas se movem junto com o avião, e cada carga sente a força magnética $q\vec v\times\vec B$ (formulário: $\vec F_{(m)} = q\vec v\times\vec B$). Essa força aponta **ao longo da asa** (perpendicular a $\vec v$ e a $\vec B$) e empurra cargas para uma das pontas. Elas se acumulam até que o campo elétrico dessas cargas equilibre a força magnética. É o mesmo equilíbrio do seletor de velocidades: $qE = qvB$, ou seja, $E = vB$ ao longo da asa.
+
+**A conta.** A diferença de potencial é o campo vezes o comprimento:
+$$\Delta V = EL = B_TvL = (10^{-4})(250)(60) = 1{,}5\ \text{V}.$$
+
+**Pela lei de Faraday, o mesmo.** A asa "varre" uma área $Lv$ por segundo; o fluxo varrido por segundo é $B_TLv$, e $\mathcal E = \dfrac{d\Phi}{dt} = B_TLv$.
+
+**Haverá corrente?** Não. A asa não faz parte de um circuito fechado: a fem só separa cargas entre as pontas. E 1,5 V é pouco; não há risco nenhum.`,
+            passo: 0,
+          },
+        ],
         resultado: r`$1{,}5$ V.`,
         errosComuns: ['Esperar corrente: sem circuito fechado, a fem só separa cargas entre as pontas.'],
         oficial: { resposta: r`$\varepsilon = 1{,}50$ V.` },
@@ -576,9 +887,50 @@ O sinal é sempre o mesmo, oposto ao giro: Lenz em versão rotacional, e quem ma
       resolucao: {
         conceitos: [{ texto: 'fem de movimento com campo não uniforme', lab: 'movimento' }],
         etapas: [
-          { titulo: 'Sentido', texto: r`$\vec v\times\vec B$ para $a$.`, passo: 0 },
-          { titulo: 'Integral', texto: r`$\int vB\,dr$ com $B = \mu_0 I/2\pi r$.`, passo: 1 },
-          { titulo: 'Outras orientações', texto: r`Se $\vec v\times\vec B$ é perpendicular à barra, nada ao longo dela.`, passo: 2 },
+          {
+            titulo: '(a) Qual ponta fica no potencial maior',
+            texto: r`**O que se pede.** Uma barra condutora de comprimento $L$, perpendicular a um fio infinito com corrente $I$, move-se com velocidade $\vec v$ paralela ao fio, com a ponta mais próxima ($a$) a uma distância $d$. No equilíbrio, qual ponta tem o potencial maior?
+
+**A ideia: fem de movimento.** As cargas livres da barra andam junto com ela e sentem a força magnética $q\vec v\times\vec B$ (formulário). Se essa força tem componente ao longo da barra, ela empurra as cargas para uma das pontas, que ficam carregadas. Cargas positivas acumuladas numa ponta deixam essa ponta no potencial **maior**.
+
+**Montagem.** Na figura, a barra está abaixo do fio, onde o campo do fio (regra da mão direita com a corrente) aponta **para dentro** do papel. A velocidade é paralela ao fio, para a direita.
+
+**A conta da direção.** Para cargas positivas, $\vec v\times\vec B$ com $\vec v$ para a direita e $\vec B$ para dentro aponta **para cima**, ao longo da barra, em direção ao fio. As cargas positivas se acumulam na ponta $a$, a mais próxima do fio.
+
+**Resposta.** A ponta $a$ (a mais perto do fio) fica no potencial maior.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A diferença de potencial entre as pontas',
+            texto: r`**O que se pede.** A diferença de potencial entre as pontas da barra, no equilíbrio.
+
+**A ideia.** No equilíbrio, as cargas param de se acumular: em cada ponto da barra, a força elétrica das cargas acumuladas cancela a magnética, $qE = qvB$. Então o campo elétrico ao longo da barra vale $E = vB$ em cada ponto. Mas aqui $B$ **não é uniforme**: o campo do fio é $B = \dfrac{\mu_0I}{2\pi r}$ (com $r$ a distância ao fio), mais forte perto do fio. Por isso não basta fazer $vBL$: é preciso integrar.
+
+**A conta.** A diferença de potencial é a integral do campo elétrico ao longo da barra, de $r = d$ a $r = d + L$:
+$$\Delta V = \int_d^{d+L}vB\,dr = \frac{\mu_0Iv}{2\pi}\int_d^{d+L}\frac{dr}{r} = \frac{\mu_0Iv}{2\pi}\ln\frac{d + L}{d}.$$
+A ponta $a$ está nesse valor acima da outra.
+
+**Conferindo.** Se o fio estivesse muito longe ($d \gg L$), $\ln\dfrac{d + L}{d} \approx \dfrac Ld$ e $\Delta V \approx \dfrac{\mu_0I}{2\pi d}vL = BvL$, o resultado para campo uniforme.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) Barra se movendo perpendicular ao fio',
+            texto: r`**O que se pede.** O que aconteceria se a barra, com a mesma orientação (perpendicular ao fio), se movesse na direção perpendicular ao fio, ou seja, ao longo do próprio comprimento.
+
+**A ideia.** A força nas cargas é $q\vec v\times\vec B$, sempre perpendicular a $\vec v$. Se $\vec v$ aponta **ao longo da barra**, a força é perpendicular à barra: ela não empurra as cargas de uma ponta para a outra.
+
+**Resposta.** **Não surge diferença de potencial entre as pontas** $a$ e $b$. As cargas só se deslocam de um lado para o outro na **espessura** da barra (de uma face lateral para a outra), o que, para uma barra fina, dá uma diferença de potencial desprezível. O gabarito da monitoria descreve justamente essa separação lateral; entre $a$ e $b$, nada.`,
+            passo: 2,
+          },
+          {
+            titulo: '(d) Barra paralela ao fio',
+            texto: r`**O que se pede.** O que aconteceria com a barra **paralela** ao fio, movendo-se na mesma direção da figura (também paralela ao fio).
+
+**A ideia.** De novo, $\vec v$ aponta ao longo da própria barra. A força $q\vec v\times\vec B$ é perpendicular a $\vec v$, logo perpendicular à barra.
+
+**Resposta.** **Nenhuma diferença de potencial** ao longo da barra; só uma separação de cargas desprezível na espessura dela. Outro jeito de ver: a barra, ao se mover, não "corta" linhas de campo ao longo do seu comprimento, e a área varrida por ela é nula.`,
+            passo: 2,
+          },
         ],
         resultado: r`$\Delta V = \frac{\mu_0Iv}{2\pi}\ln\frac{d+L}{d}$, com $a$ no potencial maior.`,
         errosComuns: ['Usar $vBL$ com o campo de um ponto só: o campo varia ao longo da barra.'],
@@ -642,8 +994,43 @@ O sinal é sempre o mesmo, oposto ao giro: Lenz em versão rotacional, e quem ma
       resolucao: {
         conceitos: [{ texto: 'Campo elétrico induzido por B variável', lab: 'movimento' }],
         etapas: [
-          { titulo: 'Faraday', texto: r`$\oint\vec E\cdot d\vec\ell = -d\Phi_B/dt$ num círculo dá $E(r)$.`, passo: 0 },
-          { titulo: 'Simetria', texto: r`Forças opostas, torques iguais.`, passo: 2 },
+          {
+            titulo: '(a) A força total na haste é nula',
+            texto: r`**O que se pede.** Mostrar que a força total sobre a haste é zero. Ela tem comprimento $4R$, com uma carga $q$ em cada ponta, e está centrada numa região circular de raio $R$ onde há um campo $\vec B$ uniforme, saindo do papel e **crescendo** devagar.
+
+**A ideia: o campo elétrico induzido.** As cargas estão **paradas** e **fora** da região do campo magnético (a $2R$ do centro). Força magnética não há. Mas um campo magnético que **varia** cria um **campo elétrico induzido**, pela lei de Faraday (formulário):
+$$\oint_{\mathcal C}\vec E\cdot d\vec\ell = -\frac{d\Phi_{\vec B}}{dt}.$$
+
+**O campo induzido.** Pela simetria circular, $\vec E$ circula em torno do centro (tangente a círculos centrados nele), com módulo que só depende da distância $r$. Num círculo de raio $r > R$, $\oint\vec E\cdot d\vec\ell = E\cdot2\pi r$, e o fluxo é o de toda a região com campo, $\pi R^2B$:
+$$E\cdot2\pi r = \pi R^2\frac{dB}{dt}\quad\Rightarrow\quad E = \frac{R^2}{2r}\frac{dB}{dt}.$$
+Nas cargas ($r = 2R$): $E = \dfrac R4\dfrac{dB}{dt}$.
+
+**O sentido (Lenz).** O fluxo para **fora** do papel cresce; o campo induzido circula no sentido que empurraria uma corrente criando campo para **dentro**: sentido **horário**.
+
+**As forças.** Cada carga sente $q\vec E$, tangente ao círculo de raio $2R$. As duas cargas estão em pontos **diametralmente opostos**, onde o campo circulante aponta em sentidos opostos. As duas forças têm o mesmo módulo e sentidos opostos: **somam zero**. A repulsão elétrica entre as duas cargas também se cancela (ação e reação, e a haste é rígida).`,
+            passo: 1,
+          },
+          {
+            titulo: '(b) O torque e a sua origem',
+            texto: r`**O que se pede.** Mostrar que há um torque total sobre a haste, que a põe para girar, e dizer de onde ele vem.
+
+**A ideia.** Forças iguais e opostas que **não** estão na mesma linha formam um **binário**: força total zero, mas torque diferente de zero. Aqui cada força é **tangente** ao círculo, ou seja, perpendicular à haste, com braço de alavanca $2R$ em relação ao centro.
+
+**A conta.** Cada carga contribui com $\tau = qE\cdot2R$, e as duas giram para o mesmo lado (ambas acompanham a circulação horária do campo). Com $E = \dfrac R4\dfrac{dB}{dt}$ do item (a):
+$$\tau = 2\cdot qE\cdot2R = 4qER = qR^2\frac{dB}{dt}.$$
+
+**A origem.** É o **campo elétrico induzido** pela variação do campo magnético. Não é a força magnética: as cargas estão paradas e nem estão na região onde há $\vec B$. Esse exemplo mostra que o campo elétrico induzido existe mesmo **fora** da região onde $\vec B$ varia, e que ele é real: realiza trabalho e põe a haste para girar.`,
+            passo: 2,
+          },
+          {
+            titulo: '(c) O sentido de rotação',
+            texto: r`**O que se pede.** O sentido em que a haste gira.
+
+**A ideia.** As forças acompanham o campo elétrico induzido, que circula no sentido **horário** (item a, pela lei de Lenz: o fluxo para fora do papel cresce, e o campo induzido "tenta" criar campo para dentro).
+
+**Resposta.** A haste gira no sentido **horário** (visto com $\vec B$ saindo do papel). Em vetor, o torque é $\vec\tau = -qR^2\dfrac{dB}{dt}\,\hat z$, com $\hat z$ saindo do papel.`,
+            passo: 2,
+          },
         ],
         resultado: r`$\vec F = \vec 0$; $\vec\tau = -qR^2\dot B\,\hat z$ (horário).`,
         errosComuns: ['Procurar força magnética: as cargas estão paradas, e só o campo elétrico induzido age nelas.'],
@@ -693,8 +1080,51 @@ $$\oint\vec E\cdot d\vec\ell = -\frac{d\Phi_B}{dt} - \mu_0 I_m.$$`,
       resolucao: {
         conceitos: [{ texto: 'Lei de Gauss', lab: 'gauss' }, { texto: 'Equações de Maxwell', lab: 'maxwell' }],
         etapas: [
-          { titulo: 'Divergência de B', texto: r`Deixa de ser nula onde houver carga magnética.`, passo: 1 },
-          { titulo: 'Rotacional de E', texto: r`Ganha a corrente de carga magnética, como o de B tem a corrente elétrica.`, passo: 1 },
+          {
+            titulo: 'Gauss (B): a lei de Gauss do magnetismo muda',
+            texto: r`**O que se pede.** Dizer quais equações de Maxwell mudariam se existissem monopolos magnéticos (cargas magnéticas isoladas, um "polo norte" sozinho) e como.
+
+**As quatro equações hoje** (todas no formulário da P3):
+- Gauss elétrica: $\oint_S\vec E\cdot d\vec A = \dfrac{Q_\text{int}}{\varepsilon_0}$;
+- Gauss magnética: $\oint_S\vec B\cdot d\vec A = 0$;
+- Faraday: $\oint_{\mathcal C}\vec E\cdot d\vec\ell = -\dfrac{d\Phi_{\vec B}}{dt}$;
+- Ampère-Maxwell: $\oint_{\mathcal C}\vec B\cdot d\vec\ell = \mu_0I_\text{enc} + \mu_0\varepsilon_0\dfrac{d\Phi_{\vec E}}{dt}$.
+
+**Por que o fluxo de $\vec B$ é zero hoje.** Em volta de uma carga elétrica, o campo elétrico "sai" (ou "entra") e o fluxo é $Q/\varepsilon_0$. Em volta de um ímã, toda linha de campo que sai pelo polo N volta pelo polo S: não existe ponto de onde linhas de $\vec B$ só saiam. Cortar um ímã ao meio dá dois ímãs, cada um com N e S. Por isso o fluxo de $\vec B$ por qualquer superfície fechada é zero.
+
+**Com monopolos.** Uma carga magnética $Q_m$ seria um ponto de onde as linhas de $\vec B$ saem, como as de $\vec E$ saem de uma carga elétrica. A lei ganharia um termo de fonte, em simetria com a elétrica:
+$$\oint_S\vec B\cdot d\vec A = \mu_0Q_m.$$
+(A constante $\mu_0$ é uma escolha de unidades para a carga magnética.)`,
+            passo: 1,
+          },
+          {
+            titulo: 'Faraday: a lei de Faraday também muda',
+            texto: r`**O que se pede.** A outra equação que muda com monopolos magnéticos.
+
+**A ideia: simetria entre as equações.** Compare Faraday e Ampère-Maxwell (formulário):
+- Ampère-Maxwell: a circulação de $\vec B$ tem uma fonte de **corrente elétrica** ($\mu_0I_\text{enc}$) e um termo de fluxo elétrico variando.
+- Faraday: a circulação de $\vec E$ tem só o termo de fluxo magnético variando. Não há "corrente magnética" porque não há carga magnética para se mover.
+
+**Com monopolos.** Cargas magnéticas em movimento formariam uma **corrente magnética** $I_m$. Ela entraria na lei de Faraday como a corrente elétrica entra na de Ampère:
+$$\oint_{\mathcal C}\vec E\cdot d\vec\ell = -\frac{d\Phi_{\vec B}}{dt} - \mu_0I_m.$$
+O sinal de menos vem do mesmo motivo do sinal de menos do termo de fluxo; ele é necessário para que a carga magnética se conserve, como a elétrica.
+
+**Resultado.** As equações de Maxwell ficariam completamente simétricas entre eletricidade e magnetismo. Até hoje, nenhum monopolo magnético foi observado.`,
+            passo: 1,
+          },
+          {
+            titulo: 'Sem mudança: as outras duas equações',
+            texto: r`**O que se pede.** Completar a resposta: quais equações **não** mudam.
+
+**A lei de Gauss elétrica**, $\oint_S\vec E\cdot d\vec A = \dfrac{Q_\text{int}}{\varepsilon_0}$: a fonte do campo elétrico continua sendo a carga elétrica. Uma carga magnética parada não cria campo elétrico.
+
+**A lei de Ampère-Maxwell**, $\oint_{\mathcal C}\vec B\cdot d\vec\ell = \mu_0I_\text{enc} + \mu_0\varepsilon_0\dfrac{d\Phi_{\vec E}}{dt}$: ela já tem o termo de corrente **elétrica**, e uma corrente de monopolos não entra nela (entraria na de Faraday, como no item anterior).
+
+**Resposta.** Mudam só a lei de Gauss do magnetismo e a lei de Faraday. A lei de Gauss elétrica e a de Ampère-Maxwell ficam iguais.
+
+**Cuidado.** Um erro comum é mexer na lei de Ampère. Ela já tem a corrente elétrica, e os monopolos não mudam isso.`,
+            passo: 1,
+          },
         ],
         resultado: r`Mudam a lei de Gauss do magnetismo e a lei de Faraday.`,
         errosComuns: ['Mexer na lei de Ampère: ela já tem corrente elétrica e não depende de monopolos.'],
@@ -766,9 +1196,75 @@ O tempo de descarga não depende da geometria, só do material.`,
       resolucao: {
         conceitos: [{ texto: 'Corrente de deslocamento', lab: 'maxwell' }, { texto: 'Capacitor com dielétrico', lab: 'capacitor' }],
         etapas: [
-          { titulo: 'Campo e Ohm', texto: r`$E = Q/K\varepsilon_0A$ e $J = E/\rho$.`, passo: 1 },
-          { titulo: 'Conservação de carga', texto: r`$dQ/dt = -JA$ dá a exponencial.`, passo: 2 },
-          { titulo: 'Maxwell', texto: r`$J + J_d = 0$: sem fonte para $\vec B$.`, passo: 3 },
+          {
+            titulo: '(a) O campo dentro do capacitor',
+            texto: r`**O que se pede.** O campo elétrico no interior de um capacitor de placas paralelas (área $A$, placas tratadas como infinitas), cheio de um material de constante dielétrica $K$, quando a carga é $Q(t)$.
+
+**A ideia.**
+- Sem dielétrico, entre placas infinitas com densidade $\sigma = Q/A$, a lei de Gauss dá o campo uniforme $E_0 = \dfrac{\sigma}{\varepsilon_0} = \dfrac{Q}{\varepsilon_0A}$ (cada placa contribui com $\sigma/2\varepsilon_0$ e, entre elas, os campos se somam).
+- Um dielétrico que preenche o espaço se polariza e reduz o campo pelo fator $K$. É a mesma razão de $C = KC_0$ (formulário): com a mesma carga, a tensão e o campo ficam $K$ vezes menores.
+
+**A conta.**
+$$\vec E = \frac{Q(t)}{K\varepsilon_0A},$$
+uniforme, perpendicular às placas, apontando da placa **positiva** para a **negativa**.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A densidade de corrente no dielétrico',
+            texto: r`**O que se pede.** A densidade de corrente que atravessa o material, que não é um isolante perfeito (resistividade $\rho$).
+
+**A ideia.** Lei de Ohm em cada ponto (formulário):
+$$\vec J = \frac1\rho\vec E.$$
+O campo empurra as poucas cargas livres do material, que vão da placa positiva para a negativa.
+
+**A conta.** Com $\vec E$ do item (a):
+$$\vec J = \frac{Q(t)}{K\varepsilon_0\rho A},$$
+uniforme, no mesmo sentido de $\vec E$ (da placa positiva para a negativa). Essa corrente é o "vazamento" que vai descarregando o capacitor.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) A equação de Q(t) e a solução',
+            texto: r`**O que se pede.** Uma equação diferencial para $Q(t)$, a partir da definição de corrente, e sua solução com $Q(0) = Q_0$.
+
+**A ideia.** A corrente que atravessa o dielétrico, $I = JA$ (formulário: $I = \int_S\vec J\cdot d\vec A$), sai da placa positiva. A carga da placa diminui a essa taxa: $\dfrac{dQ}{dt} = -I$ (conservação da carga).
+
+**A equação.** Com $J$ do item (b):
+$$\frac{dQ}{dt} = -JA = -\frac{Q}{K\varepsilon_0\rho}.$$
+A taxa de perda é proporcional à própria carga: quanto mais carga, mais campo, mais corrente.
+
+**A solução.** É a equação de um **decaimento exponencial**. Separando as variáveis, $\dfrac{dQ}{Q} = -\dfrac{dt}{K\varepsilon_0\rho}$, e integrando de $0$ a $t$: $\ln\dfrac{Q}{Q_0} = -\dfrac{t}{K\varepsilon_0\rho}$. Então
+$$Q(t) = Q_0\,e^{-t/K\varepsilon_0\rho}.$$
+
+**Interpretação.** A constante de tempo é $\tau = K\varepsilon_0\rho$. Ela **não depende** da área nem da distância entre as placas, só do material. É o $RC$ do capacitor: a capacitância cresce com $A/d$ e a resistência do material com $d/A$, e as duas dependências se cancelam no produto.`,
+            passo: 2,
+          },
+          {
+            titulo: '(d) A corrente de deslocamento',
+            texto: r`**O que se pede.** A densidade de corrente de deslocamento de Maxwell, $\vec J_d = K\varepsilon_0\dfrac{\partial\vec E}{\partial t}$, comparada com a do item (b).
+
+**A ideia.** A corrente de deslocamento não é carga se movendo: é o termo de **campo elétrico variando** na lei de Ampère-Maxwell (formulário: $\mu_0\varepsilon_0\dfrac{d\Phi_{\vec E}}{dt}$; dentro de um dielétrico, entra o fator $K$). Ela age como fonte de campo magnético, como uma corrente comum.
+
+**A conta.** Com $E = \dfrac{Q}{K\varepsilon_0A}$ do item (a):
+$$J_d = K\varepsilon_0\frac{d}{dt}\left(\frac{Q}{K\varepsilon_0A}\right) = \frac1A\frac{dQ}{dt}.$$
+Pelo item (c), $\dfrac{dQ}{dt} = -\dfrac{Q}{K\varepsilon_0\rho}$:
+$$J_d = -\frac{Q(t)}{K\varepsilon_0\rho A}.$$
+
+**Comparando.** É **igual em módulo e oposta** à corrente de condução do item (b): $\vec J_d = -\vec J$. O campo diminui (o capacitor descarrega), e por isso a corrente de deslocamento aponta contra o campo, enquanto a de condução aponta a favor.`,
+            passo: 3,
+          },
+          {
+            titulo: '(e) Há campo magnético no dielétrico?',
+            texto: r`**O que se pede.** Dizer se haverá campo magnético dentro do dielétrico enquanto o capacitor descarrega.
+
+**A ideia.** Pela lei de Ampère-Maxwell (formulário), as fontes de campo magnético são a corrente de condução **e** a corrente de deslocamento. O que importa é a **soma** das duas.
+
+**A conta.** Pelo item (d), em todo ponto:
+$$\vec J + \vec J_d = \vec 0.$$
+A corrente total é zero. Além disso, com placas infinitas, a simetria não deixa direção preferida no plano das placas para o campo apontar.
+
+**Resposta.** **Não.** Há corrente de condução atravessando o material, mas a corrente de deslocamento a cancela exatamente, e não sobra nenhuma fonte para o campo magnético. Esperar campo só porque há corrente de condução é o erro comum aqui.`,
+            passo: 3,
+          },
         ],
         resultado: r`$Q = Q_0e^{-t/K\varepsilon_0\rho}$; $\vec J_d = -\vec J$; $\vec B = \vec 0$.`,
         errosComuns: ['Esperar campo magnético por haver corrente de condução: a de deslocamento a cancela exatamente.'],

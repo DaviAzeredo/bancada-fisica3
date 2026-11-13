@@ -522,6 +522,8 @@ export const Prova = z.object({
   id: z.string(),
   titulo: z.string(),
   subtitulo: z.string().optional(),
+  /** O quadro de fórmulas impresso na prova; aparece junto do enunciado de cada questão. */
+  formulario: z.object({ fonte: z.string(), formulas: z.array(z.string()).min(1) }).optional(),
   questoes: z.array(Scenario.extend({ numero: z.string(), secao: z.string().optional(), pontos: z.number().optional() })),
 })
 export type Prova = z.infer<typeof Prova>

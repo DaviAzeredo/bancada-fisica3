@@ -1,4 +1,5 @@
 import type { ObjetoInput, ProvaInput } from '../../scenario/schema'
+import { FORMULARIOS_PROVAS } from '../formularios'
 import { bezier, condutorOco, pol } from './modelos.ts'
 
 const r = String.raw
@@ -62,6 +63,7 @@ export const p1_2026_1_diurno: ProvaInput = {
   id: 'p1-2026-1-diurno',
   titulo: 'P1 · 2026/1 · Diurno',
   subtitulo: 'Física III · Primeira Prova · Versão A',
+  formulario: FORMULARIOS_PROVAS['p1-2026-1-diurno'],
   questoes: [
     /* ───────────────────────── Objetiva 1 ───────────────────────── */
     {

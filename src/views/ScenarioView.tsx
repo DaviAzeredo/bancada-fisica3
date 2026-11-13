@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect, useMemo, useState } from 'react'
-import type { Scenario } from '../scenario/schema'
+import type { Prova, Scenario } from '../scenario/schema'
 import { evalNum } from '../scenario/expr'
 import { Stage } from '../scene/Stage'
 import { MAX_CARGAS_PROVA, useRun } from '../store'
@@ -11,6 +11,7 @@ import { Measures } from '../ui/Measures'
 import { LayerToggles, Legend, SceneTools, TimeControls } from '../ui/Overlay'
 import { SelectionHud } from '../ui/SelectionHud'
 import { Rich } from '../ui/Rich'
+import { Formulario } from '../ui/Formulario'
 import { Solution } from '../ui/Solution'
 import { Steps, tituloDoPasso } from '../ui/Steps'
 import { useResolvedThrottled } from '../ui/useResolved'
@@ -29,6 +30,8 @@ export interface Header {
   route: 'lab' | 'prova' | 'lista'
   /** Recortes do enunciado original (WebP), na ordem de leitura. */
   figuras?: string[]
+  /** O quadro de fórmulas da prova, como sai impresso nela. */
+  formulario?: Prova['formulario']
 }
 
 function hasWebGL() {
@@ -345,6 +348,12 @@ export function ScenarioView({
                   ))}
                 </div>
               )}
+            </Section>
+          )}
+
+          {header.formulario && (
+            <Section title="Formulário" id="sec-formulario" aside={<span className="text-[12px] text-text-3">{header.formulario.fonte.replace(/^Formulário /, '')}</span>}>
+              <Formulario formulas={header.formulario.formulas} />
             </Section>
           )}
 

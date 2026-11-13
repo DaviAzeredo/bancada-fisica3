@@ -1,4 +1,5 @@
 import type { ProvaInput } from '../../scenario/schema'
+import { FORMULARIO_P2 } from '../formularios'
 
 const r = String.raw
 type C = number | string
@@ -67,6 +68,7 @@ export const lista_06: ProvaInput = {
   id: 'lista-06',
   titulo: 'Lista 6 · Campo magnético e força magnética',
   subtitulo: 'Física III-A · 2020/1 · gabarito da monitoria',
+  formulario: FORMULARIO_P2,
   questoes: [
     /* ───────────────────────── 1 ───────────────────────── */
     {
@@ -121,8 +123,31 @@ export const lista_06: ProvaInput = {
       resolucao: {
         conceitos: [{ texto: 'Força de Lorentz', lab: 'lorentz' }],
         etapas: [
-          { titulo: 'Produto vetorial', texto: r`$|\vec v\times\vec B| = vB\sin\alpha$.`, passo: 0 },
-          { titulo: 'Trabalho nulo', texto: r`$\vec F\perp\vec v$, então $dW = \vec F\cdot\vec v\,dt = 0$.`, passo: 1 },
+          {
+            titulo: '(a) Dá para andar no campo sem sentir força?',
+            texto: r`**O que se pede.** Dizer se uma partícula carregada pode se mover num campo magnético uniforme sem sofrer força, e como.
+
+**A ideia.** A força magnética sobre uma carga em movimento é (formulário)
+$$\vec F_{(m)} = q\vec v\times\vec B.$$
+O módulo de um produto vetorial é $|\vec v\times\vec B| = vB\sin\alpha$, com $\alpha$ o ângulo entre $\vec v$ e $\vec B$. Ele é zero quando os dois vetores são **paralelos** ($\alpha = 0$) ou **antiparalelos** ($\alpha = 180°$), porque $\sin\alpha = 0$.
+
+**Resposta.** **Sim**: se a velocidade é paralela (ou antiparalela) ao campo, $\vec v\times\vec B = 0$ e não há força. A partícula segue em linha reta com velocidade constante, mesmo dentro do campo. (Uma partícula parada também não sente força, mas aí ela não está se movendo.)`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O que a força magnética faz, se não realiza trabalho',
+            texto: r`**O que se pede.** Se a força magnética não realiza trabalho, como ela afeta o movimento? E que forças da Mecânica se comportam assim?
+
+**A ideia.** Pela definição de produto vetorial, $\vec v\times\vec B$ é sempre **perpendicular** a $\vec v$. Então a força magnética é sempre perpendicular à velocidade. O trabalho num intervalo $dt$ é $dW = \vec F\cdot\vec v\,dt$, e o produto escalar de vetores perpendiculares é zero: $dW = 0$. Pelo teorema trabalho-energia, a energia cinética não muda, e a **rapidez** (o módulo da velocidade) fica constante.
+
+**O efeito.** A força magnética muda só a **direção** da velocidade: ela **curva** a trajetória. Com $\vec v$ perpendicular a $\vec B$, a partícula descreve um círculo; num ângulo qualquer, uma hélice (a parte de $\vec v$ ao longo de $\vec B$ segue intacta e a parte perpendicular gira).
+
+**Na Mecânica.** Fazem o mesmo papel as forças que agem como **resultante centrípeta** num movimento circular uniforme, sempre perpendiculares à velocidade:
+- a tração no fio de um pêndulo cônico, ou de uma pedra girada por uma corda;
+- a força normal num looping ou numa curva compensada;
+- a gravidade num satélite em órbita circular.`,
+            passo: 1,
+          },
         ],
         resultado: r`(a) sim, com $\vec v\parallel\vec B$; (b) só muda a direção de $\vec v$.`,
         errosComuns: ['Achar que a força magnética acelera ou freia a partícula.'],
@@ -186,8 +211,36 @@ Com $\vec v\perp\vec B$ é o seletor de velocidades da aula: só passa reto quem
       resolucao: {
         conceitos: [{ texto: 'Força de Lorentz e seletor de velocidades', lab: 'lorentz' }],
         etapas: [
-          { titulo: 'Resultante zero', texto: r`MRU $\Leftrightarrow$ $\vec F = 0$.`, passo: 0 },
-          { titulo: 'Geral', texto: r`A componente paralela de $\vec v$ não contribui.`, passo: 1 },
+          {
+            titulo: 'Relação E = −v × B para o movimento retilíneo uniforme',
+            texto: r`**O que se pede.** Mostrar que, para uma partícula atravessar em movimento retilíneo uniforme (MRU) uma região com campos $\vec E$ e $\vec B$ uniformes, é preciso que $\vec E = -\vec v\times\vec B$.
+
+**A ideia.** MRU quer dizer velocidade constante, em módulo e em direção. Pela primeira lei de Newton, isso só acontece se a força **resultante** for zero. Na região agem a força elétrica e a magnética (formulário):
+$$\vec F_{(e)} = q\vec E,\qquad\vec F_{(m)} = q\vec v\times\vec B.$$
+Somadas, dão a força de Lorentz, $\vec F = q(\vec E + \vec v\times\vec B)$.
+
+**A conta.**
+$$q(\vec E + \vec v\times\vec B) = 0\quad\Rightarrow\quad\vec E = -\vec v\times\vec B.$$
+(Desprezando a gravidade, e com $q \neq 0$.) A força elétrica tem de cancelar exatamente a magnética.
+
+**O seletor de velocidades.** É o caso visto em aula, com $\vec v\perp\vec B$ e $\vec E$ perpendicular aos dois: em módulo, $E = vB$. Só passa reto quem tem $v = E/B$; as outras partículas são desviadas.
+
+**Por que isso é uma condição sobre $\vec v$.** Os campos são fixos; a relação só vale para uma velocidade específica (em módulo e direção, na parte perpendicular a $\vec B$).`,
+            passo: 0,
+          },
+          {
+            titulo: 'Perpendicular? A velocidade precisa ser perpendicular a B?',
+            texto: r`**O que se pede.** Dizer se $\vec v$ precisa ser perpendicular a $\vec B$ para que $\vec E = -\vec v\times\vec B$ possa ser satisfeita.
+
+**A ideia.** Decomponha a velocidade em uma parte paralela a $\vec B$ e outra perpendicular: $\vec v = \vec v_\parallel + \vec v_\perp$. O produto vetorial de vetores paralelos é zero, então
+$$\vec v\times\vec B = \vec v_\perp\times\vec B.$$
+A parte paralela **não entra** na força magnética nem na condição.
+
+**Resposta.** **Não.** A dedução não usou em lugar nenhum que $\vec v\perp\vec B$. Para qualquer ângulo $\beta$ entre $\vec v$ e $\vec B$, basta um campo elétrico $\vec E = -\vec v\times\vec B$, de módulo $E = vB\sin\beta$, e a partícula segue reta. O caso perpendicular é só o mais comum.
+
+**Cuidado.** "$E = vB$" só vale com $\vec v\perp\vec B$; no geral, é $E = vB\sin\beta$.`,
+            passo: 1,
+          },
         ],
         resultado: r`$\vec E = -\vec v\times\vec B$, para qualquer ângulo.`,
         errosComuns: ['Escrever $E = vB$ como se valesse sempre: no caso geral, $E = vB\\sin\\beta$.'],
@@ -238,8 +291,24 @@ Com $\vec v\perp\vec B$ é o seletor de velocidades da aula: só passa reto quem
       resolucao: {
         conceitos: [{ texto: 'Movimento circular em campo magnético', lab: 'lorentz' }],
         etapas: [
-          { titulo: 'Sinal', texto: r`O sentido da curva dá o sinal da carga.`, passo: 0 },
-          { titulo: 'Raio', texto: r`$r \propto m/|q|$: a alfa curva menos que o próton.`, passo: 1 },
+          {
+            titulo: 'Trajetórias: qual é de qual partícula',
+            texto: r`**O que se pede.** Quatro partículas entram com a mesma velocidade $\vec v_0$ num campo magnético uniforme: um próton, um nêutron, um elétron e uma partícula alfa (2 prótons + 2 nêutrons). Associar cada uma a uma trajetória da figura.
+
+**A ideia.** A força magnética é $\vec F_{(m)} = q\vec v\times\vec B$ (formulário). Duas coisas decidem a trajetória:
+- **o sinal da carga** decide para que lado ela curva: trocar $q$ por $-q$ inverte a força;
+- **o raio da curva**: com $\vec v\perp\vec B$, a força magnética, de módulo $|q|vB$, faz o papel de força centrípeta, $\dfrac{mv^2}{r}$. Daí (não está no formulário)
+$$r = \frac{mv}{|q|B}.$$
+Com a mesma velocidade e o mesmo campo, o raio é proporcional à razão $m/|q|$: mais massa por carga, curva mais aberta.
+
+**Partícula por partícula.**
+- **Nêutron:** sem carga, sem força. Segue **reto**: trajetória **3**.
+- **Sinal:** com $\vec B$ entrando na página e $\vec v_0$ para a direita, $\vec v\times\vec B$ aponta para **cima**. Cargas positivas (próton, alfa) curvam para cima; o **elétron**, negativo, curva para **baixo**: trajetória **4**.
+- **Próton contra alfa:** a alfa tem cerca de 4 vezes a massa e 2 vezes a carga do próton, logo $m/q$ duas vezes maior e raio **2 vezes maior**: curva menos. A **alfa** é a trajetória **2**, a mais aberta das que sobem, e o **próton** é a **1**, a mais fechada.
+
+**Repare.** O que importa é $m/q$, e não a carga sozinha. A alfa tem mais carga, mas curva **menos**. E o elétron, com massa 1836 vezes menor que a do próton, faz um círculo muito pequeno.`,
+            passo: 1,
+          },
         ],
         resultado: r`1 próton, 2 alfa, 3 nêutron, 4 elétron.`,
         errosComuns: ['Achar que a alfa, mais carregada, curva mais: o que conta é a razão m/q.'],
@@ -314,9 +383,70 @@ Com $\vec v\perp\vec B$ é o seletor de velocidades da aula: só passa reto quem
       resolucao: {
         conceitos: [{ texto: 'Movimento helicoidal em campo magnético', lab: 'lorentz' }],
         etapas: [
-          { titulo: 'Decompor', texto: r`$v_y$ livre, $v_x$ gira.`, passo: 1 },
-          { titulo: 'Círculo', texto: r`Força magnética como centrípeta.`, passo: 2 },
-          { titulo: 'Passo', texto: r`$v_y$ vezes o período.`, passo: 3 },
+          {
+            titulo: '(a) A força no instante inicial',
+            texto: r`**O que se pede.** Módulo, direção e sentido da força magnética sobre a partícula de carga $-q$ que entra com $\vec v = v_x\hat x + v_y\hat y$ no campo $\vec B = B\hat y$.
+
+**A ideia.** Força magnética (formulário): $\vec F_{(m)} = q\vec v\times\vec B$, aqui com a carga $-q$. Os produtos vetoriais dos unitários: $\hat x\times\hat y = \hat z$ e $\hat y\times\hat y = 0$ (vetores paralelos).
+
+**A conta.**
+$$\vec F = (-q)\big(v_x\hat x + v_y\hat y\big)\times B\hat y = -qB\big(v_x\,\hat x\times\hat y + v_y\,\hat y\times\hat y\big) = -qv_xB\,\hat z.$$
+
+**Resposta.** Módulo $qv_xB$, na direção $z$, no sentido $-\hat z$. Só a parte da velocidade **perpendicular** ao campo ($v_x$) produz força; a parte paralela ($v_y$) não contribui.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) Por que o movimento é uma hélice',
+            texto: r`**O que se pede.** Mostrar que o movimento é helicoidal e dizer qual é o eixo da hélice.
+
+**A ideia.** Separe o movimento em duas partes: ao longo do campo ($y$) e no plano perpendicular a ele ($xz$).
+- **Ao longo de $y$:** a força $q\vec v\times\vec B$ é sempre perpendicular a $\vec B$, então nunca tem componente $y$. Sem força nessa direção, $v_y$ fica **constante**: a partícula avança uniformemente ao longo de $y$.
+- **No plano $xz$:** a componente de $\vec v$ nesse plano tem módulo constante $v_x$ (a força magnética não realiza trabalho, então a rapidez não muda, e $v_y$ também não). A força tem módulo constante $qv_xB$ e é sempre perpendicular a essa componente: é uma força centrípeta de módulo fixo. O resultado é um **movimento circular uniforme** no plano $xz$.
+
+**Juntando.** Um círculo no plano perpendicular a $\vec B$, mais um avanço uniforme ao longo de $\vec B$: uma **hélice**, como uma mola.
+
+**Resposta.** O eixo da hélice é **paralelo a $\vec B$**, ou seja, à direção $\hat y$.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) O raio e o período do círculo',
+            texto: r`**O que se pede.** O raio e o período do movimento circular no plano perpendicular ao eixo.
+
+**A ideia.** No movimento circular uniforme, a força resultante aponta para o centro e vale $\dfrac{mv^2}{R}$ (força centrípeta). Aqui ela é a força magnética, de módulo $qv_xB$, e a velocidade no círculo é $v_x$.
+
+**A conta.**
+$$qv_xB = \frac{mv_x^2}{R}\quad\Rightarrow\quad R = \frac{mv_x}{qB}.$$
+O período é o tempo de uma volta, comprimento ÷ velocidade:
+$$T = \frac{2\pi R}{v_x} = \frac{2\pi m}{qB}.$$
+
+**Repare.** O período não depende da velocidade: partículas mais rápidas fazem círculos maiores, no mesmo tempo. É o princípio do cíclotron. **Cuidado:** no raio entra só $v_x$, a parte perpendicular ao campo, e não o módulo de $\vec v$.`,
+            passo: 2,
+          },
+          {
+            titulo: '(d) O passo da hélice',
+            texto: r`**O que se pede.** O passo da hélice: quanto a partícula avança ao longo do eixo durante uma volta.
+
+**A ideia.** Pelo item (b), ao longo do eixo ($y$) a velocidade é constante, $v_y$. Uma volta dura um período $T$ (item c). Distância = velocidade × tempo.
+
+**A conta.**
+$$p = v_yT = \frac{2\pi mv_y}{qB}.$$
+
+**Conferindo.** Se $v_y = 0$ (entrada perpendicular ao campo), o passo é zero e a hélice vira um círculo fechado. Se $v_x = 0$ (entrada paralela ao campo), o raio é zero e a partícula segue em linha reta.`,
+            passo: 3,
+          },
+          {
+            titulo: '(e) O sentido de giro, visto por quem a vê chegar',
+            texto: r`**O que se pede.** O sentido de rotação da partícula (horário ou anti-horário) para um observador que a vê se aproximando.
+
+**A ideia.** Use a força do item (a) para ver para que lado a trajetória curva. Como $v_y > 0$, a partícula avança no sentido $+y$: quem a vê chegar está no lado $+y$, olhando para $-y$. Para esse observador, olhando o plano $xz$ de frente, o eixo $x$ aponta para a direita e o eixo $z$ aponta para baixo. (Os eixos $x$, $y$, $z$ formam um sistema de mão direita: com $\hat y$ apontando para o observador e $\hat x$ para a direita, $\hat z$ fica para baixo, porque $\hat x\times(-\hat z) = \hat y$.)
+
+**O giro.** No início, a velocidade no plano é $v_x\hat x$ (para a direita) e a força é $-qv_xB\,\hat z$, que, para esse observador, aponta para **cima**. Andar para a direita e curvar para cima é girar no sentido **anti-horário**.
+
+**Regra geral.** Vista de onde o campo aponta (com $\vec B$ vindo na direção de quem olha), uma carga positiva gira no sentido horário e uma negativa, no anti-horário. Aqui o campo aponta para o observador e a carga é negativa.
+
+**Resposta.** **Anti-horário.**`,
+            passo: 4,
+          },
         ],
         resultado: r`$\vec F_0 = -qv_xB\hat z$; $R = mv_x/qB$; $T = 2\pi m/qB$; $p = v_yT$; anti-horário.`,
         errosComuns: ['Usar a velocidade inteira no raio: só $v_x$, perpendicular a $\\vec B$, entra.', 'Esquecer o sinal negativo da carga no sentido da força.'],
@@ -388,9 +518,37 @@ sem depender de $v$ nem de $a_0$. Vetorialmente, $\vec\mu = -\dfrac{e}{2m_e}\vec
       resolucao: {
         conceitos: [{ texto: 'Espira de corrente e momento de dipolo', lab: 'trechos' }],
         etapas: [
-          { titulo: 'Corrente', texto: r`Carga por período.`, passo: 0 },
-          { titulo: 'Dipolo', texto: r`$\mu = IA$.`, passo: 0 },
-          { titulo: 'Razão', texto: r`Dividir por $L = mva_0$.`, passo: 1 },
+          {
+            titulo: '(a) O momento de dipolo magnético da órbita',
+            texto: r`**O que se pede.** Módulo, direção e sentido do momento de dipolo magnético do elétron (carga $-e$) em órbita circular de raio $a_0$ e velocidade $v$.
+
+**A ideia.** O elétron girando é uma **espira de corrente**. Uma espira plana com $N$ voltas, corrente $I$ e área $A$ tem momento de dipolo (formulário)
+$$\vec\mu = NI\vec A,$$
+com $\vec A$ perpendicular ao plano da espira, no sentido dado pela **regra da mão direita**: os dedos acompanham a corrente e o polegar aponta $\vec\mu$.
+
+**Passo 1: a corrente.** Num ponto da órbita passa uma carga $e$ a cada período $T = \dfrac{2\pi a_0}{v}$:
+$$I = \frac eT = \frac{ev}{2\pi a_0}.$$
+
+**Passo 2: o módulo.** Uma volta ($N = 1$), área $\pi a_0^2$:
+$$\mu = I\pi a_0^2 = \frac{ev}{2\pi a_0}\,\pi a_0^2 = \frac{eva_0}{2}.$$
+
+**Passo 3: direção e sentido.** Perpendicular ao plano da órbita. O sentido vem da corrente, e a corrente de uma carga **negativa** circula **ao contrário** do elétron. O momento angular do elétron, $\vec L = m_e\vec r\times\vec v$, segue o sentido do movimento pela mesma regra da mão direita. Então $\vec\mu$ aponta **contra** $\vec L$.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A razão giromagnética',
+            texto: r`**O que se pede.** A razão $\mu/L$ entre o momento de dipolo magnético e o momento angular orbital do elétron.
+
+**A ideia.** O momento angular de uma partícula em movimento circular uniforme tem módulo $L = mvr$: massa × velocidade × raio, porque $\vec r$ e $\vec v$ são perpendiculares.
+
+**A conta.** Com $L = m_eva_0$ e $\mu$ do item (a):
+$$\frac{\mu}{L} = \frac{eva_0/2}{m_eva_0} = \frac{e}{2m_e}.$$
+
+**Interpretação.** A velocidade e o raio cancelaram: a razão só depende da carga e da massa do elétron. Qualquer órbita, rápida ou lenta, grande ou pequena, tem a mesma razão. Em forma vetorial, com o sinal do item (a):
+$$\vec\mu = -\frac{e}{2m_e}\vec L.$$
+Essa relação é a base do magnetismo atômico: o momento magnético de um átomo é proporcional ao momento angular dos seus elétrons.`,
+            passo: 1,
+          },
         ],
         resultado: r`$\mu = eva_0/2$, oposto a $\vec L$; $\mu/L = e/2m_e$.`,
         errosComuns: ['Pôr o momento de dipolo no mesmo sentido do momento angular: para o elétron, eles são opostos.'],
@@ -474,9 +632,46 @@ A medida refaz essa conta com o raio de curvatura da simulação.`,
           { texto: 'Movimento circular em campo magnético', lab: 'lorentz' },
         ],
         etapas: [
-          { titulo: 'Energia', texto: r`$qV = mv^2/2$.`, passo: 0 },
-          { titulo: 'Raio', texto: r`$R = mv/qB$.`, passo: 1 },
-          { titulo: 'Razão', texto: r`$R\propto\sqrt m$.`, passo: 2 },
+          {
+            titulo: '(a) A velocidade na entrada do campo',
+            texto: r`**O que se pede.** A velocidade das partículas (carga $q$, massa $m$) depois de aceleradas do repouso por uma diferença de potencial $V$.
+
+**A ideia.** Conservação de energia. Ao atravessar uma diferença de potencial $V$, a carga perde energia potencial $qV$ (o potencial é energia por carga), e essa energia vira cinética.
+
+**A conta.** Partindo do repouso:
+$$qV = \frac12mv^2\quad\Rightarrow\quad v = \sqrt{\frac{2qV}{m}}.$$
+
+**Repare.** Todas as partículas de mesma carga ganham a **mesma energia**; as mais leves saem mais rápidas.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A massa a partir do raio',
+            texto: r`**O que se pede.** A massa $m$ em função de $B$, $V$, $R$ e $q$, sabendo o raio $R$ da trajetória circular no campo.
+
+**A ideia.** No campo magnético, com a velocidade perpendicular a $\vec B$, a força magnética $qvB$ (formulário: $\vec F_{(m)} = q\vec v\times\vec B$) é a força centrípeta $\dfrac{mv^2}{R}$ de um movimento circular uniforme.
+
+**A conta.**
+$$qvB = \frac{mv^2}{R}\quad\Rightarrow\quad R = \frac{mv}{qB}.$$
+Com a velocidade do item (a):
+$$R = \frac{m}{qB}\sqrt{\frac{2qV}{m}} = \frac1B\sqrt{\frac{2mV}{q}}.$$
+Elevando ao quadrado e isolando $m$:
+$$R^2B^2 = \frac{2mV}{q}\quad\Rightarrow\quad m = \frac{qR^2B^2}{2V}.$$
+
+**É assim que o aparelho "pesa" íons.** Conhecendo $q$, $V$ e $B$ e medindo onde cada íon bate no anteparo (que dá $R$), obtém-se a massa.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) A razão entre os raios dos dois isótopos',
+            texto: r`**O que se pede.** A razão entre os raios das trajetórias dos íons ¹²C⁺ e ¹⁴C⁺, num feixe com os dois misturados.
+
+**A ideia.** Pelo item (b), $R = \dfrac1B\sqrt{\dfrac{2mV}{q}}$. Os dois íons têm a **mesma carga** ($+e$, um elétron a menos) e passam pelos mesmos $V$ e $B$. Então só a massa muda, e o raio é proporcional a $\sqrt m$. As massas estão na razão $12:14$.
+
+**A conta.**
+$$\frac{R_{12}}{R_{14}} = \sqrt{\frac{m_{12}}{m_{14}}} = \sqrt{\frac{12}{14}} = \sqrt{\frac67} \approx 0{,}93.$$
+
+**Cuidado.** O raio **não** é proporcional à massa: os dois íons ganham a mesma energia, e o mais leve sai mais rápido. Esse efeito compensa parte da diferença, e sobra a raiz. Os dois isótopos batem no anteparo em pontos separados por $2(R_{14} - R_{12})$, o diâmetro de cada semicírculo.`,
+            passo: 2,
+          },
         ],
         resultado: r`$v = \sqrt{2qV/m}$; $m = qR^2B^2/2V$; $R_{12}/R_{14} = \sqrt{6/7}$.`,
         errosComuns: ['Usar $R \\propto m$: com a mesma energia, a velocidade também muda, e sobra a raiz.'],
@@ -530,8 +725,27 @@ A medida refaz essa conta com o raio de curvatura da simulação.`,
       resolucao: {
         conceitos: [{ texto: 'Força num fio em campo uniforme', lab: 'forcas' }],
         etapas: [
-          { titulo: 'Campo uniforme', texto: r`$\vec F = I\,\overrightarrow{AB}\times\vec B$.`, passo: 0 },
-          { titulo: 'Comparar', texto: r`Distâncias horizontais de A a B.`, passo: 1 },
+          {
+            titulo: 'Ordem das forças nos quatro fios',
+            texto: r`**O que se pede.** Quatro fios de formas diferentes levam a mesma corrente $I$ do ponto $A$ ao ponto $B$, num campo magnético uniforme vertical (para cima). Ordenar, do menor para o maior, os módulos $F_i$ da força magnética total em cada um.
+
+**A ideia.** A força num pedacinho de fio é (formulário)
+$$d\vec F_{(m)} = I\,d\vec\ell\times\vec B,$$
+com $d\vec\ell$ apontando no sentido da corrente. A força total é a soma sobre o fio todo. Se $\vec B$ é **uniforme** (o mesmo em todo lugar), ele sai da integral:
+$$\vec F = I\left(\int_A^Bd\vec\ell\right)\times\vec B = I\,\overrightarrow{AB}\times\vec B.$$
+A soma de todos os pedacinhos $d\vec\ell$ de $A$ até $B$ é simplesmente o vetor que vai de $A$ a $B$, **qualquer que seja o formato** do caminho. Então, num campo uniforme, a força só depende dos pontos de início e de fim.
+
+**Então as quatro forças são iguais?** Não: cada desenho da figura tem os **seus próprios** pontos $A$ e $B$, em posições diferentes. O que conta é o vetor de $A$ até $B$ em cada desenho.
+
+**Só a parte horizontal conta.** Com $\vec B$ vertical, a parte vertical do vetor início → fim é paralela ao campo e não dá força. Sobra a parte horizontal, de comprimento $\Delta x$:
+$$F = I\,\Delta x\,B.$$
+
+**Lendo a figura.** As distâncias horizontais entre início e fim são cerca de $2$ m (IV), $3$ m (I), $3{,}5$ m (II) e $4$ m (III). Então
+$$F_{IV} < F_I < F_{II} < F_{III}.$$
+
+**Cuidado.** O comprimento do fio não importa: o fio IV é o mais longo e recebe a **menor** força.`,
+            passo: 1,
+          },
         ],
         resultado: r`$F_{IV} < F_I < F_{II} < F_{III}$.`,
         errosComuns: ['Comparar o comprimento de cada fio: o fio IV é o mais longo e leva a menor força.'],
@@ -592,8 +806,40 @@ $$\vec F = -2ILB\,\hat z.$$`,
       resolucao: {
         conceitos: [{ texto: 'Força num fio em campo uniforme', lab: 'forcas' }],
         etapas: [
-          { titulo: 'Atalho', texto: r`Em campo uniforme, só o vetor início → fim de cada trecho importa.`, passo: 0 },
-          { titulo: 'Trocar o campo', texto: r`Agora os retos é que são perpendiculares.`, passo: 1 },
+          {
+            titulo: '(a) A força com B ao longo de y',
+            texto: r`**O que se pede.** A força magnética total sobre o fio: dois trechos retos de comprimento $L$, paralelos ao eixo $Y$, ligados por um semicírculo de raio $a$ no plano $XZ$, com corrente $I$, no campo $\vec B = B\hat y$.
+
+**A ideia.** A força num pedacinho de fio é (formulário) $d\vec F_{(m)} = I\,d\vec\ell\times\vec B$. Com $\vec B$ **uniforme**, ele sai da integral, e a força num trecho qualquer é
+$$\vec F = I\,\vec d\times\vec B,$$
+em que $\vec d$ é o vetor do início ao fim do trecho. O formato do caminho não importa.
+
+**Trecho por trecho.**
+- **Trechos retos:** são paralelos ao eixo $Y$, logo paralelos a $\vec B$. O produto vetorial de vetores paralelos é zero: **força nula**.
+- **Semicírculo:** vai de uma ponta à outra de um diâmetro. Pela figura, a corrente o percorre do ponto $x = a$ ao ponto $x = -a$, então $\vec d = -2a\,\hat x$:
+$$\vec F = I(-2a\,\hat x)\times B\hat y = -2IaB\,(\hat x\times\hat y) = -2IaB\,\hat z.$$
+
+**Resposta.** $\vec F = -2IaB\,\hat z$: módulo $2IaB$, no sentido $-z$. Integrar o semicírculo ponto a ponto daria o mesmo, com muito mais conta e mais chance de errar o sinal.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A força com B ao longo de x',
+            texto: r`**O que se pede.** A força total no mesmo fio, agora com o campo $\vec B = B\hat x$.
+
+**A ideia.** O mesmo atalho para campo uniforme: em cada trecho, $\vec F = I\,\vec d\times\vec B$, com $\vec d$ do início ao fim do trecho.
+
+**Trecho por trecho.**
+- **Semicírculo:** $\vec d = -2a\,\hat x$ agora é **paralelo** a $\vec B$: força nula.
+- **Cada trecho reto:** pela figura, a corrente percorre os dois no sentido $+\hat y$ (um chega ao semicírculo e o outro sai dele, ambos subindo), com $\vec d = L\,\hat y$:
+$$\vec F_\text{reto} = I(L\hat y)\times B\hat x = ILB\,(\hat y\times\hat x) = -ILB\,\hat z.$$
+Os dois retos dão a mesma força.
+
+**A conta.**
+$$\vec F = 2\times(-ILB\,\hat z) = -2ILB\,\hat z.$$
+
+**Repare.** Ao trocar a direção do campo, os papéis se invertem: antes só o semicírculo sentia força; agora só os retos.`,
+            passo: 1,
+          },
         ],
         resultado: r`(a) $-2IaB\hat z$; (b) $-2ILB\hat z$.`,
         errosComuns: ['Integrar o semicírculo ponto a ponto e errar o sinal: o atalho $I\\vec d\\times\\vec B$ evita a conta.'],
@@ -686,9 +932,43 @@ $\vec F$ tem de apontar para o lado de cima do plano: na figura, a corrente vai 
       resolucao: {
         conceitos: [{ texto: 'Força num fio em campo uniforme', lab: 'forcas' }],
         etapas: [
-          { titulo: 'Direção de F', texto: r`$\vec L\times\vec B$ com $\vec B$ vertical: horizontal.`, passo: 0 },
-          { titulo: 'Ao longo do plano', texto: r`$Mg\sin\theta = F\cos\theta$.`, passo: 1 },
-          { titulo: 'Perpendicular', texto: r`$N = Mg\cos\theta + F\sin\theta$.`, passo: 2 },
+          {
+            titulo: '(a) A corrente que segura a barra',
+            texto: r`**O que se pede.** Intensidade e sentido da corrente na barra (massa $M$, comprimento $L$) para ela ficar parada no plano inclinado sem atrito, de ângulo $\theta$, com um campo $\vec B$ **vertical**, para cima.
+
+**A ideia.** Parada quer dizer força resultante zero. Agem três forças:
+- o **peso** $Mg$, vertical para baixo;
+- a **normal** $N$, perpendicular ao plano (não há atrito);
+- a **força magnética** na barra. Num trecho reto num campo uniforme, $d\vec F_{(m)} = I\,d\vec\ell\times\vec B$ (formulário) dá $\vec F = I\vec L\times\vec B$, com $\vec L$ ao longo da barra, no sentido da corrente. A barra é horizontal e $\vec B$ é vertical, então $\vec F$ é **horizontal** (perpendicular aos dois) e tem módulo $ILB$.
+
+**Montagem.** Decomponha as forças ao longo do plano (a direção em que a barra poderia escorregar). Ao longo do plano, a normal não tem componente.
+- O peso puxa plano abaixo com $Mg\sin\theta$.
+- A força magnética, horizontal e apontando para o lado em que o plano sobe, empurra plano acima com $ILB\cos\theta$ (a horizontal faz ângulo $\theta$ com o plano).
+
+**A conta.**
+$$Mg\sin\theta = ILB\cos\theta\quad\Rightarrow\quad I = \frac{Mg\tan\theta}{BL}.$$
+
+**O sentido.** A força magnética tem de apontar na horizontal **para o lado em que o plano sobe**, para ter uma componente plano acima. Pela regra $\vec F = I\vec L\times\vec B$ com $\vec B$ para cima, isso pede, na figura, a corrente **da direita para a esquerda**.
+
+**Conferindo.** Com o plano na horizontal ($\theta = 0$), $\tan\theta = 0$ e não é preciso corrente nenhuma: a barra já não escorrega. O gabarito da monitoria dá $I = \dfrac{Mg}{BL\tan\theta}$, que iria ao infinito nesse caso; o certo é com $\tan\theta$ no numerador.`,
+            passo: 1,
+          },
+          {
+            titulo: '(b) A força que o plano faz na barra',
+            texto: r`**O que se pede.** A intensidade da força normal que o plano exerce sobre a barra em equilíbrio.
+
+**A ideia.** O equilíbrio na direção **perpendicular** ao plano: a normal equilibra as componentes do peso e da força magnética que apertam a barra contra o plano.
+
+**Montagem.** Perpendicular ao plano:
+- o peso aperta a barra contra o plano com $Mg\cos\theta$;
+- a força magnética, horizontal, também aperta, com $F\sin\theta$, em que $F = ILB = Mg\tan\theta$ (item a).
+
+**A conta.**
+$$N = Mg\cos\theta + Mg\tan\theta\sin\theta = Mg\,\frac{\cos^2\theta + \sin^2\theta}{\cos\theta} = \frac{Mg}{\cos\theta}.$$
+
+**Outro jeito de ver.** O peso (vertical, $Mg$) e a força magnética (horizontal, $Mg\tan\theta$) somam um vetor de módulo $\sqrt{(Mg)^2 + (Mg\tan\theta)^2} = \dfrac{Mg}{\cos\theta}$, que aponta perpendicular ao plano. A normal tem de cancelá-lo sozinha. A normal é maior que o peso: a força magnética também empurra a barra contra o plano.`,
+            passo: 2,
+          },
         ],
         resultado: r`$I = Mg\tan\theta/(BL)$; $N = Mg/\cos\theta$.`,
         errosComuns: ['Tomar a força magnética como paralela ao plano: ela é horizontal, porque $\\vec B$ é vertical.', 'Escrever $\\cot\\theta$ no lugar de $\\tan\\theta$: com o plano na horizontal ($\\theta = 0$) não é preciso corrente nenhuma.'],
@@ -777,10 +1057,85 @@ Daqui ($\theta = 60°$, $U = IabB_0/2$) até o equilíbrio estável ($\theta = \
       resolucao: {
         conceitos: [{ texto: 'Torque numa espira', lab: 'forcas' }],
         etapas: [
-          { titulo: 'Normal', texto: r`Regra da mão direita com o sentido de $I$.`, passo: 0 },
-          { titulo: 'Torque', texto: r`$\vec\mu\times\vec B$.`, passo: 1 },
-          { titulo: 'Energia', texto: r`$U = -\vec\mu\cdot\vec B$ decide a estabilidade.`, passo: 3 },
-          { titulo: 'Trabalho', texto: r`O torque realiza $W = -\Delta U$; quem fornece essa energia é a fonte da corrente.`, passo: 4 },
+          {
+            titulo: '(a) O momento de dipolo magnético da espira',
+            texto: r`**O que se pede.** O vetor momento de dipolo magnético da espira retangular (lados $a$ e $b$), com um lado sobre o eixo $Z$ e o plano fazendo ângulo $\theta$ com o plano $XZ$, corrente $I$ no sentido da figura.
+
+**A ideia.** Para uma espira plana (formulário):
+$$\vec\mu = NI\vec A.$$
+Aqui $N = 1$ e a área é $ab$. O vetor $\vec A$ é **perpendicular** ao plano da espira, com sentido dado pela **regra da mão direita**: dedos curvados no sentido da corrente, polegar no sentido de $\vec A$.
+
+**Montagem.** O plano da espira contém duas direções:
+- o eixo $Z$ (o lado que está sobre ele), $\hat z$;
+- a direção do outro lado, que sai do eixo $Z$ no plano $XY$ fazendo ângulo $\theta$ com o eixo $X$: $\hat u = \cos\theta\,\hat x + \sin\theta\,\hat y$.
+
+A normal ao plano é perpendicular às duas. Com a corrente **descendo** no lado sobre o eixo $Z$ (como na figura), a regra da mão direita dá a normal $\hat n = \hat u\times\hat z$.
+
+**A conta.** Com $\hat x\times\hat z = -\hat y$ e $\hat y\times\hat z = \hat x$:
+$$\hat n = \cos\theta\,(\hat x\times\hat z) + \sin\theta\,(\hat y\times\hat z) = \sin\theta\,\hat x - \cos\theta\,\hat y.$$
+$$\vec\mu = Iab\,\big(\sin\theta\,\hat x - \cos\theta\,\hat y\big).$$
+
+**Conferindo.** Com $\theta = 0$, a espira está no plano $XZ$ e $\vec\mu = -Iab\,\hat y$, perpendicular a esse plano, como deve ser.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O torque do campo sobre a espira',
+            texto: r`**O que se pede.** O vetor torque que o campo $\vec B = B_0\hat y$ exerce sobre a espira.
+
+**A ideia.** O torque sobre um dipolo magnético num campo uniforme é (formulário)
+$$\vec\tau = \vec\mu\times\vec B.$$
+Ele vem de somar $\vec r\times d\vec F$ nas forças $I\,d\vec\ell\times\vec B$ dos quatro lados; o formulário já dá o resultado pronto.
+
+**A conta.** Com $\hat x\times\hat y = \hat z$ e $\hat y\times\hat y = 0$:
+$$\vec\tau = Iab\big(\sin\theta\,\hat x - \cos\theta\,\hat y\big)\times B_0\hat y = IabB_0\sin\theta\,(\hat x\times\hat y) = IabB_0\sin\theta\,\hat z.$$
+
+**Conferindo.** O torque aponta ao longo do eixo $Z$, que é o lado fixo da espira: é em volta dele que ela gira. Ele é zero com $\theta = 0$ ou $\theta = \pi$, quando $\vec\mu$ é paralelo ao campo.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) O sentido de rotação',
+            texto: r`**O que se pede.** Para que lado o torque do item (b) gira a espira.
+
+**A ideia.** Um torque ao longo de $+\hat z$ gira o objeto no sentido **anti-horário** para quem olha de cima (de $+z$ para baixo): é a regra da mão direita com o polegar em $\hat z$.
+
+**Aplicando.** Para $0 < \theta < \pi$, $\sin\theta > 0$ e $\tau_z > 0$: a espira gira no sentido **anti-horário** visto de $+z$, ou seja, o ângulo $\theta$ **aumenta**.
+
+**Para onde ela vai.** O giro leva $\vec\mu$ em direção ao campo. Com $\theta$ aumentando até $\pi$, $\vec\mu = Iab(\sin\theta\,\hat x - \cos\theta\,\hat y)$ chega a $+Iab\,\hat y$, paralelo a $\vec B$. Um dipolo magnético, como uma bússola, tende a se alinhar com o campo.`,
+            passo: 2,
+          },
+          {
+            titulo: '(d) Os equilíbrios estável e instável',
+            texto: r`**O que se pede.** As posições de equilíbrio estável e instável da espira.
+
+**A ideia.** Equilíbrio é onde o torque é zero: pelo item (b), $\sin\theta = 0$, ou seja, $\theta = 0$ ou $\theta = \pi$. Para saber qual é estável, olhe a energia do dipolo no campo:
+$$U = -\vec\mu\cdot\vec B.$$
+(Não está no formulário da P2; é a mesma forma de $U = -\vec p\cdot\vec E$ do dipolo elétrico, que está no da P1.) Equilíbrio estável é mínimo de energia; instável é máximo.
+
+**A conta.** $\vec\mu\cdot\vec B = Iab(-\cos\theta)B_0$, então
+$$U = IabB_0\cos\theta.$$
+- $\theta = \pi$: $U = -IabB_0$, o **mínimo**. Aí $\vec\mu = +Iab\,\hat y$ é **paralelo** a $\vec B$: equilíbrio **estável**.
+- $\theta = 0$: $U = +IabB_0$, o **máximo**. Aí $\vec\mu$ é **antiparalelo** a $\vec B$: equilíbrio **instável**.
+
+**Cuidado.** $\theta$ é o ângulo do plano da espira com o plano $XZ$, **não** o ângulo entre $\vec\mu$ e $\vec B$. Quem confunde os dois troca o estável pelo instável.`,
+            passo: 3,
+          },
+          {
+            titulo: '(e) O torque realiza trabalho?',
+            texto: r`**O que se pede.** Discutir se o torque das forças magnéticas realiza trabalho enquanto a espira gira.
+
+**A ideia.** Um torque $\tau$ que gira um objeto de um ângulo $d\theta$ realiza o trabalho $dW = \tau\,d\theta$, como uma força realiza $F\,dx$.
+
+**A conta.** Com $\tau_z = IabB_0\sin\theta$ (item b), de $\theta_i$ a $\theta_f$:
+$$W = \int_{\theta_i}^{\theta_f}IabB_0\sin\theta\,d\theta = IabB_0\big(\cos\theta_i - \cos\theta_f\big) = -\Delta U,$$
+com $U = IabB_0\cos\theta$ do item (d). Por exemplo, de $\theta = 60°$ ($U = IabB_0/2$) até o equilíbrio estável ($\theta = \pi$, $U = -IabB_0$), $W = \tfrac32IabB_0$, que vira energia cinética de rotação.
+
+**Resposta.** **Sim**, o torque realiza trabalho: a espira parte do repouso e ganha energia cinética.
+
+**Mas a força magnética não "não realiza trabalho"?** Isso vale para a força **total** sobre cada carga em movimento, $q\vec v\times\vec B$, sempre perpendicular à velocidade **total** da carga. Com a espira girando, cada portador de carga tem duas velocidades: ao longo do fio (é a corrente) e junto com o fio (a rotação). A parte da força que gira o fio realiza trabalho positivo; a outra parte empurra os portadores contra a corrente (é a **fem induzida** pela rotação) e realiza um trabalho negativo igual. A energia que aparece na rotação vem da **fonte** que mantém a corrente $I$ contra essa fem.
+
+**Sobre o gabarito.** O gabarito da monitoria diz que não há trabalho. Isso confunde a força total sobre os portadores (que de fato não trabalha) com o torque sobre a espira (que trabalha).`,
+            passo: 4,
+          },
         ],
         resultado: r`$\vec\mu = Iab(\sin\theta\hat x - \cos\theta\hat y)$; $\vec\tau = IabB_0\sin\theta\hat z$; estável em $\pi$; o torque realiza $W = -\Delta U$, pago pela fonte.`,
         errosComuns: [
@@ -848,9 +1203,37 @@ para cima. A simulação soma $I\,d\vec l\times\vec B$ nos 24 trechos.`,
       resolucao: {
         conceitos: [{ texto: 'Força num fio em campo não uniforme', lab: 'forcas' }],
         etapas: [
-          { titulo: 'Componentes', texto: r`Vertical cancela, radial soma.`, passo: 0 },
-          { titulo: 'Integrar', texto: r`$\oint dl = 2\pi r$.`, passo: 1 },
-          { titulo: 'Dipolo', texto: r`$\vec\mu$ oposto ao ímã: repulsão.`, passo: 2 },
+          {
+            titulo: '(a) A força do ímã sobre o anel',
+            texto: r`**O que se pede.** O vetor força magnética total sobre o anel de raio $r$, com corrente $I$ no sentido da figura, colocado acima de um ímã em barra. No anel, o campo do ímã tem módulo $B$ constante e faz ângulo $\theta$ com a vertical, abrindo-se para fora.
+
+**A ideia.** A força num pedacinho de fio é (formulário) $d\vec F_{(m)} = I\,d\vec\ell\times\vec B$. Aqui o campo **não** é uniforme (muda de direção em volta do anel), então não dá para usar o atalho do campo uniforme; é preciso somar pedacinho a pedacinho. Ajuda decompor $\vec B$ em cada ponto do anel em duas partes:
+- uma **vertical**, $B\cos\theta$, para cima;
+- uma **radial**, $B\sin\theta$, apontando para fora do eixo.
+
+**A parte vertical.** $d\vec\ell$ é tangente ao anel, então $d\vec\ell\times(\text{vertical})$ aponta na direção **radial** (para dentro ou para fora). Em pontos opostos do anel, essas forças radiais apontam em sentidos opostos e **se cancelam** na soma.
+
+**A parte radial.** $d\vec\ell$ (tangente) e a parte radial de $\vec B$ são perpendiculares, e ambos estão no plano horizontal. O produto vetorial deles é **vertical**, com módulo $I\,d\ell\,B\sin\theta$. Com a corrente no sentido da figura (horário visto de cima), ele aponta **para cima** em todos os pontos do anel, então essas forças **se somam**.
+
+**A conta.** Somando ao longo do anel, $\oint d\ell = 2\pi r$:
+$$\vec F = 2\pi rIB\sin\theta\,\hat z,$$
+vertical, para cima: o ímã **repele** o anel.`,
+            passo: 1,
+          },
+          {
+            titulo: '(b) Em termos do momento de dipolo, e os polos',
+            texto: r`**O que se pede.** Escrever a força do item (a) usando o momento de dipolo magnético do anel e interpretar com polos magnéticos.
+
+**A ideia.** O anel é uma espira de corrente, com momento de dipolo (formulário) $\vec\mu = NI\vec A$: $N = 1$, área $\pi r^2$, e o sentido pela regra da mão direita. Com a corrente **horária** vista de cima, o polegar aponta para **baixo**:
+$$\vec\mu = -I\pi r^2\,\hat z.$$
+
+**A conta.** Como $2\pi rI = \dfrac{2}{r}\cdot I\pi r^2 = \dfrac{2\mu}{r}$ (em módulo), e $\vec\mu$ aponta para baixo enquanto $\vec F$ aponta para cima:
+$$\vec F = -\frac{2\vec\mu\,B\sin\theta}{r}.$$
+A força é oposta a $\vec\mu$.
+
+**Com polos.** Uma espira de corrente se comporta como um pequeno ímã: o polo **norte** fica do lado para onde aponta $\vec\mu$. Aqui $\vec\mu$ aponta para baixo, então o anel tem o polo **N voltado para baixo**, de frente para o ímã. As linhas do ímã saem do polo de cima e se abrem para cima e para fora: o polo de cima do ímã também é um **N**. Dois polos norte frente a frente se **repelem**, como achado no item (a).`,
+            passo: 2,
+          },
         ],
         resultado: r`$\vec F = 2\pi rIB\sin\theta\,\hat z = -2\vec\mu B\sin\theta/r$.`,
         errosComuns: ['Usar a componente vertical de $\\vec B$ no lugar da radial.'],
@@ -937,9 +1320,86 @@ com a borda de cima no potencial mais alto. No equilíbrio, o portador de prova 
           { texto: 'Corrente e velocidade de arraste', lab: 'corrente' },
         ],
         etapas: [
-          { titulo: 'Arraste', texto: r`$I = nqv_dA$.`, passo: 0 },
-          { titulo: 'Equilíbrio', texto: r`$qE = qv_dB$.`, passo: 2 },
-          { titulo: 'Sinal', texto: r`Portadores negativos invertem $\vec E$.`, passo: 4 },
+          {
+            titulo: '(a) A velocidade de arraste dos portadores',
+            texto: r`**O que se pede.** Módulo, direção e sentido da velocidade de arraste dos portadores (carga $q > 0$, $n$ por volume) na fita de seção $A$ com corrente $I$. Na figura, a corrente vai ao longo de $+x$, e o campo $\vec B$ aponta para $+y$.
+
+**A ideia.** A densidade de corrente é (formulário) $\vec J = nq\vec v$, e a corrente é $J$ vezes a área da seção ($I = \int_S\vec J\cdot d\vec A$, com $J$ uniforme). Então $I = nqv_dA$.
+
+**A conta.**
+$$v_d = \frac{I}{nqA},\qquad\vec v_d = \frac{I}{nqA}\,\hat x.$$
+Portadores positivos andam **no sentido da corrente**.
+
+**Em números.** Num metal como o cobre ($n \approx 8{,}5\times10^{28}$ m⁻³), com correntes comuns, $v_d$ é de frações de milímetro por segundo.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A força magnética num portador',
+            texto: r`**O que se pede.** A intensidade da força magnética sobre um portador que anda com a velocidade de arraste.
+
+**A ideia.** Força magnética (formulário): $\vec F_{(m)} = q\vec v\times\vec B$.
+
+**A conta.** Com $\vec v_d = v_d\,\hat x$ e $\vec B = B\,\hat y$, e $\hat x\times\hat y = \hat z$:
+$$\vec F = qv_dB\,\hat z,\qquad F = qv_dB = q\frac{I}{nqA}B = \frac{IB}{nA}.$$
+A força aponta para $+z$, na direção da **largura** da fita, empurrando os portadores para uma das bordas (a de cima, na figura).`,
+            passo: 0,
+          },
+          {
+            titulo: '(c) Os sinais das cargas nas bordas',
+            texto: r`**O que se pede.** O sinal das cargas que se acumulam em cada borda, por causa do desvio dos portadores.
+
+**A ideia.** Pelo item (b), os portadores positivos são empurrados para a borda de **cima** ($+z$). Eles se acumulam lá. A fita como um todo continua neutra, então a borda de baixo fica com falta de portadores positivos.
+
+**Resposta.** Borda de **cima**: positiva. Borda de **baixo**: negativa.`,
+            passo: 1,
+          },
+          {
+            titulo: '(d) O campo elétrico no equilíbrio',
+            texto: r`**O que se pede.** O campo elétrico criado pelas cargas das bordas, quando o desvio para (equilíbrio).
+
+**A ideia.** As cargas acumuladas criam um campo elétrico na fita, da borda positiva (cima) para a negativa (baixo): para $-\hat z$. Ele empurra os portadores positivos para baixo, contra a força magnética. O acúmulo cresce até que as duas forças se equilibrem; daí em diante os portadores andam retos. É a condição do **seletor de velocidades**: força total $q(\vec E + \vec v\times\vec B) = 0$ (formulário: $\vec F_{(e)} = q\vec E$ e $\vec F_{(m)} = q\vec v\times\vec B$).
+
+**A conta.**
+$$q\vec E + qv_dB\,\hat z = 0\quad\Rightarrow\quad\vec E = -v_dB\,\hat z = -\frac{IB}{nqA}\,\hat z.$$
+Módulo $\dfrac{IB}{nqA}$, transversal à fita, apontando da borda de cima para a de baixo.`,
+            passo: 2,
+          },
+          {
+            titulo: '(e) A diferença de potencial entre as bordas',
+            texto: r`**O que se pede.** A diferença de potencial entre as bordas, no equilíbrio (a **tensão Hall**).
+
+**A ideia.** O campo do item (d) é uniforme ao longo da largura $d$ da fita. Num campo uniforme, a diferença de potencial é campo × distância (de $\vec E = -\vec\nabla V$, do formulário). O potencial cai no sentido do campo.
+
+**A conta.**
+$$V = Ed = \frac{IBd}{nqA}.$$
+A borda de **cima** (positiva, de onde o campo sai) está no potencial **mais alto**.
+
+**Para que serve.** Medindo $V$, $I$ e $B$, obtém-se $n$, o número de portadores por volume do material. Ou, conhecendo o material, mede-se $B$: é o princípio dos sensores Hall de campo magnético.`,
+            passo: 2,
+          },
+          {
+            titulo: '(f) A razão entre a tensão transversal e a corrente',
+            texto: r`**O que se pede.** A razão entre a tensão transversal do item (e) e a corrente longitudinal $I$ (o enunciado a chama de magnetorresistência; o nome usual é **resistência Hall**).
+
+**A conta.** Dividindo o item (e) por $I$:
+$$\frac VI = \frac{Bd}{nqA}.$$
+
+**Interpretação.** Não depende da corrente: é uma propriedade da fita e do campo. Cresce linearmente com $B$ e é maior em materiais com **poucos** portadores (como os semicondutores), por isso os sensores Hall usam semicondutores, e não metais.`,
+            passo: 3,
+          },
+          {
+            titulo: '(g) Se os portadores fossem negativos',
+            texto: r`**O que se pede.** O que mudaria nas respostas se os portadores tivessem carga negativa, $-q$.
+
+**A ideia.** Refazer cada passo com o sinal trocado.
+- **Arraste:** pelo formulário, $\vec J = nq\vec v$; com carga negativa, para a mesma corrente em $+x$, os portadores andam em $-x$: $\vec v_d = -\dfrac{I}{nqA}\hat x$. Mesmo módulo.
+- **Força:** $(-q)(-v_d\hat x)\times B\hat y = +qv_dB\,\hat z$. Os dois sinais de menos se cancelam: a força continua para **cima**, com o mesmo módulo.
+- **Bordas:** agora são os portadores **negativos** que se acumulam em cima. A borda de cima fica **negativa** e a de baixo, positiva.
+- **Campo e tensão:** o campo aponta de baixo para cima, $\vec E = +\dfrac{IB}{nqA}\hat z$, e a borda de cima fica no potencial **mais baixo**. Os módulos de $E$, $V$ e $V/I$ não mudam.
+
+**Resposta.** Mudam os sentidos de $\vec v_d$ e de $\vec E$, os sinais das bordas e o sinal da tensão Hall; os módulos ficam iguais. É exatamente por isso que o efeito Hall revela o **sinal** dos portadores de um material: foi assim que se confirmou que, nos metais, quem carrega a corrente são os elétrons.`,
+            passo: 4,
+          },
         ],
         resultado: r`$v_d = I/nqA$; $E = IB/nqA$; $V = IBd/nqA$; $V/I = Bd/nqA$.`,
         errosComuns: ['Achar que portadores negativos desviam para a outra borda: eles andam ao contrário, e a força fica no mesmo sentido.'],
@@ -1015,8 +1475,26 @@ com a borda de cima no potencial mais alto. No equilíbrio, o portador de prova 
           { texto: 'Corrente e resistividade', lab: 'corrente' },
         ],
         etapas: [
-          { titulo: 'Hall', texto: r`Elétrons para baixo: A acima de B.`, passo: 1 },
-          { titulo: 'Ohm', texto: r`Ao longo da corrente o potencial cai: B acima de C.`, passo: 2 },
+          {
+            titulo: 'Ordem dos potenciais em A, B e C',
+            texto: r`**O que se pede.** Numa fita de cobre com corrente $i$ (para a direita, na figura) e campo $\vec B_0$ saindo do plano da fita, ordenar do maior para o menor os potenciais nos pontos $A$ (borda de cima), $B$ e $C$ (borda de baixo, com $C$ mais adiante no sentido da corrente). No cobre, os portadores são **elétrons**.
+
+**Duas coisas acontecem ao mesmo tempo.**
+
+**1. O efeito Hall (de A para B).** Os elétrons, negativos, andam **contra** a corrente: para a **esquerda**. A força sobre eles (formulário: $\vec F_{(m)} = q\vec v\times\vec B$, com $q = -e$) é:
+- $\vec v\times\vec B_0$, com $\vec v$ para a esquerda e $\vec B_0$ saindo, aponta para **cima**;
+- multiplicando por $-e$, a força aponta para **baixo**.
+
+Os elétrons se acumulam na borda de **baixo**, que fica negativa; a de cima fica positiva. O campo dessas cargas aponta de cima para baixo, e o potencial cai nesse sentido. Então $V_A > V_B$. A diferença é a tensão Hall, $v_dB_0w$ (com $w$ a largura da fita), pequena no cobre.
+
+**2. A queda ao longo da corrente (de B para C).** $B$ e $C$ estão na mesma borda, mas $C$ fica **adiante** no sentido da corrente. Como em qualquer resistor, a corrente anda do potencial mais alto para o mais baixo: há um campo ao longo da fita empurrando a corrente (formulário: $\vec J = \vec E/\rho$). Então $V_B > V_C$.
+
+**Resposta.**
+$$V_A > V_B > V_C.$$
+
+**Cuidados.** Quem trata os portadores como positivos põe a borda de baixo mais alta e inverte $A$ e $B$. E $B$ e $C$, na mesma borda, **não** têm o mesmo potencial, por causa da queda ôhmica ao longo da fita.`,
+            passo: 1,
+          },
         ],
         resultado: r`$V_A > V_B > V_C$.`,
         errosComuns: ['Tratar os portadores como positivos e pôr a borda de baixo mais alta.', 'Achar que B e C, na mesma borda, têm o mesmo potencial.'],

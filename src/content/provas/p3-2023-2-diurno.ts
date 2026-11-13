@@ -1,4 +1,5 @@
 import type { ObjetoInput, ProvaInput } from '../../scenario/schema'
+import { FORMULARIOS_PROVAS } from '../formularios'
 
 const r = String.raw
 
@@ -71,6 +72,7 @@ export const p3_2023_2_diurno: ProvaInput = {
   id: 'p3-2023-2-diurno',
   titulo: 'P3 · 2023/2 · Diurno',
   subtitulo: 'Física III · Terceira Prova · Versão A · 04/12/2023',
+  formulario: FORMULARIOS_PROVAS['p3-2023-2-diurno'],
   questoes: [
     /* ───────────────────────── Objetiva 1 ───────────────────────── */
     {

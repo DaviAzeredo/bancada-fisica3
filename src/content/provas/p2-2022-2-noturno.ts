@@ -1,4 +1,5 @@
 import type { ObjetoInput, ProvaInput } from '../../scenario/schema'
+import { FORMULARIOS_PROVAS } from '../formularios'
 
 const r = String.raw
 
@@ -64,6 +65,7 @@ export const p2_2022_2_noturno: ProvaInput = {
   id: 'p2-2022-2-noturno',
   titulo: 'P2 · 2022/2 · Noturno',
   subtitulo: 'Física III · Segunda Prova Noturna · Versão A · 15/12/2022',
+  formulario: FORMULARIOS_PROVAS['p2-2022-2-noturno'],
   questoes: [
     /* ───────────────────────── Objetiva 1 ───────────────────────── */
     {

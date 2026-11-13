@@ -42,6 +42,7 @@ describe('texto de todas as provas e labs', () => {
     }
     for (const { nome, texto } of todos) for (const f of formulas(texto)) prova(nome, f)
     for (const { nome, tex } of simbolos) prova(nome, tex!)
+    for (const p of provas) for (const f of p.formulario?.formulas ?? []) prova(`${p.id}: formulário`, f)
     expect(ruins).toEqual([])
   })
 
@@ -137,6 +138,33 @@ describe('integridade das questões', () => {
     const marcada = { ...q, alternativas: q.alternativas!.map((a, i) => ({ ...a, correta: i === 0 })) }
     expect(checkProva({ ...p, questoes: [marcada] }).errors.join()).toMatch(/sem alternativa correta, mas tem uma/)
     expect(checkProva({ ...p, questoes: [q] }).errors.join()).not.toMatch(/alternativa/)
+  })
+
+  it('toda lista traz o formulário da prova que cobre o assunto dela', () => {
+    const esperado: Record<string, string> = { '01': 'P1', '02': 'P1', '03': 'P1', '04': 'P2', '05': 'P2', '06': 'P2', '07': 'P3', '08': 'P3', '09': 'P3' }
+    const listas = provas.filter((p) => p.id.startsWith('lista-'))
+    expect(listas.map((p) => `${p.id}: ${p.formulario?.fonte.match(/P\d/)?.[0]}`)).toEqual(listas.map((p) => `${p.id}: ${esperado[p.id.slice(-2)]}`))
+  })
+
+  it('nas listas, cada item respondido tem uma explicação completa só dele', () => {
+    // a explicação do item se lê sozinha: o que se pede, a ideia, a conta e a conferência
+    const ruins: string[] = []
+    for (const { p, q, nome } of questoes) {
+      if (!p.id.startsWith('lista-')) continue
+      for (const r of q.respostas) {
+        const etapa = q.resolucao?.etapas.find((e) => e.titulo.startsWith(r.item))
+        if (!etapa) ruins.push(`${nome} ${r.item}: sem etapa`)
+        else if (semFormulas(etapa.texto).length < 200) ruins.push(`${nome} ${r.item}: curta (${semFormulas(etapa.texto).length})`)
+      }
+    }
+    expect(ruins).toEqual([])
+  })
+
+  it('toda prova traz o seu formulário, salvo as que vieram sem ele', () => {
+    // conferidos no PDF: a P2 2023/2 são fotos das questões, e o arquivo da P3 2024/1 noturno é o gabarito
+    const semFormulario = ['p2-2023-2-diurno', 'p3-2024-1-noturno']
+    const ruins = provas.filter((p) => !p.id.startsWith('lista-') && !p.formulario !== semFormulario.includes(p.id)).map((p) => p.id)
+    expect(ruins).toEqual([])
   })
 
   it('passos só citam o que existe', () => {

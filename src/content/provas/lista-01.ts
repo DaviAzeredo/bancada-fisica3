@@ -1,4 +1,5 @@
 import type { ProvaInput } from '../../scenario/schema'
+import { FORMULARIO_P1 } from '../formularios'
 
 const r = String.raw
 
@@ -42,6 +43,7 @@ export const lista_01: ProvaInput = {
   id: 'lista-01',
   titulo: 'Lista 1 · Carga elétrica e campo elétrico',
   subtitulo: 'Física III-A · 2020/1 · gabarito da monitoria',
+  formulario: FORMULARIO_P1,
   questoes: [
     /* ───────────────────────── 1 ───────────────────────── */
     {
@@ -93,10 +95,45 @@ a partir de $q$ (ou $0{,}63d$ a partir de $3q$). Não depende da terceira carga.
       resolucao: {
         conceitos: [{ texto: 'Lei de Coulomb e superposição', lab: 'coulomb' }],
         etapas: [
-          { titulo: 'Igualar', texto: r`Forças opostas iguais.`, passo: 0 },
-          { titulo: 'Deslocar', texto: r`Ver o sentido da força.`, passo: 1 },
+          {
+            titulo: '(a) Onde a terceira carga fica em equilíbrio',
+            texto: r`**O que se pede.** Um ponto do bastão onde a terceira partícula (carga $q'$, de sinal qualquer) fica parada: a força total sobre ela é zero.
+
+**A ideia.** Duas cargas pontuais se empurram (sinais iguais) ou se puxam (sinais opostos) ao longo da reta que as une. A intensidade é a lei de Coulomb:
+$$F = k_0\frac{|q_1q_2|}{r^2},\qquad k_0 = \frac{1}{4\pi\varepsilon_0}.$$
+No formulário ela aparece como $\vec F_{(e)} = q\vec E$ com $\vec E = k_0\dfrac{q}{r^2}\hat r$. Quando há várias cargas, a força total é a soma vetorial das forças de cada uma (superposição).
+
+**Montagem.** Chame de $x$ a distância da terceira carga até $q$. Então ela está a $d - x$ de $3q$. Entre as duas cargas fixas, as duas forças têm sentidos opostos: se $q'$ é positiva, $q$ a empurra para a direita e $3q$ para a esquerda; se é negativa, as duas a puxam, de novo para lados opostos. O equilíbrio exige que as duas intensidades sejam iguais.
+
+**A conta.**
+$$k_0\frac{q\,|q'|}{x^2} = k_0\frac{3q\,|q'|}{(d - x)^2}\;\Rightarrow\;(d - x)^2 = 3x^2\;\Rightarrow\;d - x = \sqrt3\,x.$$
+Tomamos a raiz positiva porque $x$ e $d - x$ são distâncias. Isolando $x$:
+$$x = \frac{d}{1 + \sqrt3} \approx 0{,}37\,d\ \text{ a partir de } q\quad(\approx 0{,}63\,d \text{ a partir de } 3q).$$
+
+**Conferindo.** O ponto fica mais perto da carga **menor**: para a carga maior produzir a mesma força, ela precisa estar mais longe. E $q'$ sumiu da conta: a posição não depende do valor nem do sinal da terceira carga.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) Estável ou instável',
+            texto: r`**O que se pede.** Se a partícula for empurrada um pouco para fora do equilíbrio, ela volta (equilíbrio **estável**) ou se afasta ainda mais (**instável**)? A resposta depende do sinal de $q'$.
+
+**A ideia.** Teste um pequeno deslocamento e veja para onde aponta a força total. A força de Coulomb fica mais forte quando a distância diminui ($1/r^2$).
+
+**Carga positiva ($q' > 0$).** As duas forças são repulsões. Desloque a partícula um pouco para a direita, para perto de $3q$:
+- a repulsão de $3q$ (para a esquerda) **aumenta**, porque a distância a $3q$ diminuiu;
+- a repulsão de $q$ (para a direita) **diminui**, porque a distância a $q$ aumentou.
+
+A força total passa a apontar para a esquerda, de volta ao ponto de equilíbrio. Deslocando para a esquerda acontece o espelho disso. O equilíbrio é **estável**.
+
+**Carga negativa ($q' < 0$).** As duas forças são atrações. Deslocada para a direita, a atração de $3q$ (para a direita) aumenta e a de $q$ (para a esquerda) diminui: a força total aponta para a direita e a afasta ainda mais. O equilíbrio é **instável**.
+
+**A mesma coisa em uma linha.** Com o eixo para a direita, a força é $F(x) = k_0qq'\left[\dfrac{1}{x^2} - \dfrac{3}{(d - x)^2}\right]$. A derivada no equilíbrio, $k_0qq'\left[-\dfrac{2}{x^3} - \dfrac{6}{(d - x)^3}\right]$, é negativa quando $q' > 0$: a força se opõe ao deslocamento. Quando $q' < 0$, ela é positiva e a força o reforça.
+
+Vale só para deslocamentos **ao longo do bastão**, que é por onde a partícula pode andar.`,
+            passo: 1,
+          },
         ],
-        resultado: r`$x \approx 0{,}37d$ de $q$.`,
+        resultado: r`(a) $x = \dfrac{d}{1 + \sqrt3} \approx 0{,}37d$ a partir de $q$. (b) Estável se $q' > 0$; instável se $q' < 0$.`,
         errosComuns: ['Pôr o ponto de equilíbrio mais perto da carga maior.'],
         oficial: {
           resposta: 'X_eq = √3d/(1 + √3) ≈ 0,63d (medido a partir de 3q; ≈ 0,36d a partir de q). Estável se q′ > 0, instável se q′ < 0.',
@@ -154,8 +191,44 @@ A simulação soma o campo e a atração da outra esfera e confere que dá $mg\t
       resolucao: {
         conceitos: [{ texto: 'Lei de Coulomb', lab: 'coulomb' }],
         etapas: [
-          { titulo: 'Vertical', texto: r`$T\cos\theta = mg$.`, passo: 0 },
-          { titulo: 'Horizontal', texto: r`$qE = kq^2/r^2 + T\sin\theta$.`, passo: 1 },
+          {
+            titulo: '(a) A tensão no fio',
+            texto: r`**O que se pede.** A força $T$ que cada fio faz sobre a sua esfera, com o sistema parado e os fios a um ângulo $\theta$ da vertical.
+
+**A ideia.** Parado quer dizer força total zero. Sobre cada esfera agem três coisas:
+- o **peso** $mg$, para baixo;
+- a **tensão** $T$, ao longo do fio, apontando para o ponto de suspensão;
+- forças **elétricas**: a do campo, $q\vec E$ (formulário: $\vec F_{(e)} = q\vec E$), e a atração da outra esfera. As duas são **horizontais**: o campo é horizontal e as esferas estão na mesma altura.
+
+**Montagem.** Decomponha a tensão: o fio faz ângulo $\theta$ com a vertical, então a parte vertical da tensão vale $T\cos\theta$ e a horizontal, $T\sin\theta$.
+
+**A conta.** Na vertical só há duas forças, a parte vertical da tensão (para cima) e o peso (para baixo):
+$$T\cos\theta = mg\quad\Rightarrow\quad T = \frac{mg}{\cos\theta}.$$
+
+**Conferindo.** Com $\theta = 0$ (fio na vertical), $T = mg$: o fio só segura o peso. Quanto mais o fio abre, maior a tensão, porque só a parte vertical dela segura o peso.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A intensidade do campo',
+            texto: r`**O que se pede.** O valor de $E$ que mantém os fios abertos no ângulo $\theta$.
+
+**A ideia.** Agora o equilíbrio na **horizontal**. Olhe a esfera $+q$, do lado para onde o campo aponta:
+- o campo a empurra para **fora**, com $qE$ (carga positiva: força no sentido de $\vec E$);
+- a esfera $-q$ a puxa para **dentro** (sinais opostos se atraem), com a lei de Coulomb, $F = k_0\dfrac{q\cdot q}{r^2}$;
+- a parte horizontal da tensão, $T\sin\theta$, também aponta para **dentro**, porque o fio sobe em direção ao ponto de suspensão, que fica no meio.
+
+A esfera $-q$ é o espelho disso: o campo a empurra para o outro lado.
+
+**Montagem.** A distância entre as esferas: cada uma está a $l\sin\theta$ da vertical que passa pelo ponto de suspensão, então $r = 2l\sin\theta$. Do item (a), $T\sin\theta = \dfrac{mg}{\cos\theta}\sin\theta = mg\tan\theta$.
+
+**A conta.** Para fora = para dentro:
+$$qE = k_0\frac{q^2}{(2l\sin\theta)^2} + mg\tan\theta.$$
+Dividindo tudo por $q$:
+$$E = \frac{k_0\,q}{4l^2\sin^2\theta} + \frac{mg\tan\theta}{q}.$$
+
+**Conferindo.** O primeiro termo é o campo que só compensa a atração entre as esferas; o segundo é o que ainda é preciso para manter os fios abertos contra o peso. Sem atração entre elas, sobraria $E = mg\tan\theta/q$, o resultado de um pêndulo carregado sozinho.`,
+            passo: 1,
+          },
         ],
         resultado: r`$T = mg/\cos\theta$; $E = \frac{kq}{4l^2\sin^2\theta} + \frac{mg\tan\theta}{q}$.`,
         errosComuns: ['Esquecer a atração entre as esferas.'],
@@ -213,10 +286,45 @@ sempre apontando para a origem.`,
       resolucao: {
         conceitos: [{ texto: 'Superposição de forças de Coulomb', lab: 'coulomb' }],
         etapas: [
-          { titulo: 'Simetria', texto: r`Componentes $y$ se cancelam.`, passo: 0 },
-          { titulo: 'Movimento', texto: r`Força restauradora.`, passo: 1 },
+          {
+            titulo: '(a) A força sobre −Q',
+            texto: r`**O que se pede.** O vetor força total sobre a partícula $-Q$, que está no eixo $X$ na posição $x$, causada pelas duas cargas $q$ fixas em $(0, d/2)$ e $(0, -d/2)$.
+
+**A ideia.** Cada carga $q$ atrai $-Q$ (sinais opostos), com intensidade dada pela lei de Coulomb, $F = k_0\dfrac{qQ}{r^2}$, ao longo da reta que liga as duas. A força total é a **soma vetorial** das duas atrações.
+
+**Montagem.** As duas cargas fixas estão à mesma distância de $-Q$ (Pitágoras):
+$$r = \sqrt{x^2 + \left(\tfrac d2\right)^2} = \sqrt{x^2 + d^2/4}.$$
+O vetor que vai de $-Q$, em $(x, 0)$, até a carga de cima é $(-x,\ d/2)$; até a de baixo, $(-x,\ -d/2)$. Dividindo por $r$ temos as direções das duas atrações.
+
+**A conta.** Cada atração vale $k_0\dfrac{qQ}{r^2}$ vezes o vetor unitário $\dfrac{(-x,\ \pm d/2)}{r}$. Somando as duas:
+- as componentes $y$ ($+d/2$ e $-d/2$) se **cancelam**: é a simetria de cima e de baixo;
+- as componentes $x$ ($-x$ e $-x$) se **somam**.
+$$\vec F = 2\,k_0\frac{qQ}{r^2}\cdot\frac{-x}{r}\,\hat x = -\frac{2k_0Qq\,x}{(x^2 + d^2/4)^{3/2}}\,\hat x.$$
+
+**Conferindo.** O sinal de menos com o $x$ faz a força apontar **sempre para a origem**: para $x > 0$ ela aponta para $-\hat x$; para $x < 0$, para $+\hat x$. Na origem ($x = 0$) ela é zero.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O movimento depois de solta',
+            texto: r`**O que se pede.** Descrever o que acontece com $-Q$ solta do repouso em $x = a$, e o que acontece quando ela passa pela origem.
+
+**A ideia.** Pelo item (a), a força sempre aponta para a origem e só é zero exatamente lá. Uma força que sempre puxa de volta para um ponto é uma **força restauradora**: produz oscilação. Não há atrito, então a energia mecânica se conserva.
+
+**O movimento, passo a passo.**
+- Em $x = a$ a força aponta para a origem: a partícula começa a andar para lá, cada vez mais rápido.
+- Na origem a força é zero, mas a velocidade é **máxima**: ela não para ali, passa direto por inércia.
+- Do outro lado ($x < 0$) a força aponta de novo para a origem, agora **contra** o movimento: a partícula vai freando.
+- Como a situação é simétrica ($x \to -x$) e a energia se conserva, ela para exatamente em $x = -a$, volta, e o ciclo se repete.
+
+Ela **oscila entre $x = a$ e $x = -a$**.
+
+**É um movimento harmônico simples?** Só para amplitudes pequenas. Se $a \ll d$, dá para desprezar $x^2$ diante de $d^2/4$, e a força vira
+$$F \approx -\frac{16k_0Qq}{d^3}\,x,$$
+proporcional ao deslocamento, como numa mola. Para amplitudes maiores, a força não é proporcional a $x$, e a oscilação é periódica mas não senoidal.`,
+            passo: 1,
+          },
         ],
-        resultado: r`Oscilação entre $\pm a$.`,
+        resultado: r`(a) $\vec F = -\dfrac{2k_0Qq\,x}{(x^2 + d^2/4)^{3/2}}\hat x$, sempre para a origem. (b) Oscila entre $x = a$ e $x = -a$, passando pela origem com velocidade máxima.`,
         errosComuns: ['Achar que a partícula para na origem: ali a força é zero, mas a velocidade é máxima.'],
         oficial: { resposta: 'F = −2k₀Qq x/(x² + d²/4)^{3/2} x̂; oscila entre x = a e x = −a.' },
       },
@@ -274,10 +382,62 @@ sempre apontando para a origem.`,
       resolucao: {
         conceitos: [{ texto: 'Campo de cargas pontuais', lab: 'coulomb' }],
         etapas: [
-          { titulo: 'Simetria', texto: r`Cancelamentos horizontais.`, passo: 0 },
-          { titulo: 'Somar', texto: r`Componentes verticais.`, passo: 1 },
+          {
+            titulo: '(a) O campo no ponto P',
+            texto: r`**O que se pede.** O vetor campo elétrico no ponto $P$, o meio da base do triângulo.
+
+**A ideia.** Uma carga pontual $q$ cria em volta dela o campo (formulário)
+$$\vec E = k_0\frac{q}{r^2}\,\hat r,$$
+em que $r$ é a distância da carga ao ponto e $\hat r$ aponta **da carga para o ponto**. Na prática: o campo de uma carga positiva aponta para **longe** dela; o de uma carga negativa aponta **para** ela. Com várias cargas, somam-se os vetores (superposição).
+
+**Montagem.** Ponha a base no eixo $X$, com $P$ na origem: as cargas $-q$ ficam em $(-a/2,\ 0)$ e $(a/2,\ 0)$, e a $+q$ no vértice de cima, em $(0,\ a\sqrt3/2)$, a altura de um triângulo equilátero de lado $a$.
+
+**A conta.**
+- As duas $-q$ estão à mesma distância $a/2$ de $P$, uma de cada lado. Cada campo aponta para a sua carga, então eles têm o mesmo tamanho e sentidos opostos: **se cancelam**.
+- Sobra o campo de $+q$, a uma distância $a\sqrt3/2$, apontando para longe dela, ou seja, para baixo ($-\hat y$):
+$$E = k_0\frac{q}{(a\sqrt3/2)^2} = \frac{4k_0q}{3a^2} = \frac{q}{3\pi\varepsilon_0a^2}.$$
+
+**Resposta:** $\vec E_P = -\dfrac{q}{3\pi\varepsilon_0a^2}\,\hat y$.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo no centro do triângulo',
+            texto: r`**O que se pede.** O vetor campo elétrico no centro do triângulo, o ponto equidistante dos três vértices.
+
+**A ideia.** A mesma do item (a): somar os campos $k_0\dfrac{q}{r^2}\hat r$ das três cargas, lembrando que o campo de $+q$ aponta para longe dela e o de cada $-q$ aponta para ela.
+
+**Montagem.** No triângulo equilátero, o centro fica a $1/3$ da altura, acima da base: em $(0,\ a\sqrt3/6)$. A distância dele a qualquer vértice é $r = a/\sqrt3$. Então os três campos têm o mesmo tamanho:
+$$E_1 = k_0\frac{q}{(a/\sqrt3)^2} = \frac{3k_0q}{a^2}.$$
+
+**A conta, carga por carga.**
+- $+q$, em cima: o campo aponta para longe dela, para baixo. Contribui $-E_1\,\hat y$.
+- Cada $-q$, num canto da base: o campo aponta para ela, para baixo e para o lado. As partes horizontais das duas são opostas e **se cancelam**. A parte vertical de cada uma é $E_1$ vezes o cosseno do ângulo com a vertical, que é $\dfrac{a\sqrt3/6}{a/\sqrt3} = \dfrac12$. Cada uma contribui $-\tfrac12E_1\,\hat y$.
+
+Somando:
+$$\vec E = -E_1\left(1 + \tfrac12 + \tfrac12\right)\hat y = -\frac{6k_0q}{a^2}\,\hat y = -\frac{3q}{2\pi\varepsilon_0a^2}\,\hat y.$$
+
+**Conferindo.** Todas as contribuições verticais apontam para baixo: o $+q$ empurra para baixo e os $-q$ puxam para baixo. Nada se cancela na vertical.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) A força numa das cargas −q',
+            texto: r`**O que se pede.** A força elétrica total sobre uma das cargas $-q$; aqui, a da direita, em $(a/2,\ 0)$.
+
+**A ideia.** Somar as forças de Coulomb das outras duas cargas. Cada uma vale $k_0\dfrac{|q_1q_2|}{r^2}$, ao longo da reta entre as cargas: repulsão se os sinais são iguais, atração se são opostos. As duas outras cargas estão à distância $a$ (é um triângulo equilátero), então as duas forças têm o mesmo tamanho:
+$$F_1 = k_0\frac{q^2}{a^2}.$$
+
+**A conta.**
+- A outra $-q$ (mesmo sinal) **repele**: a força aponta para longe dela, para a direita, $F_1\,\hat x$.
+- A $+q$ (sinal oposto) **atrai**: a força aponta da carga da direita para o vértice de cima, $(0 - a/2,\ a\sqrt3/2 - 0)$, cuja direção unitária é $\left(-\tfrac12,\ \tfrac{\sqrt3}2\right)$. Contribui $F_1\left(-\tfrac12\hat x + \tfrac{\sqrt3}2\hat y\right)$.
+
+Somando:
+$$\vec F = F_1\left(1 - \tfrac12\right)\hat x + F_1\frac{\sqrt3}2\,\hat y = \frac{k_0q^2}{2a^2}\,\hat x + \frac{\sqrt3}{2}\frac{k_0q^2}{a^2}\,\hat y.$$
+
+**Conferindo.** O módulo é $F_1$ e a força aponta a $60°$ da horizontal. Para a carga da esquerda, o resultado é o espelho: $-\tfrac12$ em $\hat x$.`,
+            passo: 2,
+          },
         ],
-        resultado: r`Veja os itens.`,
+        resultado: r`(a) $\vec E_P = -\dfrac{q}{3\pi\varepsilon_0a^2}\hat y$. (b) $\vec E_\text{centro} = -\dfrac{3q}{2\pi\varepsilon_0a^2}\hat y$. (c) $\vec F = \dfrac{k_0q^2}{a^2}\left(\tfrac12\hat x + \tfrac{\sqrt3}2\hat y\right)$ na $-q$ da direita.`,
         errosComuns: ['Errar o sentido do campo de uma carga negativa: ele aponta para ela.'],
         oficial: { resposta: 'E_P = −q/(3πε₀a²) ŷ; E_centro = −3q/(2πε₀a²) ŷ; F = k₀q²/(2a²) x̂ + (√3/2)k₀q²/a² ŷ.' },
       },
@@ -333,8 +493,58 @@ sempre apontando para a origem.`,
       resolucao: {
         conceitos: [{ texto: 'Lei de Coulomb', lab: 'coulomb' }],
         etapas: [
-          { titulo: 'Força', texto: r`Coulomb.`, passo: 0 },
-          { titulo: 'Centrípeta', texto: r`$v^2/a_0$.`, passo: 1 },
+          {
+            titulo: '(a) A aceleração do elétron',
+            texto: r`**O que se pede.** Módulo, direção e sentido da aceleração do elétron, que gira em círculo de raio $a_0$ em volta do próton.
+
+**A ideia.** Segunda lei de Newton, $\vec F = m\vec a$. A única força que importa é a atração elétrica do próton (a gravidade é desprezada, veja o item d). A lei de Coulomb dá a intensidade, $F = k_0\dfrac{|q_1q_2|}{r^2}$, com $k_0 = \dfrac{1}{4\pi\varepsilon_0}$ (formulário: $\vec F_{(e)} = q\vec E$ e $\vec E = k_0\dfrac{q}{r^2}\hat r$).
+
+**A conta.** As cargas são $+e$ e $-e$, a distância é $a_0$:
+$$F = \frac{1}{4\pi\varepsilon_0}\frac{e^2}{a_0^2}.$$
+Sinais opostos se atraem: a força aponta do elétron **para o próton**, que é o centro da órbita. Chamando de $\hat r$ o unitário que aponta do próton para o elétron, a força é $-F\hat r$, e
+$$\vec a = \frac{\vec F}{m} = -\frac{1}{4\pi\varepsilon_0}\frac{e^2}{ma_0^2}\,\hat r.$$
+
+**Em números.** Com $a_0 \approx 0{,}53\times10^{-10}$ m, $e \approx 1{,}6\times10^{-19}$ C e $m \approx 9{,}1\times10^{-31}$ kg: $a \approx 9\times10^{22}$ m/s². É a aceleração **centrípeta** de um movimento circular uniforme: radial, apontando para o centro.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A velocidade escalar',
+            texto: r`**O que se pede.** A rapidez $v$ do elétron na órbita.
+
+**A ideia.** Em movimento circular uniforme de raio $R$, a aceleração aponta para o centro e vale $a = \dfrac{v^2}{R}$ (aceleração centrípeta). Quem produz essa aceleração aqui é a força elétrica do item (a).
+
+**A conta.** Igualando a aceleração elétrica à centrípeta, com $R = a_0$:
+$$\frac{1}{4\pi\varepsilon_0}\frac{e^2}{ma_0^2} = \frac{v^2}{a_0}\quad\Rightarrow\quad v = \sqrt{\frac{1}{4\pi\varepsilon_0}\frac{e^2}{ma_0}}.$$
+
+**Em números.** $v \approx 2{,}2\times10^6$ m/s, menos de 1% da velocidade da luz, o que justifica usar a mecânica de Newton.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) O período de revolução',
+            texto: r`**O que se pede.** Quanto tempo o elétron leva para dar uma volta.
+
+**A ideia.** Velocidade constante: tempo = distância / velocidade. Uma volta tem comprimento $2\pi a_0$.
+
+**A conta.**
+$$T = \frac{2\pi a_0}{v} = 2\pi a_0\sqrt{\frac{4\pi\varepsilon_0ma_0}{e^2}} = \frac{4}{e}\sqrt{\pi^3\varepsilon_0ma_0^3}.$$
+(Na última passagem, $2\pi\sqrt{4\pi} = 4\sqrt{\pi^3}$, e o $a_0$ de fora entra na raiz como $a_0^2$.)
+
+**Em números.** $T \approx \dfrac{2\pi(0{,}53\times10^{-10})}{2{,}2\times10^6} \approx 1{,}5\times10^{-16}$ s.`,
+            passo: 2,
+          },
+          {
+            titulo: '(d) Por que desprezar a gravidade',
+            texto: r`**O que se pede.** Justificar por que a atração gravitacional entre próton e elétron não entra na conta.
+
+**A ideia.** Comparar as duas forças. A gravitacional é $F_g = G\dfrac{m_pm_e}{r^2}$ e a elétrica é $F_e = k_0\dfrac{e^2}{r^2}$. As duas caem com $1/r^2$, então a razão entre elas **não depende da distância**:
+$$\frac{F_g}{F_e} = \frac{Gm_pm_e}{k_0e^2}.$$
+
+**Em números.** Com $G = 6{,}7\times10^{-11}$, $m_p = 1{,}67\times10^{-27}$ kg, $m_e = 9{,}1\times10^{-31}$ kg, $k_0 = 9{,}0\times10^9$ e $e = 1{,}6\times10^{-19}$ C:
+$$\frac{F_g}{F_e} \approx \frac{1{,}0\times10^{-67}}{2{,}3\times10^{-28}} \approx 4\times10^{-40}.$$
+
+A gravidade é uns $10^{39}$ vezes mais fraca: as massas das partículas são minúsculas e $G$ é pequeno, enquanto $k_0$ é enorme. Incluí-la mudaria o resultado lá pela 40ª casa decimal.`,
+            passo: 3,
+          },
         ],
         resultado: r`$v \approx 2{,}2\times10^6$ m/s; $T \approx 1{,}5\times10^{-16}$ s.`,
         errosComuns: ['Esquecer o quadrado de $e$ na força.'],
@@ -388,8 +598,71 @@ sempre apontando para a origem.`,
       resolucao: {
         conceitos: [{ texto: 'Movimento de carga em campo elétrico', lab: 'lorentz' }],
         etapas: [
-          { titulo: 'Decompor', texto: r`MRU em x, MUV em y.`, passo: 1 },
-          { titulo: 'Eliminar t', texto: r`Parábola.`, passo: 2 },
+          {
+            titulo: '(a) O vetor aceleração',
+            texto: r`**O que se pede.** A aceleração da partícula enquanto ela está entre as placas.
+
+**A ideia.** A única força que importa é a elétrica (a gravidade é desprezada no enunciado). Pelo formulário, uma carga $q$ num campo $\vec E$ sente $\vec F_{(e)} = q\vec E$. Pela segunda lei de Newton, $\vec a = \vec F/m$.
+
+**Montagem.** Use os eixos da figura: $x$ ao longo das placas (o sentido de $\vec v_0$), $y$ perpendicular a elas, com a origem no ponto em que a partícula entra. Na figura o campo aponta para baixo, $\vec E = -E\,\hat y$. Entre as placas de um capacitor ele é **uniforme**: o mesmo em todos os pontos.
+
+**A conta.**
+$$\vec a = \frac{q\vec E}{m} = -\frac{qE}{m}\,\hat y.$$
+
+**Conferindo.** A aceleração é **constante** (campo uniforme) e só tem componente $y$: na direção $x$ nada acelera a partícula. Para $q > 0$ ela é desviada para baixo, no sentido do campo; para $q < 0$, para cima.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A velocidade em função do tempo',
+            texto: r`**O que se pede.** O vetor $\vec v(t)$, contando o tempo a partir da entrada.
+
+**A ideia.** Com aceleração constante, cada componente da velocidade muda linearmente com o tempo: $v(t) = v_\text{inicial} + a\,t$. É exatamente o que acontece num lançamento horizontal sob a gravidade, trocando $g$ por $qE/m$.
+
+**A conta, por componente.**
+- Em $x$: a aceleração é zero, então $v_x$ fica igual ao valor inicial, $v_x = v_0$.
+- Em $y$: a velocidade inicial é zero (a partícula entra paralela às placas) e a aceleração é $-qE/m$, então $v_y = -\dfrac{qE}{m}t$.
+$$\vec v(t) = v_0\,\hat x - \frac{qE}{m}t\,\hat y.$$`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) A posição em função do tempo',
+            texto: r`**O que se pede.** O vetor posição $\vec r(t)$, com a origem no ponto de entrada.
+
+**A ideia.** Com aceleração constante, cada coordenada segue $s(t) = s_0 + v_\text{inicial}\,t + \tfrac12a\,t^2$.
+
+**A conta, por componente.** A partícula parte da origem ($x_0 = y_0 = 0$).
+- Em $x$: velocidade constante $v_0$, então $x = v_0t$.
+- Em $y$: parte do repouso nessa direção, com aceleração $-qE/m$, então $y = -\dfrac{qE}{2m}t^2$.
+$$\vec r(t) = v_0t\,\hat x - \frac{qE}{2m}t^2\,\hat y.$$`,
+            passo: 1,
+          },
+          {
+            titulo: '(d) A equação da trajetória',
+            texto: r`**O que se pede.** A curva que a partícula descreve: $y$ escrito em função de $x$, sem o tempo.
+
+**A ideia.** Do item (c) temos $x(t)$ e $y(t)$. Basta tirar $t$ de uma equação e pôr na outra.
+
+**A conta.** De $x = v_0t$ vem $t = x/v_0$. Substituindo em $y$:
+$$y = -\frac{qE}{2m}\left(\frac{x}{v_0}\right)^2 = -\frac{qE}{2mv_0^2}\,x^2.$$
+
+**Que curva é essa?** $y$ proporcional a $x^2$: uma **parábola**, com vértice no ponto de entrada. É a mesma curva de uma pedra lançada horizontalmente.`,
+            passo: 2,
+          },
+          {
+            titulo: '(e) A velocidade na saída e a deflexão',
+            texto: r`**O que se pede.** O vetor velocidade quando a partícula sai das placas, que têm comprimento $L$, e o ângulo que ele faz com a horizontal.
+
+**A ideia.** Como $v_x = v_0$ nunca muda, o tempo para atravessar as placas é simplesmente $t_L = L/v_0$. É só pôr esse tempo no item (b).
+
+**A conta.**
+$$\vec v(t_L) = v_0\,\hat x - \frac{qE}{m}\frac{L}{v_0}\,\hat y = v_0\,\hat x - \frac{qEL}{mv_0}\,\hat y.$$
+O ângulo $\theta$ com a horizontal sai da tangente, razão entre as componentes:
+$$\tan\theta = \frac{v_y}{v_x} = -\frac{qEL}{mv_0^2}\quad\Rightarrow\quad\theta = \arctan\left(-\frac{qEL}{mv_0^2}\right).$$
+O sinal negativo diz que, para $q > 0$, a partícula sai inclinada **para baixo**.
+
+**Conferindo.** A deflexão cresce com o campo e com o comprimento das placas e diminui com a massa e com a velocidade de entrada: uma partícula mais rápida passa menos tempo sendo desviada. É o princípio do tubo de raios catódicos e das impressoras a jato de tinta.`,
+            passo: 3,
+          },
         ],
         resultado: r`Parábola; $\tan\theta = -qEL/mv_0^2$.`,
         errosComuns: ['Usar o tempo de travessia errado: é $L/v_0$, porque $v_x$ não muda.'],
@@ -446,8 +719,44 @@ repulsiva. Longe ($b \gg a$), $\ln\dfrac{b^2}{b^2 - 4a^2} \approx \dfrac{4a^2}{b
       resolucao: {
         conceitos: [{ texto: 'Campo de distribuições contínuas', lab: 'distribuicoes' }],
         etapas: [
-          { titulo: 'Integrar', texto: r`Pedaços da barra 1.`, passo: 0 },
-          { titulo: 'Integrar de novo', texto: r`Pedaços da barra 2.`, passo: 1 },
+          {
+            titulo: '(a) O campo da barra num ponto do eixo',
+            texto: r`**O que se pede.** O campo elétrico no ponto $P$, no eixo $X$ a uma distância $x > a$ da origem, produzido pela barra de $-a$ a $a$ com carga $Q$ espalhada uniformemente.
+
+**A ideia.** A fórmula $\vec E = k_0\dfrac{q}{r^2}\hat r$ do formulário vale para uma carga **pontual**. Uma barra não é pontual, mas dá para cortá-la em pedacinhos tão pequenos que cada um é praticamente um ponto. Somam-se os campos de todos os pedacinhos: essa soma é uma **integral**.
+
+**Montagem.**
+- Densidade linear de carga (carga por comprimento): $\lambda = \dfrac{Q}{2a}$.
+- Um pedacinho na posição $x'$, de comprimento $dx'$, tem carga $dq = \lambda\,dx'$.
+- Ele está a uma distância $x - x'$ de $P$. Como tudo está no eixo $X$, o campo dele em $P$ aponta ao longo do eixo, para a direita (para longe da carga, se $Q > 0$):
+$$dE = k_0\frac{\lambda\,dx'}{(x - x')^2}.$$
+Todos os pedacinhos dão campo no mesmo sentido, então basta somar os módulos.
+
+**A conta.** Integrando sobre a barra inteira, de $x' = -a$ a $x' = a$. A primitiva de $\dfrac{1}{(x - x')^2}$ em relação a $x'$ é $\dfrac{1}{x - x'}$:
+$$E = k_0\lambda\left[\frac{1}{x - x'}\right]_{-a}^{a} = k_0\lambda\left(\frac{1}{x - a} - \frac{1}{x + a}\right) = k_0\frac{Q}{2a}\cdot\frac{2a}{x^2 - a^2}.$$
+$$\vec E = \frac{k_0Q}{x^2 - a^2}\,\hat x.$$
+
+**Conferindo.** Longe da barra ($x \gg a$), $x^2 - a^2 \approx x^2$ e sobra $k_0Q/x^2$: de longe a barra parece uma carga pontual, como esperado.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A força da primeira barra sobre a segunda',
+            texto: r`**O que se pede.** A força que a primeira barra exerce sobre uma segunda barra idêntica (mesma carga $Q$), que vai de $x = b - a$ a $x = b + a$, com $b > 2a$ (as barras não se tocam).
+
+**A ideia.** O item (a) já dá o campo da primeira barra em qualquer ponto $x > a$ do eixo. Cada pedacinho da **segunda** barra é uma carga quase pontual dentro desse campo e sente $dF = dq\,E(x)$ (formulário: $\vec F_{(e)} = q\vec E$). Somando sobre a segunda barra, temos a força total. É exatamente a sugestão do enunciado.
+
+**Montagem.** Um pedacinho da segunda barra em $x$, de comprimento $dx$, tem carga $\lambda\,dx$ (a mesma densidade $\lambda = Q/2a$). Usando o campo na forma ainda não simplificada do item (a):
+$$dF = \lambda\,dx\cdot k_0\lambda\left(\frac{1}{x - a} - \frac{1}{x + a}\right).$$
+
+**A conta.** Integrando de $x = b - a$ a $x = b + a$, com as primitivas $\ln(x - a)$ e $\ln(x + a)$:
+$$F = k_0\lambda^2\Big[\ln(x - a) - \ln(x + a)\Big]_{b-a}^{b+a} = k_0\lambda^2\Big[\ln b - \ln(b + 2a) - \ln(b - 2a) + \ln b\Big].$$
+Juntando os logaritmos, com $(b + 2a)(b - 2a) = b^2 - 4a^2$:
+$$\vec F = k_0\left(\frac{Q}{2a}\right)^2\ln\frac{b^2}{b^2 - 4a^2}\,\hat x.$$
+O logaritmo é positivo, então a força aponta para $+\hat x$: a segunda barra é **repelida**, como deve ser entre cargas de mesmo sinal.
+
+**Conferindo.** Com as barras muito afastadas ($b \gg a$), usa-se $\ln\dfrac{1}{1 - u} \approx u$ para $u = 4a^2/b^2$ pequeno: $F \approx k_0\dfrac{Q^2}{4a^2}\cdot\dfrac{4a^2}{b^2} = k_0\dfrac{Q^2}{b^2}$. É a lei de Coulomb entre duas cargas pontuais $Q$ a uma distância $b$.`,
+            passo: 1,
+          },
         ],
         resultado: r`$F = k(Q/2a)^2\ln\frac{b^2}{b^2-4a^2}$.`,
         errosComuns: ['Tratar as barras como cargas pontuais a uma distância b.'],
@@ -505,10 +814,63 @@ Carga total zero não é ausência de carga.`,
       resolucao: {
         conceitos: [{ texto: 'Campo de distribuições contínuas', lab: 'distribuicoes' }],
         etapas: [
-          { titulo: 'Carga', texto: r`Integrar λ.`, passo: 0 },
-          { titulo: 'Campo', texto: r`Integrar as componentes.`, passo: 0 },
+          {
+            titulo: '(a) A carga total com λ = λ₀ sen θ',
+            texto: r`**O que se pede.** A carga total do semicírculo de raio $R$ (a metade de cima, $\theta$ de $0$ a $\pi$), cuja densidade linear vale $\lambda(\theta) = \lambda_0\sin\theta$.
+
+**A ideia.** Densidade linear $\lambda$ é carga por unidade de comprimento. Se ela varia ao longo do fio, corta-se o fio em pedacinhos, calcula-se a carga de cada um ($dq = \lambda\,d\ell$) e soma-se tudo com uma integral.
+
+**Montagem.** Num arco de raio $R$, um pedacinho que ocupa um ângulo $d\theta$ tem comprimento $d\ell = R\,d\theta$ (comprimento de arco = raio × ângulo, em radianos). Então
+$$dq = \lambda_0\sin\theta\,R\,d\theta.$$
+
+**A conta.**
+$$Q = \int_0^\pi\lambda_0R\sin\theta\,d\theta = \lambda_0R\Big[-\cos\theta\Big]_0^\pi = \lambda_0R\,(1 + 1) = 2\lambda_0R.$$
+
+**Conferindo.** A densidade é zero nas pontas ($\theta = 0$ e $\pi$) e máxima no topo, e é positiva em todo o arco: a carga total tem de ser positiva.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo no centro com λ = λ₀ sen θ',
+            texto: r`**O que se pede.** O vetor campo elétrico no centro do semicírculo (a origem).
+
+**A ideia.** Cada pedacinho $dq$ é quase uma carga pontual, e cria na origem o campo $d\vec E = k_0\dfrac{dq}{r^2}\hat r$ (formulário), com $\hat r$ apontando do pedacinho para a origem. O campo total é a soma vetorial: integra-se **cada componente** separadamente.
+
+**Montagem.**
+- O pedacinho no ângulo $\theta$ está em $(R\cos\theta,\ R\sin\theta)$, a uma distância $R$ da origem, para qualquer $\theta$.
+- O unitário que vai dele até a origem é $-(\cos\theta,\ \sin\theta)$: o campo de uma carga positiva empurra a origem para longe do pedacinho.
+- $dq = \lambda_0\sin\theta\,R\,d\theta$, então
+$$d\vec E = k_0\frac{\lambda_0\sin\theta\,R\,d\theta}{R^2}\big(-\cos\theta,\ -\sin\theta\big) = -\frac{k_0\lambda_0}{R}\sin\theta\,(\cos\theta,\ \sin\theta)\,d\theta.$$
+
+**A conta, componente por componente.**
+- $x$: $\displaystyle\int_0^\pi\sin\theta\cos\theta\,d\theta = \Big[\tfrac12\sin^2\theta\Big]_0^\pi = 0$. A metade da direita empurra para a esquerda e a da esquerda empurra para a direita, na mesma medida.
+- $y$: $\displaystyle\int_0^\pi\sin^2\theta\,d\theta = \frac\pi2$ (a média de $\sin^2$ numa meia volta é $\tfrac12$).
+
+$$\vec E = -\frac{k_0\lambda_0}{R}\cdot\frac\pi2\,\hat y = -\frac{\lambda_0}{4\pi\varepsilon_0}\frac{\pi}{2R}\,\hat y = -\frac{\lambda_0}{8\varepsilon_0R}\,\hat y.$$
+
+**Conferindo.** Toda a carga está acima da origem e é positiva: o campo na origem tem de apontar para baixo.`,
+            passo: 0,
+          },
+          {
+            titulo: '(c) Carga e campo com λ = λ₀ cos θ',
+            texto: r`**O que se pede.** Refazer (a) e (b) com a densidade $\lambda(\theta) = \lambda_0\cos\theta$.
+
+**A ideia.** Agora a densidade **muda de sinal**: $\cos\theta > 0$ na metade da direita ($\theta < \pi/2$) e $\cos\theta < 0$ na da esquerda. O método é o mesmo; a integral cuida dos sinais.
+
+**A carga.**
+$$Q = \int_0^\pi\lambda_0R\cos\theta\,d\theta = \lambda_0R\Big[\sin\theta\Big]_0^\pi = 0.$$
+A carga positiva da direita é exatamente igual, em módulo, à negativa da esquerda.
+
+**O campo.** Mesma montagem do item (b), trocando $\sin\theta$ por $\cos\theta$ na densidade:
+$$d\vec E = -\frac{k_0\lambda_0}{R}\cos\theta\,(\cos\theta,\ \sin\theta)\,d\theta.$$
+- $x$: $\displaystyle\int_0^\pi\cos^2\theta\,d\theta = \frac\pi2$.
+- $y$: $\displaystyle\int_0^\pi\cos\theta\sin\theta\,d\theta = 0$.
+$$\vec E = -\frac{\lambda_0}{8\varepsilon_0R}\,\hat x.$$
+
+**Por que a carga total é zero e o campo não?** A metade da direita (positiva) **empurra** a origem para a esquerda; a metade da esquerda (negativa) **puxa** a origem para a esquerda também. As duas contribuições se somam. Carga total nula não quer dizer campo nulo: o que conta é **onde** cada carga está.`,
+            passo: 1,
+          },
         ],
-        resultado: r`Veja os itens.`,
+        resultado: r`(a) $Q = 2\lambda_0R$. (b) $\vec E = -\dfrac{\lambda_0}{8\varepsilon_0R}\hat y$. (c) $Q = 0$ e $\vec E = -\dfrac{\lambda_0}{8\varepsilon_0R}\hat x$.`,
         errosComuns: ['Concluir que o campo é zero quando a carga total é zero.'],
         oficial: { resposta: 'Q = 2λ₀R, E = −λ₀/(8ε₀R) ŷ; com cos θ, Q = 0 e E = −λ₀/(8ε₀R) x̂.' },
       },
@@ -566,11 +928,56 @@ $$\vec E = \frac{k\lambda R}{(z^2 + R^2)^{3/2}}\int_0^\pi(-R\cos\varphi, -R\sin\
       resolucao: {
         conceitos: [{ texto: 'Campo de distribuições contínuas', lab: 'distribuicoes' }],
         etapas: [
-          { titulo: 'Simetria', texto: r`$E_x = 0$.`, passo: 0 },
-          { titulo: 'Integral', texto: r`Componentes em $\varphi$.`, passo: 1 },
-          { titulo: 'Limite', texto: r`Carga pontual.`, passo: 2 },
+          {
+            titulo: '(a) Que componente é nula',
+            texto: r`**O que se pede.** Dizer, sem fazer conta, quais componentes do campo no ponto $P = (0, 0, z)$ são zero, e por quê.
+
+**A ideia.** **Simetria.** Se a distribuição de carga não muda quando a refletimos num plano, o campo num ponto desse plano não pode ter componente atravessando o plano: a reflexão inverteria essa componente sem mudar nada na carga.
+
+**Aplicando.** O fio ocupa a metade de cima ($y > 0$) do círculo de raio $R$ no plano $z = 0$. Ele não muda se trocarmos $x$ por $-x$: para cada pedacinho em $(x, y)$ há outro igual em $(-x, y)$. O ponto $P$ está no plano $x = 0$. Os campos desses dois pedacinhos em $P$ têm componentes $x$ opostas, que se cancelam aos pares. Então:
+- $E_x = 0$;
+- $E_y \neq 0$: **todo** o fio está do lado $y > 0$, e cada pedacinho empurra $P$ para $-y$; nada cancela;
+- $E_z \neq 0$: todos os pedacinhos estão abaixo de $P$ (para $z > 0$) e o empurram para cima.
+
+Num anel **completo**, $E_y$ também se anularia. Aqui, com meio anel, não.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo no ponto P',
+            texto: r`**O que se pede.** A expressão completa do vetor campo em $P = (0, 0, z)$.
+
+**A ideia.** Cortar o fio em pedacinhos quase pontuais, escrever o campo de cada um com $d\vec E = k_0\dfrac{dq}{r^2}\hat r$ (formulário) e somar componente por componente.
+
+**Montagem.**
+- Use o ângulo $\varphi$ medido a partir do eixo $X$, de $0$ a $\pi$. O pedacinho em $\varphi$ está em $(R\cos\varphi,\ R\sin\varphi,\ 0)$ e tem comprimento $R\,d\varphi$, logo carga $dq = \lambda R\,d\varphi$.
+- O vetor que vai do pedacinho até $P$ é $\vec r = (-R\cos\varphi,\ -R\sin\varphi,\ z)$, de comprimento $r = \sqrt{R^2 + z^2}$, **igual para todos os pedacinhos**.
+- Escrevendo $\dfrac{\hat r}{r^2} = \dfrac{\vec r}{r^3}$:
+$$d\vec E = k_0\frac{\lambda R\,d\varphi}{(R^2 + z^2)^{3/2}}\big(-R\cos\varphi,\ -R\sin\varphi,\ z\big).$$
+
+**A conta.** O fator da frente não depende de $\varphi$; integra-se cada componente de $0$ a $\pi$:
+- $\displaystyle\int_0^\pi\cos\varphi\,d\varphi = 0$, de modo que $E_x = 0$, como previsto em (a);
+- $\displaystyle\int_0^\pi\sin\varphi\,d\varphi = 2$;
+- $\displaystyle\int_0^\pi d\varphi = \pi$.
+$$\vec E = \frac{k_0\lambda R}{(R^2 + z^2)^{3/2}}\big(0,\ -2R,\ \pi z\big) = -\frac{\lambda R^2}{2\pi\varepsilon_0(z^2 + R^2)^{3/2}}\,\hat y + \frac{\lambda Rz}{4\varepsilon_0(z^2 + R^2)^{3/2}}\,\hat z.$$
+(Com $k_0 = 1/4\pi\varepsilon_0$: $2k_0 = \dfrac{1}{2\pi\varepsilon_0}$ e $\pi k_0 = \dfrac{1}{4\varepsilon_0}$.)`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) Muito longe do fio',
+            texto: r`**O que se pede.** Uma aproximação do resultado de (b) para $z \gg R$, e o que ela quer dizer.
+
+**A ideia.** Se $z$ é muito maior que $R$, então $z^2 + R^2 \approx z^2$ e $(z^2 + R^2)^{3/2} \approx z^3$.
+
+**A conta.**
+$$E_z \approx \frac{\lambda Rz}{4\varepsilon_0z^3} = \frac{\lambda R}{4\varepsilon_0z^2},\qquad E_y \approx -\frac{\lambda R^2}{2\pi\varepsilon_0z^3}.$$
+
+**Interpretação.** A carga total do fio é $Q = \lambda\times(\text{comprimento}) = \lambda\pi R$. Reescrevendo,
+$$E_z \approx \frac{1}{4\pi\varepsilon_0}\frac{\lambda\pi R}{z^2} = k_0\frac{Q}{z^2}:$$
+é o campo de uma **carga pontual** $Q$ na origem. De muito longe, o formato do fio deixa de importar. A componente $E_y$ cai com $1/z^3$, mais depressa que $E_z$: ela só existe porque a carga está um pouco deslocada para o lado $y > 0$, e esse detalhe some à distância.`,
+            passo: 2,
+          },
         ],
-        resultado: r`Veja os itens.`,
+        resultado: r`(a) $E_x = 0$. (b) $\vec E = -\dfrac{\lambda R^2}{2\pi\varepsilon_0(z^2 + R^2)^{3/2}}\hat y + \dfrac{\lambda Rz}{4\varepsilon_0(z^2 + R^2)^{3/2}}\hat z$. (c) De longe, o campo de uma carga pontual $Q = \lambda\pi R$.`,
         errosComuns: ['Anular também $E_y$, como no anel completo.'],
         oficial: { resposta: 'E_x = 0; E_y = −λR²/(2πε₀(z² + R²)^{3/2}); E_z = λRz/(4ε₀(z² + R²)^{3/2}); de longe, campo de uma carga λπR.' },
       },
@@ -616,10 +1023,54 @@ $$E = \int_0^R\frac{k(2\pi\sigma_0R\,dr)\,z}{(r^2 + z^2)^{3/2}} = \frac{\sigma_0
       resolucao: {
         conceitos: [{ texto: 'Campo de distribuições contínuas', lab: 'distribuicoes' }],
         etapas: [
-          { titulo: 'Anéis', texto: r`Mesma carga por anel.`, passo: 0 },
-          { titulo: 'Integral', texto: r`Com a primitiva dada.`, passo: 1 },
+          {
+            titulo: '(a) A carga total do disco',
+            texto: r`**O que se pede.** A carga total de um disco de raio $R$ cuja densidade superficial (carga por área) vale $\sigma(r) = \sigma_0\dfrac{R}{r}$, em que $r$ é a distância ao centro.
+
+**A ideia.** Como $\sigma$ depende só de $r$, corta-se o disco em **anéis** finos concêntricos: em cada anel, $r$ é praticamente constante, logo $\sigma$ também. Carga do anel = densidade × área do anel. Depois soma-se sobre todos os anéis.
+
+**Montagem.** Um anel de raio $r$ e largura $dr$, se o desenrolarmos, é quase um retângulo de comprimento $2\pi r$ e largura $dr$: área $dA = 2\pi r\,dr$. Sua carga é
+$$dq = \sigma(r)\,2\pi r\,dr = \sigma_0\frac Rr\,2\pi r\,dr = 2\pi\sigma_0R\,dr.$$
+Repare que o $r$ cancelou: **todos os anéis de mesma largura têm a mesma carga**.
+
+**A conta.**
+$$Q = \int_0^R2\pi\sigma_0R\,dr = 2\pi\sigma_0R^2.$$
+
+**Conferindo.** A densidade explode no centro ($r \to 0$), mas a área dos anéis encolhe na mesma proporção, e a carga total é finita.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo no eixo do disco',
+            texto: r`**O que se pede.** O campo elétrico num ponto do eixo do disco (a reta perpendicular a ele pelo centro), a uma distância $z$.
+
+**A ideia.** Somar os campos dos anéis do item (a), usando o campo de um anel no seu eixo, visto em aula. Ele **não está no formulário**, então vale lembrar de onde vem. Um anel de raio $r$ e carga $q$: cada pedacinho está à mesma distância $\sqrt{r^2 + z^2}$ do ponto. As componentes do campo paralelas ao plano do anel se cancelam aos pares (pedacinhos diametralmente opostos), e sobra a componente ao longo do eixo, que é a fração $z/\sqrt{r^2 + z^2}$ de cada campo:
+$$E_\text{anel} = k_0\frac{q\,z}{(r^2 + z^2)^{3/2}}.$$
+
+**Por que podemos somar anéis.** Os anéis são concêntricos e têm o **mesmo eixo**. O campo de cada um no ponto aponta ao longo desse eixo, então os campos têm todos a mesma direção e os módulos simplesmente se somam.
+
+**A conta.** Com $q = dq = 2\pi\sigma_0R\,dr$:
+$$E = \int_0^Rk_0\frac{2\pi\sigma_0R\,z\,dr}{(r^2 + z^2)^{3/2}} = 2\pi k_0\sigma_0Rz\int_0^R\frac{dr}{(r^2 + z^2)^{3/2}}.$$
+A primitiva dada no enunciado, com $x = r$ e $a = z$, é $\dfrac{r}{z^2\sqrt{r^2 + z^2}}$. Entre $0$ e $R$ ela vale $\dfrac{R}{z^2\sqrt{R^2 + z^2}}$. Com $2\pi k_0 = \dfrac{1}{2\varepsilon_0}$:
+$$\vec E = \frac{\sigma_0}{2\varepsilon_0}\frac{R^2}{z\sqrt{R^2 + z^2}}\,\hat z,$$
+apontando para longe do disco (para $\sigma_0 > 0$).`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) Muito longe do disco',
+            texto: r`**O que se pede.** Uma aproximação de (b) para $z \gg R$ e sua interpretação.
+
+**A ideia.** Para $z$ muito maior que $R$, $\sqrt{R^2 + z^2} \approx z$.
+
+**A conta.**
+$$E \approx \frac{\sigma_0}{2\varepsilon_0}\frac{R^2}{z\cdot z} = \frac{\sigma_0R^2}{2\varepsilon_0z^2}.$$
+Usando a carga total do item (a), $Q = 2\pi\sigma_0R^2$, isso é
+$$E \approx \frac{Q}{4\pi\varepsilon_0z^2} = k_0\frac{Q}{z^2}.$$
+
+**Interpretação.** É o campo de uma **carga pontual** $Q$ no centro do disco. Visto de muito longe, o disco é só um ponto; seu tamanho e o jeito como a carga se espalha nele deixam de importar.`,
+            passo: 2,
+          },
         ],
-        resultado: r`$E = \frac{\sigma_0R^2}{2\varepsilon_0z\sqrt{R^2+z^2}}$.`,
+        resultado: r`(a) $Q = 2\pi\sigma_0R^2$. (b) $\vec E = \dfrac{\sigma_0R^2}{2\varepsilon_0z\sqrt{R^2 + z^2}}\hat z$. (c) $E \approx \dfrac{Q}{4\pi\varepsilon_0z^2}$, carga pontual.`,
         errosComuns: ['Usar a carga de um anel sem o fator $2\\pi r$.'],
         oficial: { resposta: 'Q = 2πσ₀R²; E = (σ₀/2ε₀) R²/(z√(R² + z²)) ẑ; de longe, Q/(4πε₀z²) ẑ.' },
       },
@@ -672,10 +1123,56 @@ $$E = \frac{\sigma R}{2\varepsilon_0}\left(\frac{1}{\sqrt{d^2 + R^2}} - \frac{1}
       resolucao: {
         conceitos: [{ texto: 'Campo de distribuições contínuas', lab: 'distribuicoes' }],
         etapas: [
-          { titulo: 'Anéis', texto: r`Coaxiais com o eixo.`, passo: 1 },
-          { titulo: 'Limite', texto: r`Carga pontual.`, passo: 2 },
+          {
+            titulo: '(a) A densidade superficial',
+            texto: r`**O que se pede.** A densidade superficial de carga $\sigma$ (carga por unidade de área) da casca cilíndrica de raio $R$ e altura $h$, com carga $Q$ uniforme.
+
+**A ideia.** Uniforme quer dizer a mesma em toda a superfície: $\sigma = \dfrac{Q}{\text{área}}$.
+
+**Montagem.** A carga está na **lateral** da casca (não há tampas). Desenrolada, a lateral é um retângulo de lados $2\pi R$ (o perímetro do círculo) e $h$: área $2\pi Rh$.
+
+**A conta.**
+$$\sigma = \frac{Q}{2\pi Rh}.$$`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo no eixo, a uma distância d da casca',
+            texto: r`**O que se pede.** O campo no ponto $P$ do eixo do cilindro, a uma distância $d$ da borda da direita.
+
+**A ideia.** Cortar a casca em **anéis** finos com o mesmo eixo (coaxiais) e usar o campo de um anel no seu eixo, visto em aula (não está no formulário):
+$$E_\text{anel} = k_0\frac{q\,u}{(u^2 + R^2)^{3/2}},$$
+em que $u$ é a distância do centro do anel ao ponto, ao longo do eixo. Ele vem de somar os pedacinhos do anel: as componentes perpendiculares ao eixo se cancelam aos pares, e sobra a fração $u/\sqrt{u^2 + R^2}$ ao longo do eixo. Como todos os anéis têm o mesmo eixo, todos os campos em $P$ apontam na mesma direção, e basta somar os módulos.
+
+**Montagem.** Meça $u$ a partir de $P$. A casca vai de $u = d$ (borda mais próxima) a $u = d + h$ (borda mais distante). Um anel de largura $du$ tem área $2\pi R\,du$ e carga
+$$dq = \sigma\,2\pi R\,du.$$
+
+**A conta.**
+$$E = \int_d^{d+h}k_0\frac{\sigma2\pi R\,u\,du}{(u^2 + R^2)^{3/2}} = 2\pi k_0\sigma R\int_d^{d+h}\frac{u\,du}{(u^2 + R^2)^{3/2}}.$$
+A integral sai por substituição: com $w = u^2 + R^2$, $dw = 2u\,du$ e $\displaystyle\int\frac{u\,du}{(u^2 + R^2)^{3/2}} = -\frac{1}{\sqrt{u^2 + R^2}}$. Avaliando entre os limites e usando $2\pi k_0 = \dfrac{1}{2\varepsilon_0}$:
+$$E = \frac{\sigma R}{2\varepsilon_0}\left(\frac{1}{\sqrt{d^2 + R^2}} - \frac{1}{\sqrt{(h + d)^2 + R^2}}\right).$$
+O campo aponta ao longo do eixo, **para longe** da casca (para $Q > 0$).
+
+**Conferindo.** O primeiro termo, do anel mais próximo, é o maior: o parêntese é positivo.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) Muito longe: d ≫ R, h',
+            texto: r`**O que se pede.** Como se comporta o resultado de (b) quando $P$ está muito longe, $d \gg R$ e $d \gg h$.
+
+**A ideia.** Desprezar as quantidades pequenas diante de $d$, mas com cuidado: os dois termos do parêntese são quase iguais e a diferença entre eles é que importa.
+
+**A conta.** Desprezando $R^2$ diante de $d^2$: $\dfrac{1}{\sqrt{d^2 + R^2}} \approx \dfrac1d$ e $\dfrac{1}{\sqrt{(h + d)^2 + R^2}} \approx \dfrac{1}{d + h}$. A diferença:
+$$\frac1d - \frac{1}{d + h} = \frac{h}{d(d + h)} \approx \frac{h}{d^2}.$$
+Então
+$$E \approx \frac{\sigma Rh}{2\varepsilon_0d^2}.$$
+Com $\sigma = \dfrac{Q}{2\pi Rh}$ do item (a), $\sigma Rh = \dfrac{Q}{2\pi}$, e
+$$E \approx \frac{Q}{4\pi\varepsilon_0d^2}.$$
+
+**Interpretação.** É o campo de uma **carga pontual** $Q$. De longe, a casca é só um ponto.`,
+            passo: 2,
+          },
         ],
-        resultado: r`Veja os itens.`,
+        resultado: r`(a) $\sigma = \dfrac{Q}{2\pi Rh}$. (b) $E = \dfrac{\sigma R}{2\varepsilon_0}\left(\dfrac{1}{\sqrt{d^2 + R^2}} - \dfrac{1}{\sqrt{(h + d)^2 + R^2}}\right)$, para longe da casca. (c) $E \approx \dfrac{Q}{4\pi\varepsilon_0d^2}$.`,
         errosComuns: ['Contar as tampas: a carga está só na lateral.'],
         oficial: { resposta: 'σ = Q/(2πRh); E = (σR/2ε₀)(1/√(d² + R²) − 1/√((h + d)² + R²)); de longe, Q/(4πε₀d²).' },
       },
@@ -734,8 +1231,58 @@ $$E = \frac{\sigma R}{2\varepsilon_0}\left(\frac{1}{\sqrt{d^2 + R^2}} - \frac{1}
       resolucao: {
         conceitos: [{ texto: 'Dipolo elétrico', lab: 'dipolo' }],
         etapas: [
-          { titulo: 'Somar', texto: r`Dois campos de Coulomb.`, passo: 0 },
-          { titulo: 'Expandir', texto: r`$(1 + x)^n \approx 1 + nx$.`, passo: 2 },
+          {
+            titulo: '(a) O campo no eixo Y',
+            texto: r`**O que se pede.** O campo do dipolo num ponto do eixo $Y$, a uma distância $y > 0$ da origem.
+
+**A ideia.** Um dipolo são duas cargas iguais e opostas, $+q$ e $-q$, separadas por uma distância $2a$. O campo dele é só a soma dos campos das duas cargas, cada um dado por $\vec E = k_0\dfrac{q}{r^2}\hat r$ (formulário). O **momento de dipolo** é o vetor $\vec p = q\vec L$ (também no formulário), em que $\vec L$ vai de $-q$ até $+q$: aqui, $\vec p = 2qa\,\hat x$.
+
+**Montagem.** Na figura, $+q$ está em $(a, 0)$ e $-q$ em $(-a, 0)$. O ponto $(0, y)$ está à mesma distância das duas: $r = \sqrt{y^2 + a^2}$.
+- O campo de $+q$ aponta **para longe** dela: na direção $(-a,\ y)/r$.
+- O campo de $-q$ aponta **para** ela: na direção $(-a,\ -y)/r$.
+
+**A conta.** Os dois têm o mesmo módulo, $k_0q/r^2$. Somando: as componentes $y$ ($+y$ e $-y$) se cancelam; as componentes $x$ ($-a$ e $-a$) se somam:
+$$\vec E = k_0\frac{q}{r^2}\cdot\frac{-2a}{r}\,\hat x = -\frac{k_0\,2qa}{(y^2 + a^2)^{3/2}}\,\hat x = -\frac{1}{4\pi\varepsilon_0}\frac{\vec p}{(y^2 + a^2)^{3/2}}.$$
+
+**Conferindo.** No plano que divide o dipolo ao meio, o campo é paralelo ao dipolo e aponta **contra** $\vec p$, do lado de $+q$ para o lado de $-q$.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo no eixo X',
+            texto: r`**O que se pede.** O campo do dipolo num ponto do eixo $X$, a uma distância $x > a$ da origem (à direita das duas cargas).
+
+**A ideia.** De novo, a soma dos campos de $+q$ e $-q$. Agora tudo está na mesma reta, então os dois campos estão ao longo do eixo $X$ e basta somar com sinal.
+
+**Montagem.**
+- $+q$, em $(a, 0)$, está a $x - a$ do ponto. Seu campo aponta para longe dela: para a direita, $+k_0\dfrac{q}{(x - a)^2}$.
+- $-q$, em $(-a, 0)$, está a $x + a$. Seu campo aponta para ela: para a esquerda, $-k_0\dfrac{q}{(x + a)^2}$.
+
+**A conta.** Pondo no mesmo denominador, com $(x + a)^2 - (x - a)^2 = 4ax$:
+$$E = k_0q\left[\frac{1}{(x - a)^2} - \frac{1}{(x + a)^2}\right] = k_0q\frac{4ax}{(x^2 - a^2)^2}.$$
+Com $p = 2qa$:
+$$\vec E = \frac{1}{4\pi\varepsilon_0}\frac{2x}{(x^2 - a^2)^2}\,\vec p.$$
+
+**Conferindo.** A carga $+q$ está mais perto, então ela ganha: o campo aponta para a direita, **no sentido** de $\vec p$.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) Muito longe do dipolo',
+            texto: r`**O que se pede.** Aproximar os dois resultados para pontos distantes, $y \gg a$ e $x \gg a$, e interpretar.
+
+**A ideia.** A aproximação binomial dada (está no formulário da P1): para $|u| \ll 1$, $(1 + u)^n \approx 1 + nu$. Basta pôr em evidência a variável grande.
+
+**A conta.**
+- Eixo $Y$: $(y^2 + a^2)^{-3/2} = y^{-3}\left(1 + \dfrac{a^2}{y^2}\right)^{-3/2} \approx y^{-3}\left(1 - \dfrac{3a^2}{2y^2}\right) \approx \dfrac{1}{y^3}$. Então
+$$\vec E \approx -\frac{\vec p}{4\pi\varepsilon_0y^3}.$$
+- Eixo $X$: $(x^2 - a^2)^{-2} = x^{-4}\left(1 - \dfrac{a^2}{x^2}\right)^{-2} \approx \dfrac{1}{x^4}$. Então
+$$\vec E \approx \frac{2x\,\vec p}{4\pi\varepsilon_0x^4} = \frac{2\vec p}{4\pi\varepsilon_0x^3}.$$
+
+**Interpretação.**
+- O campo do dipolo cai com $1/r^3$, **mais rápido** que o de uma carga ($1/r^2$). De longe, $+q$ e $-q$ parecem quase no mesmo lugar, e seus campos quase se cancelam. Sobra só a pequena diferença por estarem separadas.
+- O campo depende da **direção**. Na mesma distância, no eixo do dipolo ele é **duas vezes** maior e aponta no sentido de $\vec p$; no plano perpendicular, aponta contra $\vec p$.
+- Só importa o produto $p = 2qa$: dipolos com $q$ e $a$ diferentes, mas o mesmo $p$, são indistinguíveis de longe.`,
+            passo: 2,
+          },
         ],
         resultado: r`Campo de dipolo $\propto 1/r^3$.`,
         errosComuns: ['Esperar o mesmo sentido nos dois eixos.'],
@@ -798,8 +1345,60 @@ $$\vec E = 2kq\left[\frac{y}{(y^2 + a^2)^{3/2}} - \frac{1}{y^2}\right]\hat y.$$`
       resolucao: {
         conceitos: [{ texto: 'Dipolo e superposição', lab: 'dipolo' }],
         etapas: [
-          { titulo: 'Somar', texto: r`Três cargas.`, passo: 0 },
-          { titulo: 'Expandir', texto: r`Até o primeiro termo que não cancela.`, passo: 1 },
+          {
+            titulo: '(a) O campo no eixo Y',
+            texto: r`**O que se pede.** O campo no ponto $P = (0, y)$ produzido pelas três cargas $+q$, $-2q$ e $+q$ no eixo $X$, separadas por $a$.
+
+**A ideia.** Superposição: somar os vetores $\vec E = k_0\dfrac{q}{r^2}\hat r$ (formulário) das três cargas. O campo de carga positiva aponta para longe dela; o de carga negativa aponta para ela.
+
+**Montagem.** As cargas ficam em $(-a, 0)$, $(0, 0)$ e $(a, 0)$, com a $-2q$ no meio.
+- Cada $+q$ está a $r = \sqrt{y^2 + a^2}$ de $P$. O campo de cada uma aponta para longe dela, nas direções $(a,\ y)/r$ (a da esquerda) e $(-a,\ y)/r$ (a da direita).
+- A $-2q$ está a $y$ de $P$, logo abaixo. Seu campo aponta para ela: para baixo, com módulo $k_0\dfrac{2q}{y^2}$.
+
+**A conta.**
+- As componentes $x$ das duas $+q$ ($+a$ e $-a$) se cancelam.
+- As componentes $y$ das duas $+q$ se somam: $2\cdot k_0\dfrac{q}{r^2}\cdot\dfrac{y}{r} = \dfrac{2k_0q\,y}{(y^2 + a^2)^{3/2}}$, para cima.
+- Somando com a da $-2q$, para baixo:
+$$\vec E = 2k_0q\left[\frac{y}{(y^2 + a^2)^{3/2}} - \frac{1}{y^2}\right]\hat y.$$
+
+**Conferindo.** O primeiro termo é sempre menor que o segundo (as $+q$ estão mais longe e só uma parte do campo delas aponta na vertical): o campo em $P$ aponta para baixo.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) Muito longe: y ≫ a',
+            texto: r`**O que se pede.** Aproximar o resultado de (a) para $y \gg a$ e comparar com uma carga (monopolo) e com um dipolo.
+
+**A ideia.** A aproximação binomial do formulário da P1, $(1 + u)^n \approx 1 + nu$ para $|u| \ll 1$. Atenção: aqui os termos principais **se cancelam**, então é preciso ir até o termo seguinte.
+
+**A conta.** Pondo $y^2$ em evidência, com $u = a^2/y^2$ e $n = -3/2$:
+$$\frac{y}{(y^2 + a^2)^{3/2}} = \frac{1}{y^2}\left(1 + \frac{a^2}{y^2}\right)^{-3/2} \approx \frac{1}{y^2}\left(1 - \frac{3a^2}{2y^2}\right).$$
+Substituindo no colchete, o $\dfrac{1}{y^2}$ cancela com o $-\dfrac{1}{y^2}$:
+$$\vec E \approx 2k_0q\left(-\frac{3a^2}{2y^4}\right)\hat y = -\frac{3k_0qa^2}{y^4}\,\hat y.$$
+
+**Comparando.**
+- Uma carga (monopolo) dá campo $\propto 1/y^2$. Aqui a carga total é $q - 2q + q = 0$: esse termo não existe.
+- Um dipolo dá $\propto 1/y^3$. Aqui o momento de dipolo total é zero (item c): também não existe.
+- Sobra o termo seguinte, $\propto 1/y^4$: o campo de um **quadrupolo**, que cai ainda mais depressa.
+
+Se a expansão parasse na primeira ordem, o resultado seria zero, e seria errado concluir que o campo some.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) Como dois dipolos',
+            texto: r`**O que se pede.** Ver o arranjo como uma soma de dipolos e calcular o momento de dipolo total.
+
+**A ideia.** A superposição deixa dividir uma carga em pedaços que ficam no mesmo lugar. Divida a $-2q$ do meio em duas cargas $-q$ superpostas na origem.
+
+**Os dois dipolos.** Lembrando que $\vec p = q\vec L$ (formulário), com $\vec L$ de $-q$ até $+q$:
+- Dipolo 1: $+q$ em $(-a, 0)$ e uma $-q$ na origem. $\vec L$ aponta para a esquerda: $\vec p_1 = -qa\,\hat x$.
+- Dipolo 2: a outra $-q$ na origem e $+q$ em $(a, 0)$. $\vec L$ aponta para a direita: $\vec p_2 = +qa\,\hat x$.
+
+**O momento total.**
+$$\vec p_\text{total} = \vec p_1 + \vec p_2 = 0.$$
+
+São dois dipolos iguais, colados e apontando em sentidos opostos. Seus campos de dipolo ($1/r^3$) se cancelam de longe, e sobra só o efeito de eles estarem um pouco deslocados um do outro, que é o termo $1/y^4$ do item (b).`,
+            passo: 2,
+          },
         ],
         resultado: r`$E \approx -3kqa^2/y^4$; $p = 0$.`,
         errosComuns: ['Parar a expansão na primeira ordem e concluir que o campo é zero.'],

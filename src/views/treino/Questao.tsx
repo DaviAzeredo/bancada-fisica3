@@ -1,5 +1,7 @@
 import type { Prova } from '../../scenario/schema'
+import { FORMULARIOS_PROVAS } from '../../content/formularios'
 import { figurasDe } from '../../content/registry'
+import { Formulario } from '../../ui/Formulario'
 import { fmt, tituloDoLab } from '../../treino/banco'
 import { Rich } from '../../ui/Rich'
 
@@ -7,6 +9,7 @@ export type Questao = Prova['questoes'][number]
 
 export function Enunciado({ provaId, q }: { provaId: string; q: Questao }) {
   const figuras = figurasDe(provaId, q)
+  const formulario = FORMULARIOS_PROVAS[provaId]
   return (
     <>
       {q.enunciado && <Rich text={q.enunciado} className="text-[14.5px] leading-[1.65] text-text" />}
@@ -16,6 +19,14 @@ export function Enunciado({ provaId, q }: { provaId: string; q: Questao }) {
             <img key={src} src={src} alt={`Enunciado original${figuras.length > 1 ? `, parte ${i + 1}` : ''}`} loading="lazy" decoding="async" className="mx-auto block h-auto max-h-[420px] max-w-full" />
           ))}
         </div>
+      )}
+      {formulario && (
+        <details open className="mt-3">
+          <summary className="cursor-pointer text-[12.5px] text-text-3 hover:text-text-2">Formulário desta prova</summary>
+          <div className="mt-2">
+            <Formulario formulas={formulario.formulas} />
+          </div>
+        </details>
       )}
     </>
   )

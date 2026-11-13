@@ -1,5 +1,6 @@
 import type { ObjetoInput, ProvaInput } from '../../scenario/schema'
 import { arcoFio } from './modelos.ts'
+import { FORMULARIO_P3 } from '../formularios'
 
 const r = String.raw
 
@@ -33,6 +34,7 @@ export const lista_07: ProvaInput = {
   id: 'lista-07',
   titulo: 'Lista 7 · Leis de Ampère e Biot-Savart',
   subtitulo: 'Física III-A · 2020/1 · gabarito da monitoria',
+  formulario: FORMULARIO_P3,
   questoes: [
     /* ───────────────────────── 1 ───────────────────────── */
     {
@@ -78,8 +80,34 @@ export const lista_07: ProvaInput = {
       resolucao: {
         conceitos: [{ texto: 'Força entre correntes paralelas e antiparalelas', lab: 'forcas' }],
         etapas: [
-          { titulo: 'Vizinhas', texto: r`Trechos lado a lado têm corrente no mesmo sentido: $\vec F = I\,d\vec\ell\times\vec B$ aponta para a outra espira. Atração.`, passo: 0 },
-          { titulo: 'Opostos', texto: r`No mesmo diâmetro, as correntes são opostas e a força afasta os lados. Repulsão.`, passo: 1 },
+          {
+            titulo: '(a) Espiras vizinhas se atraem ou se repelem?',
+            texto: r`**O que se pede.** Num solenoide de enrolamento compacto, dizer se a força magnética entre espiras vizinhas é atrativa ou repulsiva, justificando.
+
+**A ideia: correntes paralelas.** Dois fios retos e paralelos com correntes:
+- cada um cria em volta de si um campo que circula em torno dele (Biot-Savart, formulário: $d\vec B = \dfrac{\mu_0}{4\pi}\dfrac{I\,d\vec\ell\times\hat r}{r^2}$; para um fio longo, $B = \dfrac{\mu_0I}{2\pi s}$, em círculos, pela regra da mão direita);
+- o outro fio, com corrente nesse campo, sofre a força $d\vec F_{(m)} = I\,d\vec\ell\times\vec B$ (formulário).
+
+Fazendo as contas de direção: correntes no **mesmo sentido** se **atraem**; em sentidos **opostos**, se **repelem**. (É o contrário das cargas, em que iguais se repelem.)
+
+**Aplicando.** Num enrolamento compacto, cada pedaço de uma espira tem, logo ao lado, o pedaço correspondente da espira vizinha, com a corrente no **mesmo sentido**: o fio dá voltas sempre girando para o mesmo lado. São como dois fios paralelos com correntes paralelas.
+
+**Resposta.** **Atrativa.** As espiras vizinhas se puxam: um solenoide percorrido por corrente tende a se comprimir ao longo do eixo.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) Lados opostos da mesma espira se atraem ou se repelem?',
+            texto: r`**O que se pede.** Dizer se a força magnética entre lados opostos de uma mesma espira é atrativa ou repulsiva.
+
+**A ideia.** A mesma regra do item (a): correntes paralelas se atraem, antiparalelas se repelem.
+
+**Aplicando.** Pegue um diâmetro da espira. Nas duas pontas dele, a corrente circula em sentidos **opostos**: se de um lado ela vai "para cima", do outro vai "para baixo", porque está dando a volta. São como dois fios com correntes **antiparalelas**.
+
+**Resposta.** **Repulsiva.** Os lados opostos se empurram para fora: a espira tende a se **abrir** (a aumentar de raio). Em eletroímãs muito fortes, essa força é capaz de deformar as bobinas.
+
+**Uma conferência pelo campo.** Dentro do solenoide, o campo é axial. Num pedaço do fio, $I\,d\vec\ell$ é tangente à espira e $\vec B$ é ao longo do eixo; o produto vetorial aponta na direção **radial**, para fora: a mesma conclusão.`,
+            passo: 1,
+          },
         ],
         resultado: r`(a) atrativa; (b) repulsiva.`,
         errosComuns: ['Achar que espiras "iguais" se repelem por analogia com cargas iguais: para correntes, iguais se atraem.'],
@@ -139,9 +167,39 @@ $$B = \frac{\mu_0}{2a_0}\frac{ev}{2\pi a_0} = \frac{\mu_0 e v}{4\pi a_0^2}.$$`,
       resolucao: {
         conceitos: [{ texto: 'Campo no centro de uma espira', lab: 'trechos' }, { texto: 'Corrente de uma carga em movimento circular' }],
         etapas: [
-          { titulo: 'Corrente', texto: r`Uma volta leva $T = 2\pi a_0/v$, então $I = e/T = ev/2\pi a_0$.`, passo: 0 },
-          { titulo: 'Campo', texto: r`$B = \mu_0 I/2a_0 = \mu_0 e v/4\pi a_0^2$. O sentido é o da corrente convencional, oposto ao movimento do elétron.`, passo: 0 },
-          { titulo: 'Valor', texto: r`$v \approx 2{,}19\times10^6$ m/s dá $B \approx 12{,}5$ T.`, passo: 1 },
+          {
+            titulo: '(a) O campo no próton',
+            texto: r`**O que se pede.** A intensidade do campo magnético, na posição do próton (o centro da órbita), produzido pelo elétron que gira com velocidade $v$ num círculo de raio $a_0$, tratado como corrente estacionária.
+
+**Passo 1: a corrente.** Num ponto da órbita passa uma carga $e$ a cada período $T = \dfrac{2\pi a_0}{v}$. A corrente média é
+$$I = \frac{e}{T} = \frac{ev}{2\pi a_0}.$$
+Como o elétron é negativo, ela circula no sentido **oposto** ao do movimento dele.
+
+**Passo 2: o campo no centro de uma espira circular.** Pela lei de Biot-Savart (formulário):
+$$d\vec B = \frac{\mu_0}{4\pi}\frac{I\,d\vec\ell\times\hat r}{r^2}.$$
+No centro de uma espira de raio $a_0$, todo pedacinho $d\vec\ell$ está à mesma distância $r = a_0$ e é **perpendicular** ao vetor que vai até o centro. Então $|d\vec\ell\times\hat r| = d\ell$, e todos os $d\vec B$ apontam na mesma direção (perpendicular ao plano da órbita). Somando, com $\oint d\ell = 2\pi a_0$:
+$$B = \frac{\mu_0I}{4\pi a_0^2}\cdot2\pi a_0 = \frac{\mu_0I}{2a_0}.$$
+
+**A conta.**
+$$B = \frac{\mu_0}{2a_0}\cdot\frac{ev}{2\pi a_0} = \frac{\mu_0ev}{4\pi a_0^2}.$$
+A direção é perpendicular ao plano da órbita, com sentido dado pela corrente convencional (oposta ao elétron) pela regra da mão direita.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O valor numérico',
+            texto: r`**O que se pede.** O valor de $B$, estimando $v$ com constantes fundamentais e usando $a_0 = 0{,}53\times10^{-10}$ m.
+
+**Passo 1: a velocidade.** A atração elétrica entre próton e elétron é a força centrípeta do movimento circular:
+$$\frac{1}{4\pi\varepsilon_0}\frac{e^2}{a_0^2} = \frac{mv^2}{a_0}\quad\Rightarrow\quad v = \frac{e}{\sqrt{4\pi\varepsilon_0ma_0}}.$$
+Com $e = 1{,}6\times10^{-19}$ C, $m = 9{,}1\times10^{-31}$ kg e $\varepsilon_0 = 8{,}85\times10^{-12}$ F/m: $v \approx 2{,}19\times10^6$ m/s.
+
+**Passo 2: o campo.** Pondo $v$ no resultado do item (a):
+$$B = \frac{\mu_0ev}{4\pi a_0^2} = \frac{(10^{-7})(1{,}6\times10^{-19})(2{,}19\times10^6)}{(0{,}53\times10^{-10})^2} \approx 12{,}5\ \text{T}.$$
+(Usando $\dfrac{\mu_0}{4\pi} = 10^{-7}$ T·m/A.) Em constantes fundamentais, $B = \dfrac{\mu_0e^2}{8a_0^2}\sqrt{\dfrac{1}{\pi^3\varepsilon_0ma_0}}$.
+
+**Para ter noção.** Cerca de 12 tesla, mais que o campo de muitos aparelhos de ressonância magnética (1,5 a 3 T). Dentro do átomo os campos são enormes porque a corrente, de cerca de 1 mA, gira num círculo minúsculo.`,
+            passo: 1,
+          },
         ],
         resultado: r`$B = \dfrac{\mu_0 e v}{4\pi a_0^2} \approx 12{,}5$ T.`,
         errosComuns: ['Usar $I = ev$ sem dividir pelo período.', 'Esquecer que a corrente convencional tem o sentido oposto ao do elétron.'],
@@ -186,8 +244,25 @@ $$\Gamma_\mathcal{C} = -\mu_0\frac{I}{2}.$$`,
       resolucao: {
         conceitos: [{ texto: 'Lei de Ampère com corrente distribuída', lab: 'ampere' }],
         etapas: [
-          { titulo: 'Corrente envolvida', texto: r`Setor de $60°$ de cada seção: $I/6$ por cilindro, $I/2$ no total.`, passo: 0 },
-          { titulo: 'Ampère', texto: r`$\Gamma = \mu_0 I_\text{enc}$ com o sinal da orientação: $-\mu_0 I/2$.`, passo: 1 },
+          {
+            titulo: 'Circulação de B pelo triângulo C',
+            texto: r`**O que se pede.** A circulação do campo magnético, $\oint_\mathcal C\vec B\cdot d\vec\ell$, pela curva $\mathcal C$: um triângulo cujos vértices estão nos eixos de três cilindros iguais que se tocam, cada um com corrente $I$ uniforme saindo do papel.
+
+**A ideia: a lei de Ampère.** Para correntes estacionárias (formulário, sem o termo de $\Phi_{\vec E}$, que é zero aqui):
+$$\oint_{\mathcal C}\vec B\cdot d\vec\ell = \mu_0I_\text{enc},$$
+em que $I_\text{enc}$ é a corrente que **atravessa** a superfície limitada pela curva. Não é preciso calcular o campo: basta saber quanta corrente o triângulo envolve.
+
+**Passo 1: quanto de cada cilindro está dentro do triângulo.** Os três eixos formam um triângulo **equilátero** (cada cilindro toca os outros dois, e os raios são iguais). O ângulo interno em cada vértice é $60°$. Dentro do triângulo fica, de cada seção circular, um **setor** de $60°$, que é $\dfrac{60°}{360°} = \dfrac16$ do círculo. Com a corrente uniforme na seção, cada setor leva $\dfrac I6$.
+
+**Passo 2: a corrente envolvida.**
+$$I_\text{enc} = 3\cdot\frac I6 = \frac I2.$$
+
+**Passo 3: o sinal.** A regra da mão direita relaciona o sentido de percurso da curva com o sentido "positivo" da corrente: dedos no sentido de $\mathcal C$, o polegar dá o sentido positivo. Na figura, $\mathcal C$ é percorrida no sentido **horário**, cujo polegar aponta **para dentro** do papel. As correntes **saem** do papel: contam como negativas.
+
+**Resposta.**
+$$\oint_{\mathcal C}\vec B\cdot d\vec\ell = -\frac{\mu_0I}{2}.$$`,
+            passo: 1,
+          },
         ],
         resultado: r`$\Gamma_\mathcal{C} = -\mu_0 I/2$.`,
         errosComuns: ['Contar a corrente inteira dos três cilindros ($3\\mu_0 I$).', 'Esquecer o sinal dado pelo sentido da curva.'],
@@ -242,8 +317,26 @@ $$\Gamma_\mathcal{C} = -\mu_0\frac{I}{2}.$$`,
       resolucao: {
         conceitos: [{ texto: 'Lei de Ampère: corrente enlaçada', lab: 'ampere' }],
         etapas: [
-          { titulo: 'Enlaçar', texto: r`Conte as espiras que atravessam uma superfície qualquer limitada por C, com o sinal de cada travessia.`, passo: 0 },
-          { titulo: 'Somar', texto: r`O saldo do gabarito é $+i$: $\Gamma_\mathcal{C} = \mu_0 i$. Na cena, o modelo põe só a espira $i$ enlaçada e confere numericamente.`, passo: 1 },
+          {
+            titulo: 'Circulação de B pela curva C',
+            texto: r`**O que se pede.** A circulação do campo magnético total das três espiras (correntes $i$, $4i$ e $5i$) ao longo da curva fechada e orientada $\mathcal C$ da figura.
+
+**A ideia: a lei de Ampère.** Para correntes estacionárias (formulário, sem o termo de $\Phi_{\vec E}$):
+$$\oint_{\mathcal C}\vec B\cdot d\vec\ell = \mu_0I_\text{enc}.$$
+$I_\text{enc}$ é a corrente líquida que **atravessa** uma superfície qualquer cujo contorno é $\mathcal C$ (imagine uma película de sabão presa na curva). Cada fio que fura essa película conta, com sinal:
+- positivo, se atravessa no sentido do polegar, com os dedos acompanhando o sentido de $\mathcal C$ (regra da mão direita);
+- negativo, se atravessa ao contrário.
+
+Fios que não furam a película **não contam**, por mais forte que seja o campo deles ao longo da curva. Eles mudam o campo em cada ponto de $\mathcal C$, mas a contribuição deles para a integral fechada é zero.
+
+**Aplicando à figura.** A pergunta, então, é: quais espiras estão **enlaçadas** com $\mathcal C$, como dois elos de corrente? Isso se lê pelos cruzamentos por cima e por baixo no desenho. O saldo, como dá o gabarito, é uma corrente $i$ atravessando no sentido positivo; as espiras de $4i$ e $5i$ não contribuem para o saldo.
+
+**Resposta.**
+$$\oint_{\mathcal C}\vec B\cdot d\vec\ell = \mu_0i.$$
+
+**Cuidado.** Somar todas as correntes do desenho ($10i$) é o erro clássico: só a corrente que atravessa a superfície limitada pela curva entra na lei de Ampère.`,
+            passo: 1,
+          },
         ],
         resultado: r`$\Gamma_\mathcal{C} = \mu_0 i$.`,
         errosComuns: ['Somar todas as correntes do desenho ($10i$).', 'Achar que uma espira próxima, mas não enlaçada, muda a circulação: muda o campo ao longo de C, não a integral.'],
@@ -301,9 +394,49 @@ $$\Gamma_\mathcal{C} = -\mu_0\frac{I}{2}.$$`,
       resolucao: {
         conceitos: [{ texto: 'Lei de Ampère com simetria cilíndrica', lab: 'ampereJ' }],
         etapas: [
-          { titulo: 'Simetria', texto: r`$\vec B = B(s)\hat\phi$; amperiana circular de raio $s$ dá $B\cdot 2\pi s = \mu_0 I_\text{enc}(s)$.`, passo: 0 },
-          { titulo: 'Corrente envolvida', texto: r`$Is^2/a^2$ dentro, $I$ entre os condutores, $0$ fora.`, passo: 1 },
-          { titulo: 'Fora', texto: r`Sem corrente líquida, não há campo: a blindagem do cabo.`, passo: 2 },
+          {
+            titulo: '(i) s < a: dentro do cilindro',
+            texto: r`**O que se pede.** O campo magnético a uma distância $s < a$ do eixo de um cabo coaxial: cilindro maciço de raio $a$ com corrente $I$ uniforme, e casca fina de raio $b$ com corrente $I$ no sentido oposto.
+
+**A ideia: lei de Ampère com simetria.** Lei de Ampère para correntes estacionárias (formulário): $\oint_{\mathcal C}\vec B\cdot d\vec\ell = \mu_0I_\text{enc}$. O cabo é infinito e igual em volta do eixo. Por essa simetria, o campo só pode **circular** em volta do eixo (direção $\hat\phi$) com módulo que depende só de $s$. Tomando como curva um **círculo** de raio $s$ centrado no eixo, $\vec B$ é tangente a ele e de módulo constante, e a integral vira $B\cdot2\pi s$:
+$$B\cdot2\pi s = \mu_0I_\text{enc}(s).$$
+
+**A corrente envolvida.** Com $s < a$, o círculo envolve só parte do cilindro. A corrente é uniforme na seção, então a parte envolvida é a fração da área:
+$$I_\text{enc} = I\,\frac{\pi s^2}{\pi a^2} = I\frac{s^2}{a^2}.$$
+
+**A conta.**
+$$B\cdot2\pi s = \mu_0I\frac{s^2}{a^2}\quad\Rightarrow\quad\vec B = \frac{\mu_0Is}{2\pi a^2}\,\hat\phi.$$
+Cresce linearmente a partir de zero no eixo. O sentido $\hat\phi$ é dado pela regra da mão direita com o polegar na corrente do cilindro.`,
+            passo: 0,
+          },
+          {
+            titulo: '(ii) a < s < b: entre os condutores',
+            texto: r`**O que se pede.** O campo entre o cilindro e a casca.
+
+**A ideia.** A mesma simetria e a mesma curva do item (i): um círculo de raio $s$ centrado no eixo, onde $\oint\vec B\cdot d\vec\ell = B\cdot2\pi s$. Lei de Ampère (formulário): $B\cdot2\pi s = \mu_0I_\text{enc}$.
+
+**A corrente envolvida.** Agora o círculo envolve o cilindro **inteiro**, mas não a casca (que está em $s = b$, fora dele): $I_\text{enc} = I$.
+
+**A conta.**
+$$B\cdot2\pi s = \mu_0I\quad\Rightarrow\quad\vec B = \frac{\mu_0I}{2\pi s}\,\hat\phi.$$
+É o campo de um fio fino infinito com corrente $I$. Em $s = a$, os itens (i) e (ii) dão o mesmo valor, $\dfrac{\mu_0I}{2\pi a}$: o campo é contínuo.`,
+            passo: 1,
+          },
+          {
+            titulo: '(iii) s > b: fora do cabo',
+            texto: r`**O que se pede.** O campo fora do cabo.
+
+**A ideia.** A mesma curva circular, agora com raio $s > b$, que envolve o cilindro **e** a casca.
+
+**A corrente envolvida.** O cilindro leva $I$ num sentido e a casca devolve $I$ no sentido oposto:
+$$I_\text{enc} = I - I = 0.$$
+
+**A conta.**
+$$B\cdot2\pi s = 0\quad\Rightarrow\quad\vec B = \vec 0.$$
+
+**Por que isso importa.** O cabo coaxial não produz campo magnético fora dele, e (pelo mesmo motivo) também não é afetado por campos de fora. É por isso que ele é usado para levar sinais sem interferência.`,
+            passo: 2,
+          },
         ],
         resultado: r`$\dfrac{\mu_0 I s}{2\pi a^2}\hat\phi$, $\dfrac{\mu_0 I}{2\pi s}\hat\phi$ e $\vec 0$.`,
         errosComuns: ['Usar a corrente inteira dentro do cilindro.', 'Esquecer o sentido $\\hat\\phi$ do vetor.'],
@@ -368,8 +501,59 @@ $$\vec B = \frac{\mu_0 I_0}{2\pi a^2}\left(2s - \frac{s^3}{a^2}\right)\hat\phi.$
       resolucao: {
         conceitos: [{ texto: 'Ampère com densidade de corrente variável', lab: 'ampereJ' }],
         etapas: [
-          { titulo: 'Integrar J', texto: r`$I_\text{enc}(s) = \int_0^s J\,2\pi s'\,ds'$.`, passo: 0 },
-          { titulo: 'Ampère', texto: r`$B\cdot2\pi s = \mu_0 I_\text{enc}(s)$, dentro e fora.`, passo: 2 },
+          {
+            titulo: '(a) A corrente total no cilindro',
+            texto: r`**O que se pede.** A corrente total que atravessa a seção do cilindro de raio $a$, com densidade de corrente $\vec J = \dfrac{2I_0}{\pi a^2}\left[1 - \left(\dfrac sa\right)^2\right]\hat z$.
+
+**A ideia.** A corrente é o fluxo de $\vec J$ pela seção (formulário: $I = \int_S\vec J\cdot d\vec A$). Como $J$ depende de $s$, divide-se a seção em **anéis** finos de raio $s$ e largura $ds$, de área $dA = 2\pi s\,ds$ (desenrolado, o anel é quase um retângulo de lados $2\pi s$ e $ds$). Em cada anel, $J$ é praticamente constante.
+
+**A conta.**
+$$I = \int_0^aJ(s)\,2\pi s\,ds = \frac{2I_0}{\pi a^2}\cdot2\pi\int_0^a\left(s - \frac{s^3}{a^2}\right)ds = \frac{4I_0}{a^2}\left[\frac{s^2}{2} - \frac{s^4}{4a^2}\right]_0^a.$$
+$$I = \frac{4I_0}{a^2}\left(\frac{a^2}{2} - \frac{a^2}{4}\right) = I_0.$$
+
+**Interpretação.** A constante $I_0$ do enunciado é exatamente a corrente total. A corrente é mais densa no eixo e cai a zero na superfície.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo fora do cilindro',
+            texto: r`**O que se pede.** O vetor campo magnético para $s > a$.
+
+**A ideia.** Lei de Ampère (formulário, com correntes estacionárias): $\oint\vec B\cdot d\vec\ell = \mu_0I_\text{enc}$. O fio é infinito e a corrente só depende de $s$: o campo circula em volta do eixo ($\hat\phi$) com módulo que só depende de $s$. Num círculo de raio $s$ centrado no eixo, $\oint\vec B\cdot d\vec\ell = B\cdot2\pi s$.
+
+**A conta.** Fora, o círculo envolve a corrente toda, $I_0$ (item a):
+$$B\cdot2\pi s = \mu_0I_0\quad\Rightarrow\quad\vec B = \frac{\mu_0I_0}{2\pi s}\,\hat\phi.$$
+
+**Interpretação.** De fora, o fio age como um fio fino com corrente $I_0$: a forma como a corrente se distribui dentro dele não importa.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) O campo dentro do cilindro',
+            texto: r`**O que se pede.** O vetor campo magnético para $s \le a$.
+
+**A ideia.** A mesma simetria e o mesmo círculo de raio $s$ do item (b), mas agora ele envolve só a corrente entre o eixo e $s$. É a integral do item (a) parando em $s$ (com $s'$ como variável de integração):
+$$I_\text{enc}(s) = \frac{4I_0}{a^2}\left[\frac{s'^2}{2} - \frac{s'^4}{4a^2}\right]_0^s = I_0\left(\frac{2s^2}{a^2} - \frac{s^4}{a^4}\right).$$
+
+**A conta.**
+$$B\cdot2\pi s = \mu_0I_0\left(\frac{2s^2}{a^2} - \frac{s^4}{a^4}\right)\quad\Rightarrow\quad\vec B = \frac{\mu_0I_0}{2\pi a^2}\left(2s - \frac{s^3}{a^2}\right)\hat\phi.$$
+
+**Conferindo.** Em $s = a$: $\dfrac{\mu_0I_0}{2\pi a^2}(2a - a) = \dfrac{\mu_0I_0}{2\pi a}$, igual ao item (b). No eixo, $B = 0$.`,
+            passo: 2,
+          },
+          {
+            titulo: '(d) O gráfico de B em função de s',
+            texto: r`**O que se pede.** Esboçar a intensidade do campo em função de $s$, com os valores importantes.
+
+**Uma escala útil.** Meça o campo em unidades do valor na superfície, $B(a) = \dfrac{\mu_0I_0}{2\pi a}$, e a distância em unidades de $a$, com $u = s/a$:
+- dentro ($u \le 1$): $\dfrac{B}{B(a)} = 2u - u^3$;
+- fora ($u > 1$): $\dfrac{B}{B(a)} = \dfrac1u$.
+
+**O desenho.**
+- Começa em **zero** no eixo e sobe quase em linha reta (para $u$ pequeno, $2u - u^3 \approx 2u$).
+- Continua subindo, cada vez mais devagar, até a superfície, onde vale $B(a)$. A inclinação de $2u - u^3$ é $2 - 3u^2$, que vale $-1$ em $u = 1$: o máximo exato fica um pouco **antes** da superfície, em $u = \sqrt{2/3} \approx 0{,}82$, onde $B \approx 1{,}09\,B(a)$.
+- Fora, cai como $1/s$.
+- É contínuo em $s = a$: não há corrente concentrada na superfície.`,
+            passo: 3,
+          },
         ],
         resultado: r`$I = I_0$; $B = \dfrac{\mu_0 I_0}{2\pi a^2}(2s - s^3/a^2)$ dentro, $\dfrac{\mu_0 I_0}{2\pi s}$ fora.`,
         errosComuns: ['Multiplicar $J$ pela área inteira, como se fosse uniforme.', 'Esquecer o fator $2\\pi s\\,ds$ no elemento de área.'],
@@ -421,9 +605,47 @@ $$\vec B = \frac{\mu_0 I_0}{2\pi a^2}\left(2s - \frac{s^3}{a^2}\right)\hat\phi.$
       resolucao: {
         conceitos: [{ texto: 'Quando a lei de Ampère calcula o campo', lab: 'ampere' }],
         etapas: [
-          { titulo: 'Intensidade', texto: r`Depende de $r$, que varia ao longo de C.`, passo: 0 },
-          { titulo: 'Direção', texto: r`$\hat\phi$ em torno do fio, diferente da tangente de C.`, passo: 1 },
-          { titulo: 'Usar a lei', texto: r`A igualdade vale, mas $\oint B\cos\alpha\,d\ell$ não se simplifica: a curva é inútil para achar $B$.`, passo: 2 },
+          {
+            titulo: '(a) O campo tem a mesma intensidade em toda a curva?',
+            texto: r`**O que se pede.** Uma curva circular $\mathcal C$, de raio $R$, envolve um fio infinito com corrente $I$, mas o fio **não** passa pelo centro dela. O campo do fio tem a mesma intensidade em todos os pontos de $\mathcal C$?
+
+**A ideia.** O campo de um fio reto infinito tem módulo
+$$B = \frac{\mu_0I}{2\pi r},$$
+em que $r$ é a distância ao **fio**. Ele sai da lei de Ampère com um círculo centrado no fio, ou da lei de Biot-Savart (formulário). Só depende dessa distância.
+
+**Aplicando.** Com o fio fora do centro de $\mathcal C$, os pontos da curva estão a distâncias diferentes do fio: se o fio está a $d$ do centro, as distâncias vão de $R - d$ (o ponto mais próximo) a $R + d$ (o mais distante).
+
+**Resposta.** **Não.** O campo é mais forte no lado da curva mais próximo do fio.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo é tangente à curva em todos os pontos?',
+            texto: r`**O que se pede.** Dizer se o campo do fio é tangente a $\mathcal C$ em todos os pontos dela.
+
+**A ideia.** As linhas do campo de um fio infinito são **círculos centrados no fio**, num plano perpendicular a ele (a direção $\hat\phi$, pela regra da mão direita). Em cada ponto, o campo é tangente ao círculo centrado no fio que passa por ali.
+
+**Aplicando.** A curva $\mathcal C$ é um círculo centrado em **outro** ponto. Os dois círculos (a linha de campo e $\mathcal C$) só têm a mesma tangente em alguns pontos isolados, não ao longo de toda a curva.
+
+**Resposta.** **Não.** O campo só seria tangente a $\mathcal C$ em todos os pontos se o centro de $\mathcal C$ coincidisse com o fio.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) Dá para tirar B da lei de Ampère com essa curva?',
+            texto: r`**O que se pede.** Dizer se a lei de Ampère com a curva $\mathcal C$ permite obter uma expressão para o campo do fio em todo o espaço.
+
+**A ideia.** A lei de Ampère (formulário, com correntes estacionárias) diz
+$$\oint_{\mathcal C}\vec B\cdot d\vec\ell = \mu_0I_\text{enc}.$$
+Ela **vale** para qualquer curva fechada: aqui o fio atravessa a região limitada por $\mathcal C$, e a circulação é $\mu_0I$, com o fio no centro ou não. Mas ela dá só a **integral**. Para extrair o campo, é preciso que, ao longo da curva:
+- $\vec B$ seja tangente a ela (para $\vec B\cdot d\vec\ell = B\,d\ell$), e
+- $|\vec B|$ seja constante (para $B$ sair da integral).
+
+Aí $\oint\vec B\cdot d\vec\ell = B\times(\text{comprimento})$, e isola-se $B$.
+
+**Aplicando.** Pelos itens (a) e (b), nesta curva nenhuma das duas condições vale: o campo muda de módulo e o ângulo entre $\vec B$ e $d\vec\ell$ muda ao longo dela. A integral $\oint B\cos\alpha\,d\ell$ não se simplifica.
+
+**Resposta.** **Não.** A lei vale, mas essa curva não serve para calcular o campo. A curva certa é um círculo **centrado no fio**, que tem a simetria do campo.`,
+            passo: 2,
+          },
         ],
         resultado: r`(a) não; (b) não; (c) não: a lei vale, mas a curva não tem a simetria do campo.`,
         errosComuns: ['Concluir que a lei de Ampère "falha" fora do centro: ela vale para qualquer curva; o que falha é o atalho de tirar $B$ da integral.'],
@@ -467,8 +689,30 @@ $$B = \frac{\mu_0 I}{4\pi}\left(\frac{\pi/2}{a} + \frac{3\pi/2}{b}\right) = \fra
       resolucao: {
         conceitos: [{ texto: 'Biot-Savart por trechos: arcos e raios', lab: 'trechos' }],
         etapas: [
-          { titulo: 'Raios', texto: r`Contribuição nula.`, passo: 0 },
-          { titulo: 'Arcos', texto: r`$\dfrac{\mu_0 I}{4\pi a}\dfrac{\pi}{2} + \dfrac{\mu_0 I}{4\pi b}\dfrac{3\pi}{2}$, para fora do papel ($+\hat z$).`, passo: 1 },
+          {
+            titulo: 'Campo em O do circuito de arcos e raios',
+            texto: r`**O que se pede.** O campo magnético no ponto $O$ (o centro comum dos arcos) produzido por um circuito plano feito de 3 arcos de raio $a$ com $30°$ cada, 3 arcos de raio $b$ e trechos retos **radiais** ligando os arcos, com corrente $I$.
+
+**A ideia: Biot-Savart por trechos.** O campo de um pedacinho de fio é (formulário)
+$$d\vec B = \frac{\mu_0}{4\pi}\frac{I\,d\vec\ell\times\hat r}{r^2},$$
+com $\hat r$ apontando do pedacinho até o ponto. O campo total é a soma dos campos de todos os trechos (superposição).
+
+**Os trechos radiais não contribuem.** Num trecho que aponta para $O$, $d\vec\ell$ é **paralelo** a $\hat r$, e o produto vetorial de vetores paralelos é zero. Campo nulo.
+
+**O campo de um arco no seu centro.** Num arco de raio $R$ e ângulo $\alpha$ (em radianos), todo pedacinho está à distância $R$ de $O$ e é **perpendicular** a $\hat r$: $|d\vec\ell\times\hat r| = d\ell$. Todos os $d\vec B$ apontam na mesma direção, perpendicular ao plano. Somando, com o comprimento do arco igual a $R\alpha$:
+$$B_\text{arco} = \frac{\mu_0I}{4\pi R^2}\cdot R\alpha = \frac{\mu_0I\alpha}{4\pi R}.$$
+(Com $\alpha = 2\pi$, volta $\dfrac{\mu_0I}{2R}$, o centro de uma espira completa.)
+
+**Os ângulos.** Os 3 arcos de raio $a$ somam $3\times30° = 90° = \dfrac\pi2$. Pela figura, os de raio $b$ completam o resto do giro: $360° - 90° = 270° = \dfrac{3\pi}{2}$. A corrente percorre todos os arcos no mesmo sentido de rotação em volta de $O$, então todos os campos apontam para o mesmo lado e se somam.
+
+**A conta.**
+$$B = \frac{\mu_0I}{4\pi}\left(\frac{\pi/2}{a} + \frac{3\pi/2}{b}\right) = \frac{\mu_0I}{8}\left(\frac1a + \frac3b\right).$$
+Pela regra da mão direita com o sentido da corrente na figura, o campo **sai do papel**:
+$$\vec B = \frac{\mu_0I}{8}\left(\frac1a + \frac3b\right)\hat z.$$
+
+**Cuidados.** O ângulo tem de estar em **radianos**. E cada arco dá só a fração $\alpha/2\pi$ do campo de uma espira completa, não $\mu_0I/2R$ inteiro.`,
+            passo: 1,
+          },
         ],
         resultado: r`$\vec B = \dfrac{\mu_0 I}{8}\left(\dfrac1a + \dfrac3b\right)\hat z$.`,
         errosComuns: ['Usar $\\mu_0 I/2R$ (espira completa) para cada arco.', 'Converter os ângulos em graus sem passar a radianos.'],
@@ -540,9 +784,64 @@ $$B_x = \frac{\mu_0 I L^2}{2\pi\left(x^2 + \frac{L^2}{4}\right)\sqrt{x^2 + \frac
       resolucao: {
         conceitos: [{ texto: 'Biot-Savart para fio finito', lab: 'trechos' }, { texto: 'Dipolo magnético', lab: 'forcas' }],
         etapas: [
-          { titulo: 'Um lado', texto: r`Fio finito a distância $\rho$, com a componente $x$ projetada por $L/2\rho$.`, passo: 1 },
-          { titulo: 'Simetria', texto: r`Transversais se cancelam; $x$ quadruplica.`, passo: 2 },
-          { titulo: 'Limite', texto: r`$x \gg L$ dá $\mu_0 IL^2/2\pi x^3$.`, passo: 3 },
+          {
+            titulo: '(a) O momento de dipolo da espira quadrada',
+            texto: r`**O que se pede.** O vetor momento de dipolo magnético da espira quadrada de lado $L$, com corrente $I$ no sentido da figura. O eixo $X$ é perpendicular ao plano da espira e passa pelo centro.
+
+**A ideia.** Para uma espira plana (formulário): $\vec\mu = NI\vec A$, com $\vec A$ perpendicular ao plano e sentido pela **regra da mão direita** (dedos na corrente, polegar em $\vec A$).
+
+**A conta.** Uma volta, área $L^2$. Na figura, a corrente gira no sentido anti-horário para quem olha de $+x$, então o polegar aponta para $+x$:
+$$\vec\mu = IL^2\,\hat x.$$`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo de um lado no ponto P',
+            texto: r`**O que se pede.** O campo de **um** dos lados da espira no ponto $P$, no eixo $X$, a uma distância $x$ do centro.
+
+**A ideia: o fio reto finito.** Pela lei de Biot-Savart (formulário, $d\vec B = \dfrac{\mu_0}{4\pi}\dfrac{I\,d\vec\ell\times\hat r}{r^2}$), um fio reto de comprimento $L$, visto de um ponto a uma distância $\rho$ do meio dele, produz (resultado de aula, também no exercício 12)
+$$B_1 = \frac{\mu_0I}{4\pi\rho}\,2\sin\theta,$$
+em que $\theta$ é o ângulo entre a perpendicular ao fio e a reta que vai do ponto até uma das pontas. O campo é perpendicular ao fio e à reta que liga o fio ao ponto.
+
+**Montagem.** Considere o lado vertical da direita, a $L/2$ do eixo:
+- a distância de $P$ até o meio dele é $\rho = \sqrt{x^2 + L^2/4}$;
+- a distância de $P$ até uma ponta é $\sqrt{\rho^2 + L^2/4} = \sqrt{x^2 + L^2/2}$, então $\sin\theta = \dfrac{L/2}{\sqrt{x^2 + L^2/2}}$.
+
+**A conta.**
+$$B_1 = \frac{\mu_0I}{4\pi\rho}\cdot\frac{L}{\sqrt{x^2 + L^2/2}}.$$
+A direção é perpendicular ao lado e à reta $\rho$; ela tem uma parte ao longo de $x$ (a fração $\dfrac{L/2}{\rho}$) e uma parte transversal (a fração $\dfrac x\rho$):
+$$\vec B_1 = \frac{\mu_0I}{4\pi}\frac{L}{\left(x^2 + \frac{L^2}{4}\right)\sqrt{x^2 + \frac{L^2}{2}}}\left(\frac L2\,\hat x + x\,\hat y\right).$$`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) O campo da espira inteira em P',
+            texto: r`**O que se pede.** Módulo, direção e sentido do campo da espira toda em $P$.
+
+**A ideia: simetria.** Os quatro lados são iguais e estão à mesma distância de $P$. Cada um dá um campo como o do item (b):
+- as partes **transversais** dos lados opostos apontam em sentidos opostos e **se cancelam** aos pares;
+- as partes ao longo de $x$ são iguais e **se somam**: quatro vezes a de um lado.
+
+**A conta.** A parte em $x$ de um lado é $B_1\cdot\dfrac{L/2}{\rho}$:
+$$B_x = 4\cdot\frac{\mu_0I}{4\pi\rho}\cdot\frac{L}{\sqrt{x^2 + L^2/2}}\cdot\frac{L}{2\rho} = \frac{\mu_0IL^2}{2\pi\left(x^2 + \frac{L^2}{4}\right)\sqrt{x^2 + \frac{L^2}{2}}}.$$
+$$\vec B = \frac{\mu_0IL^2}{2\pi\left(x^2 + \frac{L^2}{4}\right)\sqrt{x^2 + \frac{L^2}{2}}}\,\hat x.$$
+
+Ao longo do eixo, no sentido de $\vec\mu$. **Conferindo:** no centro ($x = 0$), $B = \dfrac{\mu_0IL^2}{2\pi(L^2/4)(L/\sqrt2)} = \dfrac{2\sqrt2\,\mu_0I}{\pi L} \approx 0{,}90\,\dfrac{\mu_0I}{L}$, um pouco menor que o de uma espira circular de diâmetro $L$ ($\mu_0I/L$): os cantos do quadrado ficam mais longe do centro.`,
+            passo: 2,
+          },
+          {
+            titulo: '(d) Muito longe: o campo de um dipolo',
+            texto: r`**O que se pede.** Uma aproximação para $x \gg L$, escrita com o momento de dipolo, e o que ela significa.
+
+**A ideia.** Para $x$ muito maior que $L$, os termos com $L^2$ ao lado de $x^2$ ficam desprezíveis: $x^2 + \dfrac{L^2}{4} \approx x^2$ e $\sqrt{x^2 + \dfrac{L^2}{2}} \approx x$.
+
+**A conta.**
+$$\vec B \approx \frac{\mu_0IL^2}{2\pi x^3}\,\hat x = \frac{\mu_0}{2\pi}\frac{\vec\mu}{x^3},$$
+com $\vec\mu = IL^2\hat x$ do item (a).
+
+**Interpretação.**
+- De longe, o campo só depende do **momento de dipolo**, $\vec\mu$: a forma da espira (quadrada, circular) deixa de importar, só a corrente vezes a área.
+- Ele cai com $1/x^3$, como o campo de um dipolo elétrico no seu eixo, $\dfrac{1}{4\pi\varepsilon_0}\dfrac{2\vec p}{x^3}$. A semelhança é completa: uma espira de corrente pequena é um **dipolo magnético**, um pequeno ímã.`,
+            passo: 3,
+          },
         ],
         resultado: r`$\vec B = \dfrac{\mu_0 I L^2}{2\pi(x^2 + L^2/4)\sqrt{x^2 + L^2/2}}\hat x \to \dfrac{\mu_0\vec\mu}{2\pi x^3}$.`,
         errosComuns: ['Somar os módulos dos quatro lados, sem cancelar as componentes transversais.'],
@@ -597,9 +896,47 @@ $$\vec B = \frac{\mu_0 I}{2R}\left(\frac1\pi + \frac14\right)\hat z.$$`, medidas
       resolucao: {
         conceitos: [{ texto: 'Biot-Savart por trechos: semirretas e arcos', lab: 'trechos' }],
         etapas: [
-          { titulo: 'Superposição', texto: r`Arco $\mu_0 I/8R$ e semirretas $\mu_0 I/4\pi R$ cada, todas para $+\hat z$.`, passo: 0 },
-          { titulo: 'Interpretar', texto: r`As duas semirretas juntas reproduzem um fio infinito.`, passo: 1 },
-          { titulo: 'Ampère', texto: r`Sem simetria cilíndrica, a lei não isola $B$.`, passo: 2 },
+          {
+            titulo: '(a) O campo na origem O',
+            texto: r`**O que se pede.** Pela lei de Biot-Savart, o campo na origem $O$ de um fio formado por uma semirreta paralela a $X$, um arco de um quarto de círculo de raio $R$ (centrado em $O$) e outra semirreta paralela a $Y$, com corrente $I$.
+
+**A ideia: superposição.** O campo de cada pedacinho é (formulário) $d\vec B = \dfrac{\mu_0}{4\pi}\dfrac{I\,d\vec\ell\times\hat r}{r^2}$. Calcula-se o campo de cada trecho em $O$ e somam-se os três.
+
+**O arco.** Todo pedacinho está à distância $R$ de $O$ e perpendicular a $\hat r$. Num arco de ângulo $\alpha$, o campo no centro é $\dfrac{\mu_0I\alpha}{4\pi R}$. Com $\alpha = \pi/2$:
+$$B_\text{arco} = \frac{\mu_0I}{4\pi R}\cdot\frac\pi2 = \frac{\mu_0I}{8R}.$$
+
+**Cada semirreta.** Ela começa (ou termina) numa ponta do arco, e essa ponta é o pé da perpendicular de $O$ até a reta da semirreta, a uma distância $R$. Para um fio reto, o campo num ponto a distância $d$ é $\dfrac{\mu_0I}{4\pi d}(\cos\theta_1 - \cos\theta_2)$ (exercício 12), com os ângulos medidos entre o fio e as retas até as pontas. Para a semirreta, os ângulos vão de $\pi/2$ (a ponta no pé da perpendicular) até $0$ ou $\pi$ (a ponta no infinito), e o parêntese vale $1$:
+$$B_\text{semi} = \frac{\mu_0I}{4\pi R}.$$
+É **metade** do campo de um fio infinito: a semirreta é metade dele, e as duas metades contribuiriam igualmente.
+
+**Somando.** Pela regra da mão direita com o sentido da corrente da figura, os três campos apontam para fora do papel ($+\hat z$):
+$$\vec B = \left(\frac{\mu_0I}{8R} + 2\cdot\frac{\mu_0I}{4\pi R}\right)\hat z = \frac{\mu_0I}{2R}\left(\frac1\pi + \frac14\right)\hat z.$$`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) As duas semirretas juntas valem um fio infinito',
+            texto: r`**O que se pede.** Verificar que o campo das duas semirretas juntas, em $O$, tem a mesma intensidade que o de um fio infinito a uma distância $R$, e interpretar.
+
+**A conta.** Do item (a), cada semirreta dá $\dfrac{\mu_0I}{4\pi R}$ em $O$, no mesmo sentido:
+$$B_\text{semirretas} = 2\cdot\frac{\mu_0I}{4\pi R} = \frac{\mu_0I}{2\pi R}.$$
+É exatamente o campo de um fio reto infinito a uma distância $R$.
+
+**Interpretação.** Um fio infinito visto de um ponto a distância $R$ pode ser cortado no pé da perpendicular em duas semirretas, cada uma contribuindo com **metade** do campo. Aqui as duas semirretas estão em direções diferentes ($X$ e $Y$), mas **cada uma**, vista de $O$, está na mesma situação geométrica de uma metade de fio infinito: começa no pé da perpendicular, a distância $R$, e vai até o infinito. Por isso as duas juntas reproduzem o fio inteiro.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) Daria para usar a lei de Ampère?',
+            texto: r`**O que se pede.** Dizer se a lei de Ampère serve para calcular diretamente a contribuição das semirretas, e justificar.
+
+**A ideia.** A lei de Ampère (formulário) dá a integral $\oint\vec B\cdot d\vec\ell$. Para extrair $B$, é preciso uma curva fechada em que $\vec B$ seja tangente e de módulo constante. Para um fio **infinito**, a curva é um círculo em volta do fio: por simetria (o fio é igual visto de qualquer ponto ao longo dele), o campo é o mesmo em todo o círculo.
+
+**Por que não funciona aqui.** Uma semirreta **não** tem essa simetria: ela acaba num ponto. Num círculo em volta dela, os pontos perto da ponta veem só "metade" do fio, e os pontos longe da ponta veem quase um fio infinito. O campo muda ao longo do círculo e não sai da integral. (Seguindo a sugestão: num ponto diferente de $O$, por exemplo em frente ao meio de uma das semirretas, o campo dela já não é $\mu_0I/4\pi R$.)
+
+Há ainda um problema mais fundo: uma semirreta sozinha não é um circuito fechado, e a lei de Ampère na forma $\oint\vec B\cdot d\vec\ell = \mu_0I_\text{enc}$ vale para correntes estacionárias em circuitos fechados.
+
+**Resposta.** **Não.** A coincidência do item (b) vale só no ponto $O$; para obtê-la, é preciso Biot-Savart.`,
+            passo: 2,
+          },
         ],
         resultado: r`$\vec B = \dfrac{\mu_0 I}{2R}\left(\dfrac1\pi + \dfrac14\right)\hat z$.`,
         errosComuns: ['Usar $\\mu_0 I/2\\pi R$ para cada semirreta (isso é o fio infinito).'],
@@ -671,9 +1008,57 @@ independente da distância, como no plano de carga.`,
       resolucao: {
         conceitos: [{ texto: 'Ampère com simetria planar', lab: 'ampereJ' }],
         etapas: [
-          { titulo: 'Simetria', texto: r`$\vec B = B(y)\hat x$, ímpar em $y$.`, passo: 0 },
-          { titulo: 'Retângulo', texto: r`Lados verticais não contribuem ($\vec B \perp d\vec\ell$); os horizontais dão $2Bw$ cada.`, passo: 1 },
-          { titulo: 'Corrente envolvida', texto: r`$J_0\cdot 2w\cdot d$ fora; $J_0\cdot2w\cdot2|y|$ dentro.`, passo: 2 },
+          {
+            titulo: '(a) A direção e o sentido do campo',
+            texto: r`**O que se pede.** Pela simetria, a direção e o sentido do campo magnético da placa infinita de espessura $d$ (paralela ao plano $XZ$, de $y = -d/2$ a $y = d/2$), com densidade de corrente $\vec J = J_0\hat z$, em todo o espaço.
+
+**A ideia.** Pense na placa como um conjunto de fios finos paralelos ao eixo $Z$, lado a lado, todos com corrente no sentido $+z$ (saindo do papel, se o papel é o plano $XY$). Cada fio cria um campo que circula em volta dele, pela regra da mão direita (lei de Biot-Savart, formulário).
+
+**Somando fios simétricos.** Num ponto acima da placa ($y > 0$), considere dois fios à mesma distância, um à esquerda e outro à direita do ponto. Os campos deles têm o mesmo módulo; as componentes em $y$ se cancelam e as componentes em $x$ se somam. Como a placa é infinita em $x$, todo fio tem seu par, e sobra só a componente $x$.
+
+**O sentido.** Para um fio com corrente em $+z$ na origem, num ponto logo acima dele, em $(0, y > 0)$, o campo circula no sentido anti-horário visto de $+z$ e aponta para $-\hat x$. Então:
+- acima da placa ($y > 0$): $\vec B$ aponta para $-\hat x$;
+- abaixo ($y < 0$): para $+\hat x$, o espelho.
+
+**Resposta.** $\vec B$ é paralelo ao eixo $X$, com $-\hat x$ para $y > 0$ e $+\hat x$ para $y < 0$. No plano do meio ($y = 0$) ele é zero, por simetria. Também não pode depender de $x$ nem de $z$, porque a placa é igual vista de qualquer ponto ao longo dessas direções.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) A intensidade fora da placa',
+            texto: r`**O que se pede.** Pela lei de Ampère, a intensidade do campo fora da placa ($|y| > d/2$).
+
+**A ideia.** Lei de Ampère com correntes estacionárias (formulário): $\oint_{\mathcal C}\vec B\cdot d\vec\ell = \mu_0I_\text{enc}$. A curva escolhida é um **retângulo** no plano $XY$, simétrico em relação à placa: dois lados horizontais (paralelos a $x$), de comprimento $w$, em $y = +h$ e $y = -h$, e dois lados verticais (paralelos a $y$) atravessando a placa.
+
+**A circulação.**
+- Nos lados **verticais**, $\vec B$ (ao longo de $x$) é perpendicular a $d\vec\ell$: contribuição zero.
+- Nos lados **horizontais**, $\vec B$ é paralelo ao lado e tem módulo constante (ele só depende de $y$). Percorrendo o retângulo, os dois contribuem com o mesmo sinal ($\vec B$ inverte de cima para baixo, e o sentido de percurso também), cada um com $Bw$.
+
+Total: $\oint\vec B\cdot d\vec\ell = 2Bw$.
+
+**A corrente envolvida.** Com $h > d/2$, o retângulo atravessa a placa inteira. A corrente que passa por ele é $J_0$ vezes a área da placa dentro do retângulo, $w\times d$: $I_\text{enc} = J_0wd$.
+
+**A conta.**
+$$2Bw = \mu_0J_0wd\quad\Rightarrow\quad B = \frac{\mu_0J_0d}{2}.$$
+
+**Interpretação.** Não depende da distância: fora, o campo é **uniforme**, como o campo elétrico de um plano de carga infinito.`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) A intensidade dentro da placa',
+            texto: r`**O que se pede.** Pela lei de Ampère, a intensidade do campo dentro da placa ($|y| \le d/2$).
+
+**A ideia.** O mesmo retângulo simétrico do item (b), agora com os lados horizontais em $\pm y$ **dentro** da placa. A circulação continua $2Bw$.
+
+**A corrente envolvida.** O retângulo atravessa só a fatia da placa entre $-|y|$ e $|y|$, de espessura $2|y|$: $I_\text{enc} = J_0w\cdot2|y|$.
+
+**A conta.**
+$$2Bw = \mu_0J_0w\cdot2|y|\quad\Rightarrow\quad B = \mu_0J_0|y|.$$
+Com o sentido do item (a) ($-\hat x$ acima do plano do meio):
+$$\vec B = -\mu_0J_0y\,\hat x.$$
+
+**Conferindo.** Em $y = 0$ o campo é zero, como a simetria exige. Em $y = d/2$, vale $\dfrac{\mu_0J_0d}{2}$, igual ao de fora: o campo cresce linearmente dentro e fica constante fora, sem salto.`,
+            passo: 2,
+          },
         ],
         resultado: r`$B = \mu_0 J_0 d/2$ fora; $\vec B = -\mu_0 J_0 y\hat x$ dentro.`,
         errosComuns: ['Esperar que o campo caia com a distância: a placa é infinita, como o plano de carga.'],
@@ -751,8 +1136,68 @@ Aqui $\cos\theta_1 = L_1/\sqrt{L_1^2 + d^2}$ e $\cos\theta_2 = -L_2/\sqrt{L_2^2 
       resolucao: {
         conceitos: [{ texto: 'Biot-Savart para fio finito', lab: 'trechos' }],
         etapas: [
-          { titulo: 'Variável angular', texto: r`$z = -d\cot\theta$ e $r = d/\sin\theta$ transformam a integral em $\int\sin\theta\,d\theta$.`, passo: 0 },
-          { titulo: 'Casos', texto: r`Simétrico, infinito e semi-infinito saem de limites de $\theta_1$ e $\theta_2$.`, passo: 2 },
+          {
+            titulo: '(a) O campo do fio finito em P',
+            texto: r`**O que se pede.** Pela lei de Biot-Savart, o campo num ponto $P$ a uma distância $d$ de um fio reto finito com corrente $I$ no sentido $+z$. Os ângulos $\theta_1$ e $\theta_2$ são os ângulos entre o eixo do fio ($+z$) e as retas que vão das duas pontas até $P$.
+
+**A ideia.** Lei de Biot-Savart (formulário):
+$$d\vec B = \frac{\mu_0}{4\pi}\frac{I\,d\vec\ell\times\hat r}{r^2}.$$
+Somar ao longo do fio. A sugestão é usar como variável o **ângulo** $\theta$ entre o fio e a reta do pedacinho até $P$, que deixa a integral simples.
+
+**Montagem.** Ponha $P$ na altura $z = 0$, à distância $d$ do fio. Um pedacinho na altura $z$, de comprimento $dz$:
+- está a uma distância $r = \dfrac{d}{\sin\theta}$ de $P$;
+- sua posição se escreve $z = -d\cot\theta$, então $dz = \dfrac{d}{\sin^2\theta}\,d\theta$;
+- $|d\vec\ell\times\hat r| = dz\,\sin\theta$ (o ângulo entre o fio e $\hat r$ é $\theta$).
+
+Todos os pedacinhos dão campo na **mesma direção**: perpendicular ao plano que contém o fio e $P$, ou seja, circulando em volta do fio ($\hat\phi$), pela regra da mão direita.
+
+**A conta.** Substituindo:
+$$dB = \frac{\mu_0I}{4\pi}\cdot\frac{d}{\sin^2\theta}\,d\theta\cdot\sin\theta\cdot\frac{\sin^2\theta}{d^2} = \frac{\mu_0I}{4\pi d}\sin\theta\,d\theta.$$
+Integrando de $\theta_1$ a $\theta_2$:
+$$\vec B = \frac{\mu_0I}{4\pi d}\big(\cos\theta_1 - \cos\theta_2\big)\,\hat\phi.$$
+
+**Cuidado.** Os dois ângulos são medidos a partir do sentido $+z$ (o da corrente), não pelo lado de dentro do triângulo. Se $P$ está entre as alturas das pontas, $\theta_1 < 90°$ e $\theta_2 > 90°$.`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) P na mediatriz do fio',
+            texto: r`**O que se pede.** Obter, do item (a), o resultado de aula para $P$ na reta perpendicular ao fio pelo seu ponto médio.
+
+**A ideia.** Com $P$ em frente ao meio do fio, as duas pontas são vistas simetricamente: $\theta_2 = \pi - \theta_1$. Então $\cos\theta_2 = -\cos\theta_1$.
+
+**A conta.**
+$$B = \frac{\mu_0I}{4\pi d}\big(\cos\theta_1 + \cos\theta_1\big) = \frac{\mu_0I}{2\pi d}\cos\theta_1.$$
+Com o fio de comprimento $L$, a ponta está a $L/2$ do meio, e $\cos\theta_1 = \dfrac{L/2}{\sqrt{(L/2)^2 + d^2}}$:
+$$B = \frac{\mu_0I}{4\pi d}\,\frac{L}{\sqrt{d^2 + L^2/4}}.$$
+É o resultado visto em aula. (O comprimento do fio fica definido por $\theta_1$, $\theta_2$ e $d$, como diz a observação do enunciado.)`,
+            passo: 1,
+          },
+          {
+            titulo: '(c) O fio infinito',
+            texto: r`**O que se pede.** O campo de um fio infinito em $P$, a partir do item (a).
+
+**A ideia.** Fio infinito para os dois lados: uma ponta vai para $z \to -\infty$, vista na direção do próprio fio ($\theta_1 \to 0$); a outra vai para $z \to +\infty$ ($\theta_2 \to \pi$).
+
+**A conta.** $\cos0 = 1$ e $\cos\pi = -1$:
+$$\vec B = \frac{\mu_0I}{4\pi d}\big(1 - (-1)\big)\hat\phi = \frac{\mu_0I}{2\pi d}\,\hat\phi.$$
+É o campo de um fio infinito, o mesmo que a lei de Ampère dá com um círculo centrado no fio.`,
+            passo: 2,
+          },
+          {
+            titulo: '(d) O fio semi-infinito',
+            texto: r`**O que se pede.** O campo de um fio semi-infinito que se estende para $-z$, e por que a lei de Ampère não dá esse resultado.
+
+**A conta.** A ponta que vai para $-\infty$ é vista com $\theta_1 \to 0$; a outra ponta continua com o seu $\theta_2$:
+$$\vec B = \frac{\mu_0I}{4\pi d}\big(1 - \cos\theta_2\big)\hat\phi.$$
+Se $P$ está bem em frente à ponta ($\theta_2 = \pi/2$, $\cos\theta_2 = 0$):
+$$B = \frac{\mu_0I}{4\pi d},$$
+**metade** do campo do fio infinito, como esperado: falta metade do fio.
+
+**Por que não com a lei de Ampère.** Para tirar $B$ da lei de Ampère (formulário), é preciso uma curva onde $\vec B$ seja tangente e de módulo constante, o que, para um fio, exige que ele seja igual visto de qualquer altura (simetria de **translação**). Um fio semi-infinito tem uma ponta: num círculo em volta dele, o campo depende de onde o círculo está em relação à ponta. Além disso, um fio que termina não é um circuito fechado de corrente estacionária, que é a situação em que a lei vale na forma $\oint\vec B\cdot d\vec\ell = \mu_0I_\text{enc}$.
+
+**Sobre o gabarito.** O gabarito da monitoria fixa $P$ em frente à ponta ($\theta_2 = \pi/2$). Para $P$ qualquer, vale a expressão geral acima.`,
+            passo: 3,
+          },
         ],
         resultado: r`$\vec B = \dfrac{\mu_0 I}{4\pi d}(\cos\theta_1 - \cos\theta_2)\hat\phi$.`,
         errosComuns: ['Medir $\\theta_2$ pelo lado de dentro do triângulo: na fórmula, os dois ângulos são medidos a partir do sentido $+z$.'],
@@ -816,9 +1261,43 @@ Mova o ponto de prova: o campo é **uniforme** no buraco todo.`,
       resolucao: {
         conceitos: [{ texto: 'Superposição com corrente negativa no buraco', lab: 'ampereJ' }],
         etapas: [
-          { titulo: 'Área', texto: r`$\tfrac34\pi R^2$ dá $J = 4I/3\pi R^2$.`, passo: 0 },
-          { titulo: 'Superposição', texto: r`Cheio ($+J$) mais buraco ($-J$).`, passo: 1 },
-          { titulo: 'Dentro do grande', texto: r`$\vec B = \tfrac{\mu_0 J}{2}\hat z\times\vec s$; a diferença dos dois dá campo uniforme $\mu_0 J (R/2)/2$ no buraco.`, passo: 2 },
+          {
+            titulo: '(a) A densidade de corrente',
+            texto: r`**O que se pede.** A intensidade da densidade de corrente no fio: um disco de raio $R$ com um buraco circular de raio $R/2$, tangente à borda, com corrente $I$ uniforme na seção.
+
+**A ideia.** Densidade de corrente é corrente por área (formulário: $I = \int_S\vec J\cdot d\vec A$; com $J$ uniforme, $I = JA$). A área que conduz é a do disco **menos** a do buraco.
+
+**A conta.**
+$$A = \pi R^2 - \pi\left(\frac R2\right)^2 = \frac34\pi R^2\quad\Rightarrow\quad J = \frac IA = \frac{4I}{3\pi R^2}.$$`,
+            passo: 0,
+          },
+          {
+            titulo: '(b) O campo em P₁ e P₂',
+            texto: r`**O que se pede.** A intensidade do campo nos pontos $P_1$ (o centro do buraco) e $P_2$ (o ponto onde o buraco toca a borda do disco).
+
+**Por que não Ampère direto.** Com o buraco fora do centro, não há simetria circular: não existe curva em que $B$ seja constante. A saída é a **superposição**, como sugere o enunciado.
+
+**A superposição.** O fio com buraco é igual à soma de:
+- um cilindro **cheio** de raio $R$, com densidade $+J$, levando $J\pi R^2 = \dfrac43I$;
+- um cilindro de raio $R/2$ no lugar do buraco, com densidade $-J$ (corrente oposta), levando $-J\pi\dfrac{R^2}{4} = -\dfrac13I$.
+
+No buraco, $+J$ e $-J$ se cancelam: não há corrente, como deve ser. E $\tfrac43I - \tfrac13I = I$.
+
+**Os campos de um cilindro.** Pela lei de Ampère com um círculo centrado no eixo de um cilindro de raio $a$ com corrente uniforme $I_c$ (como no exercício 5):
+- dentro, a distância $s$ do eixo: $B = \dfrac{\mu_0I_cs}{2\pi a^2}$, que, com $I_c = J\pi a^2$, dá $B = \dfrac{\mu_0Js}{2}$;
+- fora: $B = \dfrac{\mu_0I_c}{2\pi s}$.
+
+**Em $P_1$, o centro do buraco.** O cilindro pequeno não contribui: $P_1$ está no eixo dele ($s = 0$). O grande contribui com o campo de dentro, a $s = R/2$ do seu eixo:
+$$B(P_1) = \frac{\mu_0J}{2}\cdot\frac R2 = \frac{\mu_0R}{4}\cdot\frac{4I}{3\pi R^2} = \frac{\mu_0I}{3\pi R}.$$
+
+**Em $P_2$, o ponto de tangência.** Ele está na superfície dos **dois** cilindros: a $R$ do eixo do grande e a $R/2$ do eixo do pequeno, os três pontos na mesma reta. Os dois campos estão na mesma direção, com sentidos opostos (as correntes são opostas):
+$$B(P_2) = \frac{\mu_0(4I/3)}{2\pi R} - \frac{\mu_0(I/3)}{2\pi(R/2)} = \frac{\mu_0I}{2\pi R}\left(\frac43 - \frac23\right) = \frac{\mu_0I}{3\pi R}.$$
+
+**Resposta.** $B(P_1) = B(P_2) = \dfrac{\mu_0I}{3\pi R}$.
+
+**Uma surpresa.** Não é coincidência: dentro do buraco o campo é **uniforme**. Em forma vetorial, dentro de um cilindro, $\vec B = \dfrac{\mu_0J}{2}\hat z\times\vec s$; somando o do grande ($+J$, $\vec s$ a partir do centro dele) com o do pequeno ($-J$, $\vec s\,'$ a partir do centro do buraco), sobra $\dfrac{\mu_0J}{2}\hat z\times(\vec s - \vec s\,')$, e $\vec s - \vec s\,'$ é o vetor fixo entre os dois centros. É o análogo magnético da cavidade esférica da Lista 2.`,
+            passo: 2,
+          },
         ],
         resultado: r`$J = 4I/3\pi R^2$; $B(P_1) = B(P_2) = \mu_0 I/3\pi R$.`,
         errosComuns: ['Dar ao cilindro cheio a corrente $I$, e não $4I/3$.'],

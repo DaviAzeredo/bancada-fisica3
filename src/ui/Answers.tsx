@@ -107,7 +107,7 @@ export function Answers({ respostas }: { respostas: Scenario['respostas'] }) {
             onClick={() => setOpen((o) => ({ ...o, [r.item]: !o[r.item] }))}
           >
             <span>
-              Item ({r.item})
+              {/^\(.*\)$/.test(r.item) ? `Item ${r.item}` : /^[a-z]$/.test(r.item) ? `Item (${r.item})` : r.item}
               {r.pontos !== undefined && <span className="num ml-2 text-[12px] text-text-3">{r.pontos.toLocaleString('pt-BR', { minimumFractionDigits: 1 })} pt</span>}
             </span>
             <span className="text-[12px] text-text-3">{open[r.item] ? 'ocultar' : 'mostrar resposta'}</span>
