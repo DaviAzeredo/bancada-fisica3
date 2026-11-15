@@ -8,6 +8,7 @@ import { TopBar } from './views/Shell'
 const carregarBancada = () => import('./views/ScenarioView')
 const ScenarioView = lazy(() => carregarBancada().then((m) => ({ default: m.ScenarioView })))
 const Treino = lazy(() => import('./views/Treino').then((m) => ({ default: m.Treino })))
+const Fisica2 = lazy(() => import('./views/Fisica2').then((m) => ({ default: m.Fisica2 })))
 
 function useHash() {
   const [hash, setHash] = useState(() => window.location.hash || '#/')
@@ -141,6 +142,7 @@ export function App() {
     if (kind === 'prova' && a) return <ProvaRota id={a} questao={b} />
     if (kind === 'lab' && a) return <LabRota id={a} />
     if (kind === 'treino') return <Treino secao={a} id={b} />
+    if (kind === 'fisica2') return <Fisica2 id={a} />
     return <Home focus={kind === 'labs' ? 'labs' : kind === 'provas' ? 'provas' : kind === 'listas' ? 'listas' : undefined} />
   }, [kind, a, b])
 

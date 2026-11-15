@@ -436,7 +436,7 @@ export function ScenarioView({
 
           {scenario.resolucao && (
             <Section title="Gabarito detalhado" id="sec-resolucao">
-              <Solution key={scenario.id} r={scenario.resolucao} praticar={scenario.labs} />
+              <Solution key={scenario.id} r={scenario.resolucao} praticar={scenario.labs} irParaPasso={useRun.getState().setStep} />
             </Section>
           )}
 

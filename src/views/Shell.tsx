@@ -58,6 +58,7 @@ export function TopBar({ route, children }: { route: string; children?: ReactNod
         {link('#/provas', 'Provas', route === 'prova' || route === 'provas')}
         {link('#/listas', 'Listas', route === 'lista' || route === 'listas')}
         {link('#/labs', 'Laboratórios', route === 'lab' || route === 'labs', 'Labs')}
+        {link('#/fisica2', 'Física II', route === 'fisica2', 'F2')}
       </nav>
     </header>
   )

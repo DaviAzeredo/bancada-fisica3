@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { labs } from '../content/registry'
 import type { Resolucao } from '../scenario/schema'
-import { useRun } from '../store'
 import { Icon } from './kit'
 import { Rich } from './Rich'
 
@@ -10,9 +9,8 @@ import { Rich } from './Rich'
  * correspondente), resultado, erros comuns e a conferência com o oficial.
  * Fica fechado até o aluno pedir, para não entregar a resposta de cara.
  */
-export function Solution({ r, praticar = [] }: { r: Resolucao; praticar?: string[] }) {
+export function Solution({ r, praticar = [], irParaPasso }: { r: Resolucao; praticar?: string[]; irParaPasso?: (passo: number) => void }) {
   const [open, setOpen] = useState(false)
-  const setStep = useRun((s) => s.setStep)
 
   if (!open)
     return (
@@ -67,8 +65,8 @@ export function Solution({ r, praticar = [] }: { r: Resolucao; praticar?: string
             <div>
               <div className="mb-1 flex flex-wrap items-baseline justify-between gap-x-3">
                 <h4 className="text-[14px] font-semibold text-text">{e.titulo}</h4>
-                {e.passo !== undefined && (
-                  <button type="button" onClick={() => setStep(e.passo!)} className="inline-flex items-center gap-1 text-[12px] text-text-3 hover:text-accent">
+                {e.passo !== undefined && irParaPasso && (
+                  <button type="button" onClick={() => irParaPasso(e.passo!)} className="inline-flex items-center gap-1 text-[12px] text-text-3 hover:text-accent">
                     ver na cena {Icon.next}
                   </button>
                 )}

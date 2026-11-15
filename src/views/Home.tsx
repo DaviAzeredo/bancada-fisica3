@@ -186,6 +186,16 @@ export function Home({ focus }: { focus?: 'labs' | 'provas' | 'listas' }) {
                 </div>
               </div>
             )}
+            <div className="mt-12">
+              <h2 className="mb-1 text-[12px] font-semibold tracking-[0.06em] text-text-3 uppercase">Física II · revisão para a P2</h2>
+              <p className="mb-3 text-[12.5px] text-text-3">Oscilações, ondas e som: os problemas da revisão em sala e da lista extra, resolvidos do zero, com gráficos que se mexem.</p>
+              <a
+                href="#/fisica2"
+                className="inline-flex h-9 items-center gap-2 rounded-[var(--radius-ctl)] border border-line px-4 text-[13.5px] text-text-2 hover:border-text-3 hover:text-text"
+              >
+                Abrir a Física II {Icon.next}
+              </a>
+            </div>
           </section>
 
           <section id="home-labs" aria-labelledby="h-labs" className="scroll-mt-16">
