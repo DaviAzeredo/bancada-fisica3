@@ -89,4 +89,51 @@ describe('Física II', () => {
     // 12: com v_p = u o eco volta sem desvio
     expect(avaliar('1e10*((3e8 - u)*(3e8 + vp)/((3e8 - vp)*(3e8 + u)) - 1)', { u: 37, vp: 37 })).toBeCloseTo(0, 3)
   })
+
+  it('as provas anteriores conferem com o gabarito oficial', () => {
+    // 2025/1 Q1: T = 2πA/v0
+    expect((2 * Math.PI * (1 / Math.PI)) / 0.2).toBeCloseTo(10)
+    // Q2: tan²(π/6)
+    expect(Math.tan(Math.PI / 6) ** 2).toBeCloseTo(1 / 3)
+    // Q3: π√d(1 + 1/√2) = 2π√d′
+    expect(((1 + 1 / Math.SQRT2) / 2) ** 2).toBeCloseTo((3 + 2 * Math.SQRT2) / 8)
+    // Q5: A/A′ com γ = ω0
+    const amp = (u: number) => 1 / Math.sqrt((1 - u * u) ** 2 + u * u)
+    expect(amp(1) / amp(0.5)).toBeCloseTo(Math.sqrt(13 / 16))
+    // Q8: λ, τ, v
+    expect((2 * Math.PI) / (0.4 * Math.PI)).toBeCloseTo(5)
+    expect(5 * (1 / ((2 * Math.PI) / (250 * Math.PI)))).toBeCloseTo(625)
+    // 2025/2 Q1: ω e A
+    expect(Math.sqrt(4000 / 10)).toBeCloseTo(20)
+    expect(avaliar('-0.5*20*sin(3*pi/2)', {})).toBeCloseTo(10)
+    // Q2: mgA²/2L
+    expect((2 * 10 * 0.01) / 20).toBeCloseTo(0.01)
+    // Q3: a força exata tende à linear
+    expect(avaliar('-2*Y/(Y^2 + 0.25)^1.5', { Y: 0.001 }) / -0.016).toBeCloseTo(1, 3)
+    // Q4: T = μv²
+    expect(0.05 * (2 / 0.4) ** 2).toBeCloseTo(1.25)
+    // Q8 (c): δ = ln2/3
+    expect(Math.exp(-Math.log(2) / 3) ** 3).toBeCloseTo(0.5)
+  })
+
+  it('a corda fixa-livre volta invertida em 2L/v e igual em 4L/v', async () => {
+    const { PULSO_FIXA_LIVRE: f } = await import('./fisica2Provas')
+    for (const x of [0.3, 0.46, 0.5, 0.55, 0.9]) {
+      const y0 = avaliar(f, { x, t: 0 })
+      expect(avaliar(f, { x, t: 2 }), `x=${x}`).toBeCloseTo(-y0)
+      expect(avaliar(f, { x, t: 4 }), `x=${x}`).toBeCloseTo(y0)
+      expect(avaliar(f, { x, t: 1 }), `x=${x}`).toBeCloseTo(0)
+    }
+    expect(avaliar(f, { x: 0.5, t: 0 })).toBeCloseTo(1)
+  })
+
+  it('o seletor de opções da reflexão desenha seis formas diferentes', () => {
+    const p = FISICA2.find((q) => q.id === 'p2-2025-1-q7')!
+    const g = p.graficos!.find((x) => x.parametros?.some((q) => q.id === 'op'))!
+    const assinaturas = [1, 2, 3, 4, 5, 6].map((op) => [-3.5, -3, -2, -1.4].map((x) => avaliar(g.curvas[0].expr, { op, x }).toFixed(3)).join())
+    expect(new Set(assinaturas).size).toBe(6)
+    // (c) = pequena corcova à esquerda e vale largo junto à haste
+    expect(avaliar(g.curvas[0].expr, { op: 3, x: -3.6 })).toBeGreaterThan(0.3)
+    expect(avaliar(g.curvas[0].expr, { op: 3, x: -2 })).toBeLessThan(-0.8)
+  })
 })

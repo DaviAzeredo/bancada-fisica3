@@ -1,16 +1,18 @@
 import type { Grafico } from '../ui/Plot'
+import { PROVAS_F2 } from './fisica2Provas'
 
 const r = String.raw
 
 /**
  * Física II para a P2: oscilações, ondas e som. Os problemas vêm da lista de
- * problemas extras da P2 e da revisão feita em sala em 13/11/2026; os
- * enunciados estão reescritos e as resoluções são desta bancada.
+ * problemas extras da P2, da revisão feita em sala em 13/11/2026 e das P2
+ * anteriores (em `fisica2Provas.ts`); os enunciados estão reescritos e as
+ * resoluções são desta bancada.
  */
 export interface ProblemaF2 {
   id: string
   numero: string
-  grupo: 'Revisão em sala (13/11/2026)' | 'Problemas extras da P2'
+  grupo: 'Revisão em sala (13/11/2026)' | 'Problemas extras da P2' | 'P2 2026/1' | 'P2 2025/2' | 'P2 2025/1'
   assunto: string
   titulo: string
   resumo: string
@@ -28,7 +30,7 @@ export interface ProblemaF2 {
 
 const tempoOnda = (rotulo = 'Fase ωt') => ({ id: 'wt', rotulo, valor: 0, min: 0, max: 2 * Math.PI, passo: 0.01, unidade: 'rad', anima: 2.2 })
 
-export const FISICA2: ProblemaF2[] = [
+const EXTRAS: ProblemaF2[] = [
   /* ───────────────────────── Revisão 1 ───────────────────────── */
   {
     id: 'r1',
@@ -1074,3 +1076,5 @@ $$E = \frac{TA^2}{8}\cdot\frac{4\pi^2}{L^2}\cdot L = \frac{\pi^2TA^2}{2L}.$$
     },
   },
 ]
+
+export const FISICA2: ProblemaF2[] = [...EXTRAS, ...PROVAS_F2]
