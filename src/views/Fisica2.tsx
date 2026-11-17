@@ -47,7 +47,7 @@ function Indice() {
         <p className="mb-2 text-[13px] text-text-3">Física II · oscilações, ondas e som</p>
         <h1 className="text-[30px] leading-tight font-semibold tracking-[-0.02em] text-text">Revisão para a P2</h1>
         <p className="mt-3 mb-8 max-w-[60ch] text-[14.5px] leading-[1.6] text-text-2">
-          Os problemas da revisão em sala, a lista de problemas extras e as P2 de 2025/1, 2025/2 e 2026/1, resolvidos passo a passo para quem
+          Os problemas da revisão em sala, a lista de problemas extras e as P2 de 2024/2 a 2026/1, resolvidos passo a passo para quem
           está começando: cada item diz o que se pede, a ideia por trás, a conta e uma conferência. Os gráficos se mexem: ajuste os controles e veja a física acontecer.
         </p>
         <Lista />

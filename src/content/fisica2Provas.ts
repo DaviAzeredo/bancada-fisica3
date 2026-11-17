@@ -25,6 +25,18 @@ const ext = (u: string) => {
 }
 export const PULSO_FIXA_LIVRE = `0.5*(${ext('x - t')} + ${ext('x + t')})`
 
+/*
+ * Pulso retangular andando para a direita na corda fixa em 0 e livre em L = 1 (2024/2, Q1):
+ * y = G(x − t) − G(−x − t), com G antiperiódica de meio período 2L (ponta livre) e o
+ * termo com sinal trocado garantindo o nó em x = 0.
+ */
+const ret = (z: string) => `(abs(${z}) < 0.1 ? 1 : 0)`
+const G = (u: string) => {
+  const s = `((${u}) - 4*floor(((${u}) + 1)/4))`
+  return `(${ret(`${s} - 0.5`)} - ${ret(`${s} - 2.5`)})`
+}
+export const PULSO_RETANGULAR = `${G('x - t')} - ${G('-x - t')}`
+
 export const PROVAS_F2: ProblemaF2[] = [
   /* ═════════════════════════ P2 2026/1 ═════════════════════════ */
   {
@@ -1161,6 +1173,141 @@ $$I' = \frac12\sqrt{T\cdot 3\mu}\,\omega^2A^2 = \sqrt3\,I.$$
         r`Dizer que a onda anda para $+x$: com sinais iguais em $kx$ e $\omega t$, ela anda para $-x$.`,
         r`Ler $\lambda = 0{,}4$ cm ou $f = 250$ Hz direto da fórmula, esquecendo os fatores $2\pi$ e $\pi$.`,
         r`Achar que a potência triplica junto com $\mu$: ela vai com $\sqrt\mu$.`,
+      ],
+    },
+  },
+
+  /* ═════════════════════════ P2 2024/2 ═════════════════════════ */
+  {
+    id: 'p2-2024-2-q1',
+    numero: 'Q1',
+    grupo: 'P2 2024/2',
+    assunto: 'Reflexão em pontas fixa e livre',
+    titulo: 'O pulso retangular de volta, invertido',
+    resumo: 'Livre não inverte, fixa inverte: invertido no meio e andando para a esquerda só depois de 3L de caminho, t = 3L/v.',
+    enunciado: r`Uma corda esticada tem comprimento $L$; a ponta **esquerda está presa** e a ponta **direita está livre**. Em $t = 0$, um pulso retangular **para cima**, centrado no ponto médio da corda, anda **para a direita** com velocidade $v$. Qual é o menor intervalo de tempo $t$ depois do qual o pulso aparece de novo no meio da corda, **invertido (para baixo)** e andando **para a esquerda**? (Objetiva, versão A, questão 1. Na prova, as duas situações eram desenhos; o gráfico desta página reproduz a corda.)`,
+    alternativas: [
+      { letra: '(A)', texto: r`$L/v$`, porque: r`Em $L/v$ o pulso volta ao meio andando para a esquerda, mas **para cima**: a ponta livre não inverte.` },
+      { letra: '(B)', texto: r`$\frac32 L/v$`, porque: r`Em $\frac32L/v$ o pulso está chegando à ponta fixa ($x = 0$), não no meio.` },
+      { letra: '(C)', texto: r`$2L/v$`, porque: r`Em $2L/v$ ele está no meio e invertido, mas andando para a **direita**, logo depois de refletir na ponta fixa.` },
+      { letra: '(D)', texto: r`$\frac52 L/v$`, porque: r`Em $\frac52L/v$ o pulso invertido está chegando à ponta livre ($x = L$).` },
+      { letra: '(E)', texto: r`$3L/v$`, correta: true, porque: r`Certa: caminho $\frac L2 + L + L + \frac L2 = 3L$, com uma reflexão na ponta fixa (inverte) e duas na livre (não invertem).` },
+    ],
+    graficos: [
+      {
+        titulo: 'O pulso indo e voltando (L = 1, v = 1): pare em t = 3',
+        x: { variavel: 'x', de: 0, ate: 1, rotulo: 'x / L' },
+        y: { de: -1.3, ate: 1.3, rotulo: 'y' },
+        curvas: [
+          { expr: PULSO_RETANGULAR, rotulo: 'corda no instante t' },
+          { expr: '(abs(x - 0.5) < 0.1 ? -1 : 0)', rotulo: 'a forma procurada (invertida, no meio)', cor: 'mute', tracejada: true },
+        ],
+        parametros: [{ id: 't', rotulo: 'Tempo t (em L/v)', valor: 0, min: 0, max: 4, passo: 0.01, anima: 0.5 }],
+        marcas: [
+          { x: 0, rotulo: 'fixa' },
+          { x: 1, rotulo: 'livre' },
+        ],
+        amostras: 1000,
+      },
+    ],
+    respostas: [{ item: 'Alternativa', texto: r`(E): $t = 3L/v$` }],
+    resolucao: {
+      conceitos: [{ texto: 'Reflexão em ponta fixa (inverte) e em ponta livre (não inverte)' }],
+      etapas: [
+        {
+          titulo: 'Alternativa: contar o caminho e as inversões',
+          texto: r`**O que se pede.** O primeiro instante em que o pulso está no meio da corda, **de cabeça para baixo** e andando **para a esquerda**. São três exigências ao mesmo tempo: posição, sinal e sentido.
+
+**As regras.**
+- Na ponta **livre** (direita), o pulso volta **sem inverter**.
+- Na ponta **fixa** (esquerda), o pulso volta **invertido**.
+- Entre as pontas ele anda com velocidade constante $v$, então o tempo é o caminho dividido por $v$.
+
+**Seguindo o pulso.**
+1. Anda $\frac L2$ até a ponta livre e volta **para cima**, agora para a esquerda. Em $t = L/v$ ele passa pelo meio: para cima e para a esquerda. Falta a inversão.
+2. Anda mais $L$, desde a ponta livre até a fixa ($t = \frac32L/v$), e volta **invertido**, para a direita. Em $t = 2L/v$ passa pelo meio: invertido, mas para a direita. Falta o sentido.
+3. Anda mais $L$ até a ponta livre ($t = \frac52L/v$) e volta ainda **invertido** (a livre não inverte de novo), para a esquerda.
+4. Anda mais $\frac L2$ e chega ao meio: invertido e para a esquerda. É a forma pedida.
+
+**O tempo.** O caminho total é
+$$\Delta s = \frac L2 + L + L + \frac L2 = 3L \;\Rightarrow\; t = \frac{\Delta s}{v} = \frac{3L}{v}.$$
+
+**Conferindo.** No gráfico, aperte "Animar" ou leve o tempo a 1, 2 e 3: em $t = 1$ o pulso está no meio para cima, em $t = 2$ no meio para baixo (andando para a direita) e em $t = 3$ coincide com a forma tracejada, andando para a esquerda.
+
+**Resposta.** Opção **(E)**.`,
+        },
+      ],
+      resultado: r`Caminho $3L$ (uma inversão, na ponta fixa): $t = 3L/v$, opção **(E)**.`,
+      errosComuns: [r`Parar em $L/v$: o pulso está no meio e indo para a esquerda, mas ainda para cima.`, r`Parar em $2L/v$: invertido e no meio, mas andando para a direita.`],
+    },
+  },
+
+  /* ═════════════════════════ Questões avulsas ═════════════════════════ */
+  {
+    id: 'avulsa-contorno',
+    numero: 'Q1',
+    grupo: 'Questões avulsas',
+    assunto: 'Condições de contorno',
+    titulo: 'Qual ponta é livre e qual é fixa',
+    resumo: 'Em x = 0 a inclinação é zero (ventre: livre); em x = 0,6 m, cos(3π/2) = 0 (nó: fixa).',
+    enunciado: r`Uma corda vai de $x = 0$ a $x = 60$ cm e vibra numa onda estacionária
+$$y(x,t) = 6\cos\!\left(\frac{5\pi}{2}x\right)\cos(30\pi t + \varphi),$$
+com $x$ em metros e $t$ em segundos.
+
+(c) Determine as condições de contorno em $x = 0$ e em $x = 60$ cm. Identifique qual extremidade é livre e qual é fixa.
+
+(Questão de exercício. A foto trazia só o item (c); a função de onda é a usada na resolução do caderno, e a unidade da amplitude 6 não muda nada neste item.)`,
+    graficos: [
+      {
+        titulo: 'A corda vibrando: ventre em x = 0, nó em x = 0,6 m',
+        x: { variavel: 'x', de: 0, ate: 0.6, rotulo: 'x (m)' },
+        y: { de: -7.5, ate: 7.5, rotulo: 'y' },
+        curvas: [
+          { expr: '6*cos(5*pi*x/2)*cos(wt)', rotulo: 'corda no instante' },
+          { expr: '6*cos(5*pi*x/2)', rotulo: 'envoltória', cor: 'mute', tracejada: true },
+          { expr: '0-6*cos(5*pi*x/2)', cor: 'mute', tracejada: true },
+        ],
+        parametros: [fase('Fase 30πt + φ')],
+        marcas: [
+          { x: 0, rotulo: 'ventre: ponta livre' },
+          { x: 0.6, rotulo: 'nó: ponta fixa' },
+        ],
+      },
+    ],
+    respostas: [
+      {
+        item: '(c)',
+        texto: r`Em $x = 0$: $\dfrac{\partial y}{\partial x}(0,t) = 0$ (ventre), ponta **livre**. Em $x = 0{,}6$ m: $y(0{,}6;t) = 6\cos(3\pi/2)\cos(30\pi t + \varphi) = 0$ (nó), ponta **fixa**.`,
+      },
+    ],
+    resolucao: {
+      conceitos: [{ texto: 'Ondas estacionárias e condições de contorno' }],
+      etapas: [
+        {
+          titulo: '(c) As condições em cada ponta',
+          texto: r`**O que se pede.** Testar o que acontece com a corda em cada extremidade e dizer qual ponta está presa e qual está solta.
+
+**As duas condições possíveis.**
+- **Ponta fixa** (presa): a corda não se mexe ali em nenhum instante. Condição: $y(x_{\text{ponta}}, t) = 0$ para todo $t$. A ponta é um **nó**.
+- **Ponta livre** (um anel sem massa e sem atrito): a corda chega sempre horizontal, sem inclinação, porque um anel sem massa não aguentaria uma força vertical. Condição: $\dfrac{\partial y}{\partial x}(x_{\text{ponta}}, t) = 0$ para todo $t$. A ponta é um **ventre**.
+
+Dica: o fator que depende de $x$ decide as condições de contorno; o fator que depende de $t$ (com a fase $\varphi$) só entra nas condições iniciais.
+
+**Em $x = 0$.** O deslocamento é $y(0,t) = 6\cos(0)\cos(30\pi t + \varphi) = 6\cos(30\pi t + \varphi)$, que **não** é zero sempre: essa ponta se mexe, então não é fixa. A inclinação é
+$$\frac{\partial y}{\partial x} = -6\cdot\frac{5\pi}{2}\,\text{sen}\!\left(\frac{5\pi}{2}x\right)\cos(30\pi t + \varphi),$$
+e em $x = 0$ o seno vale zero: $\dfrac{\partial y}{\partial x}(0,t) = 0$ em todo instante. É um ventre: **ponta livre**.
+
+**Em $x = 60$ cm $= 0{,}6$ m.** O ângulo vale $\frac{5\pi}{2}\cdot 0{,}6 = \frac{3\pi}{2}$, e $\cos\frac{3\pi}2 = 0$:
+$$y(0{,}6;\,t) = 6\cos\!\left(\frac{3\pi}{2}\right)\cos(30\pi t + \varphi) = 0$$
+em todo instante. É um nó: **ponta fixa**.
+
+**Conferindo.** O número de onda $k = 5\pi/2$ rad/m dá $\lambda = 2\pi/k = 0{,}8$ m. A corda de 0,6 m tem então $\frac34\lambda$: três quartos de onda, do ventre da ponta livre ao nó da ponta fixa, que é um modo permitido para uma corda livre numa ponta e fixa na outra. A frequência é $30\pi/2\pi = 15$ Hz. No gráfico, a ponta da esquerda sobe e desce com a maior amplitude, e a da direita nunca sai do lugar.`,
+        },
+      ],
+      resultado: r`$x = 0$: $\partial y/\partial x = 0$, ventre, ponta livre; $x = 0{,}6$ m: $y = 0$, nó, ponta fixa.`,
+      errosComuns: [
+        r`Usar $x = 60$ (em cm) com $k$ em rad/m: o ângulo certo é $\frac{5\pi}{2}\cdot 0{,}6 = \frac{3\pi}{2}$.`,
+        r`Testar só $y = 0$ em $x = 0$ e concluir "não é nada": a ponta livre se reconhece pela inclinação nula.`,
       ],
     },
   },

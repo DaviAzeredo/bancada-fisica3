@@ -12,7 +12,7 @@ const r = String.raw
 export interface ProblemaF2 {
   id: string
   numero: string
-  grupo: 'Revisão em sala (13/11/2026)' | 'Problemas extras da P2' | 'P2 2026/1' | 'P2 2025/2' | 'P2 2025/1'
+  grupo: 'Revisão em sala (13/11/2026)' | 'Problemas extras da P2' | 'P2 2026/1' | 'P2 2025/2' | 'P2 2025/1' | 'P2 2024/2' | 'Questões avulsas'
   assunto: string
   titulo: string
   resumo: string

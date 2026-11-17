@@ -127,6 +127,21 @@ describe('Física II', () => {
     expect(avaliar(f, { x: 0.5, t: 0 })).toBeCloseTo(1)
   })
 
+  it('o pulso retangular volta ao meio: em pé em L/v, invertido em 2L/v e 3L/v', async () => {
+    const { PULSO_RETANGULAR: f } = await import('./fisica2Provas')
+    const y = (x: number, t: number) => avaliar(f, { x, t })
+    expect(y(0.5, 0)).toBe(1)
+    expect(y(0.5, 1)).toBe(1)
+    expect(y(0.5, 2)).toBe(-1)
+    expect(y(0.5, 3)).toBe(-1)
+    // em 2L/v anda para a direita, em 3L/v para a esquerda
+    expect(y(0.58, 2.05)).toBe(-1)
+    expect(y(0.42, 3.05)).toBe(-1)
+    expect(y(0.42, 2.05)).toBe(0)
+    // nó na ponta fixa
+    for (const t of [0.5, 1.5, 2.5]) expect(y(0, t)).toBe(0)
+  })
+
   it('o seletor de opções da reflexão desenha seis formas diferentes', () => {
     const p = FISICA2.find((q) => q.id === 'p2-2025-1-q7')!
     const g = p.graficos!.find((x) => x.parametros?.some((q) => q.id === 'op'))!
