@@ -23,6 +23,19 @@ describe('Bizuário de Física II', () => {
     }
   })
 
+  it('nenhuma fórmula fica solta: cada uma tem nome e explicação', () => {
+    const ruins: string[] = []
+    const nomes = new Set<string>()
+    for (const f of fichas)
+      for (const x of f.formulas) {
+        if (x.nome.trim().length < 4) ruins.push(`${f.id}: sem nome`)
+        if (nomes.has(x.nome)) ruins.push(`${f.id}: nome repetido "${x.nome}"`)
+        nomes.add(x.nome)
+        if (semFormulas(x.explica).trim().length < 60) ruins.push(`${f.id} · ${x.nome}: explicação curta`)
+      }
+    expect(ruins).toEqual([])
+  })
+
   it('cobre todas as questões de Física II do site', () => {
     const cobertas = new Set(fichas.flatMap((f) => f.questoes))
     expect(FISICA2.map((p) => p.id).filter((id) => !cobertas.has(id))).toEqual([])
@@ -39,10 +52,10 @@ describe('Bizuário de Física II', () => {
     }
     for (const f of fichas) {
       for (const x of f.formulas) {
-        compila(f.id, x)
-        if (x.includes('$')) ruins.push(`${f.id}: cifrão na fórmula`)
+        compila(f.id, x.tex)
+        if (x.tex.includes('$')) ruins.push(`${f.id}: cifrão na fórmula`)
       }
-      for (const t of [f.quando, ...f.bizus]) {
+      for (const t of [f.quando, ...f.bizus, ...f.formulas.map((x) => x.explica)]) {
         for (const x of formulasDe(t)) compila(f.id, x)
         if (semFormulas(t).includes('$')) ruins.push(`${f.id}: cifrão solto`)
       }

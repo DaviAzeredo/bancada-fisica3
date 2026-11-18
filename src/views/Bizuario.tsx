@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { BIZUARIO, type Ficha } from '../content/bizuarioF2'
+import { BIZUARIO, type Ficha, type Formula } from '../content/bizuarioF2'
 import { FISICA2 } from '../content/fisica2'
 import { Rich, Tex } from '../ui/Rich'
 import { TopBar } from './Shell'
@@ -35,18 +35,20 @@ export function rotuloQuestao(id: string) {
   return `Revisão ${p.numero}`
 }
 
-/** Fórmulas escritas lado a lado (separadas por \quad) viram linhas próprias: no celular nada passa da largura. */
-export const partes = (lista: string[]) => lista.flatMap((f) => f.split(/,?\s*\\q?quad\s*/).filter(Boolean))
-
-function Formulas({ lista }: { lista: string[] }) {
+/** Cada fórmula com o nome em cima e a explicação embaixo: nada de fórmula solta. */
+function Formulas({ lista }: { lista: Formula[] }) {
   return (
-    <ul className="grid gap-2 rounded-[var(--radius-ctl)] border border-line bg-surface px-3 py-3 text-[12.5px] text-text sm:text-[13.5px]" aria-label="Fórmulas">
-      {partes(lista).map((f) => (
-        <li key={f} className="max-w-full overflow-x-auto overflow-y-hidden px-1 py-1 text-center">
-          <Tex src={`\\displaystyle ${f}`} />
+    <ol className="grid gap-px overflow-hidden rounded-[var(--radius-ctl)] border border-line bg-line-soft" aria-label="Fórmulas">
+      {lista.map((f) => (
+        <li key={f.tex} className="grid gap-1.5 bg-surface px-3 py-3">
+          <div className="text-[12.5px] font-semibold text-text">{f.nome}</div>
+          <div className="max-w-full overflow-x-auto overflow-y-hidden px-1 py-1 text-center text-[12.5px] text-text sm:text-[13.5px]">
+            <Tex src={`\\displaystyle ${f.tex}`} />
+          </div>
+          <Rich text={f.explica} className="text-[13px] leading-[1.6] text-text-2" />
         </li>
       ))}
-    </ul>
+    </ol>
   )
 }
 
@@ -131,7 +133,13 @@ function Cartao({
         </>
       ) : (
         <div className="grid gap-2 rounded-[var(--radius-ctl)] border border-dashed border-line px-3 py-3 text-[13.5px] text-text-2">
-          <p>Tente escrever de cabeça a fórmula e os pulos do gato desta ficha. Depois confira.</p>
+          <p>Escreva de cabeça, e diga o que significa cada símbolo:</p>
+          <ol className="grid list-decimal gap-0.5 pl-5 text-text">
+            {f.formulas.map((x) => (
+              <li key={x.tex}>{x.nome}</li>
+            ))}
+          </ol>
+          <p>Depois lembre o pulo do gato desta ficha e confira.</p>
           <button
             type="button"
             onClick={() => setAberta(true)}
@@ -274,20 +282,27 @@ export function Bizuario() {
           <h2 id="biz-h-revisao" className="text-[20px] font-semibold tracking-[-0.01em] text-text">
             Folha de revisão rápida
           </h2>
-          <p className="mt-2 mb-5 text-[14px] leading-[1.6] text-text-2">Só as fórmulas, na ordem dos tópicos, para a última olhada antes da prova.</p>
+          <p className="mt-2 mb-5 text-[14px] leading-[1.6] text-text-2">
+            Nome e fórmula, na ordem dos tópicos, para a última olhada antes da prova. Se um nome não trouxer a fórmula à cabeça, volte à ficha.
+          </p>
           <div className="grid gap-5">
             {BIZUARIO.map((t, i) => (
               <div key={t.id}>
                 <div className="mb-1.5 text-[12.5px] font-semibold text-text-2">
                   {i + 1}. {t.titulo}
                 </div>
-                <ul className="flex flex-wrap gap-x-6 gap-y-2 rounded-[var(--radius-ctl)] border border-line-soft bg-surface px-3 py-2.5 text-[13px] text-text">
-                  {partes(t.fichas.flatMap((f) => f.formulas)).map((f) => (
-                    <li key={f} className="max-w-full overflow-x-auto overflow-y-hidden px-0.5 py-0.5">
-                      <Tex src={f} />
-                    </li>
-                  ))}
-                </ul>
+                <dl className="grid gap-px overflow-hidden rounded-[var(--radius-ctl)] border border-line-soft bg-line-soft text-[13px]">
+                  {t.fichas
+                    .flatMap((f) => f.formulas)
+                    .map((f) => (
+                      <div key={f.tex} className="grid items-center gap-x-4 gap-y-0.5 bg-surface px-3 py-2 sm:grid-cols-[minmax(0,15rem)_minmax(0,1fr)]">
+                        <dt className="text-[12.5px] text-text-2">{f.nome}</dt>
+                        <dd className="max-w-full overflow-x-auto overflow-y-hidden px-0.5 py-0.5 text-text">
+                          <Tex src={f.tex} />
+                        </dd>
+                      </div>
+                    ))}
+                </dl>
               </div>
             ))}
           </div>

@@ -6,11 +6,19 @@ const r = String.raw
  * questões em que é usada (ids de FISICA2); o teste exige que toda questão
  * esteja coberta por alguma ficha.
  */
+export interface Formula {
+  /** Nome curto: vira a pergunta no modo Decorar ("Período do pêndulo"). */
+  nome: string
+  /** LaTeX, sem cifrões. */
+  tex: string
+  /** O que a fórmula diz, o que é cada símbolo e quando vale (Markdown + $…$). */
+  explica: string
+}
+
 export interface Ficha {
   id: string
   titulo: string
-  /** Fórmulas em LaTeX, sem cifrões. */
-  formulas: string[]
+  formulas: Formula[]
   /** Quando reconhecer que é esta a ferramenta (Markdown + $…$). */
   quando: string
   /** Os pulos do gato: atalhos e armadilhas. */
@@ -34,7 +42,28 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'mhs-base',
         titulo: 'Equação e solução do MHS',
-        formulas: [r`\ddot x + \omega^2 x = 0`, r`x(t) = A\cos(\omega t + \varphi)`, r`\omega = \sqrt{k/m},\quad T = \frac{2\pi}{\omega},\quad f = \frac1T`],
+        formulas: [
+          {
+            nome: 'Equação do MHS',
+            tex: r`\ddot x + \omega^2 x = 0`,
+            explica: r`É a segunda lei de Newton com força $-kx$: a aceleração $\ddot x$ (derivada segunda da posição) é proporcional ao deslocamento e aponta para o lado oposto. Se a equação de um problema cair nesta forma, o movimento é harmônico, e o número que multiplica $x$ é $\omega^2$.`,
+          },
+          {
+            nome: 'Solução geral',
+            tex: r`x(t) = A\cos(\omega t + \varphi)`,
+            explica: r`$A$ é a amplitude (o afastamento máximo do equilíbrio), $\omega$ a frequência angular em rad/s e $\varphi$ a fase inicial, que diz onde o movimento começa. $\omega$ vem do sistema; $A$ e $\varphi$ vêm das condições iniciais.`,
+          },
+          {
+            nome: 'Frequência angular da mola',
+            tex: r`\omega = \sqrt{k/m}`,
+            explica: r`$k$ é a constante da mola (N/m) e $m$ a massa (kg). Mola mais dura oscila mais rápido; massa maior, mais devagar. Para qualquer força $-Kx$, troque $k$ por $K$.`,
+          },
+          {
+            nome: 'Período e frequência',
+            tex: r`T = \frac{2\pi}{\omega},\quad f = \frac1T`,
+            explica: r`$T$ é o tempo de uma oscilação completa (s) e $f$ o número de oscilações por segundo (Hz). Uma volta completa da fase vale $2\pi$, por isso $\omega T = 2\pi$.`,
+          },
+        ],
         quando: r`Sempre que a força resultante for proporcional ao deslocamento e apontar de volta, $F = -Kx$.`,
         bizus: [
           r`Achou $F = -Kx$ (mola, gravidade, qualquer coisa)? Então $\omega = \sqrt{K/m}$. Não precisa decorar cada sistema: ache o "$K$ efetivo".`,
@@ -46,7 +75,28 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'mhs-max',
         titulo: 'Velocidade e aceleração',
-        formulas: [r`v = -A\omega\,\text{sen}(\omega t + \varphi),\quad v_{\max} = \omega A`, r`a = -\omega^2 x,\quad a_{\max} = \omega^2 A`],
+        formulas: [
+          {
+            nome: 'Velocidade',
+            tex: r`v = -A\omega\,\text{sen}(\omega t + \varphi)`,
+            explica: r`É a derivada de $x(t)$. Onde o cosseno vale zero (no equilíbrio) o seno vale $\pm1$, e a velocidade é a maior possível.`,
+          },
+          {
+            nome: 'Velocidade máxima',
+            tex: r`v_{\max} = \omega A`,
+            explica: r`Acontece ao passar pelo equilíbrio, $x = 0$. Nos extremos a velocidade é zero. Dada a velocidade no equilíbrio, $\omega = v_0/A$.`,
+          },
+          {
+            nome: 'Aceleração',
+            tex: r`a = -\omega^2 x`,
+            explica: r`Proporcional ao deslocamento e de sinal oposto: é a própria definição do MHS. No equilíbrio, $a = 0$.`,
+          },
+          {
+            nome: 'Aceleração máxima',
+            tex: r`a_{\max} = \omega^2 A`,
+            explica: r`Acontece nos extremos, $|x| = A$, onde o corpo para e volta. É aqui que se testa "escorrega ou não", "descola ou não".`,
+          },
+        ],
         quando: r`Perguntas sobre "passa pelo equilíbrio com velocidade…" ou "o que acontece nos extremos".`,
         bizus: [
           r`Velocidade máxima **no equilíbrio**; aceleração máxima **nos extremos**. Na posição de equilíbrio, $v_0 = \omega A$ dá $\omega = v_0/A$ direto.`,
@@ -57,7 +107,23 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'mhs-fase',
         titulo: 'Amplitude e fase pelas condições iniciais',
-        formulas: [r`x(0) = A\cos\varphi,\qquad v(0) = -A\omega\,\text{sen}\,\varphi`, r`A = \sqrt{x_0^2 + (v_0/\omega)^2}`],
+        formulas: [
+          {
+            nome: 'Posição inicial',
+            tex: r`x(0) = A\cos\varphi`,
+            explica: r`É a solução em $t = 0$. Sozinha, deixa duas fases possíveis para cada posição (por exemplo, $x(0) = 0$ aceita $\varphi = \pi/2$ e $3\pi/2$).`,
+          },
+          {
+            nome: 'Velocidade inicial',
+            tex: r`v(0) = -A\omega\,\text{sen}\,\varphi`,
+            explica: r`O sinal de $v(0)$ escolhe entre as duas fases: começou indo para $+x$ ($v(0) > 0$) pede $\text{sen}\,\varphi < 0$; indo para $-x$ pede $\text{sen}\,\varphi > 0$.`,
+          },
+          {
+            nome: 'Amplitude pelas condições iniciais',
+            tex: r`A = \sqrt{x_0^2 + (v_0/\omega)^2}`,
+            explica: r`Sai de $\cos^2\varphi + \text{sen}^2\varphi = 1$ aplicado às duas equações acima, com $x_0 = x(0)$ e $v_0 = v(0)$. Começando no equilíbrio, fica só $A = v_0/\omega$.`,
+          },
+        ],
         quando: r`"No instante inicial a partícula está em … com velocidade …", ou um gráfico de $x(t)$ para ler.`,
         bizus: [
           r`$\cos\varphi = 0$ dá **dois** candidatos ($\pi/2$ e $3\pi/2$, ou $\pm\pi/2$). Quem desempata é o **sinal da velocidade**: começou subindo ou descendo?`,
@@ -69,7 +135,18 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'mhs-vertical',
         titulo: 'Mola vertical',
-        formulas: [r`k\,\Delta = mg \;\Rightarrow\; \omega = \sqrt{k/m} = \sqrt{g/\Delta}`],
+        formulas: [
+          {
+            nome: 'Equilíbrio da mola vertical',
+            tex: r`k\,\Delta = mg`,
+            explica: r`$\Delta$ é quanto a mola estica quando o corpo fica parado pendurado: a força da mola, $k\Delta$, equilibra o peso.`,
+          },
+          {
+            nome: 'Frequência pela deformação',
+            tex: r`\omega = \sqrt{k/m} = \sqrt{g/\Delta}`,
+            explica: r`Da equação anterior, $k/m = g/\Delta$. Basta saber quanto a mola esticou, sem precisar de $k$ nem de $m$.`,
+          },
+        ],
         quando: r`Corpo pendurado numa mola: "estica tantos cm ao pendurar".`,
         bizus: [
           r`O peso só **desloca o equilíbrio**; medindo $y$ a partir do novo equilíbrio, a equação é a mesma do MHS horizontal.`,
@@ -80,7 +157,18 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'mhs-tempo',
         titulo: 'Frações de período',
-        formulas: [r`\text{máximo} \to \text{zero} = \frac T4,\qquad \text{máximo} \to \text{mínimo} = \frac T2`],
+        formulas: [
+          {
+            nome: 'Do máximo ao zero',
+            tex: r`\Delta t = \frac T4`,
+            explica: r`Um ciclo tem quatro trechos de mesma duração: máximo → zero → mínimo → zero → máximo. Cada um leva um quarto do período.`,
+          },
+          {
+            nome: 'Do máximo ao mínimo',
+            tex: r`\Delta t = \frac T2`,
+            explica: r`Meia oscilação: de um extremo ao outro. Também é o tempo entre duas passagens seguidas pelo equilíbrio.`,
+          },
+        ],
         quando: r`O enunciado dá um tempo entre dois pontos do movimento, não o período.`,
         bizus: [r`Um ciclo tem quatro trechos iguais: máx → 0 → mín → 0 → máx. "Do máximo ao zero em 0,1 s" quer dizer $T = 0{,}4$ s.`],
         questoes: ['p2-2025-2-q4'],
@@ -95,7 +183,28 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'energia-mhs',
         titulo: 'Energia total, cinética e potencial',
-        formulas: [r`E = \tfrac12 kA^2 = \tfrac12 m\omega^2A^2`, r`U = E\cos^2(\omega t + \varphi),\quad K = E\,\text{sen}^2(\omega t + \varphi)`, r`\frac KU = \tan^2(\omega t + \varphi)`],
+        formulas: [
+          {
+            nome: 'Energia total',
+            tex: r`E = \tfrac12 kA^2 = \tfrac12 m\omega^2A^2`,
+            explica: r`É a energia potencial no extremo, onde a cinética é zero. Sem atrito ela não muda. Depende do **quadrado** da amplitude.`,
+          },
+          {
+            nome: 'Energia potencial no tempo',
+            tex: r`U = E\cos^2(\omega t + \varphi)`,
+            explica: r`É a energia guardada na mola, $U = \tfrac12kx^2$, com $x = A\cos(\omega t + \varphi)$ e $k = m\omega^2$. É máxima nos extremos, onde a mola está mais esticada, e zero no equilíbrio.`,
+          },
+          {
+            nome: 'Energia cinética no tempo',
+            tex: r`K = E\,\text{sen}^2(\omega t + \varphi)`,
+            explica: r`É $K = \tfrac12mv^2$ com a velocidade do MHS. Máxima no equilíbrio. Como $\cos^2 + \text{sen}^2 = 1$, sempre $K + U = E$.`,
+          },
+          {
+            nome: 'Cinética sobre potencial',
+            tex: r`\frac KU = \tan^2(\omega t + \varphi)`,
+            explica: r`Dividindo as duas anteriores, o $E$ cancela: basta saber a fase no instante pedido (em $t = 0$, a fase é $\varphi$).`,
+          },
+        ],
         quando: r`Razão entre energias, "o que acontece com a energia se…", ou para tirar $\omega$ e $A$ sem resolver equação.`,
         bizus: [
           r`**Dobrou a amplitude?** Energia $\times 4$, período igual, velocidade máxima $\times 2$.`,
@@ -114,7 +223,28 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'pendulo-base',
         titulo: 'Período e energia do pêndulo',
-        formulas: [r`\omega = \sqrt{g/L},\qquad T = 2\pi\sqrt{L/g}`, r`E = \tfrac12 mL^2\dot\theta^2 + \tfrac12 mgL\theta^2`, r`\theta_{\max} = \frac AL \;\Rightarrow\; E = \frac{mgA^2}{2L}`],
+        formulas: [
+          {
+            nome: 'Frequência angular do pêndulo',
+            tex: r`\omega = \sqrt{g/L}`,
+            explica: r`$L$ é o comprimento do fio e $g$ a gravidade. Não depende da massa nem da amplitude, desde que o ângulo seja pequeno.`,
+          },
+          {
+            nome: 'Período do pêndulo',
+            tex: r`T = 2\pi\sqrt{L/g}`,
+            explica: r`É $2\pi/\omega$ com a frequência acima. O período cresce com a raiz do comprimento: fio quatro vezes maior, período duas vezes maior. Massa e amplitude não entram.`,
+          },
+          {
+            nome: 'Energia pelo ângulo',
+            tex: r`E = \tfrac12 mL^2\dot\theta^2 + \tfrac12 mgL\theta^2`,
+            explica: r`O primeiro termo é a cinética (a massa anda a $v = L\dot\theta$); o segundo, a potencial gravitacional para ângulo pequeno, porque a massa sobe $h \approx L\theta^2/2$. É o MHS com $\theta$ no lugar de $x$.`,
+          },
+          {
+            nome: 'Energia pelo afastamento',
+            tex: r`E = \frac{mgA^2}{2L}`,
+            explica: r`No extremo só há potencial, e o ângulo máximo é $\theta_{\max} = A/L$ (afastamento horizontal $A$ dividido pelo fio). Substituindo na fórmula anterior com $\dot\theta = 0$.`,
+          },
+        ],
         quando: r`Fio + massa, pequenas oscilações.`,
         bizus: [
           r`$\omega = \sqrt{g/L}$, **não** $\sqrt{L/g}$ (essa é a do período, com $2\pi$).`,
@@ -126,7 +256,18 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'pendulo-obstaculo',
         titulo: 'Pêndulo com obstáculo (dois comprimentos)',
-        formulas: [r`T = \tfrac12 T_1 + \tfrac12 T_2 = \pi\sqrt{\tfrac{L_1}{g}} + \pi\sqrt{\tfrac{L_2}{g}}`],
+        formulas: [
+          {
+            nome: 'Período com dois comprimentos',
+            tex: r`T = \pi\sqrt{\tfrac{L_1}{g}} + \pi\sqrt{\tfrac{L_2}{g}}`,
+            explica: r`De um lado balança o fio $L_1$, do outro o pedaço $L_2$ abaixo do obstáculo. Cada lado dura meio período do seu pêndulo, e metade de $2\pi\sqrt{L/g}$ é $\pi\sqrt{L/g}$.`,
+          },
+          {
+            nome: 'Pêndulo equivalente',
+            tex: r`\sqrt{L'} = \tfrac12\left(\sqrt{L_1} + \sqrt{L_2}\right)`,
+            explica: r`É o comprimento $L'$ de um pêndulo comum com o mesmo período: iguale $2\pi\sqrt{L'/g}$ à fórmula anterior. Com $L_1 = L$ e $L_2 = L/2$, dá $L' = (3 + 2\sqrt2)L/8$.`,
+          },
+        ],
         quando: r`Um prego ou bloco encurta o fio de um dos lados.`,
         bizus: [
           r`Cada lado é **meio período** de um pêndulo diferente. Somam-se os **tempos**, não os comprimentos.`,
@@ -144,7 +285,23 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'disfarcado-gravidade',
         titulo: 'Força que fica linear para deslocamento pequeno',
-        formulas: [r`F_y = -\frac{2GMm\,y}{(y^2 + d^2/4)^{3/2}} \approx -\frac{16GMm}{d^3}\,y`, r`\omega = \sqrt{\frac{16GM}{d^3}} = \frac4d\sqrt{\frac{GM}{d}}`],
+        formulas: [
+          {
+            nome: 'Força vertical exata',
+            tex: r`F_y = -\frac{2GMm\,y}{(y^2 + d^2/4)^{3/2}}`,
+            explica: r`Soma das componentes verticais das atrações das duas massas $M$ sobre $m$, com $r = \sqrt{y^2 + d^2/4}$ e $\cos\theta = y/r$. As componentes horizontais se cancelam por simetria.`,
+          },
+          {
+            nome: 'Aproximação linear',
+            tex: r`F_y \approx -\frac{16GMm}{d^3}\,y`,
+            explica: r`Para $y \ll d/2$, despreza-se $y^2$ no denominador: $(d^2/4)^{3/2} = d^3/8$. A força virou uma mola de constante $K = 16GMm/d^3$.`,
+          },
+          {
+            nome: 'Frequência das pequenas oscilações',
+            tex: r`\omega = \sqrt{\frac{16GM}{d^3}} = \frac4d\sqrt{\frac{GM}{d}}`,
+            explica: r`É $\omega = \sqrt{K/m}$ com o $K$ da aproximação linear. A massa $m$ que oscila cancela, como no pêndulo: a força e a inércia são ambas proporcionais a ela.`,
+          },
+        ],
         quando: r`"Considere $y \ll d$": é o aviso de que a força vai virar uma mola.`,
         bizus: [
           r`Por simetria, as componentes **horizontais** se cancelam; some só as verticais ($\cos\theta = y/r$).`,
@@ -155,7 +312,23 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'disfarcado-atrito',
         titulo: 'Bloco sobre bloco: não escorregar',
-        formulas: [r`\omega^2 = \frac{k}{M + m}`, r`m\,\omega^2 A \le \mu_e m g \;\Rightarrow\; A_{\max} = \frac{\mu_e(M + m)g}{k}`],
+        formulas: [
+          {
+            nome: 'Frequência do conjunto',
+            tex: r`\omega^2 = \frac{k}{M + m}`,
+            explica: r`Enquanto não há deslizamento, os dois blocos andam juntos, e a mola acelera a massa total $M + m$.`,
+          },
+          {
+            nome: 'Condição de não escorregar',
+            tex: r`m\,\omega^2 A \le \mu_e m g`,
+            explica: r`À esquerda, a força que o atrito precisa fazer para acelerar o bloquinho no extremo ($m\,a_{\max}$); à direita, o máximo que o atrito estático aguenta ($\mu_e$ vezes a normal $mg$).`,
+          },
+          {
+            nome: 'Amplitude máxima',
+            tex: r`A_{\max} = \frac{\mu_e(M + m)g}{k}`,
+            explica: r`Isolando $A$ na condição de não escorregar ($A \le \mu_e g/\omega^2$) e usando o $\omega^2$ do conjunto. Atrito maior ou mola mais mole permitem amplitude maior.`,
+          },
+        ],
         quando: r`Um corpo em cima do outro, só o de baixo preso na mola.`,
         bizus: [
           r`A mola acelera os **dois** blocos: na frequência entra $M + m$.`,
@@ -173,7 +346,28 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'amortecido-base',
         titulo: 'Solução subcrítica',
-        formulas: [r`\ddot x + \gamma\dot x + \omega_0^2 x = 0`, r`x = A\,e^{-\gamma t/2}\cos(\omega t + \varphi),\quad \omega = \sqrt{\omega_0^2 - \gamma^2/4}`, r`E(t) = E_0\,e^{-\gamma t}`],
+        formulas: [
+          {
+            nome: 'Equação do amortecido',
+            tex: r`\ddot x + \gamma\dot x + \omega_0^2 x = 0`,
+            explica: r`O MHS mais uma força de atrito proporcional à velocidade. $\gamma$ é a constante de amortecimento (1/s) e $\omega_0$ a frequência natural, a que haveria sem atrito.`,
+          },
+          {
+            nome: 'Solução subcrítica',
+            tex: r`x = A\,e^{-\gamma t/2}\cos(\omega t + \varphi)`,
+            explica: r`Um cosseno com amplitude encolhendo: a envoltória é $Ae^{-\gamma t/2}$. Vale quando o atrito é pequeno, $\gamma < 2\omega_0$.`,
+          },
+          {
+            nome: 'Frequência amortecida',
+            tex: r`\omega = \sqrt{\omega_0^2 - \gamma^2/4}`,
+            explica: r`Um pouco menor que $\omega_0$. Com amortecimento fraco, $\omega \approx \omega_0$ e o período quase não muda.`,
+          },
+          {
+            nome: 'Energia no tempo',
+            tex: r`E(t) = E_0\,e^{-\gamma t}`,
+            explica: r`$E_0$ é a energia inicial. A energia vai com o quadrado da amplitude, e $(e^{-\gamma t/2})^2 = e^{-\gamma t}$: por isso aqui aparece $\gamma$ inteiro. Em $t = 1/\gamma$ sobra $e^{-1} \approx 36{,}8\%$ da energia.`,
+          },
+        ],
         quando: r`Atrito viscoso, "perde energia", "amplitude diminui".`,
         bizus: [
           r`Amplitude com $\gamma/2$, **energia com $\gamma$** (energia $\propto$ amplitude²). Não troque os dois.`,
@@ -185,7 +379,23 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'amortecido-fatores',
         titulo: 'Queda exponencial e decremento logarítmico',
-        formulas: [r`R = \frac{x_{n+1}}{x_n} = e^{-\gamma\tau/2},\qquad \delta = |\ln R| = \frac{\gamma\tau}{2}`, r`\text{após } n \text{ períodos: } R^n`],
+        formulas: [
+          {
+            nome: 'Razão entre máximos seguidos',
+            tex: r`R = \frac{x_{n+1}}{x_n} = e^{-\gamma\tau/2}`,
+            explica: r`Dois máximos seguidos estão separados por um período $\tau$. O cosseno vale o mesmo nos dois, então só a exponencial muda.`,
+          },
+          {
+            nome: 'Decremento logarítmico',
+            tex: r`\delta = |\ln R| = \frac{\gamma\tau}{2}`,
+            explica: r`Mede quanto a amplitude cai por ciclo, em escala logarítmica. Sem atrito, $R = 1$ e $\delta = 0$.`,
+          },
+          {
+            nome: 'Depois de n períodos',
+            tex: r`\frac{x(t + n\tau)}{x(t)} = R^n`,
+            explica: r`Cada período multiplica a amplitude pelo mesmo $R$. Metade em 3 períodos: $R^3 = \tfrac12$, logo $\delta = (\ln 2)/3$.`,
+          },
+        ],
         quando: r`"Cai a 1/10 em…", "metade em três períodos", "quanto tempo a mais".`,
         bizus: [
           r`Exponencial: **intervalos iguais multiplicam pelo mesmo fator**. Se cai a 1/10 em 15 s, cai a 1/100 em 30 s (mais 15 s, não 30).`,
@@ -204,7 +414,23 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'forcado-amplitude',
         titulo: 'Amplitude no regime estacionário',
-        formulas: [r`\ddot x + \gamma\dot x + \omega_0^2x = f\cos\omega t`, r`A(\omega) = \frac{f}{\sqrt{(\omega_0^2 - \omega^2)^2 + \gamma^2\omega^2}}`],
+        formulas: [
+          {
+            nome: 'Equação forçada',
+            tex: r`\ddot x + \gamma\dot x + \omega_0^2x = f\cos\omega t`,
+            explica: r`O oscilador amortecido com uma força externa periódica; $f$ é a força por unidade de massa ($F_0/m$) e $\omega$ a frequência **da força**, não a natural.`,
+          },
+          {
+            nome: 'Amplitude estacionária',
+            tex: r`A(\omega) = \frac{f}{\sqrt{(\omega_0^2 - \omega^2)^2 + \gamma^2\omega^2}}`,
+            explica: r`Depois do transitório, o corpo oscila na frequência da força com esta amplitude. O primeiro termo some em $\omega = \omega_0$; o segundo, do atrito, impede a amplitude de ir ao infinito.`,
+          },
+          {
+            nome: 'Fator de qualidade',
+            tex: r`Q = \frac{\omega_0}{\gamma}`,
+            explica: r`Quanto menor o atrito, maior $Q$ e mais alto e estreito o pico. Na ressonância a amplitude é cerca de $Q$ vezes a obtida com força lenta ($\omega \to 0$).`,
+          },
+        ],
         quando: r`Força periódica externa, "após o transitório".`,
         bizus: [
           r`Depois do transitório, o corpo oscila na frequência **da força**, não na natural.`,
@@ -216,7 +442,23 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'forcado-fase',
         titulo: 'Fase da resposta',
-        formulas: [r`\omega \ll \omega_0:\ \text{em fase},\quad \omega = \omega_0:\ \tfrac\pi2,\quad \omega \gg \omega_0:\ \text{oposição, amplitude} \to 0`],
+        formulas: [
+          {
+            nome: 'Força lenta',
+            tex: r`\omega \ll \omega_0:\ \text{em fase}`,
+            explica: r`A mola domina: o corpo acompanha a força, com amplitude perto de $f/\omega_0^2$.`,
+          },
+          {
+            nome: 'Na ressonância',
+            tex: r`\omega = \omega_0:\ \text{atraso de } \tfrac\pi2`,
+            explica: r`O corpo fica um quarto de ciclo atrás da força, que então empurra sempre a favor da velocidade: é por isso que a amplitude cresce tanto.`,
+          },
+          {
+            nome: 'Força rápida',
+            tex: r`\omega \gg \omega_0:\ \text{oposição},\ A \to 0`,
+            explica: r`A inércia domina: o corpo mal se mexe e vai ao contrário da força.`,
+          },
+        ],
         quando: r`Afirmações do tipo "em baixa frequência o movimento está em oposição".`,
         bizus: [r`Baixa frequência: a mola manda e o corpo **acompanha** a força. Alta frequência: o corpo nem consegue seguir, responde pouco e ao contrário.`],
         questoes: ['p11'],
@@ -231,7 +473,28 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'ondas-leitura',
         titulo: 'Lendo uma onda harmônica',
-        formulas: [r`y = A\,\text{sen}(kx \mp \omega t)`, r`k = \frac{2\pi}{\lambda},\quad \omega = \frac{2\pi}{T} = 2\pi f,\quad v = \frac\omega k = \lambda f`],
+        formulas: [
+          {
+            nome: 'Onda harmônica',
+            tex: r`y = A\,\text{sen}(kx \mp \omega t)`,
+            explica: r`$y$ é o deslocamento do ponto $x$ da corda no instante $t$, e $A$ a amplitude. Com o sinal de menos a onda anda para $+x$; com o de mais, para $-x$.`,
+          },
+          {
+            nome: 'Número de onda',
+            tex: r`k = \frac{2\pi}{\lambda}`,
+            explica: r`$\lambda$ é o comprimento de onda, a distância entre duas cristas. $k$ é o número que multiplica $x$ (rad/m).`,
+          },
+          {
+            nome: 'Frequência angular da onda',
+            tex: r`\omega = \frac{2\pi}{T} = 2\pi f`,
+            explica: r`O número que multiplica $t$. $T$ é o tempo para um ponto da corda completar uma oscilação, e $f = 1/T$.`,
+          },
+          {
+            nome: 'Velocidade da onda',
+            tex: r`v = \frac\omega k = \lambda f`,
+            explica: r`Em um período a onda anda um comprimento de onda. Vale também para ler a velocidade escondida numa estacionária.`,
+          },
+        ],
         quando: r`"Ache amplitude, comprimento de onda, período, frequência, velocidade e sentido".`,
         bizus: [
           r`**Sinais iguais** em $kx$ e $\omega t$: anda para $-x$. **Sinais opostos**: anda para $+x$.`,
@@ -243,7 +506,23 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'ondas-equacao',
         titulo: 'Equação de onda',
-        formulas: [r`\frac{\partial^2 y}{\partial x^2} = \frac{1}{v^2}\frac{\partial^2 y}{\partial t^2}`, r`y = f(x - vt) + g(x + vt)`],
+        formulas: [
+          {
+            nome: 'Equação de onda',
+            tex: r`\frac{\partial^2 y}{\partial x^2} = \frac{1}{v^2}\frac{\partial^2 y}{\partial t^2}`,
+            explica: r`Liga a curvatura da corda num ponto à aceleração desse ponto; $v$ é a velocidade de propagação. Numa corda aparece como $T\,\partial^2y/\partial x^2 = \mu\,\partial^2y/\partial t^2$, isto é, $v^2 = T/\mu$.`,
+          },
+          {
+            nome: 'Solução geral da equação de onda',
+            tex: r`y = f(x - vt) + g(x + vt)`,
+            explica: r`Qualquer forma $f$ andando para a direita mais qualquer forma $g$ andando para a esquerda, sem se deformar. A forma inicial **e** a velocidade inicial da corda determinam $f$ e $g$.`,
+          },
+          {
+            nome: 'Relação de dispersão',
+            tex: r`\omega = vk`,
+            explica: r`Substituindo uma onda harmônica na equação: as derivadas segundas dão $-k^2$ e $-\omega^2$, e a igualdade pede $\omega^2 = v^2k^2$.`,
+          },
+        ],
         quando: r`"Mostre que satisfaz a equação de onda", "relação de dispersão".`,
         bizus: [
           r`Derivar duas vezes seno/cosseno devolve a função vezes $-k^2$ (em $x$) ou $-\omega^2$ (em $t$). Igualando: $\omega = vk$.`,
@@ -262,7 +541,18 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'corda-velocidade',
         titulo: 'Velocidade numa corda',
-        formulas: [r`v = \sqrt{T/\mu} \;\Leftrightarrow\; T = \mu v^2`],
+        formulas: [
+          {
+            nome: 'Velocidade numa corda',
+            tex: r`v = \sqrt{T/\mu}`,
+            explica: r`$T$ é a tração (N) e $\mu$ a massa por comprimento (kg/m). Corda mais esticada, onda mais rápida; corda mais pesada, onda mais lenta.`,
+          },
+          {
+            nome: 'Tração pela velocidade',
+            tex: r`T = \mu v^2`,
+            explica: r`A mesma fórmula com $T$ isolada. Use quando dá para achar a velocidade por $v = \lambda/\tau$ ($\tau$ é o período, não confundir com a tração).`,
+          },
+        ],
         quando: r`Tensão, densidade linear, "bloco pendurado tensiona a corda".`,
         bizus: [
           r`Bloco parado pendurado na ponta: **tração = peso**, $T = mg$. A polia sem atrito só muda a direção.`,
@@ -273,7 +563,28 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'corda-potencia',
         titulo: 'Potência e energia transportadas',
-        formulas: [r`\bar P = \tfrac12\mu\omega^2A^2\,v = \tfrac12\sqrt{T\mu}\;\omega^2A^2`, r`E_{\text{entre nós}} = \frac{\pi^2TA^2}{2L}\ \ (\text{estacionária, modo com }\lambda = L)`],
+        formulas: [
+          {
+            nome: 'Potência média',
+            tex: r`\bar P = \tfrac12\mu\omega^2A^2\,v`,
+            explica: r`$\tfrac12\mu\omega^2A^2$ é a energia média por metro de corda; multiplicada pela velocidade $v$ com que ela viaja, dá a energia que passa por segundo.`,
+          },
+          {
+            nome: 'Potência pela tração',
+            tex: r`\bar P = \tfrac12\sqrt{T\mu}\;\omega^2A^2`,
+            explica: r`É a potência média com $v = \sqrt{T/\mu}$, porque $\mu v = \sqrt{T\mu}$. Com tração, frequência e amplitude fixas, a potência vai com $\sqrt\mu$: corda três vezes mais pesada leva $\sqrt3$ vezes mais potência.`,
+          },
+          {
+            nome: 'Densidades de energia',
+            tex: r`\frac{dK}{dx} = \tfrac12\mu\left(\frac{\partial y}{\partial t}\right)^2,\quad \frac{dU}{dx} = \tfrac12T\left(\frac{\partial y}{\partial x}\right)^2`,
+            explica: r`Energia por metro: a cinética vem da velocidade de cada pedaço; a potencial, da inclinação (o quanto a corda está esticada além do reto). Integre em $x$ para ter a energia de um trecho.`,
+          },
+          {
+            nome: 'Energia entre dois nós',
+            tex: r`E = \frac{\pi^2TA^2}{2L}`,
+            explica: r`Corda de comprimento $L$, presa nas pontas, no segundo modo ($\lambda = L$) com amplitude $A$: energia entre dois nós vizinhos. É constante, porque cinética e potencial trocam entre si.`,
+          },
+        ],
         quando: r`"Potência média", "intensidade", "energia de um trecho da corda".`,
         bizus: [
           r`Mudou só $\mu$? A potência vai com $\sqrt\mu$: $\mu \times 3 \Rightarrow P \times \sqrt3$ (mais massa por metro, mas onda mais lenta).`,
@@ -291,7 +602,23 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'estacionaria-soma',
         titulo: 'Soma de duas viajantes',
-        formulas: [r`A\cos(kx - \omega t) + A\cos(kx + \omega t) = 2A\cos kx\cos\omega t`, r`A\,\text{sen}(kx + \omega t) - A\,\text{sen}(kx - \omega t) = 2A\cos kx\,\text{sen}\,\omega t`, r`\cos(\theta + \tfrac\pi2) = -\text{sen}\,\theta`],
+        formulas: [
+          {
+            nome: 'Soma de duas viajantes (cossenos)',
+            tex: r`y = 2A\cos kx\cos\omega t`,
+            explica: r`É $A\cos(kx - \omega t) + A\cos(kx + \omega t)$: duas ondas iguais em sentidos opostos. Fica uma forma parada, $\cos kx$, cuja altura sobe e desce com $\cos\omega t$.`,
+          },
+          {
+            nome: 'Soma de duas viajantes (senos)',
+            tex: r`y = 2A\cos kx\,\text{sen}\,\omega t`,
+            explica: r`É $A\,\text{sen}(kx + \omega t) - A\,\text{sen}(kx - \omega t)$: abrindo seno da soma e da diferença, os termos com $\text{sen}\,kx$ se cancelam.`,
+          },
+          {
+            nome: 'Deslocar a fase de π/2',
+            tex: r`\cos\!\left(\theta + \tfrac\pi2\right) = -\text{sen}\,\theta`,
+            explica: r`Serve para escrever as duas ondas com a mesma função (só senos ou só cossenos) antes de somar.`,
+          },
+        ],
         quando: r`"Superposição", "a onda estacionária resultante", "as ondas que interferem".`,
         bizus: [
           r`A amplitude da estacionária é **o dobro** da de cada viajante: estacionária de 0,5 cm vem de duas de 0,25 cm.`,
@@ -304,7 +631,18 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'estacionaria-nos',
         titulo: 'Nós e ventres',
-        formulas: [r`\text{nós vizinhos: } \frac\lambda2 = \frac\pi k,\qquad \text{nó ao ventre: } \frac\lambda4`],
+        formulas: [
+          {
+            nome: 'Distância entre nós vizinhos',
+            tex: r`\frac\lambda2 = \frac\pi k`,
+            explica: r`Nós são os pontos onde o fator em $x$ zera ($\cos kx = 0$ ou $\text{sen}\,kx = 0$), e isso se repete a cada $\pi$ em $kx$.`,
+          },
+          {
+            nome: 'Do nó ao ventre',
+            tex: r`\frac\lambda4`,
+            explica: r`Ventre é o ponto de amplitude máxima, no meio entre dois nós.`,
+          },
+        ],
         quando: r`"Distância entre nós", "menor comprimento de corda".`,
         bizus: [r`Para caber numa corda presa nas duas pontas, o comprimento tem de ser múltiplo de $\lambda/2$; o menor é a própria distância entre nós.`],
         questoes: ['p6', 'p7'],
@@ -312,7 +650,18 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'estacionaria-inicial',
         titulo: 'Onda a partir das condições iniciais',
-        formulas: [r`A\cos kx\cos\omega t + B\,\text{sen}\,kx\,\text{sen}\,\omega t = \tfrac{A+B}{2}\cos(kx - \omega t) + \tfrac{A-B}{2}\cos(kx + \omega t)`],
+        formulas: [
+          {
+            nome: 'Produto de cossenos',
+            tex: r`\cos kx\cos\omega t = \tfrac12\left[\cos(kx - \omega t) + \cos(kx + \omega t)\right]`,
+            explica: r`Desfaz uma estacionária em duas viajantes. É a identidade de soma de cossenos lida de trás para a frente.`,
+          },
+          {
+            nome: 'Produto de senos',
+            tex: r`\text{sen}\,kx\,\text{sen}\,\omega t = \tfrac12\left[\cos(kx - \omega t) - \cos(kx + \omega t)\right]`,
+            explica: r`É a identidade da diferença de cossenos lida ao contrário. Usando as duas identidades, $A\cos kx\cos\omega t + B\,\text{sen}\,kx\,\text{sen}\,\omega t$ vira $\tfrac{A+B}2\cos(kx - \omega t) + \tfrac{A-B}2\cos(kx + \omega t)$: uma onda para cada lado.`,
+          },
+        ],
         quando: r`Dados a forma inicial $y(x,0)$ e a velocidade inicial $\partial y/\partial t(x,0)$.`,
         bizus: [r`A forma inicial fixa a parte em $\cos\omega t$, a velocidade inicial a parte em $\text{sen}\,\omega t$. Sem a velocidade, a resposta não é única.`],
         questoes: ['p5'],
@@ -327,7 +676,18 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'modos-contorno',
         titulo: 'Condições de contorno',
-        formulas: [r`\text{fixa: } y(x_p, t) = 0\ \ (\text{nó})`, r`\text{livre: } \frac{\partial y}{\partial x}(x_p, t) = 0\ \ (\text{ventre})`],
+        formulas: [
+          {
+            nome: 'Ponta fixa',
+            tex: r`y(x_p, t) = 0`,
+            explica: r`A corda presa em $x_p$ não se mexe em nenhum instante: a ponta é um **nó**. Teste: o fator em $x$ zera nesse ponto.`,
+          },
+          {
+            nome: 'Ponta livre',
+            tex: r`\frac{\partial y}{\partial x}(x_p, t) = 0`,
+            explica: r`Anel sem massa numa haste sem atrito: a corda chega horizontal, inclinação zero. A ponta é um **ventre**. Teste: a derivada do fator em $x$ zera nesse ponto.`,
+          },
+        ],
         quando: r`"Identifique qual extremidade é livre ou fixa", anel em haste, corda presa.`,
         bizus: [
           r`Anel **sem massa e sem atrito** numa haste = ponta livre: a corda chega horizontal.`,
@@ -339,7 +699,28 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'modos-frequencias',
         titulo: 'Comprimentos de onda e frequências permitidos',
-        formulas: [r`\text{fixa-fixa: } L = n\frac\lambda2,\quad f_n = \frac{nv}{2L}`, r`\text{fixa-livre: } L = (2n+1)\frac\lambda4,\quad \lambda_n = \frac{4L}{2n+1},\quad f_n = \frac{(2n+1)v}{4L}`],
+        formulas: [
+          {
+            nome: 'Duas pontas fixas: comprimentos de onda',
+            tex: r`L = n\,\frac\lambda2`,
+            explica: r`Entre dois nós cabe meia onda, então na corda cabem $n$ meias ondas, $n = 1, 2, 3, \dots$`,
+          },
+          {
+            nome: 'Duas pontas fixas: frequências',
+            tex: r`f_n = \frac{nv}{2L}`,
+            explica: r`Vem de $f = v/\lambda$ com $\lambda = 2L/n$, sendo $v$ a velocidade da onda na corda. Aparecem todos os múltiplos inteiros do fundamental $v/2L$.`,
+          },
+          {
+            nome: 'Uma fixa e uma livre: comprimentos de onda',
+            tex: r`L = (2n+1)\,\frac\lambda4 \;\Leftrightarrow\; \lambda_n = \frac{4L}{2n+1}`,
+            explica: r`Do ventre da ponta livre ao nó da ponta fixa cabe um número **ímpar** de quartos de onda, $n = 0, 1, 2, \dots$`,
+          },
+          {
+            nome: 'Uma fixa e uma livre: frequências',
+            tex: r`f_n = \frac{(2n+1)v}{4L}`,
+            explica: r`Vem de $f = v/\lambda$ com $\lambda = 4L/(2n+1)$. Só aparecem os múltiplos ímpares do fundamental $v/4L$, na proporção 1 : 3 : 5.`,
+          },
+        ],
         quando: r`"Modos normais", "os três modos de menor frequência", "esboce os modos".`,
         bizus: [
           r`Fixa-livre só tem **harmônicos ímpares** (1 : 3 : 5): $\tfrac14$, $\tfrac34$, $\tfrac54$ de onda.`,
@@ -358,7 +739,18 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'reflexao-regras',
         titulo: 'As duas regras de reflexão',
-        formulas: [r`\text{fixa: inverte (gira } 180^\circ)`, r`\text{livre: não inverte}`],
+        formulas: [
+          {
+            nome: 'Reflexão na ponta fixa',
+            tex: r`\text{inverte (gira } 180^\circ)`,
+            explica: r`A ponta presa puxa a corda para o lado oposto (terceira lei de Newton): corcova volta como vale, e a parte que bateu primeiro sai na frente.`,
+          },
+          {
+            nome: 'Reflexão na ponta livre',
+            tex: r`\text{não inverte}`,
+            explica: r`O anel sobe junto e devolve o pulso do mesmo lado. Só a ordem se espelha: a parte que bateu primeiro sai na frente.`,
+          },
+        ],
         quando: r`"Como fica o pulso depois de refletir", desenhos de pulsos.`,
         bizus: [
           r`Na ponta fixa o pulso **inverte e troca a ordem**: a parte que bateu primeiro sai na frente. É girar o desenho 180° em torno da ponta.`,
@@ -369,7 +761,23 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'reflexao-tempo',
         titulo: 'Quando o pulso volta',
-        formulas: [r`t = \frac{\text{caminho percorrido}}{v}`, r`\text{fixa-livre: invertida em } \tfrac{2L}{v},\ \text{igual em } \tfrac{4L}{v}`],
+        formulas: [
+          {
+            nome: 'Tempo de viagem',
+            tex: r`t = \frac{\text{caminho}}{v}`,
+            explica: r`Entre as pontas o pulso anda com velocidade constante $v$: some os trechos percorridos, ida e volta.`,
+          },
+          {
+            nome: 'Fixa-livre: meia volta',
+            tex: r`t = \frac{2L}{v}:\ \text{forma invertida}`,
+            explica: r`Em $2L$ de caminho cada pedaço do pulso passou uma vez pela ponta fixa: a corda tem a forma inicial de cabeça para baixo.`,
+          },
+          {
+            nome: 'Fixa-livre: volta completa',
+            tex: r`t = \frac{4L}{v}:\ \text{forma original}`,
+            explica: r`Duas passagens pela ponta fixa: as duas inversões se desfazem. É o período do modo fundamental ($\lambda = 4L$).`,
+          },
+        ],
         quando: r`"Menor tempo para a corda voltar à configuração inicial", "o pulso aparece com tal forma".`,
         bizus: [
           r`Faça uma tabela: posição, **sinal** (conte as passagens pela ponta fixa) e **sentido**. Só vale quando os três batem.`,
@@ -388,7 +796,28 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'som-propriedades',
         titulo: 'Propriedades da onda sonora',
-        formulas: [r`v = \sqrt{\frac{\gamma RT}{M}} \propto \sqrt T`, r`\Delta p = -B\frac{\partial s}{\partial x}`, r`I = \tfrac12\rho v\,\omega^2 s_0^2,\qquad \lambda = v\tau`],
+        formulas: [
+          {
+            nome: 'Velocidade do som num gás',
+            tex: r`v = \sqrt{\frac{\gamma RT}{M}}`,
+            explica: r`$T$ é a temperatura absoluta (K), $M$ a massa molar, $R$ a constante dos gases e $\gamma$ a razão $c_p/c_v$ (aqui não é o amortecimento). Cresce com $\sqrt T$.`,
+          },
+          {
+            nome: 'Variação de pressão',
+            tex: r`\Delta p = -B\frac{\partial s}{\partial x}`,
+            explica: r`$s$ é o deslocamento das camadas de ar e $B$ o módulo de compressibilidade. A pressão muda onde o deslocamento varia de um ponto ao vizinho; por isso fica um quarto de onda defasada do deslocamento.`,
+          },
+          {
+            nome: 'Intensidade sonora',
+            tex: r`I = \tfrac12\rho v\,\omega^2 s_0^2`,
+            explica: r`Potência por área: $\rho$ é a densidade do ar e $s_0$ a amplitude de deslocamento. Mesma amplitude com frequência maior: som mais intenso.`,
+          },
+          {
+            nome: 'Comprimento de onda e período',
+            tex: r`\lambda = v\tau`,
+            explica: r`Em um período $\tau$ a onda anda um comprimento de onda. Com $v$ fixo, período menor dá $\lambda$ menor.`,
+          },
+        ],
         quando: r`Questões de "verdadeiro ou falso" sobre o som.`,
         bizus: [
           r`Som anda em sólidos, líquidos e gases; num gás, **mais quente = mais rápido**.`,
@@ -400,7 +829,18 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'som-db',
         titulo: 'Nível sonoro',
-        formulas: [r`\beta = (10\ \text{dB})\log_{10}\frac{I}{I_0}`, r`\beta_2 - \beta_1 = 10\log_{10}\frac{I_2}{I_1}`],
+        formulas: [
+          {
+            nome: 'Nível sonoro',
+            tex: r`\beta = (10\ \text{dB})\log_{10}\frac{I}{I_0}`,
+            explica: r`$I$ é a intensidade (W/m²) e $I_0 = 10^{-12}$ W/m² o limiar da audição. Escala logarítmica, como o ouvido percebe.`,
+          },
+          {
+            nome: 'Diferença de níveis',
+            tex: r`\beta_2 - \beta_1 = (10\ \text{dB})\log_{10}\frac{I_2}{I_1}`,
+            explica: r`Subtraindo dois níveis, o $I_0$ cancela (diferença de logaritmos é o logaritmo da razão). $-20$ dB quer dizer $I_2/I_1 = 1/100$.`,
+          },
+        ],
         quando: r`"De 90 dB para 70 dB", "quantas vezes mais intenso".`,
         bizus: [r`Cada **10 dB = fator 10** na intensidade. Baixar 20 dB é dividir por 100: eliminar 99% da potência (não 22%).`],
         questoes: ['p8'],
@@ -415,7 +855,13 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'doppler-base',
         titulo: 'Fórmula geral',
-        formulas: [r`f' = f\,\frac{v_{\text{som}} \pm v_{\text{obs}}}{v_{\text{som}} \mp v_{\text{fonte}}}`],
+        formulas: [
+          {
+            nome: 'Doppler para o som',
+            tex: r`f' = f\,\frac{v_{\text{som}} \pm v_{\text{obs}}}{v_{\text{som}} \mp v_{\text{fonte}}}`,
+            explica: r`$f$ é a frequência emitida e $f'$ a ouvida; as velocidades são medidas em relação ao ar. Sinais de cima quando o movimento é de aproximação (observador indo para a fonte, fonte indo para o observador).`,
+          },
+        ],
         quando: r`Fonte e/ou observador em movimento em relação ao ar.`,
         bizus: [
           r`Observador no **numerador**, fonte no **denominador**. Escolha os sinais pelo bom senso: **aproximação aumenta** a frequência.`,
@@ -426,7 +872,18 @@ export const BIZUARIO: Topico[] = [
       {
         id: 'doppler-eco',
         titulo: 'Eco e radar: dois Dopplers',
-        formulas: [r`f_{\text{alvo}} = f_0\,\frac{c \pm u}{c \mp v_f},\qquad f_{\text{eco}} = f_{\text{alvo}}\,\frac{c \pm v_f}{c \mp u}`],
+        formulas: [
+          {
+            nome: 'O alvo recebe',
+            tex: r`f_{\text{alvo}} = f_0\,\frac{c \pm u}{c \mp v_e}`,
+            explica: r`$c$ é a velocidade da onda, $f_0$ a frequência emitida, $u$ a velocidade do alvo (aqui é o observador) e $v_e$ a do emissor (aqui é a fonte).`,
+          },
+          {
+            nome: 'O alvo reemite',
+            tex: r`f_{\text{eco}} = f_{\text{alvo}}\,\frac{c \pm v_e}{c \mp u}`,
+            explica: r`Agora os papéis trocam: o alvo é a fonte e o emissor é quem ouve. Se $u = v_e$, as duas frações se cancelam e o eco volta sem desvio.`,
+          },
+        ],
         quando: r`Onda refletida num corpo em movimento (radar de polícia, morcego, eco).`,
         bizus: [
           r`O refletor primeiro **recebe** (é observador) e depois **reemite** (é fonte): aplique a fórmula duas vezes.`,
