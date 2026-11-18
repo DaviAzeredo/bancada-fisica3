@@ -4,6 +4,7 @@ import { Icon, Section } from '../ui/kit'
 import { Plot } from '../ui/Plot'
 import { Rich } from '../ui/Rich'
 import { Solution } from '../ui/Solution'
+import { Bizuario } from './Bizuario'
 import { TopBar } from './Shell'
 
 const GRUPOS = [...new Set(FISICA2.map((p) => p.grupo))]
@@ -50,6 +51,15 @@ function Indice() {
           Os problemas da revisão em sala, a lista de problemas extras e as P2 de 2024/2 a 2026/1, resolvidos passo a passo para quem
           está começando: cada item diz o que se pede, a ideia por trás, a conta e uma conferência. Os gráficos se mexem: ajuste os controles e veja a física acontecer.
         </p>
+        <a
+          href="#/fisica2/bizuario"
+          className="mb-8 grid gap-1 rounded-[10px] border border-accent/40 bg-surface px-4 py-3.5 transition-colors duration-150 hover:border-accent"
+        >
+          <span className="text-[15px] font-semibold text-text">Bizuário para a P2 →</span>
+          <span className="text-[13.5px] leading-[1.55] text-text-2">
+            Todas as fórmulas e pulos do gato destas questões, em fichas para decorar: leia, esconda, tente lembrar e confira.
+          </span>
+        </a>
         <Lista />
       </div>
     </div>
@@ -65,6 +75,9 @@ function Pagina({ p, antes, depois }: { p: ProblemaF2; antes?: ProblemaF2; depoi
           <div className="sticky top-4 max-h-[calc(100svh-2rem)] overflow-y-auto">
             <a href="#/fisica2" className="mb-3 block px-2 text-[12px] font-semibold tracking-[0.06em] text-text-3 uppercase hover:text-text-2">
               Física II · P2
+            </a>
+            <a href="#/fisica2/bizuario" className="mb-4 block rounded-[var(--radius-ctl)] border border-accent/40 px-2 py-1.5 text-[13px] text-text hover:border-accent">
+              Bizuário (fórmulas para decorar)
             </a>
             <Lista atual={p.id} />
           </div>
@@ -130,6 +143,7 @@ function Pagina({ p, antes, depois }: { p: ProblemaF2; antes?: ProblemaF2; depoi
 
 export function Fisica2({ id }: { id?: string }) {
   const i = id ? FISICA2.findIndex((p) => p.id === id) : -1
+  if (id === 'bizuario') return <Bizuario />
   if (i < 0) return <Indice />
   return <Pagina key={FISICA2[i].id} p={FISICA2[i]} antes={FISICA2[i - 1]} depois={FISICA2[i + 1]} />
 }
